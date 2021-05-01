@@ -56,13 +56,20 @@ T_grid = reshape(T,n,m)'
 P = heatmap(0:dx:xlen,0:dy:ylen,T_grid,yflip=true,xmirror=true, title=L"T",colorbar_title=" ")
 
 #Compute Average Temperature
-f_av = (1/N)*(ones(N,1))'*(T)
+function f_av(η,Q,p,m,n;k_0=1,k_p=100,xlen=0.1,ylen=0.1)
+    Eta = reshape(η,m+1,n+1)
+    Qu = reshape(Q,m,n)
+    K = Kay(Eta,k_0,k_p,p,m,n,xlen,ylen)
+    T = K\Qu[:]
+    f_avg = (1/(m*n))*(ones((m*n),1))'*T
+    return f_avg
+end
 
 #Compute Dual Vector for Average Temperature
 lambda = K\(-ones(N,1)*(1/N))
 
 #Computation of d_f_av
-d_f_av = zeros(m+1,n+1)
+d_f_avg = zeros(m+1,n+1)
 
 #Derivative of penalization function
 dk = (p * (k_p - k_0)) .* Eta.^(p-1)
@@ -75,12 +82,29 @@ for i = 1:n+1, j = 1:m+1
         b = B[k]
         v = Va[k]
 
-        d_f_av[i,j]+=lambda[a]*v*T[b]
+        d_f_avg[i,j]+=lambda[a]*v*T[b]
     end
 end
 
+function d_f_av(η,p,m,n;k_0=1,k_p=100,xlen=0.1,ylen=0.1)
+    Eta = reshape(η,m+1,n+1)
+    d_f_av = zeros(m+1,n+1)
+    dk = (p * (k_p - k_0)) .* Eta.^(p-1)
+    for i = 1:n+1, j = 1:m+1
+        dK = partialK(i,j,m,n,xlen,ylen).*dk[i,j]
+        A, B, Va = findnz(dK)
+        for k = 1:nnz(dK)
+            a = A[k]
+            b = B[k]
+            v = Va[k]
+            d_f_av[i,j]+=lambda[a]*v*T[b]
+        end
+    end
+    return d_f_av
+end
+
 #Heatmap of change in average temperature per design node
-F = heatmap(0:dx:xlen,0:dy:ylen,d_f_av,yflip=true,xmirror=true,colorbar_title=" ",title=L"\textrm{d}f_{av}/\textrm{d}\eta_{ij}")
+F = heatmap(0:dx:xlen,0:dy:ylen,d_f_avg,yflip=true,xmirror=true,colorbar_title=" ",title=L"\textrm{d}f_{av}/\textrm{d}\eta_{ij}")
 
 #Make d_f_av into a vector
-d_f_av_vec = vec((d_f_av)')
+d_f_avg_vec = vec((d_f_avg)')

@@ -68,24 +68,7 @@ end
 #Compute Dual Vector for Average Temperature
 lambda = K\(-ones(N,1)*(1/N))
 
-#Computation of d_f_av
-d_f_avg = zeros(m+1,n+1)
-
-#Derivative of penalization function
-dk = (p * (k_p - k_0)) .* Eta.^(p-1)
-
-for i = 1:n+1, j = 1:m+1
-    dK = partialK(i,j,m,n,xlen,ylen).*dk[i,j]
-    A, B, Va = findnz(dK)
-    for k = 1:nnz(dK)
-        a = A[k]
-        b = B[k]
-        v = Va[k]
-
-        d_f_avg[i,j]+=lambda[a]*v*T[b]
-    end
-end
-
+#Compute the Jacobian of Average Temperature, d_f_av
 function d_f_av(η,p,m,n;k_0=1,k_p=100,xlen=0.1,ylen=0.1)
     Eta = reshape(η,m+1,n+1)
     d_f_av = zeros(m+1,n+1)
@@ -100,11 +83,13 @@ function d_f_av(η,p,m,n;k_0=1,k_p=100,xlen=0.1,ylen=0.1)
             d_f_av[i,j]+=lambda[a]*v*T[b]
         end
     end
+    d_f_av = vec((d_f_av)')
     return d_f_av
 end
 
+d_f_avg = d_f_av(Eta,p,m,n)
+
+d_f_avg = reshape(d_f_avg,n+1,m+1)'
+
 #Heatmap of change in average temperature per design node
 F = heatmap(0:dx:xlen,0:dy:ylen,d_f_avg,yflip=true,xmirror=true,colorbar_title=" ",title=L"\textrm{d}f_{av}/\textrm{d}\eta_{ij}")
-
-#Make d_f_av into a vector
-d_f_avg_vec = vec((d_f_avg)')

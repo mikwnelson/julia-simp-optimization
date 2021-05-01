@@ -13,9 +13,9 @@ end
 #function myconstraint(x::Vector, grad::Vector, a, b)
 #    if length(grad) > 0
 #        grad[1] = 3a * (a*x[1] + b)^2
-##        grad[2] = -1
- #   end
- #   (a*x[1] + b)^3 - x[2]
+#        grad[2] = -1
+#   end
+#   (a*x[1] + b)^3 - x[2]
 #end
 
 opt.min_objective = av_temp

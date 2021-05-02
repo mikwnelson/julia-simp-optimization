@@ -70,4 +70,17 @@ avoided. Concepts are explained in several different ways. Most equations are co
   publisher = {Informa {UK} Limited},
 }
 
+@Article{Svanberg1987,
+  author    = {Krister Svanberg},
+  journal   = {International Journal for Numerical Methods in Engineering},
+  title     = {The method of moving asymptotes{\textemdash}a new method for structural optimization},
+  year      = {1987},
+  month     = {feb},
+  number    = {2},
+  pages     = {359--373},
+  volume    = {24},
+  doi       = {10.1002/nme.1620240207},
+  publisher = {Wiley},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}

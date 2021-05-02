@@ -5,8 +5,9 @@ opt = Opt(:LD_MMA, (m+1)*(n+1))
 
 function av_temp(x::Vector, grad::Vector)
     if length(grad) > 0
+        dfav = d_f_av(x,p,m,n)
         for i=1:((m+1)*(n+1))
-            grad[i] = d_f_av(x,p,m,n)[i]
+            grad[i] = dfav[i]
         end
         return f_av(x,Q,p,m,n)
     end

@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.3.15)  16 MAR 2021 14:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.26)  2 MAY 2021 18:06
 entering extended mode
 **./Research_Log.tex
 (Research_Log.tex
 LaTeX2e <2020-10-01> patch level 4
-L3 programming layer <2021-02-18> xparse <2020-03-03>
+L3 programming layer <2021-02-18>
 (C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
 Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
 (C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/latex/base\size11.clo
@@ -184,7 +184,7 @@ Package: iftex 2020/03/06 v1.0d TeX engine tests
 
 (C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg))
 (C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/latex/multirow\multirow.sty
-Package: multirow 2021/01/29 v2.7 Span multiple rows of a table
+Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
 \multirow@colwidth=\skip61
 \multirow@cntb=\count270
 \multirow@dima=\skip62
@@ -277,7 +277,7 @@ File: pst-xkey.tex 2005/11/25 v1.6 PSTricks specialization of xkeyval (HA)
 )
 (C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/generic/pstricks\pstricks.tex
 (C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/generic/pstricks\pst-fp.tex
-`pst-fp' v0.05, 2010/01/17 (hv)
+`pst-fp' v0.06, 2020/11/20 (hv)
 \pstFP@xs=\count276
 \pstFP@xia=\count277
 \pstFP@xib=\count278
@@ -368,7 +368,7 @@ ions.integerarithmetics.code.tex)))
 )
 \psLoopIndex=\count293
 
-`PSTricks' v3.01  <2020/09/18> (tvz,hv)
+`PSTricks' v3.01a  <2021/03/30> (tvz,hv)
 \pst@dima=\dimen193
 \pst@dimb=\dimen194
 \pst@dimc=\dimen195
@@ -416,11 +416,13 @@ ions.integerarithmetics.code.tex)))
 \sh@wgridYunit=\dimen272
 \pst@shift=\dimen273
 )
-File: pstricks.tex 2020/09/18 v3.01 `PSTricks' (tvz,hv)
+File: pstricks.tex 2021/03/30 v3.01a `PSTricks' (tvz,hv)
 
-(C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/generic/pstricks\pst-fp.tex)
-File: pst-fp.tex 2020/09/18 v3.01 `PST-fp' (hv)
-)) (C:/TexPackages\tex/latex/jlcode-master\jlcode.sty
+(C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/generic/pstricks\pst-fp.tex
+`pst-fp' v0.06, 2020/11/20 (hv))
+File: pst-fp.tex 2020/11/20 v0.06 `PST-fp' (hv)
+))
+(C:/TexPackages\tex/latex/jlcode-master\jlcode.sty
 -- Package: `jlcode' 5.1 <2020/11/26> --
 Package: jlcode 2020/11/26 5.1
 (C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.sty
@@ -879,57 +881,135 @@ Package: amsthm 2020/05/29 v2.20.6
 Package: esint 
 \symlargesymbolsA=\mathgroup6
 )
+(C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/latex/savesym\savesym.sty
+Package: savesym 2013/09/02 v1.2 Saves and restores symbols (JG)
+)
+(C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/latex/siunitx\siunitx.sty
+(C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\expl3.sty
+Package: expl3 2021-02-18 L3 programming layer (loader) 
+
 (C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
 tex.def
-File: l3backend-pdftex.def 2021-03-02 L3 backend support: PDF output (pdfTeX)
+File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count362
 \l__pdf_internal_box=\box59
-) (Research_Log.aux)
+))
+(C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xparse\xpars
+e.sty
+(C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xparse\xpars
+e-2020-10-01.sty
+(C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xparse\xpars
+e-generic.tex)))
+Package: siunitx 2021-04-17 v2.8e A comprehensive (SI) units package
+
+(C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/latex/latex-tools\array.sty
+Package: array 2020/10/01 v2.5c Tabular extension package (FMi)
+\col@sep=\dimen291
+\ar@mcellbox=\box60
+\extrarowheight=\dimen292
+\NC@list=\toks52
+\extratabsurround=\skip77
+\backup@length=\skip78
+\ar@cellbox=\box61
+)
+(C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/l3keys2e\l3k
+eys2e.sty
+Package: l3keys2e 2021-03-12 LaTeX2e option processing using LaTeX3 keys
+)
+\l__siunitx_tmp_box=\box62
+\l__siunitx_tmp_dim=\dimen293
+\l__siunitx_tmp_int=\count363
+\l__siunitx_number_mantissa_length_int=\count364
+\l__siunitx_number_uncert_length_int=\count365
+\l__siunitx_round_int=\count366
+\l__siunitx_process_decimal_int=\count367
+\l__siunitx_process_uncertainty_int=\count368
+\l__siunitx_process_fixed_int=\count369
+\l__siunitx_process_integer_min_int=\count370
+\l__siunitx_process_precision_int=\count371
+\l__siunitx_group_min_int=\count372
+\l__siunitx_angle_marker_box=\box63
+\l__siunitx_angle_unit_box=\box64
+\l__siunitx_angle_marker_dim=\dimen294
+\l__siunitx_angle_unit_dim=\dimen295
+\l__siunitx_unit_int=\count373
+\l__siunitx_unit_denominator_int=\count374
+\l__siunitx_unit_numerator_int=\count375
+\l__siunitx_unit_prefix_int=\count376
+\l__siunitx_unit_prefix_base_int=\count377
+\l__siunitx_unit_prefix_gram_int=\count378
+\l__siunitx_number_product_int=\count379
+\c__siunitx_one_fill_skip=\skip79
+\l__siunitx_table_unit_align_skip=\skip80
+\l__siunitx_table_exponent_dim=\dimen296
+\l__siunitx_table_integer_dim=\dimen297
+\l__siunitx_table_mantissa_dim=\dimen298
+\l__siunitx_table_marker_dim=\dimen299
+\l__siunitx_table_result_dim=\dimen300
+\l__siunitx_table_uncert_dim=\dimen301
+\l__siunitx_table_fill_pre_dim=\dimen302
+\l__siunitx_table_fill_post_dim=\dimen303
+\l__siunitx_table_fill_mid_dim=\dimen304
+\l__siunitx_table_pre_box=\box65
+\l__siunitx_table_post_box=\box66
+\l__siunitx_table_mantissa_box=\box67
+\l__siunitx_table_result_box=\box68
+\l__siunitx_table_number_align_skip=\skip81
+\l__siunitx_table_text_align_skip=\skip82
+
+(C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/latex/translator\translator.s
+ty
+Package: translator 2020-08-03 v1.12c Easy translation of strings in LaTeX
+)) (Research_Log.aux)
 \openout1 = `Research_Log.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
 LaTeX Font Info:    Checking defaults for pmboxdraw/pmboxdraw/m/n on input line
- 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
+ 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
 
 (C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
 ii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count363
-\scratchdimen=\dimen291
-\scratchbox=\box60
-\nofMPsegments=\count364
-\nofMParguments=\count365
-\everyMPshowfont=\toks52
-\MPscratchCnt=\count366
-\MPscratchDim=\dimen292
-\MPnumerator=\count367
-\makeMPintoPDFobject=\count368
-\everyMPtoPDFconversion=\toks53
+\scratchcounter=\count380
+\scratchdimen=\dimen305
+\scratchbox=\box69
+\nofMPsegments=\count381
+\nofMParguments=\count382
+\everyMPshowfont=\toks53
+\MPscratchCnt=\count383
+\MPscratchDim=\dimen306
+\MPnumerator=\count384
+\makeMPintoPDFobject=\count385
+\everyMPtoPDFconversion=\toks54
 )
 (C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-b
 ase.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
-)
+
+(C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.c
+fg
+File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
+))
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -964,12 +1044,12 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\c@lstlisting=\count369
+\c@lstlisting=\count386
 
 (C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/latex/fmtcount\fc-english.def
 File: fc-english.def 2016/01/12
 )
-Package hyperref Info: Link coloring ON on input line 33.
+Package hyperref Info: Link coloring ON on input line 37.
  (C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
 
@@ -980,45 +1060,54 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 lestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count370
+\c@section@level=\count387
 )
-LaTeX Info: Redefining \ref on input line 33.
-LaTeX Info: Redefining \pageref on input line 33.
-LaTeX Info: Redefining \nameref on input line 33.
+LaTeX Info: Redefining \ref on input line 37.
+LaTeX Info: Redefining \pageref on input line 37.
+LaTeX Info: Redefining \nameref on input line 37.
  (Research_Log.out) (Research_Log.out)
 \@outlinefile=\write5
 \openout5 = `Research_Log.out'.
 
-<ku_logo.jpg, id=3, 322.20375pt x 286.06876pt>
-File: ku_logo.jpg Graphic file (type jpg)
-<use ku_logo.jpg>
-Package pdftex.def Info: ku_logo.jpg  used on input line 34.
-(pdftex.def)             Requested size: 48.32848pt x 42.90845pt.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 45.
+
+(C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/latex/siunitx\siunitx-abbrevi
+ations.cfg
+File: siunitx-abbreviations.cfg 2021-04-17 v2.8e siunitx: Abbreviated units
+)
+(C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/latex/translator\translator-b
+asic-dictionary-English.dict
+Dictionary: translator-basic-dictionary, Language: English 
+)
+LaTeX Font Info:    Trying to load font information for U+msa on input line 37.
 
 
 (C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 45.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 37.
 
 
 (C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+esint on input line 4
-5.
+LaTeX Font Info:    Trying to load font information for U+esint on input line 3
+7.
 
 (C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/latex/esint\uesint.fd
 File: uesint.fd 
 )
+<ku_logo.jpg, id=3, 322.20375pt x 286.06876pt>
+File: ku_logo.jpg Graphic file (type jpg)
+<use ku_logo.jpg>
+Package pdftex.def Info: ku_logo.jpg  used on input line 38.
+(pdftex.def)             Requested size: 48.32848pt x 42.90845pt.
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 58.
+put line 62.
 <backtracking_line_search_diagram.png, id=6, 1042.64531pt x 709.90219pt>
 File: backtracking_line_search_diagram.png Graphic file (type png)
 <use backtracking_line_search_diagram.png>
 Package pdftex.def Info: backtracking_line_search_diagram.png  used on input li
-ne 72.
+ne 76.
 (pdftex.def)             Requested size: 375.36299pt x 255.57542pt.
 
 [1
@@ -1041,34 +1130,53 @@ Non-PDF special ignored!
 <special> ps:tx@Dict begin  gsave STV CP T /ps@refangle 0.  def grestore  e...
  <./ku_logo.jpg>]
 LaTeX Font Info:    Trying to load font information for TS1+pcr on input line 8
-3.
+7.
 
 (C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ts1pcr.fd
 File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
 )
 [2 <./backtracking_line_search_diagram.png>] [3] [4] [5] [6] [7]
-(Research_Log.bbl
-Underfull \hbox (badness 10000) in paragraph at lines 29--35
+Underfull \hbox (badness 10000) in paragraph at lines 343--345
+
+ []
+
+
+LaTeX Warning: Citation `Svanberg1987' on page 8 undefined on input line 349.
+
+[8] [9] [10] [11]
+Underfull \hbox (badness 10000) in paragraph at lines 504--506
+
+ []
+
+[12] (Research_Log.bbl
+Underfull \hbox (badness 10000) in paragraph at lines 30--36
 \T1/pcr/m/n/10.95 / / en . wikipedia . org / w / index . php ? title = Divergen
 ce _ theorem & oldid = 1011407395$[][]\T1/cmr/m/n/10.95 ,
  []
 
-[8]) [9] (Research_Log.aux)
+)
+
+LaTeX Warning: Citation `Svanberg1987' undefined on input line 537.
+
+[13] (Research_Log.aux)
+
+LaTeX Warning: There were undefined references.
+
 Package rerunfilecheck Info: File `Research_Log.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  )
 (\end occurred inside a group at level 1)
 
-### semi simple group (level 1) entered at line 33 (\begingroup)
+### semi simple group (level 1) entered at line 37 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 24477 strings out of 479334
- 374606 string characters out of 2857084
- 877001 words of memory out of 3000000
- 41448 multiletter control sequences out of 15000+200000
- 424416 words of font info for 76 fonts, out of 3000000 for 9000
+ 26949 strings out of 479321
+ 445609 string characters out of 2856583
+ 923781 words of memory out of 3000000
+ 43855 multiletter control sequences out of 15000+600000
+ 431491 words of font info for 103 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 83i,14n,99p,1017b,5336s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 83i,18n,99p,1017b,5855s stack positions out of 5000i,500n,10000p,200000b,80000s
  <C:\Users\mikwn\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/
 ec/dpi600\ecbi1095.pk> <C:\Users\mikwn\AppData\Local\MiKTeX\fonts/pk/ljfour/pub
 lic/esint/dpi657\esint10.pk> <C:\Users\mikwn\AppData\Local\MiKTeX\fonts/pk/ljfo
@@ -1086,24 +1194,26 @@ C:\Users\mikwn\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2074
 .pk> <C:\Users\mikwn\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ec
 cc1095.pk><C:/Users/mikwn/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsf
 onts/cm/cmbx10.pfb><C:/Users/mikwn/AppData/Local/Programs/MiKTeX/fonts/type1/pu
-blic/amsfonts/cm/cmex10.pfb><C:/Users/mikwn/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/mikwn/AppData/Local/Programs/MiK
-TeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/mikwn/AppData/Local/Prog
-rams/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/mikwn/AppData/Lo
-cal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/mikwn/Ap
-pData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/m
-ikwn/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/
-Users/mikwn/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10
-.pfb><C:/Users/mikwn/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
-cm/cmsy6.pfb><C:/Users/mikwn/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
-msfonts/cm/cmsy8.pfb><C:/Users/mikwn/AppData/Local/Programs/MiKTeX/fonts/type1/
-public/amsfonts/latxfont/lcircle1.pfb><C:/Users/mikwn/AppData/Local/Programs/Mi
-KTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/mikwn/AppData/Loc
-al/Programs/MiKTeX/fonts/type1/urw/courier/ucrb8a.pfb><C:/Users/mikwn/AppData/L
-ocal/Programs/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb>
-Output written on Research_Log.pdf (9 pages, 411056 bytes).
+blic/amsfonts/cm/cmbx8.pfb><C:/Users/mikwn/AppData/Local/Programs/MiKTeX/fonts/
+type1/public/amsfonts/cm/cmex10.pfb><C:/Users/mikwn/AppData/Local/Programs/MiKT
+eX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/mikwn/AppData/Local/Prog
+rams/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/mikwn/AppData/L
+ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/mikwn/A
+ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users
+/mikwn/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><
+C:/Users/mikwn/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr
+6.pfb><C:/Users/mikwn/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
+/cm/cmr8.pfb><C:/Users/mikwn/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
+msfonts/cm/cmsy10.pfb><C:/Users/mikwn/AppData/Local/Programs/MiKTeX/fonts/type1
+/public/amsfonts/cm/cmsy6.pfb><C:/Users/mikwn/AppData/Local/Programs/MiKTeX/fon
+ts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/mikwn/AppData/Local/Programs/Mi
+KTeX/fonts/type1/public/amsfonts/latxfont/lcircle1.pfb><C:/Users/mikwn/AppData/
+Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/
+mikwn/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrb8a.pfb><C:/User
+s/mikwn/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb>
+Output written on Research_Log.pdf (13 pages, 476469 bytes).
 PDF statistics:
- 590 PDF objects out of 1000 (max. 8388607)
- 86 named destinations out of 1000 (max. 500000)
+ 695 PDF objects out of 1000 (max. 8388607)
+ 107 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

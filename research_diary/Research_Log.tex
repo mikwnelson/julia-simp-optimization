@@ -23,6 +23,10 @@
 \usepackage{commath}
 \usepackage{esint}
 \usepackage{url}
+\usepackage{savesym}
+\savesymbol{numlist}
+\usepackage{siunitx}
+\restoresymbol{SI}{numlist}
 
 \definecolor{tiananmen}{HTML}{8C122B}
 \definecolor{baystate}{HTML}{3C27CD}
@@ -465,6 +469,64 @@ $$x_j(\mathbf{y})=\frac{\left(p_{0j}+\mathbf{y}^T\mathbf{p}_j\right)^{1/2}L_j+\l
 
 {\huge \fbox{\textbf{The SIMP Method}}}
 
+\section*{Volume-to-Point (VP) Heat Conduction Problem}
+
+Consider a finite-size volume in which heat is being generated at \textit{every} point, and which is cooled through a small patch (the heat sink) located on its boundary. Suppose that we have a finite amount of high-conductivity ($k_p$) material available. Our goal is to determine the optimal distribution of the $k_p$ material through the given volume such that \textit{the highest temperature is minimized}.
+
+{\color{tiananmen}\textbf{Solid Isotropic Material with Penalization (SIMP)}} is a method based on topology optimization that can be used to solve the VP Heat Conduction Problem. SIMP is what is called a {\color{baystate}soft kill method}, meaning that in each step of the method we increase or decrease high-conductivity material by a small quantity. This allows us to methods designed for continuous optimization problems for this discrete problem.
+
+\section*{SIMP Method Description}
+
+\subsection*{Assumptions}
+In order to develop the method, we need to make a couple of assumptions.
+
+First of all, the energy differential equation driving the heat-flux inside the finite-volume requires:
+\begin{enumerate}
+	\item All calculations are run under {\color{baystate}steady-state conditions}. That is, all heat produced in the volume is evacuated through the heat sink.
+	\item The heat generating materials ($k_0$) and high-conductivity materials ($k_p$) are treated as {\color{baystate}homogeneous} and {\color{baystate}isotropic} on their respective conductivities.
+\end{enumerate}
+
+Throughout the article \cite{Marck2012}, the authors also set the following conditions:
+\begin{itemize}
+	\item Thermal conductivities are constant:
+	$$k_0=1 \si[per-mode=fraction]{\watt\per\square\meter\per\kelvin}\qquad\text{and}\qquad k_p=100 \si[per-mode=fraction]{\watt\per\square\meter\per\kelvin}$$
+	\item All structures have a square aspect ratio with $L=H=0.1\si{\meter}$
+	\item The heat-sink is located on the middle of the west side of the structure
+	\item The heat-sink has Dirichlet boundary conditions: $T_S=0\si{\celsius}$
+	\item All other boundaries are adiabatic: $\nabla T=0$
+\end{itemize}
+
+\subsection*{Notation}
+
+We have the following sets to describe the VP-problem:
+
+\begin{itemize}
+	\item $\mathbf{x}\in\Omega$ = two-dimensional spatial field\\\\
+	We set $\Omega = \Omega_0\cup\Omega_p$ where
+	\begin{itemize}
+		\item $\Omega_0$ = portion of $\Omega$ that has conductivity $k_0$. This is the heat generating portion of the space.
+		\item $\Omega_p$ = portion of $\Omega$ with conductivity $k_p$. This is the portion of the space with the high-conductivity material applied.
+	\end{itemize}
+	\item $\mathbf{k}\in\mathbb{K}$ = distribution of high-conductivity material
+	\item $T\in\overline{\mathbb{T}}$ = temperature field that satisfies the energy equation {\color{baystate}$\nabla\cdot\left(\mathbf{k}\nabla T_{\mathbf{k}}\right)+q=0$} where $q$ is the local heat-generating rate.
+\end{itemize}
+
+\section*{The Optimization Problem}
+
+Using the above established notation, we develop the following optimization problem:
+
+{\color{baystate}
+	\begin{equation}
+		\begin{tabular}{lll}
+			\text{minimize }   & $f(T)$ & \text{for } $T\in\mathbb{T},\mathbf{k}$      \\
+			\text{subject to } & $\nabla\cdot\left(\mathbf{k}\nabla T_{\mathbf{k}}\right)+q=0$ & \\
+			& $\mathbf{x}\in\Omega,\quad\mathbf{k}\in\mathbb{K}_{\text{ad}}$&      
+		\end{tabular}\label{SIMP-Optimization-Problem}
+	\end{equation}
+}
+
+\subsection*{Penalization Process}
+
 \bibliographystyle{siam}
 \bibliography{Research_Log.bib}
 \nocite{Boyd2004}
@@ -473,5 +535,6 @@ $$x_j(\mathbf{y})=\frac{\left(p_{0j}+\mathbf{y}^T\mathbf{p}_j\right)^{1/2}L_j+\l
 \nocite{enwiki:1011407395}
 \nocite{Shewchuk1994}
 \nocite{Svanberg1987}
+\nocite{Marck2012}
 
 \end{document}

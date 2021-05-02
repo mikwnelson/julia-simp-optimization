@@ -1,0 +1,37 @@
+\begin{thebibliography}{1}
+
+\bibitem{Boyd2004}
+{\sc S.~P. Boyd and L.~Vandenberghe}, {\em Convex optimization}, Cambridge
+  Univ. Pr., 2004.
+
+\bibitem{dawkins_2018}
+{\sc P.~Dawkins}, {\em {Calculus III - Divergence Theorem}}.
+\newblock
+  \url{https://tutorial.math.lamar.edu/classes/calciii/DivergenceTheorem.aspx},
+  Apr 2018.
+\newblock [Online; accessed 15-March-2021].
+
+\bibitem{Gander2018}
+{\sc M.~J. Gander and F.~Kwok}, {\em Numerical Analysis of Partial Differential
+  Equations Using Maple and {MATLAB}}, Society for Industrial and Applied
+  Mathematics, Aug 2018.
+
+\bibitem{Marck2012}
+{\sc G.~Marck, M.~Nemer, J.-L. Harion, S.~Russeil, and D.~Bougeard}, {\em
+  Topology optimization using the {SIMP} method for multiobjective conductive
+  problems}, Numerical Heat Transfer, Part B: Fundamentals, 61 (2012),
+  pp.~439--470.
+
+\bibitem{Shewchuk1994}
+{\sc J.~R. Shewchuk}, {\em An introduction tothe conjugate gradient
+  methodwithout the agonizing pain},  (1994).
+
+\bibitem{enwiki:1011407395}
+{\sc {Wikipedia contributors}}, {\em Divergence theorem --- {Wikipedia}{,} the
+  free encyclopedia}.
+\newblock
+  \url{https://en.wikipedia.org/w/index.php?title=Divergence_theorem&oldid=1011407395},
+  2021.
+\newblock [Online; accessed 15-March-2021].
+
+\end{thebibliography}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.26)  2 MAY 2021 18:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.26)  2 MAY 2021 18:11
 entering extended mode
 **./Research_Log.tex
 (Research_Log.tex
@@ -1140,28 +1140,18 @@ Underfull \hbox (badness 10000) in paragraph at lines 343--345
 
  []
 
-
-LaTeX Warning: Citation `Svanberg1987' on page 8 undefined on input line 349.
-
 [8] [9] [10] [11]
 Underfull \hbox (badness 10000) in paragraph at lines 504--506
 
  []
 
 [12] (Research_Log.bbl
-Underfull \hbox (badness 10000) in paragraph at lines 30--36
+Underfull \hbox (badness 10000) in paragraph at lines 35--41
 \T1/pcr/m/n/10.95 / / en . wikipedia . org / w / index . php ? title = Divergen
 ce _ theorem & oldid = 1011407395$[][]\T1/cmr/m/n/10.95 ,
  []
 
-)
-
-LaTeX Warning: Citation `Svanberg1987' undefined on input line 537.
-
-[13] (Research_Log.aux)
-
-LaTeX Warning: There were undefined references.
-
+) [13] (Research_Log.aux)
 Package rerunfilecheck Info: File `Research_Log.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  )
@@ -1170,10 +1160,10 @@ Package rerunfilecheck Info: File `Research_Log.out' has not changed.
 ### semi simple group (level 1) entered at line 37 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 26949 strings out of 479321
- 445609 string characters out of 2856583
- 923781 words of memory out of 3000000
- 43855 multiletter control sequences out of 15000+600000
+ 26951 strings out of 479321
+ 445640 string characters out of 2856583
+ 923815 words of memory out of 3000000
+ 43856 multiletter control sequences out of 15000+600000
  431491 words of font info for 103 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  83i,18n,99p,1017b,5855s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1211,9 +1201,9 @@ KTeX/fonts/type1/public/amsfonts/latxfont/lcircle1.pfb><C:/Users/mikwn/AppData/
 Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/
 mikwn/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrb8a.pfb><C:/User
 s/mikwn/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb>
-Output written on Research_Log.pdf (13 pages, 476469 bytes).
+Output written on Research_Log.pdf (13 pages, 476594 bytes).
 PDF statistics:
- 695 PDF objects out of 1000 (max. 8388607)
- 107 named destinations out of 1000 (max. 500000)
+ 696 PDF objects out of 1000 (max. 8388607)
+ 108 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

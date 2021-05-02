@@ -6,10 +6,10 @@ include("K_and_partialK.jl")
 ##############
 
 #Number of x-direction control volumes
-n = 100
+n = 10
 
 #Number of y-direction control volumes
-m = 100
+m = 10
 
 #Total number of temperature control volumes
 N = m*n

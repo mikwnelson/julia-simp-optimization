@@ -1,0 +1,36 @@
+\begin{thebibliography}{1}
+
+\bibitem{Boyd2004}
+Stephen~P. Boyd and Lieven Vandenberghe.
+\newblock {\em Convex optimization}.
+\newblock Cambridge Univ. Pr., 2004.
+
+\bibitem{dawkins_2018}
+Paul Dawkins.
+\newblock {Calculus III - Divergence Theorem}.
+\newblock
+  \url{https://tutorial.math.lamar.edu/classes/calciii/DivergenceTheorem.aspx},
+  Apr 2018.
+\newblock [Online; accessed 15-March-2021].
+
+\bibitem{Gander2018}
+Martin~J. Gander and Felix Kwok.
+\newblock {\em Numerical Analysis of Partial Differential Equations Using Maple
+  and {MATLAB}}.
+\newblock Society for Industrial and Applied Mathematics, Aug 2018.
+
+\bibitem{Shewchuk1994}
+Jonathan~Richard Shewchuk.
+\newblock An introduction tothe conjugate gradient methodwithout the agonizing
+  pain.
+\newblock August 1994.
+
+\bibitem{enwiki:1011407395}
+{Wikipedia contributors}.
+\newblock Divergence theorem --- {Wikipedia}{,} the free encyclopedia.
+\newblock
+  \url{https://en.wikipedia.org/w/index.php?title=Divergence_theorem&oldid=1011407395},
+  2021.
+\newblock [Online; accessed 15-March-2021].
+
+\end{thebibliography}

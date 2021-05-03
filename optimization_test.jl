@@ -27,7 +27,7 @@ inequality_constraint!(opt, (x,grad)->por(x,grad,m,n))
 opt.lower_bounds = 0
 opt.upper_bounds = 1
 
-opt.ftol_rel = 0.00001
+opt.xtol_rel = 1e-4
 
 η = convert(Vector, vec(Eta'))
 

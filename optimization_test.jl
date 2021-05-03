@@ -8,7 +8,9 @@ function av_temp(x::Vector, grad::Vector, Q, p, m, n)
         dfav = d_f_av(x,p,m,n)
         grad[:] = dfav[:]
     end
-    return f_av(x,Q,p,m,n)
+    fav = f_av(x,Q,p,m,n)
+    println("fav = $fav\n", "grad = $grad\n") #Output for Debugging Purposes
+    return fav
 end
 
 function por(x::Vector, grad::Vector, m, n)
@@ -17,12 +19,14 @@ function por(x::Vector, grad::Vector, m, n)
             grad[i] = 1/((m+1)*(n+1))
         end
     end
-    return (1/((m+1)*(n+1)))*(ones(((m+1)*(n+1)),1)')*x
+    con = (1/((m+1)*(n+1)))*(ones(((m+1)*(n+1)),1)')*x
+    println("con = $con\n", "grad = $grad\n") #Output for Debugging Purposes
+    return con
 end
 
-min_objective!(opt, (x,grad)->av_temp(x,grad,Q,p,m,n))
+min_objective!(opt, (x,g) -> av_temp(x,g,Q,p,m,n))
 
-inequality_constraint!(opt, (x,grad)->por(x,grad,m,n))
+inequality_constraint!(opt, (x,g) -> por(x,g,m,n), 1e-8)
 
 opt.lower_bounds = 0
 opt.upper_bounds = 1
@@ -32,3 +36,5 @@ opt.xtol_rel = 1e-4
 η = convert(Vector, vec(Eta'))
 
 (minf,minx,ret) = optimize!(opt, η)
+numevals = opt.numevals # the number of function evaluations
+println("got $minf at $minx after $numevals iterations (returned $ret)")

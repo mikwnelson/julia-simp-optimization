@@ -71,7 +71,7 @@ lambda = K\(-ones(N,1)*(1/N))
 #Compute the Vectorized Jacobian of Average Temperature, d_f_av
 function d_f_av(η,p,m,n;k_0=1,k_p=100,xlen=0.1,ylen=0.1)
     Eta = reshape(η,m+1,n+1)
-    d_f_av = zeros(m+1,n+1)
+    d_f_av = spzeros(m+1,n+1)
     dk = (p * (k_p - k_0)) .* Eta.^(p-1)
     for i = 1:n+1, j = 1:m+1
         dK = partialK(i,j,m,n,xlen,ylen).*dk[i,j]

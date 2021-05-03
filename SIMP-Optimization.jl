@@ -6,10 +6,10 @@ include("K_and_partialK.jl")
 ##############
 
 #Number of x-direction control volumes
-n = 3
+n = 100
 
 #Number of y-direction control volumes
-m = 3
+m = 100
 
 #Total number of temperature control volumes
 N = m*n
@@ -71,7 +71,7 @@ lambda = K\(-ones(N,1)*(1/N))
 #Compute the Vectorized Jacobian of Average Temperature, d_f_av
 function d_f_av(η,p,m,n;k_0=1,k_p=100,xlen=0.1,ylen=0.1)
     Eta = reshape(η,m+1,n+1)
-    d_f_av = spzeros(m+1,n+1)
+    d_f_av = zeros(m+1,n+1)
     dk = (p * (k_p - k_0)) .* Eta.^(p-1)
     for i = 1:n+1, j = 1:m+1
         dK = partialK(i,j,m,n,xlen,ylen).*dk[i,j]
@@ -84,7 +84,7 @@ function d_f_av(η,p,m,n;k_0=1,k_p=100,xlen=0.1,ylen=0.1)
         end
     end
     d_f_av = vec((d_f_av)')
-    return d_f_av
+    return convert(Vector, d_f_av)
 end
 
 d_f_avg = d_f_av(Eta,p,m,n)

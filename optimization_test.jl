@@ -10,7 +10,17 @@ m = 3
 
 n = 3
 
+###########################################
+## Create Optimization Problem Structure ##
+## Using MMA with dimentions (m+1)*(n+1) ##
+###########################################
+
 opt = Opt(:LD_MMA, (m+1)*(n+1))
+
+#########################
+## Average Temperature ##
+## Objective Function  ##
+#########################
 
 function av_temp(η::Vector, grad::Vector, p, m, n)
     
@@ -205,6 +215,10 @@ function av_temp(η::Vector, grad::Vector, p, m, n)
 
     return f_avg
 end
+
+##################################
+## Porosity Constraint Function ##
+##################################
 
 function por(x::Vector, grad::Vector, m, n)
     if length(grad) > 0

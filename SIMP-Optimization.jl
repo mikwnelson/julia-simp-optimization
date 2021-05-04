@@ -6,10 +6,10 @@ include("K_and_partialK.jl")
 ##############
 
 #Number of x-direction control volumes
-n = 100
+n = 3
 
 #Number of y-direction control volumes
-m = 100
+m = 3
 
 #Total number of temperature control volumes
 N = m*n
@@ -27,7 +27,7 @@ k_0 = 1
 k_p = 100
 
 #Initialize loop iterate
-p = 2
+p = 1
 
 #Set structure length dimensions
 xlen = 0.1
@@ -87,7 +87,7 @@ function d_f_av(η,p,m,n;k_0=1,k_p=100,xlen=0.1,ylen=0.1)
     return convert(Vector, d_f_av)
 end
 
-d_f_avg = d_f_av(Eta,p,m,n)
+d_f_avg = d_f_av(vec(Eta'),p,m,n)
 
 d_f_avg = reshape(d_f_avg,n+1,m+1)'
 

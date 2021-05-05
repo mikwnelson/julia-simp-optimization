@@ -210,6 +210,10 @@ function av_temp(η::Vector, grad::Vector, p, m, n, xlen = 0.1, ylen = 0.1, k_0 
     return f_avg
 end
 
+##################################
+## Porosity Constraint Function ##
+##################################
+
 function por(x::Vector, grad::Vector, m, n)
     if length(grad) > 0
         grad .= 1.0
@@ -219,7 +223,10 @@ function por(x::Vector, grad::Vector, m, n)
     return con
 end
 
-
+###################################
+## Add Objective and Constraints ## 
+##       to opt structure        ##
+###################################
 
 min_objective!(opt, (x,g) -> av_temp(x,g,p,m,n))
 
@@ -229,6 +236,10 @@ opt.lower_bounds = 0
 opt.upper_bounds = 1
 
 opt.xtol_rel = 1e-4
+
+##################
+## Testing Code ##
+##################
 
 #η = rand( (m+1)*(n+1) ) # 0.1 .*ones((m+1)*(n+1))
 #dη = 1e-3 * randn(size(η))

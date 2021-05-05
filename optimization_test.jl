@@ -10,7 +10,25 @@ m = 100
 
 n = 100
 
+k_0 = 1.0
+
+k_p = 100.0
+
+xlen = 0.1
+
+ylen = 0.1
+
+###########################################
+## Create Optimization Problem Structure ##
+## Using MMA with dimentions (m+1)*(n+1) ##
+###########################################
+
 opt = Opt(:LD_MMA, (m+1)*(n+1))
+
+#########################
+## Average Temperature ##
+## Objective Function  ##
+#########################
 
 function av_temp(η::Vector, grad::Vector, p, m, n, xlen = 0.1, ylen = 0.1, k_0 = 1.0, k_p = 100.0)
     

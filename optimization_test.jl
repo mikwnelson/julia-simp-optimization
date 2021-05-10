@@ -1,4 +1,4 @@
-using NLopt, SparseArrays, LinearAlgebra, LaTeXStrings, Plots, PyPlot
+using NLopt, SparseArrays, LinearAlgebra, LaTeXStrings, Plots
 
 ##########################
 ## Fixed Variable Input ##
@@ -270,7 +270,7 @@ opt.xtol_rel = 1e-4
 
 #nothing
 
-η = 0.1 .*ones((m+1)*(n+1))
+η = 0.05 .*ones((m+1)*(n+1))
 (minf,minx,ret) = optimize!(opt, η)
 numevals = opt.numevals # the number of function evaluations
 println("got $minf at $minx after $numevals iterations (returned $ret)")

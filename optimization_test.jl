@@ -18,11 +18,17 @@ xlen = 0.1
 
 ylen = 0.1
 
-#Compute size of each control volume
-#dx = "delta x"
-dx = xlen/n
-#dy = "delta y"
-dy = ylen/m
+ε_o = 1e-3 #Outer loop error tolerance
+
+ε_i = 1e-4 #Inner Loop error tolerance
+
+##########################
+## Compute size of each ##
+##   control volume     ##
+##########################
+
+Δx = xlen/n
+Δy = ylen/m
 
 ###########################################
 ## Create Optimization Problem Structure ##
@@ -252,7 +258,7 @@ inequality_constraint!(opt, (x,g) -> por(x,g,m,n), 1e-8)
 opt.lower_bounds = 0
 opt.upper_bounds = 1
 
-opt.xtol_rel = 1e-4
+opt.xtol_rel = ε_i
 
 ##################
 ## Testing Code ##
@@ -271,11 +277,19 @@ opt.xtol_rel = 1e-4
 #nothing
 
 η = 0.05 .*ones((m+1)*(n+1))
-(minf,minx,ret) = optimize!(opt, η)
-numevals = opt.numevals # the number of function evaluations
-println("got $minf at $minx after $numevals iterations (returned $ret)")
 
-η = reshape(minx, m+1, n+1)
+counter = 1
+
+while counter < 3
+    (minf,minx,ret) = optimize!(opt, η)
+    global p += 0.1
+    global counter += 1
+end
+
+#numevals = opt.numevals # the number of function evaluations
+#println("got $minf at $minx after $numevals iterations (returned $ret)")
+
+η = reshape(η, m+1, n+1)
 #F = imshow(η, extent = (0.0, 0.1, 0.0, 0.1))
 
-η_map = heatmap(0:dx:xlen,0:dy:ylen,η,yflip=true,xmirror=true,colorbar_title="η",title = "η for each Design Volume")
+η_map = heatmap(0:Δx:xlen,0:Δy:ylen,η,yflip=true,xmirror=true,colorbar_title="η",title = "η for each Design Volume")

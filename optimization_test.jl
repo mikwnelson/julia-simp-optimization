@@ -1,4 +1,4 @@
-using NLopt, SparseArrays, LinearAlgebra, LaTeXStrings, PyPlot
+using NLopt, SparseArrays, LinearAlgebra, LaTeXStrings, Plots, PyPlot
 
 ##########################
 ## Fixed Variable Input ##
@@ -6,9 +6,9 @@ using NLopt, SparseArrays, LinearAlgebra, LaTeXStrings, PyPlot
 
 p = 1.0
 
-m = 100
+m = 50
 
-n = 100
+n = 50
 
 k_0 = 1.0
 
@@ -17,6 +17,12 @@ k_p = 100.0
 xlen = 0.1
 
 ylen = 0.1
+
+#Compute size of each control volume
+#dx = "delta x"
+dx = xlen/n
+#dy = "delta y"
+dy = ylen/m
 
 ###########################################
 ## Create Optimization Problem Structure ##
@@ -83,6 +89,11 @@ function av_temp(η::Vector, grad::Vector, p, m, n, xlen = 0.1, ylen = 0.1, k_0 
     for i=1:(m*n)
         K[i,i]=-sum(K[i,:])
     end
+
+    ######################
+    ## Add in effect of ##
+    ##    Heat Sink     ##
+    ######################
 
     #Add heat sink in middle of left side of material by adding conductivity to diagonal element of K in corresponding row
     if iseven(m)
@@ -158,6 +169,12 @@ function av_temp(η::Vector, grad::Vector, p, m, n, xlen = 0.1, ylen = 0.1, k_0 
             for a = max(1,i-1):min(i,m), b = max(1,j-1):min(j,m)
                 dK[cord2num(a,b,n),cord2num(a,b,n)]=-sum(dK[cord2num(a,b,n),:])
             end
+
+            ######################
+            ## Add in effect of ##
+            ##    Heat Sink     ##
+            ######################
+
             if iseven(m)
                 hm=m÷2
                 if j==1 && (hm ≤ i ≤ hm + 1)
@@ -259,4 +276,6 @@ numevals = opt.numevals # the number of function evaluations
 println("got $minf at $minx after $numevals iterations (returned $ret)")
 
 η = reshape(minx, m+1, n+1)
-F = imshow(η, extent = (0.0, 0.1, 0.0, 0.1))
+#F = imshow(η, extent = (0.0, 0.1, 0.0, 0.1))
+
+η_map = heatmap(0:dx:xlen,0:dy:ylen,η,yflip=true,xmirror=true,colorbar_title="η",title = "η for each Design Volume")

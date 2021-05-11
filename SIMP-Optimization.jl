@@ -56,7 +56,7 @@ T_grid = reshape(T,n,m)'
 P = heatmap(0:dx:xlen,0:dy:ylen,T_grid,yflip=true,xmirror=true, title=L"T",colorbar_title=" ")
 
 #Compute Average Temperature
-function f_av(η,Q,p,m,n;k_0=1,k_p=100,xlen=0.1,ylen=0.1)
+function f_av(η,Q,p,m,n;k_0=1.0,k_p=100.0,xlen=0.1,ylen=0.1)
     Eta = reshape(η,m+1,n+1)
     Qu = reshape(Q,m,n)
     K = Kay(Eta,k_0,k_p,p,m,n,xlen,ylen)

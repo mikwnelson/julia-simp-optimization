@@ -6,9 +6,9 @@ using NLopt, SparseArrays, LinearAlgebra, LaTeXStrings, Plots
 
 p = 1.0
 
-m = 50
+m = 10
 
-n = 50
+n = 10
 
 k_0 = 1.0
 
@@ -278,12 +278,16 @@ opt.xtol_rel = ε_i
 
 η = 0.05 .*ones((m+1)*(n+1))
 
-counter = 1
+f_0 = 10*av_temp(η,[],p,m,n)
 
-while counter < 3
+(minf,minx,ret) = optimize!(opt, η)
+
+while norm(minf - f_0) >= ε_o
     (minf,minx,ret) = optimize!(opt, η)
+    numevals = opt.numevals # the number of function evaluations
+    println("$p: $minf for $numevals iterations (returned $ret)")
     global p += 0.1
-    global counter += 1
+    f_0 = minf
 end
 
 #numevals = opt.numevals # the number of function evaluations

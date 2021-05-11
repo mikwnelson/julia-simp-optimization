@@ -1,4 +1,5 @@
 using NLopt, SparseArrays, LinearAlgebra, LaTeXStrings, Plots
+pyplot()
 
 ##########################
 ## Fixed Variable Input ##
@@ -6,9 +7,9 @@ using NLopt, SparseArrays, LinearAlgebra, LaTeXStrings, Plots
 
 p = 1.0
 
-m = 10
+m = 50
 
-n = 10
+n = 50
 
 k_0 = 1.0
 
@@ -278,16 +279,27 @@ opt.xtol_rel = ε_i
 
 η = 0.05 .* ones((m + 1) * (n + 1))
 
-f_0 = 10 * av_temp(η, [], p, m, n)
+#= 
+counter = 1
 
-(minf, minx, ret) = optimize!(opt, η)
-
-while norm(minf - f_0) >= ε_o
+while counter <= 3
     (minf, minx, ret) = optimize!(opt, η)
     numevals = opt.numevals # the number of function evaluations
     println("$p: $minf for $numevals iterations (returned $ret)")
     global p += 0.1
-    f_0 = minf
+    global counter += 1
+end =#
+
+f_0 = 10 * av_temp(η, [], p, m, n)
+
+while true
+    (minf, minx, ret) = optimize!(opt, η)
+    numevals = opt.numevals # the number of function evaluations
+    println("$p: $minf for $numevals iterations (returned $ret)")
+    global p += 0.1
+    err = norm(minf - f_0)
+    global f_0 = minf
+    err <= ε_o && break
 end
 
 # numevals = opt.numevals # the number of function evaluations
@@ -296,4 +308,4 @@ end
 η = reshape(η, m + 1, n + 1)
 # F = imshow(η, extent = (0.0, 0.1, 0.0, 0.1))
 
-η_map = heatmap(0:Δx:xlen, 0:Δy:ylen, η, yflip=true, xmirror=true, colorbar_title="η", title="η for each Design Volume")
+η_map = heatmap(0:Δx:xlen, 0:Δy:ylen, η, yflip=true, xmirror=true, aspect_ratio=:equal, colorbar_title="η", title="η for each Design Volume")

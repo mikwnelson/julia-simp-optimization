@@ -41,20 +41,22 @@
 
 %{\Huge February 17\textsuperscript{th}, 2021}\\[5mm]
 
+\tableofcontents\newpage
+
 {\huge \fbox{\textbf{Summaries of Prerequisite Concepts}}}
 
-\section*{Optimization Methods}
-\subsection*{Line Search Methods}
+\section{Optimization Methods}
+\subsection{Line Search Methods}
 
 The {\color{tiananmen}\textbf{line search}} is a strategy that selects the step size (commonly represented by $t$) that determines where along the line $\left\lbrace x+t\Delta x\mid t\in\mathbb{R}_+\right\rbrace$ the next iterate in the descent method will be. ($\Delta x$ represents the \textit{descent direction}, which is explained in the next section.) Line search strategies can either be \textit{exact} or \textit{inexact}.
 
-\subsubsection*{Exact Line Search}
+\subsubsection{Exact Line Search}
 
 An {\color{tiananmen}\textbf{exact line search}} chooses the value $t$ along the ray $\left\lbrace x+t\Delta x\mid t\in\mathbb{R}_+\right\rbrace$ that exactly minimizes the function of interest $f$:
 {\color{baystate}$$t=\arg\min_{s\geq 0}f(x+s\Delta x)$$}
 
 An exact line search is only practical in situations where the cost of computing the minimization problem (in variable) is low compared to actually calculating the search direction.
-\subsubsection*{Backtracking Line Search}
+\subsubsection{Backtracking Line Search}
 Most often in practice we use {\color{tiananmen}\textbf{inexact line searches}}. In an inexact line search, we choose $t$ such that $f$ is \textit{approximately} minimized or reduced ``enough'' along $\left\lbrace x+t\Delta x\mid t\in\mathbb{R}_+\right\rbrace$.
 
 One inexact line search strategy is the {\color{tiananmen}\textbf{Backtracking Line Search}}.
@@ -94,7 +96,7 @@ Here is an implementation of the Backtracking Line Search in Julia with default 
 		return t
 	end
 \end{jllisting}
-\subsection*{Gradient Descent}
+\subsection{Gradient Descent}
 Now we proceed to discuss descent algorithms, the first of which will be the {\color{tiananmen}\textbf{gradient descent method}}.
 \begin{algorithm}[H]
 	\caption{Gradient Descent Method \cite{Boyd2004}\label{GradientDescentAlg}}
@@ -142,7 +144,7 @@ Below is an implementation of the gradient descent algorithm in Julia for a func
 	display(x)
 	
 \end{jllisting}
-\subsection*{Nonlinear Conjugate Gradient Method}
+\subsection{Nonlinear Conjugate Gradient Method}
 Suppose we have a function $f(x)$ of $N$ variables. Let $x_0$ be an initial guess value for the minimum.
 
 The opposite of the gradient will give the direction of steepest descent. Therefore, we start off by setting $\Delta x_0=-\nabla f(x_0)$.
@@ -203,8 +205,8 @@ Given a function $f$, a starting value $x$, a maximum number of CG iterations $i
 		\EndWhile
 	\end{algorithmic}
 \end{algorithm}
-\section*{PDE Methods}
-\subsection*{Finite Volume Method}
+\section{PDE Methods}
+\subsection{Finite Volume Method}
 \begin{quote}
 	``The new idea of the {\color{tiananmen}finite volume method} is to first integrate the equation over a small so-called {\color{baystate}control volume}, then use the {\color{baystate}divergence theorem} to convert the volume integral into a {\color{baystate}boundary integral involving fluxes}, before finally approximating these fluxes across the boundaries.'' \cite{Gander2018}
 \end{quote}
@@ -220,7 +222,7 @@ The Finite Volume Method takes advantage of the Divergence Theorem, so here are 
 \end{thm}
 The left side is a volume integral over $V$ and the right side is a surface integral over the boundary of $V$.
 
-\subsubsection*{Finite Volumes for a General Two-Dimensional Diffusion Equation}
+\subsubsection{Finite Volumes for a General Two-Dimensional Diffusion Equation}
 For a scalar function $a(x)$ the {\color{tiananmen}general diffusion equation} is $${\color{baystate}\nabla\cdot\left(a(\mathbf{x})\nabla u\right)=f\quad\text{in }\Omega}.$$
 
 ``The finite volume method is designed to discretize such differential operators on arbitrary domains with very general grids.'' \cite{Gander2018}
@@ -270,7 +272,7 @@ If the optimization problem is not linear, we call it a {\color{tiananmen}\textb
 
 We can change a minimization problem into a {\color{tiananmen}\textbf{maximization problem}} by minimizing {\color{baystate}$-f_0$} subject to the same constraints.
 
-\section*{Convex Optimization}
+\section{Convex Optimization}
 
 A set {\color{baystate}$C$} is {\color{tiananmen}\textbf{convex}} if the line segment between any two points in $C$ lies in $C$. That is {\color{baystate}if for any $x_1,x_2\in C$ and any $\theta$ with $0\leq\theta\leq 1$, we have $\theta x_1+(1-\theta)x_2\in C$}.
 
@@ -306,7 +308,7 @@ In a convex optimization problem we minimize a convex objective function over a 
 
 \textbf{In a convex optimization problem, any {\color{tiananmen}\textbf{locally optimal point}} is also {\color{tiananmen}\textbf{globally optimal}}.}
 
-\section*{The Linear Optimization Problem}
+\section{The Linear Optimization Problem}
 
 When the objective and constraint functions are all affine, we have a {\color{tiananmen}\textbf{linear optimization problem}} or {\color{tiananmen}\textbf{linear program}}.
 {\color{baystate}
@@ -322,7 +324,7 @@ where $G\in\mathbb{R}^{m\times n}$ and $A\in\mathbb{R}^{p\times n}$.} ($\preceq$
 Linear optimization problems are convex optimization problems.
 
 
-\section*{The Quadratic Optimization Problem}
+\section{The Quadratic Optimization Problem}
 
 If the objective function is a convex quadratic and the constraint functions are affine in (\ref{ConvexOptimization}), then we have a {\color{tiananmen}\textbf{quadratic program}}.
 
@@ -336,7 +338,7 @@ If the objective function is a convex quadratic and the constraint functions are
 	\end{equation}
 where $P$ is a symmetric positive semidefinite $n\times n$ matrix, $G\in\mathbb{R}^{m\times n}$,  $A\in\mathbb{R}^{p\times n}$, $q\in\mathbb{R}^n$, and $r\in\mathbb{R}$}.
 
-\subsection*{Example: Least-Squares}
+\subsection{Example: Least-Squares}
 
 In the {\color{tiananmen}\textbf{least squares problem}} we want to minimize {\color{baystate}$\|Ax-b\|_2$}. Notice {\color{baystate}$$\frac{1}{2}\|Ax-b\|_2^2=\frac{1}{2}x^TA^TAx-b^TAx+\frac{1}{2}b^Tb$$} is actually a convex quadratic function. Since $\|Ax-b\|_2\geq 0$, we know that the minimal solution for $\frac{1}{2}\|Ax-b\|_2^2$ will also be a minimal solution for $\|Ax-b\|_2$. Therefore, if we are able to minimize the corresponding quadratic function, we will have accomplished our goal.
 
@@ -349,7 +351,7 @@ Looking back to (\ref{QuadraticOptimization}), we have $P=A^TA$, $q=b^TA$, and $
 	``Ideally, a method for structural optimization should be flexible and general. It should be able to handle not only element sizes as design variables, but also, for instance, shape variables and material orientation angles.''\cite{Svanberg1987}
 \end{quote}
 
-\section*{General Method Description}
+\section{General Method Description}
 Consider a structural optimization problem of the following general form
 
 {\color{baystate}
@@ -381,7 +383,7 @@ The general approach for solving such optimization problems is to split it up an
 
 In MMA, each $f_i^{(k)}$ is obtained by a linearization of $f_i$ in variables of the type $$\frac{1}{x_j-L_j}\quad\text{or}\quad\frac{1}{U_j-x_j}$$ dependent on the signs of the derivatives of $f_i$ at $\mathbf{x}^{(k)}$. The values of $L_j$ and $U_j$ are normally changed between iterations and are referred to as {\color{tiananmen}moving asymptotes}.
 
-\subsection*{Defining The Functions $f_i^{(k)}$}
+\subsection{Defining The Functions $f_i^{(k)}$}
 
 Given the iteration point $\mathbf{x}^{(k)}$ at an iteration $k$, values of the parameters $L_j^{(k)}$ and $U_j^{(k)}$ are chosen, for $j=1,\ldots,n$, such that $L_j^{(k)}<x_j^{(k)}<U_j^{(k)}$.
 
@@ -425,13 +427,13 @@ Now, with the approximating functions $f_i^{(k)}$ as defined earlier, we have th
 
 $\alpha_j^{(k)}$ and $\beta_j^{(k)}$ should at least be chosen such that $L_j^{(k)}<\alpha_j^{(k)}<x_j^{(k)}<\beta_j^{(k)}<U_j^{(k)}$.
 
-\subsubsection*{\underline{General Rule for how to choose $L_j^{(k)}$ and $U_j^{(k)}$}:}
+\subsubsection{General Rule for how to choose $L_j^{(k)}$ and $U_j^{(k)}$:}
 \begin{itemize}
 	\item[(a)] If the process tends to oscillate, then it needs to be stabilized and this can be accomplished by moving the asymptotes closer to the current iteration point.
 	\item[(b)] If, instead, the process is monotone and slow, it needs to be ``relaxed''. This can be accomplished by moving the asymptotes away from the current iteration point.
 \end{itemize}
 
-\subsection*{The Dual Problem}
+\subsection{The Dual Problem}
 
 $P^{(k)}$ is a convex, separable problem, so we can create a dual problem using a Lagrangian function. The Lagrangian function corresponding to $P^{(k)}$ is given by 
 {\color{baystate}
@@ -469,15 +471,15 @@ $$x_j(\mathbf{y})=\frac{\left(p_{0j}+\mathbf{y}^T\mathbf{p}_j\right)^{1/2}L_j+\l
 
 {\huge \fbox{\textbf{The SIMP Method}}}
 
-\section*{Volume-to-Point (VP) Heat Conduction Problem}
+\section{Volume-to-Point (VP) Heat Conduction Problem}
 
 Consider a finite-size volume in which heat is being generated at \textit{every} point, and which is cooled through a small patch (the heat sink) located on its boundary. Suppose that we have a finite amount of high-conductivity ($k_p$) material available. Our goal is to determine the optimal distribution of the $k_p$ material through the given volume such that \textit{the highest temperature is minimized}.
 
 {\color{tiananmen}\textbf{Solid Isotropic Material with Penalization (SIMP)}} is a method based on topology optimization that can be used to solve the VP Heat Conduction Problem. SIMP is what is called a {\color{baystate}soft kill method}, meaning that in each step of the method we increase or decrease high-conductivity material by a small quantity. This allows us to methods designed for continuous optimization problems for this discrete problem.
 
-\section*{SIMP Method Description}
+\section{SIMP Method Description}
 
-\subsection*{Assumptions}
+\subsection{Assumptions}
 In order to develop the method, we need to make a couple of assumptions.
 
 First of all, the energy differential equation driving the heat-flux inside the finite-volume requires:
@@ -496,7 +498,7 @@ Throughout the article \cite{Marck2012}, the authors also set the following cond
 	\item All other boundaries are adiabatic: $\nabla T=0$
 \end{itemize}
 
-\subsection*{Notation}
+\subsection{Notation}
 
 We have the following sets to describe the VP-problem:
 
@@ -511,7 +513,7 @@ We have the following sets to describe the VP-problem:
 	\item $T\in\overline{\mathbb{T}}$ = temperature field that satisfies the energy equation {\color{baystate}$\nabla\cdot\left(\mathbf{k}\nabla T_{\mathbf{k}}\right)+q=0$} where $q$ is the local heat-generating rate.
 \end{itemize}
 
-\section*{The Optimization Problem}
+\section{The Optimization Problem}
 
 Using the above established notation, we develop the following optimization problem:
 
@@ -525,7 +527,7 @@ Using the above established notation, we develop the following optimization prob
 	\end{equation}
 }
 
-\subsection*{Penalization Process}
+\subsection{Penalization Process}
 
 \bibliographystyle{siam}
 \bibliography{Research_Log.bib}

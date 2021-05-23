@@ -1,0 +1,86 @@
+% Encoding: UTF-8
+
+@Book{Boyd2004,
+  author    = {Boyd, Stephen P. and Vandenberghe, Lieven},
+  publisher = {Cambridge Univ. Pr.},
+  title     = {Convex optimization},
+  year      = {2004},
+  isbn      = {9780521833783},
+  date      = {2004-03-01},
+  ean       = {9780521833783},
+  pagetotal = {727},
+  place     = {Cambridge},
+  url       = {https://www.ebook.de/de/product/3677442/stephen_p_boyd_lieven_vandenberghe_convex_optimization.html},
+}
+
+@Book{Gander2018,
+  author    = {Martin J. Gander and Felix Kwok},
+  publisher = {Society for Industrial and Applied Mathematics},
+  title     = {Numerical Analysis of Partial Differential Equations Using Maple and {MATLAB}},
+  year      = {2018},
+  month     = {Aug},
+  doi       = {10.1137/1.9781611975314},
+}
+
+@Misc{dawkins_2018,
+  author       = {Dawkins, Paul},
+  howpublished = {\url{https://tutorial.math.lamar.edu/classes/calciii/DivergenceTheorem.aspx}},
+  month        = {Apr},
+  note         = {[Online; accessed 15-March-2021]},
+  title        = {{Calculus III - Divergence Theorem}},
+  year         = {2018},
+}
+
+@Misc{enwiki:1011407395,
+  author       = {{Wikipedia contributors}},
+  howpublished = {\url{https://en.wikipedia.org/w/index.php?title=Divergence_theorem&oldid=1011407395}},
+  note         = {[Online; accessed 15-March-2021]},
+  title        = {Divergence theorem --- {Wikipedia}{,} The Free Encyclopedia},
+  year         = {2021},
+}
+
+@Article{Shewchuk1994,
+  author   = {Jonathan Richard Shewchuk},
+  title    = {An Introduction to the Conjugate Gradient Method Without the Agonizing Pain},
+  year     = {1994},
+  month    = aug,
+  abstract = {The Conjugate Gradient Method is the most prominent iterative method for solving sparse systems of linear equations.
+Unfortunately, many textbook treatments of the topic are written with neither illustrations nor intuition, and their
+victims can be found to this day babbling senselessly in the corners of dusty libraries. For this reason, a deep,
+geometric understanding of the method has been reserved for the elite brilliant few who have painstakingly decoded
+the mumblings of their forebears. Nevertheless, the Conjugate Gradient Method is a composite of simple, elegant ideas
+that almost anyone can understand. Of course, a reader as intelligent as yourself will learn them almost effortlessly.
+The idea of quadratic forms is introduced and used to derive the methods of Steepest Descent, Conjugate Directions,
+and Conjugate Gradients. Eigenvectors are explained and used to examine the convergence of the Jacobi Method,
+Steepest Descent, and ConjugateGradients. Other topics include preconditioningand the nonlinear ConjugateGradient
+Method. I have taken pains to make this article easy to read. Sixty-six illustrations are provided. Dense prose is
+avoided. Concepts are explained in several different ways. Most equations are coupled with an intuitive interpretation.},
+}
+
+@Article{Marck2012,
+  author    = {Gilles Marck and Maroun Nemer and Jean-Luc Harion and Serge Russeil and Daniel Bougeard},
+  journal   = {Numerical Heat Transfer, Part B: Fundamentals},
+  title     = {Topology Optimization Using the {SIMP} Method for Multiobjective Conductive Problems},
+  year      = {2012},
+  month     = {jun},
+  number    = {6},
+  pages     = {439--470},
+  volume    = {61},
+  doi       = {10.1080/10407790.2012.687979},
+  publisher = {Informa {UK} Limited},
+}
+
+@Article{Svanberg1987,
+  author    = {Krister Svanberg},
+  journal   = {International Journal for Numerical Methods in Engineering},
+  title     = {The method of moving asymptotes{\textemdash}a new method for structural optimization},
+  year      = {1987},
+  month     = {feb},
+  number    = {2},
+  pages     = {359--373},
+  volume    = {24},
+  doi       = {10.1002/nme.1620240207},
+  publisher = {Wiley},
+}
+
+@Comment{jabref-meta: databaseType:bibtex;}

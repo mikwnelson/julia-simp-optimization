@@ -62,14 +62,14 @@
 %% for as many as 7 members, with various roles/titles.
 %% It is required to have 7 entries, even if some are empty for committee and role
 \committee{Paul Cazeaux}{Mat Johnson}{Dionyssios Mantzavinos}{Yannan Shen}{}{}{}
-\role{Chairperson}{}{}{}{}{E}{}
+\role{Chairperson}{}{}{}{}{}{}
 %At Most 7 members allowed, last here is blank on purpose to demonstrate
 %flexibility
 
 %%BOTH dates must be included. 
 \@printd@testrue
-\datedefended{July 02, 2019}
-\dateapproved{August 06, 2019}
+\datedefended{July, 2021}
+\dateapproved{July, 2021}
 
 %% These settings are now in the kuthesis.cls file, but users are free
 % to customize. listings has great documentation online
@@ -117,13 +117,17 @@ possible. Sleepy, Dopey, Grumpy, you know who you are.
 
 \end{romanpages}
 
+\chapter{Introduction}
+%\input{Introduction/Introduction}
+\chapter{Background}
+\input{Chapter_I_Background/PDE_Discretization}
 
 \global\long\def\bibname{References}%
 
 \bibliographystyle{apalike2}
-\bibliography{Biblio/allcites}
+\bibliography{Bibliography/Thesis_Bibliography}
 
 
 \appendix
-\include{Appendix1/Appendix1}
+\include{Appendix/Appendix}
 \end{document}

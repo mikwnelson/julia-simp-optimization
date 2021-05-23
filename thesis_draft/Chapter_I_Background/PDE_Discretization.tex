@@ -1,3 +1,10 @@
 \section{PDE Discretization}
-Multidimensional topological optimization problems inevitably involve the use of partial differential equations.
+Multidimensional topological optimization problems often involve the use of partial differential equations (PDEs) which model the physical properties of the materials involved. Most of these PDEs cannot be uniquely solved analytically, so we turn to numerical methods in order to approximate their solutions. The first step in many of these methods is to discretize our domain; that is, we want to choose some scheme to divide our continuous domain into a finite number of pieces over which we will apply a particular method to approximate solutions to the PDE.
+
+In the SIMP method, the Finite Volume Method is used to discretize and approximate solutions to the heat equation for our heat generating medium. We will introduce the Heat Equation and then proceed to give an overview of the Finite Volume Method.
 \subsection{The Heat Equation}
+Consider an object of that has heat flowing between its interior regions. The temperature at any point in the interior of the object will depend on the spatial position chosen as well as the time we measure the temperature at that point. Therefore, the temperature ($T$) at any point in such an object is a function of both space ($\vec{x}$) and time ($t$) coordinates: $T(\vec{x},t)$.
+Physical principles demand that such a temperature function must satisfy the following equation:
+\begin{equation}
+	\nabla\cdot\left(k(\vec{x})\nabla T\right)=
+\end{equation}

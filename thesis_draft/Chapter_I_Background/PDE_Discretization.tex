@@ -3,8 +3,11 @@ Multidimensional topological optimization problems often involve the use of part
 
 In the SIMP method, the Finite Volume Method is used to discretize and approximate solutions to the heat equation for our heat generating medium. We will introduce the Heat Equation and then proceed to give an overview of the Finite Volume Method.
 \subsection{The Heat Equation}
-Consider an object of that has heat flowing between its interior regions. The temperature at any point in the interior of the object will depend on the spatial position chosen as well as the time we measure the temperature at that point. Therefore, the temperature ($T$) at any point in such an object is a function of both space ($\vec{x}$) and time ($t$) coordinates: $T(\vec{x},t)$.
-Physical principles demand that such a temperature function must satisfy the following equation:
+Consider a stationary object of that has heat flowing between its interior regions. The temperature at any point in the interior of the object will depend on the spatial position chosen as well as the time we measure the temperature at that point. Therefore, the temperature ($T$) at any point in such an object is a function of both space ($\vec{x}$) and time ($t$) coordinates: $T(\vec{x},t)$.
+Physical principles demand that such a temperature function must satisfy the equation
 \begin{equation}
-	\nabla\cdot\left(k(\vec{x})\nabla T\right)=
+	\frac{\partial T}{\partial t}=\nabla\cdot\left(k(\vec{x})\nabla T\right)\label{eqn:HeatEq}
 \end{equation}
+where $\nabla$ is the gradient operator (also known as ``del'') and the function $k$ represents the thermal diffusivity at a point in our object.
+
+(\ref{eqn:HeatEq}) is typically referred to as the Heat Equation. If we were to have a constant thermal diffusivity throughout our object, it would be possible to analytically find a solution to this partial differential equation. However, as in the problem of interest in this paper, when $k$ is not constant we must turn to numerical methods to find approximate solutions for the function $T$.

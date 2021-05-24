@@ -1,0 +1,13 @@
+\babel@toc {english}{}
+\contentsline {chapter}{Abstract}{iii}{Doc-Start}%
+\contentsline {chapter}{Acknowledgements}{iv}{Doc-Start}%
+\contentsline {chapter}{Introduction}{1}{chapter*.4}%
+\contentsline {chapter}{\numberline {1}Background}{2}{chapter.1}%
+\contentsline {section}{\numberline {1.1}PDE Discretization}{2}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}The Heat Equation}{2}{subsection.1.1.1}%
+\contentsline {section}{\numberline {1.2}The Optimization Problem}{3}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Optimization Methods}{3}{section.1.3}%
+\contentsline {chapter}{\numberline {2}SIMP Optimization}{4}{chapter.2}%
+\contentsline {section}{\numberline {2.1}The Method of Moving Asymptotes (MMA)}{4}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Solid Isotropic Material with Penalization (SIMP)}{4}{section.2.2}%
+\contentsline {chapter}{\numberline {A}My Appendix, Next to my Spleen}{6}{appendix.A}%

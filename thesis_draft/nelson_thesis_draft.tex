@@ -95,19 +95,20 @@
 \maketitle
 
 \begin{abstractlong}
-
+\addcontentsline{toc}{chapter}{Abstract}
 Insert Abstract Here
 
 \end{abstractlong}
 
-\begin{acknowledgementslong}
+\begin{acknowledgements}
 %%if you want a "quote" environment for acknowledgements,
 %% use acknowledgements instead of acknowledgementslong
+\addcontentsline{toc}{chapter}{Acknowledgements}
 
 I would like to thank all of the little people who made this thesis
 possible. Sleepy, Dopey, Grumpy, you know who you are.
 
-\end{acknowledgementslong}
+\end{acknowledgements}
 
 \tableofcontents{}
 
@@ -117,12 +118,19 @@ possible. Sleepy, Dopey, Grumpy, you know who you are.
 
 \end{romanpages}
 
-\chapter{Introduction}
+\chapter*{Introduction}
+\addcontentsline{toc}{chapter}{Introduction}
 %\input{Introduction/Introduction}
 \chapter{Background}
 \input{Chapter_I_Background/PDE_Discretization}
+\input{Chapter_I_Background/The_Optimization_Problem}
+\input{Chapter_I_Background/Optimization_Methods}
 
-\global\long\def\bibname{References}%
+\chapter{SIMP Optimization}
+\input{Chapter_II_SIMP_Optimization/MMA.tex}
+\input{Chapter_II_SIMP_Optimization/SIMP.tex}
+
+\global\long\def\bibname{References}
 
 \bibliographystyle{apalike2}
 \bibliography{Bibliography/Thesis_Bibliography}

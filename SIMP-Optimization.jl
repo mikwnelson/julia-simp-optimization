@@ -6,10 +6,10 @@ include("K_and_partialK.jl")
 ##############
 
 #Number of x-direction control volumes
-n = 3
+n = 100
 
 #Number of y-direction control volumes
-m = 3
+m = 100
 
 #Total number of temperature control volumes
 N = m*n
@@ -53,7 +53,7 @@ T = K\Q[:]
 T_grid = reshape(T,n,m)'
 
 #Heatmap Plot of Temperature
-P = heatmap(0:dx:xlen,0:dy:ylen,T_grid,yflip=true,xmirror=true, title=L"T",colorbar_title=" ")
+P = heatmap(0:dx:xlen,0:dy:ylen,T_grid,yflip=true,xmirror=true, title=L"T",colorbar_title="Temperature (°C)")
 
 #Compute Average Temperature
 function f_av(η,Q,p,m,n;k_0=1.0,k_p=100.0,xlen=0.1,ylen=0.1)
@@ -64,7 +64,7 @@ function f_av(η,Q,p,m,n;k_0=1.0,k_p=100.0,xlen=0.1,ylen=0.1)
     f_avg = (1/(m*n))*(ones((m*n),1))'*T
     return f_avg
 end
-
+#=
 #Compute Dual Vector for Average Temperature
 lambda = K\(-ones(N,1)*(1/N))
 
@@ -93,3 +93,4 @@ d_f_avg = reshape(d_f_avg,n+1,m+1)'
 
 #Heatmap of change in average temperature per design node
 F = heatmap(0:dx:xlen,0:dy:ylen,d_f_avg,yflip=true,xmirror=true,colorbar_title=" ",title=L"\textrm{d}f_{av}/\textrm{d}\eta_{ij}")
+=#

@@ -10,13 +10,23 @@ Physical principles demand that such a temperature function must satisfy the equ
 \end{equation}
 where $\nabla$ is the gradient operator (also known as ``del'') and the function $k$ represents the thermal diffusivity at a point in our object.
 
-Equation (\ref{eqn:HeatEq}) is commonly referred to as the Heat or Diffusion Equation. If we were to have a constant thermal diffusivity throughout our object, it would be possible to analytically find a solution to this partial differential equation. However, as in the problems of interest throughout this paper, when $k$ is not constant we must turn to numerical methods to find approximate solutions for the function $T$.
+Equation \eqref{eqn:HeatEq} is commonly referred to as the Heat or Diffusion Equation. If we were to have a constant thermal diffusivity throughout our object, it would be possible to analytically find a solution to this partial differential equation. However, as in the problems of interest throughout this paper, when $k$ is not constant we must turn to numerical methods to find approximate solutions for the function $T$.
 
 \subsection{The Finite Volume Method}
 
-For our numerical approximations of PDEs in this paper, we used the Finite Volume Method (FVM).
+For our numerical approximations of PDEs in this paper we used the Finite Volume Method (FVM), which will be described in this section.
 
 As with any other numerical method to solve PDEs, we must first discretize our domain by creating some sort of mesh. One major advantage of the Finite Volume Method is that we have a great amount of freedom in choosing our mesh. In FVM the domain can be discretized into a mesh of arbitrary polygons, but we chose uniform squares in our work to simplify the resulting calculations.
+
+Given a mesh of polygons on our domain $\Omega$ with vertices at $\lbrace x_i\rbrace\subset\Omega$, we create a set of {\color{baystate}\textit{control volumes}} around each $x_i$. The resulting set of control volumes discretize the partial differential equation. The Finite Volume Method has us integrate our PDE over each control volume and then use the divergence theorem to convert these volume integrals into surface integrals involving the fluxes across the boundaries of the control volumes. We then approximate those fluxes across the boundaries to calculate approximate solutions to our PDE.
+
+\begin{thm}[The Divergence Theorem]
+	Suppose that $\mathcal{V}$ is a compact subset of $\mathbb{R}^n$ that has a piecewise smooth and positively oriented boundary $\mathcal{S}$ (i.e. $\partial\mathcal{V}=\mathcal{S}$). If $\mathbf{F}$ is a continously differentiable vector field defined on a neighborhood of $\mathcal{V}$, then
+	\begin{equation}
+		\iiint\limits_{\mathcal{V}}\left(\nabla\cdot\mathbf{F}\right)\dif\mathcal{V}=\oiint\limits_S\mathbf{F}\cdot\dif\mathcal{S}.\label{eqn:div-thm}
+	\end{equation}
+	\label{thm:div-thm}
+\end{thm}
 
 \subsubsection{The Finite Volume Method in Two-Dimensions}
 

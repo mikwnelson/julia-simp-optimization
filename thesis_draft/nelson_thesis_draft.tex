@@ -1,7 +1,12 @@
 %% LyX 2.3.1 created this file.  For more info, see http://www.lyx.org/.
 %% Do not edit unless you really know what you are doing.
 \documentclass[12pt,english,letterpaper]{kuthesis}
-\usepackage{mathptmx}
+%\usepackage{mathptmx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{commath}
+\usepackage{newtxtext,newtxmath}
 \renewcommand{\sfdefault}{lmss}
 \renewcommand{\ttdefault}{lmtt}
 \usepackage[T1]{fontenc}
@@ -27,6 +32,10 @@
  pdfauthor={Mikal Nelson},
  pdfsubject={A Thesis},
  urlcolor={black},citecolor={black},allcolors={black}}
+\usepackage{jlcode}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
 
 \makeatletter
 
@@ -39,6 +48,10 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
 
+\definecolor{tiananmen}{HTML}{8C122B}
+\definecolor{baystate}{HTML}{3C27CD}
+
+\newtheorem{thm}{Theorem}
 
 %used to align decimals in tables according to APA style
 \usepackage{dcolumn}

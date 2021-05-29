@@ -58,7 +58,7 @@ function Kay(Eta,k_0,k_p,p,m,n,xlen,ylen)
         hm=m÷2+1
         K[cord2num(hm,1,n),cord2num(hm,1,n)]+=k_W[hm,1]*(dy/dx)
     end
-
+    #=
     #Add heat sink in middle of north side of material by adding conductivity to diagonal element of K in corresponding column
     if iseven(n)
         #Nearest half integer
@@ -69,6 +69,7 @@ function Kay(Eta,k_0,k_p,p,m,n,xlen,ylen)
         hm=n÷2+1
         K[cord2num(1,hm,n),cord2num(1,hm,n)]+=k_W[1,hm]*(dy/dx)
     end
+    =#
     return K
 end
 

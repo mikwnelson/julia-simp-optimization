@@ -1,6 +1,8 @@
 using SparseArrays, LinearAlgebra, Plots, LaTeXStrings
 include("K_and_partialK.jl")
 
+pyplot(size=(600,600))
+
 ##############
 ### Inputs ###
 ##############
@@ -53,8 +55,9 @@ T = K\Q[:]
 T_grid = reshape(T,n,m)'
 
 #Heatmap Plot of Temperature
-P = heatmap(0:dx:xlen,0:dy:ylen,T_grid,yflip=true,xmirror=true, title=L"T",colorbar_title="Temperature (°C)")
+P = heatmap(0:dx:xlen,0:dy:ylen,T_grid,yflip=true,xmirror=true, aspect_ratio=1, fontfamily = "Times New Roman", xtickfontsize=12, ytickfontsize=12, colorbar_tickfontsize=12, colorbar_titlefontsize=15, colorbar_title="Temperature (°C)")
 
+#=
 #Compute Average Temperature
 function f_av(η,Q,p,m,n;k_0=1.0,k_p=100.0,xlen=0.1,ylen=0.1)
     Eta = reshape(η,m+1,n+1)
@@ -64,7 +67,6 @@ function f_av(η,Q,p,m,n;k_0=1.0,k_p=100.0,xlen=0.1,ylen=0.1)
     f_avg = (1/(m*n))*(ones((m*n),1))'*T
     return f_avg
 end
-#=
 #Compute Dual Vector for Average Temperature
 lambda = K\(-ones(N,1)*(1/N))
 

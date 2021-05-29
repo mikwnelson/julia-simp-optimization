@@ -1,1 +1,21 @@
 \section{The Optimization Problem}
+
+Something motivating all this...
+
+A general {\color{tiananmen}optimization problem} often has the form
+\begin{equation}
+	\begin{tabular}{lll}
+		\text{minimize }   & $f_0(x)$          & \\
+		\text{subject to } & $f_i(x)\leq 0$, & $i=1,\ldots, m$\\
+		& $h_i(x) = 0$,      & $i=1,\ldots, p$
+	\end{tabular}\label{Optimization}
+\end{equation}
+where
+\begin{itemize}
+	\item {\color{baystate} $x=\left(x_1,\ldots,x_n\right)$} are the {\color{tiananmen} \textbf{optimization variables}},
+	\item {\color{baystate} $f_0 : \mathbb{R}^n\rightarrow\mathbb{R}$} is the {\color{tiananmen} \textbf{objective function}},
+	\item {\color{baystate} $f_i : \mathbb{R}^n\rightarrow\mathbb{R}$} are the {\color{tiananmen} \textbf{inequality constraint functions}}, and
+	\item {\color{baystate} $h_i : \mathbb{R}^n\rightarrow\mathbb{R}$} are the {\color{tiananmen}\textbf{equality constraint functions}}.
+\end{itemize}
+
+If there are no constraints ($m=p=0$), then the problem is called {\color{tiananmen}\textit{unconstrained}}.

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.25)  29 MAY 2021 18:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.25)  30 MAY 2021 15:13
 entering extended mode
 **./nelson_thesis_draft.tex
 (nelson_thesis_draft.tex
@@ -1344,7 +1344,7 @@ LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
  [2
 
 ]
-<Chapter_I_Background/Images/Heatmap_Example.png, id=128, 433.62pt x 433.62pt>
+<Chapter_I_Background/Images/Heatmap_Example.png, id=133, 433.62pt x 433.62pt>
 File: Chapter_I_Background/Images/Heatmap_Example.png Graphic file (type png)
 <use Chapter_I_Background/Images/Heatmap_Example.png>
 Package pdftex.def Info: Chapter_I_Background/Images/Heatmap_Example.png  used 
@@ -1370,13 +1370,13 @@ LaTeX Font Info:    Font shape `TS1/ntxtlf/m/n' will be
 (Chapter_I_Background/The_Optimization_Problem.tex
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/it' will be
 (Font)              scaled to size 12.0pt on input line 16.
- [5])
-(Chapter_I_Background/Optimization_Methods.tex) [6]
+ [5] [6])
+(Chapter_I_Background/Optimization_Methods.tex) [7]
 Chapter 2.
 (Chapter_II_SIMP_Optimization/MMA.tex) (Chapter_II_SIMP_Optimization/SIMP.tex)
-(nelson_thesis_draft.bbl [7
+(nelson_thesis_draft.bbl [8
 
-]) [8
+]) [9
 
 ]
 \openout2 = `Appendix/Appendix.aux'.
@@ -1391,18 +1391,18 @@ File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
 (Font)              scaled to size 8.0pt on input line 29.
 
-[9
+[10
 
 
-]) [10] (nelson_thesis_draft.aux (Appendix/Appendix.aux))
+]) [11] (nelson_thesis_draft.aux (Appendix/Appendix.aux))
 Package rerunfilecheck Info: File `nelson_thesis_draft.out' has not changed.
-(rerunfilecheck)             Checksum: 0338D8282488B9EF26CD171C1AD095CE;2367.
+(rerunfilecheck)             Checksum: 90B35BED6AC809E8268132E9BE54ED6D;2527.
  ) 
 Here is how much of TeX's memory you used:
- 25498 strings out of 479163
- 413121 string characters out of 2853998
+ 25505 strings out of 479163
+ 413221 string characters out of 2853998
  960494 words of memory out of 3000000
- 42590 multiletter control sequences out of 15000+600000
+ 42593 multiletter control sequences out of 15000+600000
  474008 words of font info for 112 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  85i,8n,133p,868b,4111s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1426,9 +1426,9 @@ ata/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmb.pfb><C:/Users/mikwn/App
 Data/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmbi.pfb><C:/Users/mikwn/A
 ppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmr.pfb><C:/Users/mikwn/
 AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmri.pfb>
-Output written on nelson_thesis_draft.pdf (17 pages, 344436 bytes).
+Output written on nelson_thesis_draft.pdf (18 pages, 350224 bytes).
 PDF statistics:
- 319 PDF objects out of 1000 (max. 8388607)
- 82 named destinations out of 1000 (max. 500000)
- 126 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 331 PDF objects out of 1000 (max. 8388607)
+ 86 named destinations out of 1000 (max. 500000)
+ 134 words of extra memory for PDF output out of 10000 (max. 10000000)
 

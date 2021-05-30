@@ -24,3 +24,43 @@ If there are no constraints ($m=p=0$), then the problem is called {\color{tianan
 We call a vector {\color{baystate} $x^\star$} {\color{tiananmen} \textbf{optimal}} if it has the smallest objective value among all vectors that satisfy the constraints. That is, for any $z$ with $f_1(z)\leq 0,\ldots, f_m(z)\leq 0$, then $f_0(z)\geq f_0(x^\star)$. A point $x$ that is in the domains of each function $f_i$ and $h_i$ is called {\color{tiananmen}\textbf{feasible}} if it satisfies all the constraints. Finally, the {\color{tiananmen} \textbf{optimal value}} {\color{baystate}$p^\star$} of the problem is defined as {\color{baystate}$$p^\star=\left\lbrace f_0(x) \mid f_i(x)\leq 0, i=1,\ldots,m, h_i(x)=0, i=1,\ldots,p\right\rbrace.$$} Therefore, $p^{\star}=f_0(x^\star)$, the objective function value at a feasible, optimal vector $x^{\star}$.
 
 Notice that the optimization problem in standard form is a minimization problem.  We can easily change it into a maximization problem by minimizing the objective function $-f_0$ subject to the same constraints.
+
+The optimization problem is {\color{tiananmen}\textbf{linear}} or called a {\color{tiananmen}\textbf{linear program}} if the objective and constraint functions are all linear. An optimization problem involving a quadratic objective function and linear constraints is {\color{tiananmen}\textbf{quadratic}} or a {\color{tiananmen}\textbf{quadratic program}}. If the optimization problem is not linear or quadratic, it is referred to as a {\color{tiananmen}\textbf{nonlinear program}}.
+
+There are exists efficient methods for solving linear programming and many quadratic programming problems.
+
+\subsection{Convex Optimization}
+
+A set {\color{baystate}$C$} is {\color{tiananmen}\textbf{convex}} if the line segment between any two points in $C$ lies in $C$. That is {\color{baystate}if for any $x_1,x_2\in C$ and any $\theta$ with $0\leq\theta\leq 1$, we have $\theta x_1+(1-\theta)x_2\in C$}.
+
+A function {\color{baystate}$f : \mathbb{R}^n\rightarrow\mathbb{R}$} is {\color{tiananmen}\textbf{convex}} if the domain of $f$ is a convex set and if for all $x,y$ in the domain of $f$, and $\theta$ with $0\leq\theta\leq 1$, we have
+{\color{baystate}
+	\begin{equation}
+		f\left(\theta x+\left(1-\theta\right)y\right)\leq\theta f(x)+(1-\theta)f(y).
+		\label{Convexity}
+	\end{equation}
+}
+A {\color{tiananmen} \textbf{convex optimization problem}}, therefore, is an optimization problem of the form
+{\color{baystate}
+	\begin{equation}
+		\begin{tabular}{lll}
+			\text{minimize }   & $f_0(x)$          & \\
+			\text{subject to } & $f_i(x)\leq 0$, & $i=1,\ldots, m$\\
+			& $a_i^T = b_i$,      & $i=1,\ldots, p$
+		\end{tabular}\label{ConvexOptimization}
+	\end{equation}
+	where $f_0,\ldots,f_m$ are convex functions.
+}
+
+There are three additional requirements that differentiate a convex optimization problem from a general optimization problem:
+{\color{baystate}
+	\begin{itemize}
+		\item the objective function must be convex
+		\item the inequality constraint functions must be convex
+		\item the equality constraint functions must be {\color{tiananmen}\textbf{affine}}
+	\end{itemize}
+}
+
+In a convex optimization problem we minimize a convex objective function over a convex set.
+
+\textbf{In a convex optimization problem, any {\color{tiananmen}\textbf{locally optimal point}} is also {\color{tiananmen}\textbf{globally optimal}}.}

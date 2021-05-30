@@ -1,8 +1,9 @@
 \section{The Optimization Problem}
 
-Something motivating all this...
+In much of mathematics, our goal is to seek some sort of solution. In cases where there are multiple solutions, it is desirable to determine the ``best'' solution judged against some set of criteria. Mathematical optimization is the study of solving such problems. In its simplest case, mathematical optimization is the practice of minimizing or maximizing a given function over a certain set and possibly subject to some constraints.
 
-A general {\color{tiananmen}optimization problem} often has the form
+\begin{defn}
+An {\color{tiananmen}optimization problem} (in standard form) has the form
 \begin{equation}
 	\begin{tabular}{lll}
 		\text{minimize }   & $f_0(x)$          & \\
@@ -17,5 +18,9 @@ where
 	\item {\color{baystate} $f_i : \mathbb{R}^n\rightarrow\mathbb{R}$} are the {\color{tiananmen} \textbf{inequality constraint functions}}, and
 	\item {\color{baystate} $h_i : \mathbb{R}^n\rightarrow\mathbb{R}$} are the {\color{tiananmen}\textbf{equality constraint functions}}.
 \end{itemize}
+\end{defn}
+If there are no constraints ($m=p=0$), then the problem is called {\color{tiananmen}\textit{unconstrained}}. \cite[p. 127]{Boyd2004}
 
-If there are no constraints ($m=p=0$), then the problem is called {\color{tiananmen}\textit{unconstrained}}.
+We call a vector {\color{baystate} $x^\star$} {\color{tiananmen} \textbf{optimal}} if it has the smallest objective value among all vectors that satisfy the constraints. That is, for any $z$ with $f_1(z)\leq 0,\ldots, f_m(z)\leq 0$, then $f_0(z)\geq f_0(x^\star)$. A point $x$ that is in the domains of each function $f_i$ and $h_i$ is called {\color{tiananmen}\textbf{feasible}} if it satisfies all the constraints. Finally, the {\color{tiananmen} \textbf{optimal value}} {\color{baystate}$p^\star$} of the problem is defined as {\color{baystate}$$p^\star=\left\lbrace f_0(x) \mid f_i(x)\leq 0, i=1,\ldots,m, h_i(x)=0, i=1,\ldots,p\right\rbrace.$$} Therefore, $p^{\star}=f_0(x^\star)$, the objective function value at a feasible, optimal vector $x^{\star}$.
+
+Notice that the optimization problem in standard form is a minimization problem.  We can easily change it into a maximization problem by minimizing the objective function $-f_0$ subject to the same constraints.

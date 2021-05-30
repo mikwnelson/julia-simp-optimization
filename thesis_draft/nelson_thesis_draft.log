@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.25)  29 MAY 2021 16:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.25)  29 MAY 2021 18:27
 entering extended mode
 **./nelson_thesis_draft.tex
 (nelson_thesis_draft.tex
@@ -1003,6 +1003,7 @@ Package: algpseudocode
 Document Style - pseudocode environments for use with the `algorithmicx' style
 )
 \c@thm=\count320
+\c@defn=\count321
 
 (C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/latex/latex-tools\dcolumn.sty
 Package: dcolumn 2014/10/28 v1.06 decimal alignment package (DPC)
@@ -1018,12 +1019,12 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \cmidrulesep=\dimen190
 \cmidrulekern=\dimen191
 \defaultaddspace=\dimen192
-\@cmidla=\count321
-\@cmidlb=\count322
+\@cmidla=\count322
+\@cmidlb=\count323
 \@aboverulesep=\dimen193
 \@belowrulesep=\dimen194
-\@thisruleclass=\count323
-\@lastruleclass=\count324
+\@thisruleclass=\count324
+\@lastruleclass=\count325
 \@thisrulewidth=\dimen195
 ) (C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/latex/subfig\subfig.sty
 Package: subfig 2005/06/28 ver: 1.3 subfig package
@@ -1042,77 +1043,77 @@ Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
 \caption@hangindent=\dimen258
 Package caption Info: Standard document class detected.
 )
-\c@caption@flags=\count325
-\c@continuedfloat=\count326
+\c@caption@flags=\count326
+\c@continuedfloat=\count327
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 )
-\c@KVtest=\count327
+\c@KVtest=\count328
 \sf@farskip=\skip69
 \sf@captopadj=\dimen259
 \sf@capskip=\skip70
 \sf@nearskip=\skip71
-\c@subfigure=\count328
-\c@subfigure@save=\count329
-\c@lofdepth=\count330
-\c@subtable=\count331
-\c@subtable@save=\count332
-\c@lotdepth=\count333
+\c@subfigure=\count329
+\c@subfigure@save=\count330
+\c@lofdepth=\count331
+\c@subtable=\count332
+\c@subtable@save=\count333
+\c@lotdepth=\count334
 \sf@top=\skip72
 \sf@bottom=\skip73
 ) (nelson_thesis_draft.aux (Appendix/Appendix.aux))
 \openout1 = `nelson_thesis_draft.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 106.
+LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 107.
 LaTeX Font Info:    Trying to load font information for OML+ntxmi on input line
- 106.
+ 107.
 
 (C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/latex/newtx\omlntxmi.fd
 File: omlntxmi.fd 2015/08/25 Fontinst v1.933 font definitions for OML/ntxmi.
 )
-LaTeX Font Info:    ... okay on input line 106.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 106.
-LaTeX Font Info:    ... okay on input line 106.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 106.
-LaTeX Font Info:    ... okay on input line 106.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 106.
-LaTeX Font Info:    ... okay on input line 106.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 106.
-LaTeX Font Info:    ... okay on input line 106.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 106.
-LaTeX Font Info:    ... okay on input line 106.
-LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 106.
+LaTeX Font Info:    ... okay on input line 107.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 107.
+LaTeX Font Info:    ... okay on input line 107.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 107.
+LaTeX Font Info:    ... okay on input line 107.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 107.
+LaTeX Font Info:    ... okay on input line 107.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 107.
+LaTeX Font Info:    ... okay on input line 107.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 107.
+LaTeX Font Info:    ... okay on input line 107.
+LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 107.
 LaTeX Font Info:    Trying to load font information for U+ntxexa on input line 
-106.
+107.
 
 (C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/latex/newtx\untxexa.fd
 File: untxexa.fd 2012/04/16 Fontinst v1.933 font definitions for U/ntxexa.
 )
-LaTeX Font Info:    ... okay on input line 106.
-LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 106.
+LaTeX Font Info:    ... okay on input line 107.
+LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 107.
 LaTeX Font Info:    Trying to load font information for LMS+ntxsy on input line
- 106.
+ 107.
 
 (C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/latex/newtx\lmsntxsy.fd
 File: lmsntxsy.fd 2016/07/02 Fontinst v1.933 font definitions for LMS/ntxsy.
 )
-LaTeX Font Info:    ... okay on input line 106.
-LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 106.
+LaTeX Font Info:    ... okay on input line 107.
+LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 107.
 LaTeX Font Info:    Trying to load font information for LMX+ntxexx on input lin
-e 106.
+e 107.
 
 (C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/latex/newtx\lmxntxexx.fd
 File: lmxntxexx.fd 2016/07/03 Fontinst v1.933 font definitions for LMX/ntxexx.
 )
-LaTeX Font Info:    ... okay on input line 106.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 106.
-LaTeX Font Info:    ... okay on input line 106.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 106.
-LaTeX Font Info:    ... okay on input line 106.
+LaTeX Font Info:    ... okay on input line 107.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 107.
+LaTeX Font Info:    ... okay on input line 107.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 107.
+LaTeX Font Info:    ... okay on input line 107.
 LaTeX Font Info:    Checking defaults for pmboxdraw/pmboxdraw/m/n on input line
- 106.
-LaTeX Font Info:    ... okay on input line 106.
+ 107.
+LaTeX Font Info:    ... okay on input line 107.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1148,23 +1149,23 @@ LaTeX Font Info:    ... okay on input line 106.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\c@lstlisting=\count334
-\c@mv@tabular=\count335
-\c@mv@boldtabular=\count336
+\c@lstlisting=\count335
+\c@mv@tabular=\count336
+\c@mv@boldtabular=\count337
 
 (C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
 ii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count337
+\scratchcounter=\count338
 \scratchdimen=\dimen260
 \scratchbox=\box65
-\nofMPsegments=\count338
-\nofMParguments=\count339
+\nofMPsegments=\count339
+\nofMParguments=\count340
 \everyMPshowfont=\toks40
-\MPscratchCnt=\count340
+\MPscratchCnt=\count341
 \MPscratchDim=\dimen261
-\MPnumerator=\count341
-\makeMPintoPDFobject=\count342
+\MPnumerator=\count342
+\makeMPintoPDFobject=\count343
 \everyMPtoPDFconversion=\toks41
 )
 (C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-b
@@ -1183,8 +1184,8 @@ File: translations-basic-dictionary-english.trsl (english translation file `tra
 nslations-basic-dictionary')
 )
 Package translations Info: loading dictionary `translations-basic-dictionary' f
-or `english'. on input line 106.
-Package hyperref Info: Link coloring ON on input line 106.
+or `english'. on input line 107.
+Package hyperref Info: Link coloring ON on input line 107.
 
 (C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
@@ -1196,11 +1197,11 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 lestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count343
+\c@section@level=\count344
 )
-LaTeX Info: Redefining \ref on input line 106.
-LaTeX Info: Redefining \pageref on input line 106.
-LaTeX Info: Redefining \nameref on input line 106.
+LaTeX Info: Redefining \ref on input line 107.
+LaTeX Info: Redefining \pageref on input line 107.
+LaTeX Info: Redefining \nameref on input line 107.
  (nelson_thesis_draft.out) (nelson_thesis_draft.out)
 \@outlinefile=\write3
 \openout3 = `nelson_thesis_draft.out'.
@@ -1209,98 +1210,98 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    Trying to load font information for OT1+ntxtlf on input lin
-e 106.
+e 107.
 
 (C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/latex/newtx\ot1ntxtlf.fd
 File: ot1ntxtlf.fd 2021/05/08 v1.0 font definition file for OT1/ntx/tlf
 )
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 12.0pt on input line 106.
+(Font)              scaled to size 12.0pt on input line 107.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 8.8pt on input line 106.
+(Font)              scaled to size 8.8pt on input line 107.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 6.6pt on input line 106.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 106
+(Font)              scaled to size 6.6pt on input line 107.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 107
 .
 
 (C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 106
+LaTeX Font Info:    Trying to load font information for U+msb on input line 107
 .
 
 (C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for U+ntxmia on input line 
-106.
+107.
 
 (C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/latex/newtx\untxmia.fd
 File: untxmia.fd 2018/04/14 Fontinst v1.933 font definitions for U/ntxmia.
 )
 LaTeX Font Info:    Trying to load font information for U+ntxsym on input line 
-106.
+107.
 
 (C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/latex/newtx\untxsym.fd
 File: untxsym.fd 2015/03/20 Fontinst v1.933 font definitions for U/ntxsym.
 )
 LaTeX Font Info:    Trying to load font information for U+ntxsyc on input line 
-106.
+107.
 
 (C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/latex/newtx\untxsyc.fd
 File: untxsyc.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsyc.
 )
 LaTeX Font Info:    Trying to load font information for U+esint on input line 1
-06.
+07.
 
 (C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/latex/esint\uesint.fd
 File: uesint.fd 
 )
 LaTeX Font Info:    Trying to load font information for T1+qhv on input line 10
-6.
+7.
 
 (C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/latex/tex-gyre\t1qhv.fd
 File: t1qhv.fd 2009/09/25 v1.2 font definition file for T1/qhv
 )
 LaTeX Font Info:    Font shape `T1/qhv/m/n' will be
-(Font)              scaled to size 10.79993pt on input line 106.
+(Font)              scaled to size 10.79993pt on input line 107.
 LaTeX Font Info:    Font shape `T1/qhv/m/n' will be
-(Font)              scaled to size 7.91994pt on input line 106.
+(Font)              scaled to size 7.91994pt on input line 107.
 LaTeX Font Info:    Font shape `T1/qhv/m/n' will be
-(Font)              scaled to size 5.93996pt on input line 106.
+(Font)              scaled to size 5.93996pt on input line 107.
 LaTeX Font Info:    Trying to load font information for T1+ntxtt on input line 
-106.
+107.
 
 (C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/latex/newtx\t1ntxtt.fd
 File: t1ntxtt.fd 2012/04/20 v3.1
 )
 LaTeX Font Info:    Font shape `T1/ntxtt/m/n' will be
-(Font)              scaled to size 12.0pt on input line 106.
+(Font)              scaled to size 12.0pt on input line 107.
 LaTeX Font Info:    Font shape `T1/ntxtt/m/n' will be
-(Font)              scaled to size 8.8pt on input line 106.
+(Font)              scaled to size 8.8pt on input line 107.
 LaTeX Font Info:    Font shape `T1/ntxtt/m/n' will be
-(Font)              scaled to size 6.6pt on input line 106.
+(Font)              scaled to size 6.6pt on input line 107.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 17.28pt on input line 110.
+(Font)              scaled to size 17.28pt on input line 111.
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
-(Font)              scaled to size 17.28pt on input line 110.
+(Font)              scaled to size 17.28pt on input line 111.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 10.95pt on input line 110.
+(Font)              scaled to size 10.95pt on input line 111.
 LaTeX Font Info:    Trying to load font information for TS1+ntxtlf on input lin
-e 110.
+e 111.
 
 (C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/latex/newtx\ts1ntxtlf.fd
 File: ts1ntxtlf.fd 2015/01/18 v1.0 fd file for TS1/ntxtlf
 )
 LaTeX Font Info:    Font shape `TS1/ntxtlf/m/n' will be
-(Font)              scaled to size 10.95pt on input line 110.
+(Font)              scaled to size 10.95pt on input line 111.
 
 [1
 
 
 
 {C:/Users/mikwn/AppData/Local/MiKTeX/pdftex/config/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 110--110
+Underfull \hbox (badness 10000) in paragraph at lines 111--111
 
  []
 
@@ -1343,7 +1344,7 @@ LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
  [2
 
 ]
-<Chapter_I_Background/Images/Heatmap_Example.png, id=118, 433.62pt x 433.62pt>
+<Chapter_I_Background/Images/Heatmap_Example.png, id=128, 433.62pt x 433.62pt>
 File: Chapter_I_Background/Images/Heatmap_Example.png Graphic file (type png)
 <use Chapter_I_Background/Images/Heatmap_Example.png>
 Package pdftex.def Info: Chapter_I_Background/Images/Heatmap_Example.png  used 
@@ -1366,56 +1367,68 @@ LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
 LaTeX Font Info:    Font shape `TS1/ntxtlf/m/n' will be
 (Font)              scaled to size 12.0pt on input line 45.
 )
-(Chapter_I_Background/The_Optimization_Problem.tex)
-(Chapter_I_Background/Optimization_Methods.tex) [5] [6]
+(Chapter_I_Background/The_Optimization_Problem.tex
+LaTeX Font Info:    Font shape `T1/ntxtlf/b/it' will be
+(Font)              scaled to size 12.0pt on input line 16.
+ [5])
+(Chapter_I_Background/Optimization_Methods.tex) [6]
 Chapter 2.
 (Chapter_II_SIMP_Optimization/MMA.tex) (Chapter_II_SIMP_Optimization/SIMP.tex)
 (nelson_thesis_draft.bbl [7
 
-]
-
-Package natbib Warning: Empty `thebibliography' environment on input line 3.
-
-) [8
+]) [8
 
 ]
 \openout2 = `Appendix/Appendix.aux'.
 
  (Appendix/Appendix.tex
 Appendix A.
-) [9
+LaTeX Font Info:    Trying to load font information for TS1+pcr on input line 1
+1.
+(C:\Users\mikwn\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ts1pcr.fd
+File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
+)
+LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
+(Font)              scaled to size 8.0pt on input line 29.
+
+[9
 
 
-] (nelson_thesis_draft.aux (Appendix/Appendix.aux))
+]) [10] (nelson_thesis_draft.aux (Appendix/Appendix.aux))
 Package rerunfilecheck Info: File `nelson_thesis_draft.out' has not changed.
-(rerunfilecheck)             Checksum: A173003E69BFC6F865C237A927C7DE97;2153.
+(rerunfilecheck)             Checksum: 0338D8282488B9EF26CD171C1AD095CE;2367.
  ) 
 Here is how much of TeX's memory you used:
- 22417 strings out of 479163
- 379477 string characters out of 2853998
- 923494 words of memory out of 3000000
- 39562 multiletter control sequences out of 15000+600000
- 467180 words of font info for 106 fonts, out of 8000000 for 9000
+ 25498 strings out of 479163
+ 413121 string characters out of 2853998
+ 960494 words of memory out of 3000000
+ 42590 multiletter control sequences out of 15000+600000
+ 474008 words of font info for 112 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 85i,8n,133p,713b,849s stack positions out of 5000i,500n,10000p,200000b,80000s
- <C:\Users\mikwn\AppData\Local\MiKTeX\fonts/pk/ljfour/public/esint/dpi720\esi
-nt10.pk>{C:/Users/mikwn/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newtx/ntx
--ot1-tlf.enc}{C:/Users/mikwn/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newt
-x/ntx-ec-tlf.enc}{C:/Users/mikwn/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/
-tex-gyre/q-ts1.enc}<C:/Users/mikwn/AppData/Local/Programs/MiKTeX/fonts/type1/pu
-blic/newtx/NewTXMI.pfb><C:/Users/mikwn/AppData/Local/Programs/MiKTeX/fonts/type
-1/public/newtx/NewTXMI7.pfb><C:/Users/mikwn/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/tex-gyre/qtmr.pfb><C:/Users/mikwn/AppData/Local/Programs/MiKTeX/f
-onts/type1/public/newtx/txexs.pfb><C:/Users/mikwn/AppData/Local/Programs/MiKTeX
-/fonts/type1/public/newtx/txmiaX.pfb><C:/Users/mikwn/AppData/Local/Programs/MiK
-TeX/fonts/type1/public/txfonts/txsyb.pfb><C:/Users/mikwn/AppData/Local/Programs
-/MiKTeX/fonts/type1/public/newtx/txsys.pfb><C:/Users/mikwn/AppData/Local/Progra
-ms/MiKTeX/fonts/type1/public/newtx/ztmb.pfb><C:/Users/mikwn/AppData/Local/Progr
-ams/MiKTeX/fonts/type1/public/newtx/ztmr.pfb><C:/Users/mikwn/AppData/Local/Prog
-rams/MiKTeX/fonts/type1/public/newtx/ztmri.pfb>
-Output written on nelson_thesis_draft.pdf (16 pages, 259115 bytes).
+ 85i,8n,133p,868b,4111s stack positions out of 5000i,500n,10000p,200000b,80000s
+{C:/Users/mikwn/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}{C:
+/Users/mikwn/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newtx/ntx-ec-tlf.enc
+} <C:\Users\mikwn\AppData\Local\MiKTeX\fonts/pk/ljfour/public/esint/dpi720\esin
+t10.pk>{C:/Users/mikwn/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newtx/ntx-
+ot1-tlf.enc}{C:/Users/mikwn/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/tex-g
+yre/q-ts1.enc}<C:/Users/mikwn/AppData/Local/Programs/MiKTeX/fonts/type1/public/
+newtx/NewTXMI.pfb><C:/Users/mikwn/AppData/Local/Programs/MiKTeX/fonts/type1/pub
+lic/newtx/NewTXMI7.pfb><C:/Users/mikwn/AppData/Local/Programs/MiKTeX/fonts/type
+1/public/amsfonts/latxfont/lcircle1.pfb><C:/Users/mikwn/AppData/Local/Programs/
+MiKTeX/fonts/type1/public/tex-gyre/qtmr.pfb><C:/Users/mikwn/AppData/Local/Progr
+ams/MiKTeX/fonts/type1/public/newtx/txexs.pfb><C:/Users/mikwn/AppData/Local/Pro
+grams/MiKTeX/fonts/type1/public/newtx/txmiaX.pfb><C:/Users/mikwn/AppData/Local/
+Programs/MiKTeX/fonts/type1/public/txfonts/txsyb.pfb><C:/Users/mikwn/AppData/Lo
+cal/Programs/MiKTeX/fonts/type1/public/newtx/txsys.pfb><C:/Users/mikwn/AppData/
+Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrb8a.pfb><C:/Users/mikwn/AppDat
+a/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/mikwn/AppD
+ata/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmb.pfb><C:/Users/mikwn/App
+Data/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmbi.pfb><C:/Users/mikwn/A
+ppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmr.pfb><C:/Users/mikwn/
+AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmri.pfb>
+Output written on nelson_thesis_draft.pdf (17 pages, 344436 bytes).
 PDF statistics:
- 231 PDF objects out of 1000 (max. 8388607)
- 37 named destinations out of 1000 (max. 500000)
- 110 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 319 PDF objects out of 1000 (max. 8388607)
+ 82 named destinations out of 1000 (max. 500000)
+ 126 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -9,9 +9,12 @@
 \contentsline {section}{\numberline {1.2}The Optimization Problem}{5}{section.1.2}%
 \contentsline {subsection}{\numberline {1.2.1}Convex Optimization}{6}{subsection.1.2.1}%
 \contentsline {section}{\numberline {1.3}Optimization Methods}{8}{section.1.3}%
-\contentsline {chapter}{\numberline {2}SIMP Optimization}{9}{chapter.2}%
-\contentsline {section}{\numberline {2.1}The Method of Moving Asymptotes (MMA)}{9}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Solid Isotropic Material with Penalization (SIMP)}{9}{section.2.2}%
-\contentsline {chapter}{\numberline {A}Julia Codes}{11}{appendix.A}%
-\contentsline {section}{\numberline {A.1}Backtracking Line Search}{11}{section.A.1}%
-\contentsline {section}{\numberline {A.2}Gradient Descent}{11}{section.A.2}%
+\contentsline {subsection}{\numberline {1.3.1}Line Search Methods}{8}{subsection.1.3.1}%
+\contentsline {subsection}{\numberline {1.3.2}Gradient Descent}{10}{subsection.1.3.2}%
+\contentsline {subsection}{\numberline {1.3.3}Conjugate Gradient}{10}{subsection.1.3.3}%
+\contentsline {section}{\numberline {1.4}The Method of Moving Asymptotes (MMA)}{10}{section.1.4}%
+\contentsline {chapter}{\numberline {2}SIMP Optimization}{11}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Solid Isotropic Material with Penalization (SIMP)}{11}{section.2.1}%
+\contentsline {chapter}{\numberline {A}Julia Codes}{13}{appendix.A}%
+\contentsline {section}{\numberline {A.1}Backtracking Line Search}{13}{section.A.1}%
+\contentsline {section}{\numberline {A.2}Gradient Descent}{13}{section.A.2}%

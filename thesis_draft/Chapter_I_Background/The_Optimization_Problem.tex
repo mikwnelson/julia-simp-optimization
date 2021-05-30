@@ -63,4 +63,15 @@ There are three additional requirements that differentiate a convex optimization
 
 In a convex optimization problem we minimize a convex objective function over a convex set.
 
-\textbf{In a convex optimization problem, any {\color{tiananmen}\textbf{locally optimal point}} is also {\color{tiananmen}\textbf{globally optimal}}.}
+\textbf{In a convex optimization problem, any {\color{tiananmen}\textbf{locally optimal point}} is also {\color{tiananmen}\textbf{globally optimal}}.} This is a \textit{very} useful fact!
+
+Why might local optimality implying global optimality be useful? Consider a situation where we have a convex objective function. If we are able to find any minimum value for the objective function, then we know this value is not just a local minimum, but indeed a global minimum. If we do not have a convex function, we cannot be as assured that we have found the global optimal value. For example, consider a function such as the one shown in \figref{fig:non-convex-function-example}. An optimization strategy may find the local minimum near $x=1$, but since the function is not convex, we cannot conclude that this value is the truly optimal value. In fact, we see that the global minimum, and hence the actual optimal value, is between $x=-1$ and $x=-0.5$. On the other hand, if we have a convex function, as soon as we find a local minima, we can be assured that it is also the global minima!
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\textwidth]{Chapter_I_Background/Images/Non-Convex-Example.png}
+	\caption[A Non-Convex Function]{A graph of the non-convex function $f(x)=x^4-x^3-x^2+x+1$. Notice it has two local minima and that the right local minima is not equal to the global minimum.}
+	\label{fig:non-convex-function-example}
+\end{figure}
+
+So we can see that convexity is a very powerful and useful property in terms of optimization problems. As a result, any time we can take advantage of convexity or approximate functions using convex functions, we often do so.

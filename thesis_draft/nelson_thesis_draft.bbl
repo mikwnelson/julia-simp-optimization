@@ -5,4 +5,9 @@ Boyd, S.~P. \& Vandenberghe, L. (2004).
 \newblock {\em Convex optimization}.
 \newblock Cambridge Univ. Pr.
 
+\bibitem[Shewchuk, 1994]{Shewchuk1994}
+Shewchuk, J.~R. (1994).
+\newblock An introduction to the conjugate gradient method without the
+  agonizing pain.
+
 \end{thebibliography}

@@ -41,7 +41,7 @@ Notice that the backtracking search will find a step size $t$ such that $0\leq t
 
 The gradient descent method chooses the search direction to be the negative gradient. That is, in this method we set $\Delta x=-\nabla f(x)$, where $f$ is the function we seek to optimize. Since the gradient of a function gives the direction of greatest increase, naturally the negative gradient will give the direction of the most rapid decline.
 
-\begin{algorithm}[H]
+\begin{algorithm}
 	\caption{Gradient Descent Method \cite[]{Boyd2004}\label{GradientDescentAlg}}
 	\begin{algorithmic} 
 		\State \textbf{given} a starting point $x\in\textbf{dom}f$.
@@ -55,9 +55,11 @@ The gradient descent method chooses the search direction to be the negative grad
 	\end{algorithmic}
 \end{algorithm}
 
-Notice that essentially the algorithm uses a line search to determine a step size and then we update our iterate in the direction of the steepest descent. This is repeated until we meet some sort of stopping criterion, typically something of the form $\|\nabla f(x)\|_2\leq\eta$, where $\eta$ is small and positive. Another common stopping criterion is to stop the algorithm when no significant progress is made between iterates by stopping the algorithm when $\|f_{k+1}-f_{k}\|<\eta$.
+Notice in Algorithm \ref{GradientDescentAlg} that essentially a line search is used to determine a step size and then we update our iterate in the direction of the steepest descent. This is repeated until we meet some sort of stopping criterion, typically something of the form $\|\nabla f(x)\|_2\leq\eta$, where $\eta$ is small and positive. Another common stopping criterion is to stop the algorithm when no significant progress is made between iterates by stopping the algorithm when $\|f_{k+1}-f_{k}\|<\eta$.
 
-An implementation of the gradient descent algorithm implemented in Julia can be found in the appendix.
+One thing that is interesting to note about the gradient descent algorithm is that the function $f$ is never actually evaluated, only the gradient of $f$.
+
+An implementation of the gradient descent algorithm in the Julia language can be found in the appendix.
 
 \subsection{Nonlinear Conjugate Gradient}
 
@@ -71,7 +73,15 @@ We set an adjustable step length $\alpha$ and perform a line search in the direc
 	&x_1=x_0+\alpha_0\Delta x_0.
 \end{align*}
 
-$\alpha_i$ is found by ensuring that the gradient is orthogonal to the search direction.
+Suppose we were to simply iterate this process and for each step $i$ we do the following:
+
+\begin{enumerate}
+	\item Set $\Delta x_i=-\nabla f(x_i)$
+	\item Calculate $\alpha_i=\arg\underset{\alpha}{\min}\ f(x_i+\alpha\Delta x_i)$
+	\item Compute $x_{i+1}=x_i+\alpha_i\Delta x_i$
+\end{enumerate}
+
+However, there is an issue with this proposed iterative scheme: We have moved $\alpha_i$ in direction $\Delta x_i$ to find the minimum value in that direction, but by moving $\alpha_{i+1}$ in direction $\Delta x_{i+1}$ we may have accidentally \textit{undone} the progress made in the previous iteration so that we no longer have a minimum value in direction $\Delta x_i$. We can fix this problem by making sure that successive direction vectors have no influence in the directions of previous iterations. That is, we require our directions in each iteration to be conjugate (with respect to the matrix of coefficient for our system) to one another. Therefore, rather than taking $\Delta x_{i+1}$ to be $-\nabla f(x_i)$, we compute a direction conjugate to all previous directions by some pre-chosen methodology. This suggests the following iterative scheme:
 
 After the first iteration, the following steps constitute one iteration along a conjugate direction:
 \begin{enumerate}
@@ -86,11 +96,11 @@ After the first iteration, the following steps constitute one iteration along a 
 	\item Update iterate value: $x_{i+1}=x_i+\alpha_i d_i$.
 \end{enumerate}
 
-The algorithm below uses the Newton-Raphson method to find the values of $\alpha_i$.
+Algorithm \ref{CongGradAlg} uses the Newton-Raphson method to find the values of $\alpha_i$.
 
-Given a function $f$, a starting value $x$, a maximum number of CG iterations $i_{\text{max}}$, a CG error tolerance $\epsilon<1$, a maximum number of Newton-Raphson iterations $j_{\text{max}}$, and a Newton-Raphson error tolerance $\varepsilon<1$:
-\begin{algorithm}[H]
+\begin{algorithm}
 	\caption{Nonlinear Conjugate Gradient Using Newton-Raphson \cite[]{Shewchuk1994}\label{CongGradAlg}}
+	Given a function $f$, a starting value $x$, a maximum number of CG iterations $i_{\text{max}}$, a CG error tolerance $\epsilon<1$, a maximum number of Newton-Raphson iterations $j_{\text{max}}$, and a Newton-Raphson error tolerance $\varepsilon<1$:
 	\begin{algorithmic}
 		\State $i\Leftarrow 0$
 		\State $k\Leftarrow 0$
@@ -122,6 +132,6 @@ Given a function $f$, a starting value $x$, a maximum number of CG iterations $i
 	\end{algorithmic}
 \end{algorithm}
 
-In the quadratic case...
+To get some intuition of how this algorithm operates, let's look at it applied to a quadratic function.
 
 \paragraph{Example: Rosenbrock Function}

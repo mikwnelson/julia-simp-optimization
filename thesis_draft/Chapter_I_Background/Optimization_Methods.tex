@@ -92,7 +92,7 @@ After the first iteration, the following steps constitute one iteration along a 
 		\item Polak--Ribi\`{e}re: $\beta_{i}^{PR}=\frac{\Delta x_i^T(\Delta x_i-\Delta x_{i-1})}{\Delta x_{i-1}^T\Delta x_{i-1}}$
 	\end{itemize}
 	\item Update the conjugate direction: $d_i=\Delta x_i+\beta_i d_{i-1}$,
-	\item Line search: Optimize $\alpha_i =\arg\min_{\alpha} f(x_i+\alpha d_i)$,
+	\item Line search: Optimize $\alpha_i =\arg\underset{\alpha}{\min}\ f(x_i+\alpha d_i)$,
 	\item Update iterate value: $x_{i+1}=x_i+\alpha_i d_i$.
 \end{enumerate}
 

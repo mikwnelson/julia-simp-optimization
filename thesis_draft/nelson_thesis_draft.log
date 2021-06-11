@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.21)  11 JUN 2021 16:22
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.21)  11 JUN 2021 16:46
 entering extended mode
 **./nelson_thesis_draft.tex
 (nelson_thesis_draft.tex
@@ -201,14 +201,137 @@ LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
 (F:\MiKTeX\tex/latex/base\textcomp.sty
 Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
 ))
-(F:\MiKTeX\tex/latex/eulervm\eulervm.sty
-Package: eulervm 2005/01/11 v4.0 (WaS)
-) (F:\MiKTeX\tex/latex/base\fontenc.sty
+(F:\MiKTeX\tex/latex/newpx\newpxmath.sty
+Package: newpxmath 2021/06/01 v1.424
+
+`newpxmath' v1.424, 2021/06/01 Math macros based on pxfonts (msharpe)
+(F:\MiKTeX\tex/generic/binhex\binhex.tex)
+(F:\MiKTeX\tex/latex/oberdiek\centernot.sty
+Package: centernot 2016/05/16 v1.4 Centers the not symbol horizontally (HO)
+)
+\px@tA=\toks31
+\px@tB=\toks32
+\px@su=\read2
+\px@Isdigit=\count279
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 197.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/zpltlf/m/n on input line 197.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/zpltlf/m/n on input line 197.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/zpltlf/m/n --> OT1/zpltlf/b/n on input line 198.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 201.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> T1/qhv/m/n on input line 201.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> T1/qhv/m/n on input line 201.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 202.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> OT1/zpltlf/m/it on input line 202.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> OT1/zpltlf/m/it on input line 202.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 203.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> T1/npxtt/m/n on input line 203.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> T1/npxtt/m/n on input line 203.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 205.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> OT1/zpltlf/b/n on input line 205.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/zpltlf/b/n on input line 205.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/zpltlf/m/it --> OT1/zpltlf/b/it on input line 206.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  T1/qhv/m/n --> T1/qhv/b/n on input line 208.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  T1/npxtt/m/n --> T1/npxtt/b/n on input line 209.
+LaTeX Font Info:    Redeclaring symbol font `letters' on input line 220.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> OML/npxmi/m/it on input line 220.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/cmm/b/it --> OML/npxmi/m/it on input line 220.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/npxmi/m/it --> OML/npxmi/b/it on input line 221.
+\symlettersA=\mathgroup6
+LaTeX Font Info:    Overwriting symbol font `lettersA' in version `bold'
+(Font)                  U/npxmia/m/it --> U/npxmia/b/it on input line 239.
+LaTeX Font Info:    Redeclaring math alphabet \mathfrak on input line 241.
+Now handling font encoding LMS ...
+... no UTF-8 mapping file for font encoding LMS
+LaTeX Font Info:    Redeclaring symbol font `symbols' on input line 249.
+LaTeX Font Info:    Encoding `OMS' has changed to `LMS' for symbol font
+(Font)              `symbols' in the math version `normal' on input line 249.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> LMS/npxsy/m/n on input line 249.
+LaTeX Font Info:    Encoding `OMS' has changed to `LMS' for symbol font
+(Font)              `symbols' in the math version `bold' on input line 249.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/b/n --> LMS/npxsy/m/n on input line 249.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  LMS/npxsy/m/n --> LMS/npxsy/b/n on input line 250.
+\symAMSm=\mathgroup7
+LaTeX Font Info:    Overwriting symbol font `AMSm' in version `bold'
+(Font)                  U/npxsym/m/n --> U/npxsym/b/n on input line 270.
+\symsymbolsC=\mathgroup8
+LaTeX Font Info:    Overwriting symbol font `symbolsC' in version `bold'
+(Font)                  U/npxsyc/m/n --> U/npxsyc/b/n on input line 292.
+Now handling font encoding LMX ...
+... no UTF-8 mapping file for font encoding LMX
+LaTeX Font Info:    Redeclaring symbol font `largesymbols' on input line 312.
+LaTeX Font Info:    Encoding `OMX' has changed to `LMX' for symbol font
+(Font)              `largesymbols' in the math version `normal' on input line 3
+12.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> LMX/npxexx/m/n on input line 312.
+LaTeX Font Info:    Encoding `OMX' has changed to `LMX' for symbol font
+(Font)              `largesymbols' in the math version `bold' on input line 312
+.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> LMX/npxexx/m/n on input line 312.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  LMX/npxexx/m/n --> LMX/npxexx/b/n on input line 313.
+\symlargesymbolsPXA=\mathgroup9
+LaTeX Font Info:    Overwriting symbol font `largesymbolsPXA' in version `bold'
+
+(Font)                  U/npxexa/m/n --> U/npxexa/b/n on input line 320.
+\px@cntz=\count280
+\px@IsAlNum=\count281
+\px@sbptoks=\toks33
+LaTeX Font Info:    Redeclaring math delimiter \lfloor on input line 475.
+LaTeX Font Info:    Redeclaring math delimiter \rfloor on input line 476.
+LaTeX Font Info:    Redeclaring math delimiter \lceil on input line 477.
+LaTeX Font Info:    Redeclaring math delimiter \rceil on input line 478.
+LaTeX Font Info:    Redeclaring math delimiter \lbrace on input line 479.
+LaTeX Font Info:    Redeclaring math delimiter \rbrace on input line 480.
+LaTeX Font Info:    Redeclaring math delimiter \langle on input line 481.
+LaTeX Font Info:    Redeclaring math delimiter \rangle on input line 483.
+LaTeX Font Info:    Redeclaring math delimiter \arrowvert on input line 487.
+LaTeX Font Info:    Redeclaring math delimiter \vert on input line 488.
+LaTeX Font Info:    Redeclaring math symbol \parallel on input line 489.
+LaTeX Font Info:    Redeclaring math delimiter \Arrowvert on input line 490.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 530.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 531.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 532.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 533.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 534.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 535.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 536.
+LaTeX Font Info:    Redeclaring math accent \check on input line 537.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 541.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 542.
+LaTeX Font Info:    Redeclaring math accent \vec on input line 1584.
+LaTeX Info: Redefining \Bbbk on input line 2161.
+LaTeX Info: Redefining \not on input line 2443.
+LaTeX Info: Redefining \textsquare on input line 2458.
+LaTeX Info: Redefining \openbox on input line 2460.
+)
+(F:\MiKTeX\tex/latex/base\fontenc.sty
 Package: fontenc 2020/08/10 v2.0s Standard LaTeX package
 ) (F:\MiKTeX\tex/latex/base\inputenc.sty
 Package: inputenc 2020/08/01 v1.3d Input encoding file
-\inpenc@prehook=\toks31
-\inpenc@posthook=\toks32
+\inpenc@prehook=\toks34
+\inpenc@posthook=\toks35
 )
 (F:\MiKTeX\tex/latex/graphics\color.sty
 Package: color 2020/02/24 v1.2b Standard LaTeX Color (DPC)
@@ -225,14 +348,14 @@ File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
 Package: babel 2021/05/16 3.59 The Babel package
  (F:\MiKTeX\tex/generic/babel\babel.def
 File: babel.def 2021/05/16 3.59 Babel common definitions
-\babel@savecnt=\count279
+\babel@savecnt=\count282
 \U@D=\dimen160
 \l@unhyphenated=\language79
 
 (F:\MiKTeX\tex/generic/babel\txtbabel.def)
-\bbl@readstream=\read2
+\bbl@readstream=\read3
 )
-\bbl@dirlevel=\count280
+\bbl@dirlevel=\count283
 
 *************************************
 * Local config file bblopts.cfg used
@@ -275,13 +398,13 @@ Package: setspace 2011/12/19 v6.7a set line spacing
 )
 (F:\MiKTeX\tex/latex/esint\esint.sty
 Package: esint 
-\symlargesymbolsA=\mathgroup6
+\symlargesymbolsA=\mathgroup10
 ) (F:\MiKTeX\tex/latex/siunitx\siunitx.sty
 Package: siunitx 2021-05-19 v3.0.2 A comprehensive (SI) units package
 \l__siunitx_angle_tmp_dim=\dimen163
 \l__siunitx_angle_marker_box=\box51
 \l__siunitx_angle_unit_box=\box52
-\l__siunitx_compound_count_int=\count281
+\l__siunitx_compound_count_int=\count284
 
 (F:\MiKTeX\tex/latex/translations\translations.sty
 Package: translations 2021/01/17 v1.10a internationalization of LaTeX2e package
@@ -301,11 +424,11 @@ Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
 ))
-\l__siunitx_number_exponent_fixed_int=\count282
-\l__siunitx_number_min_decimal_int=\count283
-\l__siunitx_number_min_integer_int=\count284
-\l__siunitx_number_round_precision_int=\count285
-\l__siunitx_number_group_minimum_int=\count286
+\l__siunitx_number_exponent_fixed_int=\count285
+\l__siunitx_number_min_decimal_int=\count286
+\l__siunitx_number_min_integer_int=\count287
+\l__siunitx_number_round_precision_int=\count288
+\l__siunitx_number_group_minimum_int=\count289
 \l__siunitx_print_tmp_box=\box53
 \l__siunitx_table_tmp_box=\box54
 \l__siunitx_table_tmp_dim=\dimen164
@@ -315,9 +438,9 @@ Package pdftexcmds Info: \pdfdraftmode found.
 \l__siunitx_table_before_box=\box57
 \l__siunitx_table_after_box=\box58
 \l__siunitx_table_carry_dim=\dimen166
-\l__siunitx_unit_tmp_int=\count287
-\l__siunitx_unit_position_int=\count288
-\l__siunitx_unit_total_int=\count289
+\l__siunitx_unit_tmp_int=\count290
+\l__siunitx_unit_position_int=\count291
+\l__siunitx_unit_total_int=\count292
 
 (F:\MiKTeX\tex/latex/l3packages/l3keys2e\l3keys2e.sty
 (F:\MiKTeX\tex/latex/l3kernel\expl3.sty
@@ -325,7 +448,7 @@ Package: expl3 2021-05-11 L3 programming layer (loader)
 
 (F:\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
 File: l3backend-pdftex.def 2021-05-07 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count290
+\l__color_backend_stack_int=\count293
 \l__pdf_internal_box=\box59
 ))
 Package: l3keys2e 2021-05-07 LaTeX2e option processing using LaTeX3 keys
@@ -424,7 +547,7 @@ Package: array 2020/10/01 v2.5c Tabular extension package (FMi)
 \col@sep=\dimen167
 \ar@mcellbox=\box60
 \extrarowheight=\dimen168
-\NC@list=\toks33
+\NC@list=\toks36
 \extratabsurround=\skip55
 \backup@length=\skip56
 \ar@cellbox=\box61
@@ -491,7 +614,7 @@ Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibhang=\skip57
 \bibsep=\skip58
 LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count291
+\c@NAT@ctr=\count294
 )
 (F:\MiKTeX\tex/latex/hyperref\hyperref.sty
 Package: hyperref 2021-02-27 v7.00k Hypertext links for LaTeX
@@ -518,8 +641,8 @@ Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
 )
 \@linkdim=\dimen169
-\Hy@linkcounter=\count292
-\Hy@pagecounter=\count293
+\Hy@linkcounter=\count295
+\Hy@pagecounter=\count296
 
 (F:\MiKTeX\tex/latex/hyperref\pd1enc.def
 File: pd1enc.def 2021-02-27 v7.00k Hyperref: PDFDocEncoding definition (HO)
@@ -536,7 +659,7 @@ Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 (F:\MiKTeX\tex/generic/etexcmds\etexcmds.sty
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 )
-\Hy@SavedSpaceFactor=\count294
+\Hy@SavedSpaceFactor=\count297
 
 (F:\MiKTeX\tex/latex/hyperref\puenc.def
 File: puenc.def 2021-02-27 v7.00k Hyperref: PDF Unicode definition (HO)
@@ -557,7 +680,7 @@ Package hyperref Info: Plain pages OFF on input line 4207.
 Package hyperref Info: Backreferencing OFF on input line 4212.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4445.
-\c@Hy@tempcnt=\count295
+\c@Hy@tempcnt=\count298
 LaTeX Info: Redefining \url on input line 4804.
 \XeTeXLinkMargin=\dimen170
 
@@ -568,7 +691,7 @@ Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count296
+\Fld@menulength=\count299
 \Field@Width=\dimen171
 \Fld@charsize=\dimen172
 Package hyperref Info: Hyper figures OFF on input line 6075.
@@ -586,9 +709,9 @@ Package: atbegshi-ltx 2020/08/17 v1.0a Emulation of the original atbegshi packa
 ge
 with kernel methods
 )
-\Hy@abspage=\count297
-\c@Item=\count298
-\c@Hfootnote=\count299
+\Hy@abspage=\count300
+\c@Item=\count301
+\c@Hfootnote=\count302
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 
@@ -600,8 +723,8 @@ Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atvery packag
 e
 with kernel methods
 )
-\Fld@listcount=\count300
-\c@bookmark@seq@number=\count301
+\Fld@listcount=\count303
+\c@bookmark@seq@number=\count304
 
 (F:\MiKTeX\tex/latex/rerunfilecheck\rerunfilecheck.sty
 Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
@@ -794,15 +917,15 @@ Package: fontenc 2020/08/10 v2.0s Standard LaTeX package
 )
 (F:\MiKTeX\tex/latex/latex-tools\calc.sty
 Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count302
-\calc@Bcount=\count303
+\calc@Acount=\count305
+\calc@Bcount=\count306
 \calc@Adimen=\dimen179
 \calc@Bdimen=\dimen180
 \calc@Askip=\skip60
 \calc@Bskip=\skip61
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count304
+\calc@Ccount=\count307
 \calc@Cskip=\skip62
 )
 (F:\MiKTeX\tex/latex/relsize\relsize.sty
@@ -823,36 +946,36 @@ nment
 
 (F:\MiKTeX\tex/latex/float\float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count305
-\float@exts=\toks34
+\c@float@type=\count308
+\float@exts=\toks37
 \float@box=\box63
-\@float@everytoks=\toks35
+\@float@everytoks=\toks38
 \@floatcapt=\box64
 )
-\@float@every@algorithm=\toks36
-\c@algorithm=\count306
+\@float@every@algorithm=\toks39
+\c@algorithm=\count309
 )
 (F:\MiKTeX\tex/latex/algorithmicx\algorithmicx.sty
 Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
 
 Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
-\c@ALG@line=\count307
-\c@ALG@rem=\count308
-\c@ALG@nested=\count309
+\c@ALG@line=\count310
+\c@ALG@rem=\count311
+\c@ALG@nested=\count312
 \ALG@tlm=\skip66
 \ALG@thistlm=\skip67
-\c@ALG@Lnr=\count310
-\c@ALG@blocknr=\count311
-\c@ALG@storecount=\count312
-\c@ALG@tmpcounter=\count313
+\c@ALG@Lnr=\count313
+\c@ALG@blocknr=\count314
+\c@ALG@storecount=\count315
+\c@ALG@tmpcounter=\count316
 \ALG@tmplength=\skip68
 ) (F:\MiKTeX\tex/latex/algorithmicx\algpseudocode.sty
 Package: algpseudocode 
 
 Document Style - pseudocode environments for use with the `algorithmicx' style
 )
-\c@thm=\count314
-\c@defn=\count315
+\c@thm=\count317
+\c@defn=\count318
  (F:\MiKTeX\tex/latex/latex-tools\dcolumn.sty
 Package: dcolumn 2014/10/28 v1.06 decimal alignment package (DPC)
 )
@@ -868,12 +991,12 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \cmidrulesep=\dimen189
 \cmidrulekern=\dimen190
 \defaultaddspace=\dimen191
-\@cmidla=\count316
-\@cmidlb=\count317
+\@cmidla=\count319
+\@cmidlb=\count320
 \@aboverulesep=\dimen192
 \@belowrulesep=\dimen193
-\@thisruleclass=\count318
-\@lastruleclass=\count319
+\@thisruleclass=\count321
+\@lastruleclass=\count322
 \@thisrulewidth=\dimen194
 )
 (F:\MiKTeX\tex/latex/subfig\subfig.sty
@@ -891,30 +1014,35 @@ Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
 \caption@hangindent=\dimen257
 Package caption Info: Standard document class detected.
 )
-\c@caption@flags=\count320
-\c@continuedfloat=\count321
+\c@caption@flags=\count323
+\c@continuedfloat=\count324
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 )
-\c@KVtest=\count322
+\c@KVtest=\count325
 \sf@farskip=\skip69
 \sf@captopadj=\dimen258
 \sf@capskip=\skip70
 \sf@nearskip=\skip71
-\c@subfigure=\count323
-\c@subfigure@save=\count324
-\c@lofdepth=\count325
-\c@subtable=\count326
-\c@subtable@save=\count327
-\c@lotdepth=\count328
+\c@subfigure=\count326
+\c@subfigure@save=\count327
+\c@lofdepth=\count328
+\c@subtable=\count329
+\c@subtable@save=\count330
+\c@lotdepth=\count331
 \sf@top=\skip72
 \sf@bottom=\skip73
 ) (nelson_thesis_draft.aux
 (Appendix/Appendix.aux))
 \openout1 = `nelson_thesis_draft.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 109.
+LaTeX Font Info:    Checking defaults for OML/npxmi/m/it on input line 109.
+LaTeX Font Info:    Trying to load font information for OML+npxmi on input line
+ 109.
+ (F:\MiKTeX\tex/latex/newpx\omlnpxmi.fd
+File: omlnpxmi.fd 2013/03/21 Fontinst v1.933 font definitions for OML/npxmi.
+)
 LaTeX Font Info:    ... okay on input line 109.
 LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 109.
 LaTeX Font Info:    ... okay on input line 109.
@@ -926,7 +1054,28 @@ LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 109.
 LaTeX Font Info:    ... okay on input line 109.
 LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 109.
 LaTeX Font Info:    ... okay on input line 109.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 109.
+LaTeX Font Info:    Checking defaults for U/npxexa/m/n on input line 109.
+LaTeX Font Info:    Trying to load font information for U+npxexa on input line 
+109.
+
+(F:\MiKTeX\tex/latex/newpx\unpxexa.fd
+File: unpxexa.fd 2013/03/24 Fontinst v1.933 font definitions for U/npxexa.
+)
+LaTeX Font Info:    ... okay on input line 109.
+LaTeX Font Info:    Checking defaults for LMS/npxsy/m/n on input line 109.
+LaTeX Font Info:    Trying to load font information for LMS+npxsy on input line
+ 109.
+ (F:\MiKTeX\tex/latex/newpx\lmsnpxsy.fd
+File: lmsnpxsy.fd 2016/07/04 Fontinst v1.933 font definitions for LMS/npxsy.
+)
+LaTeX Font Info:    ... okay on input line 109.
+LaTeX Font Info:    Checking defaults for LMX/npxexx/m/n on input line 109.
+LaTeX Font Info:    Trying to load font information for LMX+npxexx on input lin
+e 109.
+
+(F:\MiKTeX\tex/latex/newpx\lmxnpxexx.fd
+File: lmxnpxexx.fd 2016/07/04 Fontinst v1.933 font definitions for LMX/npxexx.
+)
 LaTeX Font Info:    ... okay on input line 109.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 109.
 LaTeX Font Info:    ... okay on input line 109.
@@ -970,22 +1119,22 @@ LaTeX Font Info:    ... okay on input line 109.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\c@lstlisting=\count329
-\c@mv@tabular=\count330
-\c@mv@boldtabular=\count331
+\c@lstlisting=\count332
+\c@mv@tabular=\count333
+\c@mv@boldtabular=\count334
 (F:\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count332
+\scratchcounter=\count335
 \scratchdimen=\dimen259
 \scratchbox=\box65
-\nofMPsegments=\count333
-\nofMParguments=\count334
-\everyMPshowfont=\toks37
-\MPscratchCnt=\count335
+\nofMPsegments=\count336
+\nofMParguments=\count337
+\everyMPshowfont=\toks40
+\MPscratchCnt=\count338
 \MPscratchDim=\dimen260
-\MPnumerator=\count336
-\makeMPintoPDFobject=\count337
-\everyMPtoPDFconversion=\toks38
+\MPnumerator=\count339
+\makeMPintoPDFobject=\count340
+\everyMPtoPDFconversion=\toks41
 ) (F:\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -1011,7 +1160,7 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 (F:\MiKTeX\tex/generic/gettitlestring\gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count338
+\c@section@level=\count341
 )
 LaTeX Info: Redefining \ref on input line 109.
 LaTeX Info: Redefining \pageref on input line 109.
@@ -1024,55 +1173,73 @@ LaTeX Info: Redefining \nameref on input line 109.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
-(Font)              scaled to size 8.0pt on input line 109.
-LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
-(Font)              scaled to size 6.0pt on input line 109.
-LaTeX Font Info:    Trying to load font information for U+zeur on input line 10
-9.
+LaTeX Font Info:    Trying to load font information for OT1+zpltlf on input lin
+e 109.
 
-(F:\MiKTeX\tex/latex/eulervm\uzeur.fd
-File: uzeur.fd 2005/01/11 v4.0 (WaS)
+(F:\MiKTeX\tex/latex/newpx\ot1zpltlf.fd
+File: ot1zpltlf.fd 2021/05/25 v1.0 font definition file for OT1/zpl/tlf
 )
-LaTeX Font Info:    Trying to load font information for U+zeus on input line 10
-9.
- (F:\MiKTeX\tex/latex/eulervm\uzeus.fd
-File: uzeus.fd 2005/01/11 v4.0 (WaS)
+LaTeX Font Info:    Font shape `OT1/zpltlf/m/n' will be
+(Font)              scaled to size 12.0pt on input line 109.
+LaTeX Font Info:    Font shape `OT1/zpltlf/m/n' will be
+(Font)              scaled to size 8.8pt on input line 109.
+LaTeX Font Info:    Font shape `OT1/zpltlf/m/n' will be
+(Font)              scaled to size 6.6pt on input line 109.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 109
+.
+ (F:\MiKTeX\tex/latex/amsfonts\umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+zeuex on input line 1
-09.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 109
+.
+(F:\MiKTeX\tex/latex/amsfonts\umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Trying to load font information for U+npxmia on input line 
+109.
+ (F:\MiKTeX\tex/latex/newpx\unpxmia.fd
+File: unpxmia.fd 2013/03/24 Fontinst v1.933 font definitions for U/npxmia.
+)
+LaTeX Font Info:    Trying to load font information for U+npxsym on input line 
+109.
 
-(F:\MiKTeX\tex/latex/eulervm\uzeuex.fd
-File: uzeuex.fd 2005/01/11 v4.0 (WaS)
+(F:\MiKTeX\tex/latex/newpx\unpxsym.fd
+File: unpxsym.fd 2015/03/21 Fontinst v1.933 font definitions for U/npxsym.
+)
+LaTeX Font Info:    Trying to load font information for U+npxsyc on input line 
+109.
+ (F:\MiKTeX\tex/latex/newpx\unpxsyc.fd
+File: unpxsyc.fd 2013/03/24 Fontinst v1.933 font definitions for U/npxsyc.
 )
 LaTeX Font Info:    Trying to load font information for U+esint on input line 1
 09.
- (F:\MiKTeX\tex/latex/esint\uesint.fd
+
+(F:\MiKTeX\tex/latex/esint\uesint.fd
 File: uesint.fd 
 )
 LaTeX Font Info:    Trying to load font information for T1+qhv on input line 10
 9.
-
-(F:\MiKTeX\tex/latex/tex-gyre\t1qhv.fd
+ (F:\MiKTeX\tex/latex/tex-gyre\t1qhv.fd
 File: t1qhv.fd 2009/09/25 v1.2 font definition file for T1/qhv
 )
 LaTeX Font Info:    Font shape `T1/qhv/m/n' will be
 (Font)              scaled to size 11.28003pt on input line 109.
 LaTeX Font Info:    Font shape `T1/qhv/m/n' will be
-(Font)              scaled to size 7.52002pt on input line 109.
+(Font)              scaled to size 8.27202pt on input line 109.
 LaTeX Font Info:    Font shape `T1/qhv/m/n' will be
-(Font)              scaled to size 5.64001pt on input line 109.
+(Font)              scaled to size 6.20401pt on input line 109.
 LaTeX Font Info:    Trying to load font information for T1+npxtt on input line 
 109.
- (F:\MiKTeX\tex/latex/newpx\t1npxtt.fd
+
+(F:\MiKTeX\tex/latex/newpx\t1npxtt.fd
 File: t1npxtt.fd 2000/12/14 v1.0
 )
 LaTeX Font Info:    Font shape `T1/npxtt/m/n' will be
 (Font)              scaled to size 12.0pt on input line 109.
 LaTeX Font Info:    Font shape `T1/npxtt/m/n' will be
-(Font)              scaled to size 8.0pt on input line 109.
+(Font)              scaled to size 8.8pt on input line 109.
 LaTeX Font Info:    Font shape `T1/npxtt/m/n' will be
-(Font)              scaled to size 6.0pt on input line 109.
+(Font)              scaled to size 6.6pt on input line 109.
 LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
 (Font)              scaled to size 17.28pt on input line 113.
 LaTeX Font Info:    Font shape `T1/zpltlf/b/n' will be
@@ -1081,13 +1248,12 @@ LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
 (Font)              scaled to size 10.95pt on input line 113.
 LaTeX Font Info:    Trying to load font information for TS1+zpltlf on input lin
 e 113.
-
-(F:\MiKTeX\tex/latex/newpx\ts1zpltlf.fd
+ (F:\MiKTeX\tex/latex/newpx\ts1zpltlf.fd
 File: ts1zpltlf.fd 2015/01/18 v1.0 fd file for TS1/zpltlf
 )
 LaTeX Font Info:    Font shape `TS1/zpltlf/m/n' will be
 (Font)              scaled to size 10.95pt on input line 113.
- [1
+[1
 
 
 
@@ -1135,7 +1301,7 @@ LaTeX Font Info:    Font shape `T1/zpltlf/b/n' will be
  [2
 
 ]
-<Chapter_I_Background/Images/Heatmap_Example.png, id=148, 433.62pt x 433.62pt>
+<Chapter_I_Background/Images/Heatmap_Example.png, id=147, 433.62pt x 433.62pt>
 File: Chapter_I_Background/Images/Heatmap_Example.png Graphic file (type png)
 <use Chapter_I_Background/Images/Heatmap_Example.png>
 Package pdftex.def Info: Chapter_I_Background/Images/Heatmap_Example.png  used 
@@ -1143,11 +1309,17 @@ on input line 17.
 (pdftex.def)             Requested size: 375.80544pt x 375.8238pt.
 LaTeX Font Info:    Font shape `T1/zpltlf/m/it' will be
 (Font)              scaled to size 12.0pt on input line 28.
-LaTeX Font Info:    Font shape `T1/zpltlf/b/n' will be
-(Font)              scaled to size 8.0pt on input line 31.
-LaTeX Font Info:    Font shape `T1/zpltlf/b/n' will be
-(Font)              scaled to size 6.0pt on input line 31.
+LaTeX Font Info:    Font shape `OT1/zpltlf/b/n' will be
+(Font)              scaled to size 12.0pt on input line 31.
+LaTeX Font Info:    Font shape `OT1/zpltlf/b/n' will be
+(Font)              scaled to size 8.8pt on input line 31.
+LaTeX Font Info:    Font shape `OT1/zpltlf/b/n' will be
+(Font)              scaled to size 6.6pt on input line 31.
  [3] [4 <./Chapter_I_Background/Images/Heatmap_Example.png>]
+LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
+(Font)              scaled to size 8.8pt on input line 42.
+LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
+(Font)              scaled to size 6.6pt on input line 42.
 LaTeX Font Info:    Font shape `TS1/zpltlf/m/n' will be
 (Font)              scaled to size 12.0pt on input line 46.
 )
@@ -1155,7 +1327,7 @@ LaTeX Font Info:    Font shape `TS1/zpltlf/m/n' will be
 LaTeX Font Info:    Font shape `T1/zpltlf/b/it' will be
 (Font)              scaled to size 12.0pt on input line 16.
  [6] [7]
-<Chapter_I_Background/Images/Non-Convex-Example.png, id=200, 602.25pt x 401.5pt
+<Chapter_I_Background/Images/Non-Convex-Example.png, id=196, 602.25pt x 401.5pt
 >
 File: Chapter_I_Background/Images/Non-Convex-Example.png Graphic file (type png
 )
@@ -1168,7 +1340,7 @@ ed on input line 72.
 mages/Non-Convex-Example.png>]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
 put line 20.
-<Chapter_I_Background/Images/backtracking_line_search_diagram.png, id=218, 1042
+<Chapter_I_Background/Images/backtracking_line_search_diagram.png, id=212, 1042
 .64531pt x 709.90219pt>
 File: Chapter_I_Background/Images/backtracking_line_search_diagram.png Graphic 
 file (type png)
@@ -1194,7 +1366,10 @@ LaTeX Font Info:    Trying to load font information for TS1+pcr on input line 1
 1.
 (F:\MiKTeX\tex/latex/psnfss\ts1pcr.fd
 File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
-) [18
+)
+LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
+(Font)              scaled to size 8.0pt on input line 29.
+ [18
 
 
 ]) [19] (nelson_thesis_draft.aux
@@ -1203,35 +1378,28 @@ Package rerunfilecheck Info: File `nelson_thesis_draft.out' has not changed.
 (rerunfilecheck)             Checksum: AA88015839C6FFF992374CADEE011D3D;3043.
  ) 
 Here is how much of TeX's memory you used:
- 23401 strings out of 479163
- 380173 string characters out of 2870588
- 949643 words of memory out of 3000000
- 40505 multiletter control sequences out of 15000+600000
- 465484 words of font info for 98 fonts, out of 8000000 for 9000
+ 25066 strings out of 479163
+ 397145 string characters out of 2870588
+ 952947 words of memory out of 3000000
+ 42135 multiletter control sequences out of 15000+600000
+ 480169 words of font info for 118 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  85i,8n,133p,1056b,4111s stack positions out of 5000i,500n,10000p,200000b,80000s
 {F:/MiKTeX/fonts/enc/dvips/base/8r.enc}{F:/MiKTeX/fonts/enc/dvips/newtx/ntx-e
 c-tlf.enc} <C:\Users\Mikal\AppData\Local\MiKTeX\fonts/pk/ljfour/public/esint/dp
-i720\esint10.pk>{F:/MiKTeX/fonts/enc/dvips/tex-gyre/q-ts1.enc}<F:/MiKTeX/fonts/
-type1/public/amsfonts/cm/cmex10.pfb><F:/MiKTeX/fonts/type1/public/amsfonts/cm/c
-mmi10.pfb><F:/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><F:/MiKTeX/fonts/
-type1/public/amsfonts/cm/cmsy10.pfb><F:/MiKTeX/fonts/type1/public/amsfonts/cm/c
-msy7.pfb><F:/MiKTeX/fonts/type1/public/amsfonts/euler/euex10.pfb><F:/MiKTeX/fon
-ts/type1/public/amsfonts/euler/eufm10.pfb><F:/MiKTeX/fonts/type1/public/amsfont
-s/euler/eufm7.pfb><F:/MiKTeX/fonts/type1/public/amsfonts/euler/eurm10.pfb><F:/M
-iKTeX/fonts/type1/public/amsfonts/euler/eurm7.pfb><F:/MiKTeX/fonts/type1/public
-/amsfonts/euler/eusm10.pfb><F:/MiKTeX/fonts/type1/public/amsfonts/euler/eusm7.p
-fb><F:/MiKTeX/fonts/type1/public/amsfonts/latxfont/lcircle1.pfb><F:/MiKTeX/font
-s/type1/public/amsfonts/symbols/msam10.pfb><F:/MiKTeX/fonts/type1/public/amsfon
-ts/symbols/msam7.pfb><F:/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-<F:/MiKTeX/fonts/type1/public/tex-gyre/qplr.pfb><F:/MiKTeX/fonts/type1/urw/cour
-ier/ucrb8a.pfb><F:/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><F:/MiKTeX/fonts/t
-ype1/public/newpx/zplb.pfb><F:/MiKTeX/fonts/type1/public/newpx/zplbi.pfb><F:/Mi
-KTeX/fonts/type1/public/newpx/zplr.pfb><F:/MiKTeX/fonts/type1/public/newpx/zplr
-i.pfb>
-Output written on nelson_thesis_draft.pdf (26 pages, 455521 bytes).
+i720\esint10.pk>{F:/MiKTeX/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}{F:/MiKTeX/fon
+ts/enc/dvips/tex-gyre/q-ts1.enc}<F:/MiKTeX/fonts/type1/public/newpx/NewPXMI.pfb
+><F:/MiKTeX/fonts/type1/public/newpx/NewPXMI_gnu.pfb><F:/MiKTeX/fonts/type1/pub
+lic/amsfonts/latxfont/lcircle1.pfb><F:/MiKTeX/fonts/type1/public/newpx/pxmiaX.p
+fb><F:/MiKTeX/fonts/type1/public/newpx/pxsys.pfb><F:/MiKTeX/fonts/type1/public/
+tex-gyre/qplr.pfb><F:/MiKTeX/fonts/type1/public/newtx/txexs.pfb><F:/MiKTeX/font
+s/type1/public/txfonts/txsyb.pfb><F:/MiKTeX/fonts/type1/urw/courier/ucrb8a.pfb>
+<F:/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><F:/MiKTeX/fonts/type1/public/new
+px/zplb.pfb><F:/MiKTeX/fonts/type1/public/newpx/zplbi.pfb><F:/MiKTeX/fonts/type
+1/public/newpx/zplr.pfb><F:/MiKTeX/fonts/type1/public/newpx/zplri.pfb>
+Output written on nelson_thesis_draft.pdf (26 pages, 400409 bytes).
 PDF statistics:
- 441 PDF objects out of 1000 (max. 8388607)
+ 410 PDF objects out of 1000 (max. 8388607)
  116 named destinations out of 1000 (max. 500000)
  168 words of extra memory for PDF output out of 10000 (max. 10000000)
 

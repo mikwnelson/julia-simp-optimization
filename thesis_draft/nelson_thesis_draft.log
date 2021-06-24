@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.25)  23 JUN 2021 19:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.25)  23 JUN 2021 19:52
 entering extended mode
 **./nelson_thesis_draft.tex
 (nelson_thesis_draft.tex
@@ -1315,12 +1315,6 @@ LaTeX Font Info:    Font shape `T1/zpltlf/b/n' will be
 
 [7
 
-] (nelson_thesis_draft.lot)
-\tf@lot=\write6
-\openout6 = `nelson_thesis_draft.lot'.
-
- [8
-
 ] [1
 
 
@@ -1334,7 +1328,7 @@ LaTeX Font Info:    Font shape `T1/zpltlf/b/n' will be
  [2
 
 ]
-<Chapter_I_Background/Images/Heatmap_Example.png, id=166, 433.62pt x 433.62pt>
+<Chapter_I_Background/Images/Heatmap_Example.png, id=161, 433.62pt x 433.62pt>
 File: Chapter_I_Background/Images/Heatmap_Example.png Graphic file (type png)
 <use Chapter_I_Background/Images/Heatmap_Example.png>
 Package pdftex.def Info: Chapter_I_Background/Images/Heatmap_Example.png  used 
@@ -1360,7 +1354,7 @@ LaTeX Font Info:    Font shape `TS1/zpltlf/m/n' will be
 LaTeX Font Info:    Font shape `T1/zpltlf/b/it' will be
 (Font)              scaled to size 12.0pt on input line 16.
  [6] [7]
-<Chapter_I_Background/Images/Non-Convex-Example.png, id=215, 602.25pt x 401.5pt
+<Chapter_I_Background/Images/Non-Convex-Example.png, id=210, 602.25pt x 401.5pt
 >
 File: Chapter_I_Background/Images/Non-Convex-Example.png Graphic file (type png
 )
@@ -1373,7 +1367,7 @@ ed on input line 72.
 mages/Non-Convex-Example.png>]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
 put line 20.
-<Chapter_I_Background/Images/backtracking_line_search_diagram.png, id=231, 1042
+<Chapter_I_Background/Images/backtracking_line_search_diagram.png, id=226, 1042
 .64531pt x 709.90219pt>
 File: Chapter_I_Background/Images/backtracking_line_search_diagram.png Graphic 
 file (type png)
@@ -1412,13 +1406,13 @@ LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
 
 ]) [26] (nelson_thesis_draft.aux (Appendix/Appendix.aux))
 Package rerunfilecheck Info: File `nelson_thesis_draft.out' has not changed.
-(rerunfilecheck)             Checksum: D8B541554C20CB70B55F10801E4E575C;3612.
+(rerunfilecheck)             Checksum: 9D6FA1378433879422F41497AB5F22CE;3612.
  ) 
 Here is how much of TeX's memory you used:
- 25100 strings out of 479163
- 408107 string characters out of 2853998
+ 25092 strings out of 479163
+ 407904 string characters out of 2853998
  952947 words of memory out of 3000000
- 42143 multiletter control sequences out of 15000+600000
+ 42140 multiletter control sequences out of 15000+600000
  480169 words of font info for 118 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  85i,11n,133p,1056b,4111s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1442,9 +1436,9 @@ ppData/Local/Programs/MiKTeX/fonts/type1/public/newpx/zplb.pfb><C:/Users/mikwn/
 AppData/Local/Programs/MiKTeX/fonts/type1/public/newpx/zplbi.pfb><C:/Users/mikw
 n/AppData/Local/Programs/MiKTeX/fonts/type1/public/newpx/zplr.pfb><C:/Users/mik
 wn/AppData/Local/Programs/MiKTeX/fonts/type1/public/newpx/zplri.pfb>
-Output written on nelson_thesis_draft.pdf (34 pages, 434565 bytes).
+Output written on nelson_thesis_draft.pdf (33 pages, 433918 bytes).
 PDF statistics:
- 480 PDF objects out of 1000 (max. 8388607)
- 142 named destinations out of 1000 (max. 500000)
+ 475 PDF objects out of 1000 (max. 8388607)
+ 140 named destinations out of 1000 (max. 500000)
  192 words of extra memory for PDF output out of 10000 (max. 10000000)
 

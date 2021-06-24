@@ -1,1 +1,65 @@
 \section{Solid Isotropic Material with Penalization (SIMP)}
+
+\subsection*{Volume-to-Point (VP) Heat Conduction Problem}
+
+Consider a finite-size volume in which heat is being generated at \textit{every} point, and which is cooled through a small patch (the heat sink) located on its boundary. Suppose that we have a finite amount of high-conductivity ($k_p$) material available. Our goal is to determine the optimal distribution of the $k_p$ material through the given volume such that \textit{the highest temperature is minimized}.
+
+{\color{tiananmen}\textbf{Solid Isotropic Material with Penalization (SIMP)}} is a method based on topology optimization that can be used to solve the VP Heat Conduction Problem. SIMP is what is called a {\color{baystate}soft kill method}, meaning that in each step of the method we increase or decrease high-conductivity material by a small quantity. This allows us to apply methods designed for continuous optimization problems to this discrete problem.
+
+\subsection{SIMP Method Description}
+
+\subsubsection*{Assumptions}
+In order to develop the method, we need to make a couple of assumptions.
+
+First of all, the energy differential equation driving the heat-flux inside the finite-volume requires:
+\begin{enumerate}
+	\item All calculations are run under {\color{baystate}steady-state conditions}. That is, all heat produced in the volume is evacuated through the heat sink.
+	\item The heat generating materials ($k_0$) and high-conductivity materials ($k_p$) are treated as {\color{baystate}homogeneous} and {\color{baystate}isotropic} on their respective conductivities.
+\end{enumerate}
+
+Throughout the article \cite[]{Marck2012}, the authors also set the following conditions:
+\begin{itemize}
+	\item Thermal conductivities are constant:
+	$$k_0=1 \si[per-mode=fraction]{\watt\per\square\meter\per\kelvin}\qquad\text{and}\qquad k_p=100 \si[per-mode=fraction]{\watt\per\square\meter\per\kelvin}$$
+	\item All structures have a square aspect ratio with $L=H=0.1\si{\meter}$
+	\item The heat-sink is located on the middle of the west side of the structure
+	\item The heat-sink has Dirichlet boundary conditions: $T_S=0\si{\celsius}$
+	\item All other boundaries are adiabatic: $\nabla T=0$
+\end{itemize}
+
+\subsubsection*{Notation}
+
+We have the following sets to describe the VP-problem:
+\begin{itemize}
+	\item $\vec{x}\in\Omega$ = two-dimensional spatial field\\\\
+	We set $\Omega = \Omega_0\cup\Omega_p$ where
+	\begin{itemize}
+		\item $\Omega_0$ = portion of $\Omega$ that has conductivity $k_0$. This is the heat generating portion of the space where we have not placed any high-conductivity material.
+		\item $\Omega_p$ = portion of $\Omega$ with conductivity $k_p$. This is the portion of the space with the high-conductivity material applied.
+	\end{itemize}
+	\item $\vec{k}\in\mathbb{K}$ = distribution of high-conductivity material
+	\item $T\in\overline{\mathbb{T}}$ = temperature field that satisfies the energy equation {\color{baystate}$\nabla\cdot\left(\vec{k}\nabla T_{\vec{k}}\right)+q=0$} where $q$ is the local heat-generating rate.
+\end{itemize}
+
+\subsection{The Optimization Problem}
+
+Using the above established notation, we develop the following optimization problem:
+
+{\color{baystate}
+	\begin{equation}
+		\begin{tabular}{lll}
+			\text{minimize }   & $f(T)$ & \text{for } $T\in\mathbb{T},\vec{k}$      \\
+			\text{subject to } & $\nabla\cdot\left(\vec{k}\nabla T_{\vec{k}}\right)+q=0$ & \\
+			& $\vec{x}\in\Omega,\quad\vec{k}\in\mathbb{K}_{\text{ad}}$&      
+		\end{tabular}\label{SIMP-Optimization-Problem}
+	\end{equation}
+}
+
+\subsubsection*{Penalization Process}
+The problem of whether to place high conductivity material in a particular location or not is discrete in nature. This is unfortunate as continuous optimization problems are generally easier to solve. In particular, we cannot apply some of the optimization methods described earlier, such as gradient descent, to a discrete optimization problem as they require the optimization variables to be continuous.
+
+The SIMP method has a clever way of getting around this particular issue of discrete variables: create a continuous function that allows for a ``mix'' of the two conductive materials. This function turns our discrete variables into a continuous one, allowing us to apply the nice methods used in continuous optimization problems. However, in reality, we cannot actually mix the two conductive materials and therefore need a solution that produces a 1---0 structure. That is, our final result needs to either have conductivity $k_0$ or $k_p$ at each point, not some fraction of each. Therefore, in each iteration of the SIMP process, we \textit{penalize} the mixing of the material. Keeping this in mind we introduce a design parameter $\eta\in\left[0,1\right]$ that controls the amount of mixing of the two materials:
+\begin{equation}
+	k\left(\eta\right)=k_0+\left(k_p-k_0\right)\eta^p\qquad\text{with}\qquad 0\leq\eta\leq 1\qquad\text{and}\qquad p\geq1.\label{penalizationeqn}
+\end{equation}
+Notice that when $\eta=0$, $k\left(0\right)=k_0$ and when $\eta=1$, $k\left(1\right)=k_p$. The value $p$ in \eqref{penalizationeqn} is the \textit{penalization parameter}. $p$ aids in the convergence process; without $p$ the SIMP method converges to a structure that is not 1---0: a composite structure where finite-volumes are made up of different proportions of $k_0$ and $k_p$ materials.

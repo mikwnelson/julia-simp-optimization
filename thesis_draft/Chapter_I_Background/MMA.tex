@@ -1,1 +1,121 @@
 \section{The Method of Moving Asymptotes (MMA)}
+
+The Method of Moving Asymptotes (MMA) is a method of non-linear programming, originally developed for structural optimization. The method uses an iterative process which creates a convex subproblem that is solved in each iteration. Each of these subproblems is an approximation of the original problem with parameters that change the curvature of the approximation. These parameters act as asymptotes for the subproblem and moving the asymptotes between iterations stablizes the convergence of the entire process.
+
+\subsection{General Method Description}
+Consider an optimization problem of the following general form
+
+{\color{baystate}
+	\begin{equation}
+		\begin{tabular}{llll}
+			$P$: & minimize & $f_0(\vec{x})$ & $\left(\vec{x}\in\mathbb{R}^n\right)$ \\
+			& subject to & $f_i(\vec{x})\leq\hat{f}_i$, & for $i=1,\ldots,m$ \\
+			&  & $\underline{x}_j\leq x_j\leq \overline{x}_j$, & for $j=1,\ldots,n$
+		\end{tabular}
+	\end{equation}
+}
+where
+\begin{itemize}
+	\item $\vec{x}=\left(x_1,\ldots,x_n\right)^T$ is the vector of {\color{tiananmen}design variables}
+	\item $f_0(\vec{x})$ is the {\color{tiananmen}objective function} (typically structural weight)
+	\item $f_i(\vec{x})\leq\hat{f}_i$ are {\color{tiananmen}behavior constraints} (typically limitations on stresses and displacements)
+	\item $\underline{x}_j$ and $\overline{x}_j$ are given {\color{tiananmen}lower and upper bounds} (``technological constraints'') {\color{tiananmen}on the design variables}
+\end{itemize}
+
+The general approach for solving such optimization problems is to split it up and solve a sequence of subproblems using the following iteration:
+{\color{baystate}
+	\begin{description}
+		\item[\textbf{\underline{Step 0}:}] Choose a starting point $\vec{x}^{(0)}$, and let the iteration index $k=0$.
+		\item[\textbf{\underline{Step 1}:}] Given an iteration point $\vec{x}^{(k)}$, calculate $f_i(\vec{x}^{(k)})$ and the gradients $\nabla f_i(\vec{x}^{(k)})$ for $i=0,1,\ldots,m$.
+		\item[\textbf{\underline{Step 2}:}] Generate a subproblem $P^{(k)}$ by replacing, in $(6)$, the (usually implicit) functions $f_i$ by approximating explicit functions $f_i^{(k)}$, based on calculations from Step 1.
+		\item[\textbf{\underline{Step 3}:}] Solve $P^{(k)}$ and let the optimal solution of this subproblem be the next iteration point $\vec{x}^{(k+1)}$. Let $k=k+1$ and go to Step 1.
+	\end{description}
+}
+
+In MMA, each $f_i^{(k)}$ is obtained by a linearization of $f_i$ in variables of the type $$\frac{1}{x_j-L_j}\quad\text{or}\quad\frac{1}{U_j-x_j}$$ dependent on the signs of the derivatives of $f_i$ at $\vec{x}^{(k)}$. The values of $L_j$ and $U_j$ are normally changed between iterations and are referred to as {\color{tiananmen}moving asymptotes}.
+
+\subsubsection*{Defining The Functions $f_i^{(k)}$}
+
+Given the iteration point $\vec{x}^{(k)}$ at an iteration $k$, values of the parameters $L_j^{(k)}$ and $U_j^{(k)}$ are chosen, for $j=1,\ldots,n$, such that $L_j^{(k)}<x_j^{(k)}<U_j^{(k)}$.
+
+{\color{baystate}
+	For each $i=0,1,\ldots,m$, $f_i^{(k)}$ is defined by $$f_i^{(k)}(\vec{x})=r_i^{(k)}+\sum\limits_{j=1}^{n}\left(\frac{p_{ij}^{(k)}}{U_j^{(k)}-x_j}+\frac{q_{ij}^{(k)}}{x_j-L_j^{(k)}}\right)$$
+	where
+	$$p_{ij}^{(k)}=\begin{cases}
+		\left(U_j^{(k)}-x_j^{(k)}\right)^2, & \text{if }\frac{\partial f_i}{\partial x_j}>0\\
+		0, & \text{if }\frac{\partial f_i}{\partial x_j}\leq 0
+	\end{cases}$$
+	
+	$$q_{ij}^{(k)}=\begin{cases}
+		0, & \text{if }\frac{\partial f_i}{x_j}\geq 0\\
+		-\left(x_j^{(k)}-L_j^{(k)}\right)^2\frac{\partial f_i}{\partial x_j}, & \text{if }\frac{\partial f_i}{\partial x_j}<0
+	\end{cases}$$
+	
+	$$r_i^{(k)}=f_i(\vec{x}^{(k)})-\sum\limits_{j=1}^{n}\left(\frac{p_{ij}^{(k)}}{U_j^{(k)}-x_j^{(k)}}+\frac{q_{ij}^{(k)}}{x_j^{(k)}-L_j^{(k)}}\right)$$
+	
+	and where all $\frac{\partial f_i}{\partial x_j}$ are evaluated at $\vec{x}=\vec{x}^{(k)}$.
+}
+
+Notice that $f_i^{(k)}$ is a first-order approximation of $f_i$ at $\vec{x}^{(k)}$. Additionally, by construction, $f_i^{(k)}$ is a {\color{tiananmen}convex function}.
+
+Looking at the second derivatives, the closer $L_j^{(k)}$ and $U_j^{(k)}$ are chosen to $x_j^{(k)}$, the larger the second derivatives become and hence the more curvature is given to the approximating function $f_i^{(k)}$. This means that the closer $L_j^{(k)}$ and $U_j^{(k)}$ are chosen to $x_j^{(k)}$, the more conservative becomes the approximation of the original problem. If $L^{(k)}$ and $U^{(k)}$ are chosen `far away' from $\vec{x}^{(k)}$, then the approximation $f_i^{(k)}$ becomes close to linear.
+
+We always choose the values of $L_j^{(k)}$ and $U_j^{(k)}$ to be finite. As a result each $f_i^{(k)}$ becomes strictly convex except when $\frac{\partial f_i}{\partial x_j}=0$ at $\vec{x}=x^{(k)}$.
+
+Now, with the approximating functions $f_i^{(k)}$ as defined earlier, we have the following subproblem $P^{(k)}$:
+
+{\color{baystate}
+	\begin{equation}
+		\begin{tabular}{llll}
+			$P^{(k)}$: & minimize & $\sum\limits_{j=1}^{n}\left(\frac{p_{oj}^{(k)}}{U_j^{(k)}-x_j}+\frac{q_{oj}^{(k)}}{x_j-L_j^{(k)}}\right)+r_o^{(k)}$ &  \\
+			& subject to & $\sum\limits_{j=1}^{n}\left(\frac{p_{ij}^{(k)}}{U_j^{(k)}-x_j}+\frac{q_{ij}^{(k)}}{x_j-L_j^{(k)}}\right)+r_i^{(k)}\leq\hat{f}_i$, & for $i=1,\ldots,m$ \\
+			& and & $\max\lbrace\underline{x}_j,\alpha_j^{(k)}\rbrace\leq x_j\leq \min\lbrace \overline{x}_j,\beta_j^{(k)}\rbrace$, & for $j=1,\ldots,n$
+		\end{tabular}
+	\end{equation}
+}
+
+(The parameters $\alpha_j^{(k)}$ and $\beta_j^{(k)}$ are called ``{\color{tiananmen}move limits}'' and are not that important.)
+
+$\alpha_j^{(k)}$ and $\beta_j^{(k)}$ should at least be chosen such that $L_j^{(k)}<\alpha_j^{(k)}<x_j^{(k)}<\beta_j^{(k)}<U_j^{(k)}$.
+
+\subsubsection*{General Rule for how to choose $L_j^{(k)}$ and $U_j^{(k)}$:}
+\begin{itemize}
+	\item[(a)] If the process tends to oscillate, then it needs to be stabilized and this can be accomplished by moving the asymptotes closer to the current iteration point.
+	\item[(b)] If, instead, the process is monotone and slow, it needs to be ``relaxed''. This can be accomplished by moving the asymptotes away from the current iteration point.
+\end{itemize}
+
+\subsubsection*{The Dual Problem}
+
+$P^{(k)}$ is a convex, separable problem, so we can create a dual problem using a Lagrangian function. The Lagrangian function corresponding to $P^{(k)}$ is given by 
+{\color{baystate}
+	$$\ell(x,y)=f_0^{(k)}(\vec{x})+\sum\limits_{i=1}^{m}y_if_i^{(k)}(\vec{x})$$
+}
+
+Letting $\vec{y}$ be the vector of {\color{tiananmen}Lagrange multipliers} or ``dual variables'' and doing some derivations, we get the {\color{tiananmen}dual objective function} $W$ defined (for $\vec{y}\geq 0$), as below:
+{\color{baystate}
+	\begin{align*}
+		W(\vec{y})&=\min\limits_x\lbrace\ell(\vec{x},\vec{y}); \alpha_j\leq x_j\leq \beta_j\text{ for all }j\rbrace\\
+		&=r_0-\vec{y}^T\vec{b}+\sum\limits_{j=1}^{n}W_j(\vec{y})
+	\end{align*}
+	where $W_j(\vec{y})=\min\limits_{x_j}\lbrace l_j(x_j,\vec{y}); \alpha_j\leq x_j\leq \beta_j\rbrace$
+}
+
+This formulation is beneficial since it ``eliminates'' $\vec{x}$.
+
+The dual problem corresponding to $P^{(k)}$ is given as follows:
+
+{\color{baystate}
+	\begin{equation}
+		\begin{tabular}{lll}
+			$D$: & maximize & $W(\vec{y})$\\
+			& subject to & $\vec{y}\geq 0$
+		\end{tabular}
+	\end{equation}
+}
+
+$D$ is a ``nice'' problem which may be solved by an arbitrary gradient method.
+
+Once the dual problem has been solved the optimal solution of the primal subproblem $P^{(k)}$ is directly obtained by just pluggin in the optimal dual solution $\vec{y}$ in to the following expression:
+{\color{baystate}
+	$$x_j(\vec{y})=\frac{\left(p_{0j}+\vec{y}^T\vec{p}_j\right)^{1/2}L_j+\left(q_{0j}+\vec{y}^T\vec{q}_j\right)^{1/2}U_j}{\left(p_{0j}+\vec{y}^T\vec{p}_j\right)^{1/2}+\left(q_{0j}+\vec{y}^T\vec{q}_j\right)^{1/2}}.$$
+}

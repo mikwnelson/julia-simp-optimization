@@ -8,45 +8,45 @@ Reallocating 'name_of_file' (item size: 1) to 22 items.
 A level-1 auxiliary file: Appendix/Appendix.aux
 Database file #1: Bibliography/Thesis_Bibliography.bib
 Warning--empty journal in Shewchuk1994
-You've used 2 entries,
+You've used 3 entries,
             2229 wiz_defined-function locations,
-            523 strings with 4259 characters,
-and the built_in function-call counts, 601 in all, are:
-= -- 53
-> -- 20
+            533 strings with 4528 characters,
+and the built_in function-call counts, 1092 in all, are:
+= -- 100
+> -- 48
 < -- 2
-+ -- 8
-- -- 6
-* -- 41
-:= -- 114
-add.period$ -- 5
-call.type$ -- 2
-change.case$ -- 12
-chr.to.int$ -- 2
-cite$ -- 3
-duplicate$ -- 27
-empty$ -- 44
-format.name$ -- 10
-if$ -- 112
++ -- 18
+- -- 16
+* -- 90
+:= -- 200
+add.period$ -- 8
+call.type$ -- 3
+change.case$ -- 22
+chr.to.int$ -- 3
+cite$ -- 4
+duplicate$ -- 41
+empty$ -- 74
+format.name$ -- 21
+if$ -- 204
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 3
-newline$ -- 12
-num.names$ -- 6
-pop$ -- 16
+missing$ -- 4
+newline$ -- 17
+num.names$ -- 9
+pop$ -- 24
 preamble$ -- 1
-purify$ -- 13
+purify$ -- 23
 quote$ -- 0
-skip$ -- 22
+skip$ -- 32
 stack$ -- 0
-substring$ -- 26
-swap$ -- 1
+substring$ -- 63
+swap$ -- 2
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 10
+type$ -- 16
 warning$ -- 1
-while$ -- 4
+while$ -- 8
 width$ -- 0
-write$ -- 24
+write$ -- 37
 (There was 1 warning)

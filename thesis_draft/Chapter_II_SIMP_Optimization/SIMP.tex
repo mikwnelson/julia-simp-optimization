@@ -64,4 +64,8 @@ The SIMP method has a clever way of getting around this particular issue of disc
 \end{equation}
 Notice that when $\eta=0$, $k\left(0\right)=k_0$ and when $\eta=1$, $k\left(1\right)=k_p$. The value $p$ in \eqref{penalizationeqn} is the \textit{penalization parameter}. $p$ aids in the convergence process; without $p$ the SIMP method converges to a structure that is not 1---0: a composite structure where finite-volumes are made up of different proportions of $k_0$ and $k_p$ materials.
 
-To converge to a 1---0 structure, we gradually increase $p$ beginning from $p=1$.
+To converge to a 1---0 structure, we gradually increase $p$ beginning from $p=1$. Increasing $p$ from $1$ puts the objective function in \eqref{SIMP-Optimization-Problem} at a disadvantage if $\eta\neq1$. Once $p$ gets much larger than $1$ the second term in $k(\eta)$ of \eqref{penalizationeqn} becomes mush smaller than $k_0$ and hence $k(\eta)\approx k_0$ for values of $\eta\neq1$. As a result, when trying to optimize $f(T)$, value of $\eta$ in $(0,1)$ are penalized which leads to design parameters taking on values of $0$ or $1$, creating a 1---0 structure.
+
+\subsubsection*{``King Me'': Avoiding the Checkerboard Problem}
+
+If one were to optimize conductive material placement to increase heat transfer on a standard rectangular grid, a simplistic solution would be to create a grid of alternating material types in each adjacent rectangle, like a checkerboard. This way, the heat is always flowing to adjacent cells. While this may indeed increase heat transfer, it doesn't necessarily decrease the average temperature in our object (or transfer the heat towards the heatsink). Hence, avoiding this simple checkerboard solution is of concern.

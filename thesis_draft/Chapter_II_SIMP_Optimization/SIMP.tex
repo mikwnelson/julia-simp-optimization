@@ -31,8 +31,8 @@ Throughout the article \cite[]{Marck2012}, the authors also set the following co
 
 We have the following sets to describe the VP-problem:
 \begin{itemize}
-	\item $\vec{x}\in\Omega$ = two-dimensional spatial field\\\\
-	We set $\Omega = \Omega_0\cup\Omega_p$ where
+	\item $\vec{x}\in\Omega$ = two-dimensional spatial field
+	\item[] We set $\Omega = \Omega_0\cup\Omega_p$ where
 	\begin{itemize}
 		\item $\Omega_0$ = portion of $\Omega$ that has conductivity $k_0$. This is the heat generating portion of the space where we have not placed any high-conductivity material.
 		\item $\Omega_p$ = portion of $\Omega$ with conductivity $k_p$. This is the portion of the space with the high-conductivity material applied.
@@ -63,3 +63,5 @@ The SIMP method has a clever way of getting around this particular issue of disc
 	k\left(\eta\right)=k_0+\left(k_p-k_0\right)\eta^p\qquad\text{with}\qquad 0\leq\eta\leq 1\qquad\text{and}\qquad p\geq1.\label{penalizationeqn}
 \end{equation}
 Notice that when $\eta=0$, $k\left(0\right)=k_0$ and when $\eta=1$, $k\left(1\right)=k_p$. The value $p$ in \eqref{penalizationeqn} is the \textit{penalization parameter}. $p$ aids in the convergence process; without $p$ the SIMP method converges to a structure that is not 1---0: a composite structure where finite-volumes are made up of different proportions of $k_0$ and $k_p$ materials.
+
+To converge to a 1---0 structure, we gradually increase $p$ beginning from $p=1$.

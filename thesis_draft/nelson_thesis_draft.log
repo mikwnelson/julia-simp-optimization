@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.6.25)  25 JUN 2021 14:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.6.25)  25 JUN 2021 14:03
 entering extended mode
 **./nelson_thesis_draft.tex
 (nelson_thesis_draft.tex
@@ -1544,13 +1544,13 @@ pe png)
 Package pdftex.def Info: Chapter_II_SIMP_Optimization/Images/3x3-Checkerboard.p
 ng  used on input line 75.
 (pdftex.def)             Requested size: 187.89914pt x 187.82445pt.
-[23]) (nelson_thesis_draft.bbl [24 <./Chapter_II_SIMP_Optimization/Images/3x3-C
-heckerboard.png>]
+[23]) [24 <./Chapter_II_SIMP_Optimization/Images/3x3-Checkerboard.png>]
+(nelson_thesis_draft.bbl [25]
 
 LaTeX Font Warning: Font shape `T1/ccr/b/n' undefined
 (Font)              using `T1/ccr/bx/n' instead on input line 1.
 
-) [25
+) [26
 
 ]
 \openout2 = `Appendix/Appendix.aux'.
@@ -1574,10 +1574,10 @@ File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
 LaTeX Font Warning: Font shape `T1/ccr/b/n' undefined
 (Font)              using `T1/ccr/bx/n' instead on input line 22.
 
-[26
+[27
 
 
-]) [27] (nelson_thesis_draft.aux (Appendix/Appendix.aux))
+]) [28] (nelson_thesis_draft.aux (Appendix/Appendix.aux))
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -1585,8 +1585,8 @@ Package rerunfilecheck Info: File `nelson_thesis_draft.out' has not changed.
 (rerunfilecheck)             Checksum: 9D6FA1378433879422F41497AB5F22CE;3612.
  ) 
 Here is how much of TeX's memory you used:
- 23159 strings out of 478838
- 378491 string characters out of 2864505
+ 23160 strings out of 478838
+ 378498 string characters out of 2864505
  851115 words of memory out of 3000000
  40557 multiletter control sequences out of 15000+600000
  429918 words of font info for 101 fonts, out of 8000000 for 9000
@@ -1621,9 +1621,9 @@ msfonts/latxfont/lcircle1.pfb><F:/MiKTeX/fonts/type1/public/amsfonts/symbols/ms
 am10.pfb><F:/MiKTeX/fonts/type1/public/amsfonts/symbols/msam7.pfb><F:/MiKTeX/fo
 nts/type1/public/amsfonts/symbols/msbm10.pfb><F:/MiKTeX/fonts/type1/urw/courier
 /ucrb8a.pfb><F:/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb>
-Output written on nelson_thesis_draft.pdf (34 pages, 538432 bytes).
+Output written on nelson_thesis_draft.pdf (35 pages, 539306 bytes).
 PDF statistics:
- 950 PDF objects out of 1000 (max. 8388607)
- 143 named destinations out of 1000 (max. 500000)
+ 954 PDF objects out of 1000 (max. 8388607)
+ 144 named destinations out of 1000 (max. 500000)
  197 words of extra memory for PDF output out of 10000 (max. 10000000)
 

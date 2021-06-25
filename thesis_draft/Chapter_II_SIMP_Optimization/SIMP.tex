@@ -62,7 +62,7 @@ The SIMP method has a clever way of getting around this particular issue of disc
 \begin{equation}
 	k\left(\eta\right)=k_0+\left(k_p-k_0\right)\eta^p\qquad\text{with}\qquad 0\leq\eta\leq 1\qquad\text{and}\qquad p\geq1.\label{eqn:penalization}
 \end{equation}
-Notice that when $\eta=0$, $k\left(0\right)=k_0$ and when $\eta=1$, $k\left(1\right)=k_p$. The value $p$ in \eqref{eqn:penalization} is the \textit{penalization parameter}. $p$ aids in the convergence process; without $p$ the SIMP method converges to a structure that is not 1---0: a composite structure where finite-volumes are made up of different proportions of $k_0$ and $k_p$ materials.
+An added bonus of this formulation of $k(\eta)$ is that it is of the form \eqref{eqn:Convexity}, and hence a convex function! Notice that when $\eta=0$, $k\left(0\right)=k_0$ and when $\eta=1$, $k\left(1\right)=k_p$. The value $p$ in \eqref{eqn:penalization} is the \textit{penalization parameter}. $p$ aids in the convergence process; without $p$ the SIMP method converges to a structure that is not 1---0: a composite structure where finite-volumes are made up of different proportions of $k_0$ and $k_p$ materials.
 
 To converge to a 1---0 structure, we gradually increase $p$ beginning from $p=1$. Increasing $p$ from $1$ puts the objective function in \eqref{SIMP-Optimization-Problem} at a disadvantage if $\eta\neq1$. Once $p$ gets much larger than $1$ the second term in $k(\eta)$ of \eqref{eqn:penalization} becomes mush smaller than $k_0$ and hence $k(\eta)\approx k_0$ for values of $\eta\neq1$. As a result, when trying to optimize $f(T)$, value of $\eta$ in $(0,1)$ are penalized which leads to design parameters taking on values of $0$ or $1$, creating a 1---0 structure.
 
@@ -80,3 +80,9 @@ If one were to optimize conductive material placement to increase heat transfer 
 In order to solve the heat equation \eqref{eqn:HeatEq}, we employ the Finite Volume Method (described earlier). This involves splitting up our space into a finite number of control volumes. The checkerboard pattern emerges when the solution of our optimization process converges to a 1---0 structure which has some meshes that successively belong to the $\Omega_0$ and $\Omega_p$ sets (i.e.: adjacent grid volumes have alternating thermal conductivites). As a result, the heat transfer within the structure between $k_p$ and $k_0$ regions is maximized, artificially increasing the impact of adding $k_p$ material on the temperature $T$, which in turn minimizes the objective function in \eqref{SIMP-Optimization-Problem}. Typically, this pattern occurs locally but then spreads throughout the entire structure through successive iterations of the optimization process. However, in the real world, these checkerboard placements of our conductive materials do not actually have the effect of lowering temperatures in our structure. In fact, the checkerboard example in Figure \ref{fig:3x3-Checkerboard} doesn't even direct heat towards the heat-sink on the left wall of the structure.
 
 In order to avoid obtaining checkerboard solutions from our optimization process, we employ two separate staggered grids for our temperature and design variables. We need to employ some extra equations in order to translate between design variables and temperature variables, but this strategy adequately solves the issue of convergence to checkerboard solutions.
+
+\begin{figure}
+	\centering
+	\boxed{\text{Insert Design \& Temperature Grid Illustration Here}}
+	\caption[Design \& Temperature Grids]{}
+\end{figure}

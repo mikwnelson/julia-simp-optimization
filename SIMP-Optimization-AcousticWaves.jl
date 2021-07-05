@@ -7,9 +7,9 @@ pyplot()
 
 p = 1.0
 
-m = 60
+m = 10
 
-n = 60
+n = 10
 
 k₀ = 1.0
 
@@ -58,6 +58,14 @@ function av_temp(
     #######################
     ## Assemble K Matrix ##
     #######################
+
+    ##########################
+    ## Compute size of each ##
+    ##   control volume     ##
+    ##########################
+
+    Δx = xlen / n
+    Δy = ylen / m
 
     η = reshape(η, m + 1, n + 1)
 

@@ -1,7 +1,7 @@
 using SparseArrays, LinearAlgebra, Plots, LaTeXStrings
 include("K_and_partialK.jl")
 
-pyplot(size=(600,600))
+pyplot(size = (600, 600))
 
 ##############
 ### Inputs ###
@@ -14,15 +14,15 @@ n = 100
 m = 100
 
 #Total number of temperature control volumes
-N = m*n
+N = m * n
 
 #Input matrix of the design parameters (etas) at each design node
 #Matrix values must be in [0,1]
-Eta = 0.1 * ones(m+1,n+1)
+Eta = 0.1 * ones(m + 1, n + 1)
 #Eta = rand(m+1,n+1)
 
 #Input vector of Heat-Generation rates
-Q = ones(m,n)
+Q = ones(m, n)
 
 #Input thermal conductivites of low conductivity and high conductivity materials, k_0 and k_p, respectively
 k_0 = 1
@@ -41,21 +41,34 @@ ylen = 0.1
 
 #Compute size of each control volume
 #dx = "delta x"
-dx = xlen/n
+dx = xlen / n
 #dy = "delta y"
-dy = ylen/m
+dy = ylen / m
 
 #Construct K and dK matrices
 K = Kay(Eta, k_0, k_p, p, m, n, xlen, ylen)
 
 #Compute Temperature Vector
-T = K\Q[:]
+T = K \ Q[:]
 
 #Reshape Temperature Vector as Grid
-T_grid = reshape(T,n,m)'
+T_grid = reshape(T, n, m)'
 
 #Heatmap Plot of Temperature
-P = heatmap(0:dx:xlen,0:dy:ylen,T_grid,yflip=true,xmirror=true, aspect_ratio=1, fontfamily = "Times New Roman", xtickfontsize=12, ytickfontsize=12, colorbar_tickfontsize=12, colorbar_titlefontsize=15, colorbar_title="Temperature (°C)")
+P = heatmap(
+    0:dx:xlen,
+    0:dy:ylen,
+    T_grid,
+    yflip = true,
+    xmirror = true,
+    aspect_ratio = 1,
+    fontfamily = "Times New Roman",
+    xtickfontsize = 12,
+    ytickfontsize = 12,
+    colorbar_tickfontsize = 12,
+    colorbar_titlefontsize = 15,
+    colorbar_title = "Temperature (°C)",
+)
 
 #=
 #Compute Average Temperature

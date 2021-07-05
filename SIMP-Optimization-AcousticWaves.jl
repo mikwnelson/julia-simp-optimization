@@ -11,7 +11,7 @@ m = 60
 
 n = 60
 
-k_0 = 1.0
+k₀ = 1.0
 
 k_p = 100.0
 
@@ -19,9 +19,9 @@ xlen = 0.1
 
 ylen = 0.1
 
-ε_o = 1e-3 # Outer loop error tolerance
+ε₀ = 1e-3 # Outer loop error tolerance
 
-ε_i = 1e-4 # Inner Loop error tolerance
+εᵢ = 1e-4 # Inner Loop error tolerance
 
 ##########################
 ## Compute size of each ##
@@ -51,7 +51,7 @@ function av_temp(
     n,
     xlen = 0.1,
     ylen = 0.1,
-    k_0 = 1.0,
+    k₀ = 1.0,
     k_p = 100.0,
 )
 
@@ -59,16 +59,10 @@ function av_temp(
     ## Assemble K Matrix ##
     #######################
 
-    # Compute size of each control volume
-    # dx = "delta x"
-    dx = xlen / n
-    # dy = "delta y"
-    dy = ylen / m
-
     η = reshape(η, m + 1, n + 1)
 
     # Define Conductivity Penalization Function for design parameters eta
-    k = k_0 .+ (k_p - k_0) .* η .^ p
+    k = k₀ .+ (k_p - k₀) .* η .^ p
 
     # Control Volumes are designated based on matrix-type coordinates, so that volume [i,j] is the control volume in the i-th row and j-th column from the upper left.
 
@@ -93,13 +87,13 @@ function av_temp(
     # Construct K matrix
     # K[x,y] tells the heat flux from temperature volume number x to volume number y
     for i = 1:m, j = 1:(n-1)
-        K[cord2num(i, j, n), cord2num(i, j + 1, n)] = -k_W[i, j+1] * (dy / dx)
-        K[cord2num(i, j + 1, n), cord2num(i, j, n)] = -k_W[i, j+1] * (dy / dx)
+        K[cord2num(i, j, n), cord2num(i, j + 1, n)] = -k_W[i, j+1] * (Δy / Δx)
+        K[cord2num(i, j + 1, n), cord2num(i, j, n)] = -k_W[i, j+1] * (Δy / Δx)
     end
 
     for i = 1:(m-1), j = 1:n
-        K[cord2num(i, j, n), cord2num(i + 1, j, n)] = -k_N[i+1, j] * (dx / dy)
-        K[cord2num(i + 1, j, n), cord2num(i, j, n)] = -k_N[i+1, j] * (dx / dy)
+        K[cord2num(i, j, n), cord2num(i + 1, j, n)] = -k_N[i+1, j] * (Δx / Δy)
+        K[cord2num(i + 1, j, n), cord2num(i, j, n)] = -k_N[i+1, j] * (Δx / Δy)
     end
 
     # Diagonal elements of K balance out row sums
@@ -116,11 +110,11 @@ function av_temp(
     if iseven(m)
         # Nearest half integer
         hm = m ÷ 2
-        K[cord2num(hm, 1, n), cord2num(hm, 1, n)] += k_W[hm, 1] * (dy / dx)
-        K[cord2num(hm + 1, 1, n), cord2num(hm + 1, 1, n)] += k_W[hm+1, 1] * (dy / dx)
+        K[cord2num(hm, 1, n), cord2num(hm, 1, n)] += k_W[hm, 1] * (Δy / Δx)
+        K[cord2num(hm + 1, 1, n), cord2num(hm + 1, 1, n)] += k_W[hm+1, 1] * (Δy / Δx)
     else
         hm = m ÷ 2 + 1
-        K[cord2num(hm, 1, n), cord2num(hm, 1, n)] += k_W[hm, 1] * (dy / dx)
+        K[cord2num(hm, 1, n), cord2num(hm, 1, n)] += k_W[hm, 1] * (Δy / Δx)
     end
 
     #######################
@@ -156,7 +150,7 @@ function av_temp(
         ## Create ∂k/∂η Matrix ##
         #########################
 
-        dk = (p * (k_p - k_0)) .* η .^ (p - 1)
+        dk = (p * (k_p - k₀)) .* η .^ (p - 1)
 
         ###########################
         ## Assemble ∂K/∂η Matrix ##
@@ -173,14 +167,14 @@ function av_temp(
 
             if 2 <= j <= n
                 for a = max(1, i - 1):min(i, m)
-                    dK[cord2num(a, j, n), cord2num(a, j - 1, n)] = -0.5 * (dy / dx)
-                    dK[cord2num(a, j - 1, n), cord2num(a, j, n)] = -0.5 * (dy / dx)
+                    dK[cord2num(a, j, n), cord2num(a, j - 1, n)] = -0.5 * (Δy / Δx)
+                    dK[cord2num(a, j - 1, n), cord2num(a, j, n)] = -0.5 * (Δy / Δx)
                 end
             end
             if 2 <= i <= m
                 for b = max(1, j - 1):min(j, n)
-                    dK[cord2num(i, b, n), cord2num(i - 1, b, n)] = -0.5 * (dx / dy)
-                    dK[cord2num(i - 1, b, n), cord2num(i, b, n)] = -0.5 * (dx / dy)
+                    dK[cord2num(i, b, n), cord2num(i - 1, b, n)] = -0.5 * (Δx / Δy)
+                    dK[cord2num(i - 1, b, n), cord2num(i, b, n)] = -0.5 * (Δx / Δy)
                 end
             end
             for a = max(1, i - 1):min(i, m), b = max(1, j - 1):min(j, m)
@@ -195,15 +189,15 @@ function av_temp(
             if iseven(m)
                 hm = m ÷ 2
                 if j == 1 && (hm ≤ i ≤ hm + 1)
-                    dK[cord2num(hm, 1, n), cord2num(hm, 1, n)] += 0.5 * (dy / dx)
+                    dK[cord2num(hm, 1, n), cord2num(hm, 1, n)] += 0.5 * (Δy / Δx)
                 end
                 if j == 1 && (hm + 1 ≤ i ≤ hm + 2)
-                    dK[cord2num(hm + 1, 1, n), cord2num(hm + 1, 1, n)] += 0.5 * (dy / dx)
+                    dK[cord2num(hm + 1, 1, n), cord2num(hm + 1, 1, n)] += 0.5 * (Δy / Δx)
                 end
             else
                 hm = m ÷ 2 + 1
                 if j == 1 && (hm ≤ i ≤ hm + 1)
-                    dK[cord2num(hm, 1, n), cord2num(hm, 1, n)] += 0.5 * (dy / dx)
+                    dK[cord2num(hm, 1, n), cord2num(hm, 1, n)] += 0.5 * (Δy / Δx)
                 end
             end
 
@@ -269,7 +263,7 @@ inequality_constraint!(opt, (x, g) -> por(x, g, m, n), 1e-8)
 opt.lower_bounds = 0
 opt.upper_bounds = 1
 
-opt.xtol_rel = ε_i
+opt.xtol_rel = εᵢ
 
 ##################
 ## Testing Code ##
@@ -309,7 +303,7 @@ while true
     global p += 0.1
     err = norm(minf - f_0)
     global f_0 = minf
-    err <= ε_o && break
+    err <= ε₀ && break
 end
 
 # numevals = opt.numevals # the number of function evaluations

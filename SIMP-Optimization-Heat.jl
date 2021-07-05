@@ -13,7 +13,7 @@ n = 60
 
 k₀ = 1.0
 
-k_p = 100.0
+k₊ = 100.0
 
 xlen = 0.1
 
@@ -52,7 +52,7 @@ function av_temp(
     xlen = 0.1,
     ylen = 0.1,
     k₀ = 1.0,
-    k_p = 100.0,
+    k₊ = 100.0,
 )
 
     #######################
@@ -62,7 +62,7 @@ function av_temp(
     η = reshape(η, m + 1, n + 1)
 
     # Define Conductivity Penalization Function for design parameters eta
-    k = k₀ .+ (k_p - k₀) .* η .^ p
+    k = k₀ .+ (k₊ - k₀) .* η .^ p
 
     # Control Volumes are designated based on matrix-type coordinates, so that volume [i,j] is the control volume in the i-th row and j-th column from the upper left.
 
@@ -150,7 +150,7 @@ function av_temp(
         ## Create ∂k/∂η Matrix ##
         #########################
 
-        dk = (p * (k_p - k₀)) .* η .^ (p - 1)
+        dk = (p * (k₊ - k₀)) .* η .^ (p - 1)
 
         ###########################
         ## Assemble ∂K/∂η Matrix ##

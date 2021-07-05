@@ -11,7 +11,7 @@ m = 60
 
 n = 60
 
-k_0 = 1.0
+k₀ = 1.0
 
 k_p = 100.0
 
@@ -19,9 +19,9 @@ xlen = 0.1
 
 ylen = 0.1
 
-ε_o = 1e-3 # Outer loop error tolerance
+ε₀ = 1e-3 # Outer loop error tolerance
 
-ε_i = 1e-4 # Inner Loop error tolerance
+εᵢ = 1e-4 # Inner Loop error tolerance
 
 ##########################
 ## Compute size of each ##
@@ -51,7 +51,7 @@ function av_temp(
     n,
     xlen = 0.1,
     ylen = 0.1,
-    k_0 = 1.0,
+    k₀ = 1.0,
     k_p = 100.0,
 )
 
@@ -68,7 +68,7 @@ function av_temp(
     η = reshape(η, m + 1, n + 1)
 
     # Define Conductivity Penalization Function for design parameters eta
-    k = k_0 .+ (k_p - k_0) .* η .^ p
+    k = k₀ .+ (k_p - k₀) .* η .^ p
 
     # Control Volumes are designated based on matrix-type coordinates, so that volume [i,j] is the control volume in the i-th row and j-th column from the upper left.
 
@@ -156,7 +156,7 @@ function av_temp(
         ## Create ∂k/∂η Matrix ##
         #########################
 
-        dk = (p * (k_p - k_0)) .* η .^ (p - 1)
+        dk = (p * (k_p - k₀)) .* η .^ (p - 1)
 
         ###########################
         ## Assemble ∂K/∂η Matrix ##
@@ -269,7 +269,7 @@ inequality_constraint!(opt, (x, g) -> por(x, g, m, n), 1e-8)
 opt.lower_bounds = 0
 opt.upper_bounds = 1
 
-opt.xtol_rel = ε_i
+opt.xtol_rel = εᵢ
 
 ##################
 ## Testing Code ##
@@ -309,7 +309,7 @@ while true
     global p += 0.1
     err = norm(minf - f_0)
     global f_0 = minf
-    err <= ε_o && break
+    err <= ε₀ && break
 end
 
 # numevals = opt.numevals # the number of function evaluations

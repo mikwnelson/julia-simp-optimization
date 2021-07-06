@@ -4,7 +4,7 @@
 
 Consider a finite-size volume in which heat is being generated at \textit{every} point, and which is cooled through a small patch (the heat sink) located on its boundary. Suppose that we have a finite amount of high-conductivity ($k_+$) material available. Our goal is to determine the optimal distribution of the $k_+$ material through the given volume such that \textit{the highest temperature is minimized}.
 
-{\color{tiananmen}\textbf{Solid Isotropic Material with Penalization (SIMP)}} is a method based on topology optimization that can be used to solve the VP Heat Conduction Problem. SIMP is what is called a {\color{baystate}soft kill method}, meaning that in each step of the method we increase or decrease high-conductivity material by a small quantity. This allows us to apply methods designed for continuous optimization problems to this discrete problem.
+Solid Isotropic Material with Penalization (SIMP) is a method based on topology optimization that can be used to solve the VP Heat Conduction Problem. SIMP is what is called a soft kill method, meaning that in each step of the method we increase or decrease high-conductivity material by a small quantity. This allows us to apply methods designed for continuous optimization problems to this discrete problem.
 
 \subsection{SIMP Method Description}
 
@@ -13,8 +13,8 @@ In order to develop the method, we need to make a couple of assumptions.
 
 First of all, the energy differential equation driving the heat-flux inside the finite-volume requires:
 \begin{enumerate}
-	\item All calculations are run under {\color{baystate}steady-state conditions}. That is, all heat produced in the volume is evacuated through the heat sink.
-	\item The heat generating materials ($k_0$) and high-conductivity materials ($k_+$) are treated as {\color{baystate}homogeneous} and {\color{baystate}isotropic} on their respective conductivities.
+	\item All calculations are run under steady-state conditions. That is, all heat produced in the volume is evacuated through the heat sink.
+	\item The heat generating materials ($k_0$) and high-conductivity materials ($k_+$) are treated as homogeneous and isotropic on their respective conductivities.
 \end{enumerate}
 
 Throughout the article \cite[]{Marck2012}, the authors also set the following conditions:
@@ -38,14 +38,13 @@ We have the following sets to describe the VP-problem:
 		\item $\Omega_+$ = portion of $\Omega$ with conductivity $k_+$. This is the portion of the space with the high-conductivity material applied.
 	\end{itemize}
 	\item $\vec{k}\in\mathbb{K}$ = distribution of high-conductivity material
-	\item $T\in\overline{\mathbb{T}}$ = temperature field that satisfies the energy equation {\color{baystate}$\nabla\cdot\left(\vec{k}\nabla T_{\vec{k}}\right)+q=0$} where $q$ is the local heat-generating rate.
+	\item $T\in\overline{\mathbb{T}}$ = temperature field that satisfies the energy equation $\nabla\cdot\left(\vec{k}\nabla T_{\vec{k}}\right)+q=0$ where $q$ is the local heat-generating rate.
 \end{itemize}
 
 \subsection{The Optimization Problem}
 
 Using the above established notation, we develop the following optimization problem:
 
-{\color{baystate}
 	\begin{equation}
 		\begin{tabular}{lll}
 			\text{minimize }   & $f(T)$ & \text{for } $T\in\mathbb{T},\vec{k}$      \\
@@ -53,7 +52,6 @@ Using the above established notation, we develop the following optimization prob
 			& $\vec{x}\in\Omega,\quad\vec{k}\in\mathbb{K}_{\text{ad}}$&      
 		\end{tabular}\label{SIMP-Optimization-Problem}
 	\end{equation}
-}
 
 \subsubsection*{Penalization Process}
 The problem of whether to place high conductivity material in a particular location or not is discrete in nature. This is unfortunate as continuous optimization problems are generally easier to solve. In particular, we cannot apply some of the optimization methods described earlier, such as gradient descent, to a discrete optimization problem as they require the optimization variables to be continuous.

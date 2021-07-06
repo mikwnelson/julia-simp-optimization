@@ -4,18 +4,18 @@ In this section I will present a few optimization algorithms.
 
 \subsection{Line Search Methods}
 
-The {\color{tiananmen}\textbf{line search}} is a strategy that selects the step size (commonly represented by $t$) that determines where along the line $\left\lbrace x+t\Delta x\mid t\in\mathbb{R}_+\right\rbrace$ the next iterate in the descent method will be. ($\Delta x$ represents the \textit{descent direction}, .) Line search strategies can either be \textit{exact} or \textit{inexact}.
+The \textit{line search} is a strategy that selects the step size (commonly represented by $t$) that determines where along the line $\left\lbrace x+t\Delta x\mid t\in\mathbb{R}_+\right\rbrace$ the next iterate in the descent method will be. ($\Delta x$ represents the \textit{descent direction}, .) Line search strategies can either be \textit{exact} or \textit{inexact}.
 
 \subsubsection*{Exact Line Search}
 
-An {\color{tiananmen}\textbf{exact line search}} chooses the value $t$ along the ray $\left\lbrace x+t\Delta x\mid t\in\mathbb{R}_+\right\rbrace$ that exactly minimizes the function of interest $f$:
-{\color{baystate}$$t=\arg\min_{s\geq 0}f(x+s\Delta x)$$}
+An \textit{exact line search} chooses the value $t$ along the ray $\left\lbrace x+t\Delta x\mid t\in\mathbb{R}_+\right\rbrace$ that exactly minimizes the function of interest $f$:
+$$t=\arg\min_{s\geq 0}f(x+s\Delta x)$$
 An exact line search is almost never practical. In very special cases, such as some quadratic optimization problems, where computing the cost of the minimization problem is low compared to actually calculating the search direction, one might employ an exact line search.
 
 \subsubsection*{Backtracking Line Search}
-Most often in practice we use {\color{tiananmen}\textbf{inexact line searches}}. In an inexact line search, we choose $t$ such that $f$ is \textit{approximately} minimized or reduced ``enough'' along $\left\lbrace x+t\Delta x\mid t\in\mathbb{R}_+\right\rbrace$.
+Most often in practice we use \textit{inexact line searches}. In an inexact line search, we choose $t$ such that $f$ is \textit{approximately} minimized or reduced ``enough'' along $\left\lbrace x+t\Delta x\mid t\in\mathbb{R}_+\right\rbrace$.
 
-One inexact line search strategy is the {\color{tiananmen}\textbf{Backtracking Line Search}}.
+One inexact line search strategy is the \textit{Backtracking Line Search}.
 \begin{algorithm}[H]
 	\caption{Backtracking Line Search \cite[]{Boyd2004}\label{BacktrackingLineSearchAlg}}
 	\begin{algorithmic} 

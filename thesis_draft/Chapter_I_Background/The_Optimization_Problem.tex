@@ -52,12 +52,10 @@ Notice that there are three requirements that differentiate a convex optimizatio
 \begin{itemize}
 		\item the objective function must be convex
 		\item the inequality constraint functions must be convex
-		\item the equality constraint functions must be {\color{tiananmen}\textbf{affine}}
+		\item the equality constraint functions must be affine
 	\end{itemize}
 
-In a convex optimization problem we minimize a convex objective function over a convex set.
-
-In a convex optimization problem, any locally optimal point is also globally optimal. This is a \textit{very} useful fact!
+In a convex optimization problem we minimize a convex objective function over a convex set and any locally optimal point is also globally optimal. This is a \textit{very} useful fact!
 
 Why might local optimality implying global optimality be useful? Consider a situation where we have a convex objective function. If we are able to find any minimum value for the objective function, then we know this value is not just a local minimum, but indeed a global minimum. If we do not have a convex function, we cannot be as assured that we have found the global optimal value. For example, consider a function such as the one shown in \figref{fig:non-convex-function-example}. An optimization strategy may find the local minimum near $x=1$, but since the function is not convex everywhere on its domain, we cannot conclude that this value is the truly optimal value. In fact, we see that the global minimum, and hence the actual optimal value, is between $x=-1$ and $x=-0.5$. On the other hand, if we have a function that is everywhere convex, as soon as we find a local minima, we can be assured that it is also the global minima!
 

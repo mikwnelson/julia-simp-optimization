@@ -83,4 +83,16 @@ avoided. Concepts are explained in several different ways. Most equations are co
   publisher = {Wiley},
 }
 
+@Book{,
+}
+
+@Book{Versteeg2007,
+  author    = {Versteeg, H. K.},
+  publisher = {Pearson Education Ltd},
+  title     = {An introduction to computational fluid dynamics : the finite volume method},
+  year      = {2007},
+  address   = {Harlow, England New York},
+  isbn      = {9780131274983},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}

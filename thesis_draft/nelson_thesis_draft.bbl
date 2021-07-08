@@ -1,0 +1,25 @@
+\begin{thebibliography}{}
+
+\bibitem[Boyd \& Vandenberghe, 2004]{Boyd2004}
+Boyd, S.~P. \& Vandenberghe, L. (2004).
+\newblock {\em Convex optimization}.
+\newblock Cambridge Univ. Pr.
+
+\bibitem[Marck et~al., 2012]{Marck2012}
+Marck, G., Nemer, M., Harion, J.-L., Russeil, S., \& Bougeard, D. (2012).
+\newblock Topology optimization using the {SIMP} method for multiobjective
+  conductive problems.
+\newblock {\em Numerical Heat Transfer, Part B: Fundamentals}, 61(6), 439--470.
+
+\bibitem[Shewchuk, 1994]{Shewchuk1994}
+Shewchuk, J.~R. (1994).
+\newblock An introduction to the conjugate gradient method without the
+  agonizing pain.
+
+\bibitem[Versteeg, 2007]{Versteeg2007}
+Versteeg, H.~K. (2007).
+\newblock {\em An introduction to computational fluid dynamics : the finite
+  volume method}.
+\newblock Harlow, England New York: Pearson Education Ltd.
+
+\end{thebibliography}

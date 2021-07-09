@@ -14,7 +14,7 @@ In order to develop the method, we need to make a couple of assumptions.
 First of all, the energy differential equation driving the heat-flux inside the finite-volume requires:
 \begin{enumerate}
 	\item All calculations are run under steady-state conditions. That is, all heat produced in the volume is evacuated through the heat sink.
-	\item The heat generating materials ($k_0$) and high-conductivity materials ($k_+$) are treated as homogeneous and isotropic on their respective conductivities.
+	\item Low-conductivity materials ($k_0$) and high-conductivity materials ($k_+$) are treated as homogeneous and isotropic on their respective conductivities.
 \end{enumerate}
 
 Throughout the article \cite[]{Marck2012}, the authors also set the following conditions:
@@ -34,7 +34,7 @@ We have the following sets to describe the VP-problem:
 	\item $\vec{x}\in\Omega$ = two-dimensional spatial field
 	\item[] We set $\Omega = \Omega_0\cup\Omega_+$ where
 	\begin{itemize}
-		\item $\Omega_0$ = portion of $\Omega$ that has conductivity $k_0$. This is the heat generating portion of the space where we have not placed any high-conductivity material.
+		\item $\Omega_0$ = portion of $\Omega$ that has conductivity $k_0$. This is the portion of the space where we have not placed any high-conductivity material.
 		\item $\Omega_+$ = portion of $\Omega$ with conductivity $k_+$. This is the portion of the space with the high-conductivity material applied.
 	\end{itemize}
 	\item $\vec{k}\in\mathbb{K}$ = distribution of high-conductivity material
@@ -87,5 +87,10 @@ In order to avoid obtaining checkerboard solutions from our optimization process
 
 One of the grids contains the information related to the temperature scalars and the other stores information related to the design parameters, $\eta$.
 
-\subsection{Finite Volume Method Discritization}
+\subsection{Finite Volume Method Discretization}
 
+Any discretization method could be used to numerically solve the heat equation \eqref{eqn:HeatEq}. In our implementation of the SIMP algorithm, the Finite Volume Method (described earlier in \ref{sec:FVM}) was used. FVM is used to discretize the formation of the heat equation in \eqref{SIMP-Optimization-Problem}:
+\begin{equation}
+	\nabla\cdot\left(k\nabla T\right)+q=0\label{eqn:SIMP-Heat-Eq}.
+\end{equation}
+We create a rectangular grid of $N_t=(m+1)\times(n+1)$ temperature control volumes of size $\Delta x\times\Delta y$. Each element is indexed by $0\leq i\leq m$ and $0\leq j\leq n$, with $(i,j)=(0,0)$ located in the upper-left and $(i,j)=(m,n)$ in the bottom-right corner of the object.

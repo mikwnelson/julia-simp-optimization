@@ -11,3 +11,4 @@
 
 % Edge styles
 \tikzstyle{Edge}=[-, ultra thick]
+\tikzstyle{Dashed Edge}=[-, dashed]

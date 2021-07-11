@@ -185,7 +185,7 @@ function av_temp(
                     dK[cord2num(i - 1, b, m), cord2num(i, b, m)] = -0.5 * (Δx / Δy)
                 end
             end
-            for a = max(1, i - 1):min(i, m), b = max(1, j - 1):min(j, m)
+            for a = max(1, i - 1):min(i, m), b = max(1, j - 1):min(j, n)
                 dK[cord2num(a, b, m), cord2num(a, b, m)] = -sum(dK[cord2num(a, b, m), :])
             end
 

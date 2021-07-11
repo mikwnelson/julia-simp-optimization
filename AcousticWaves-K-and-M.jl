@@ -24,7 +24,7 @@ xlen = 0.1
 
 ylen = 0.1
 
-η = 0.5 .* ones((m + 1) * (n + 1))
+η = 0.5 .* ones(m*n)
 
 #######################
 ## Assemble K Matrix ##
@@ -38,7 +38,7 @@ ylen = 0.1
 Δx = xlen / n
 Δy = ylen / m
 
-η = reshape(η, m + 1, n + 1)
+η = reshape(η, m, n)
 
 # Define Interpolation Functions for design parameters eta for each material
 
@@ -49,11 +49,11 @@ B_η = (1 .+ η .* (μ_B - 1)) .* B₁
 # Control Volumes are designated based on matrix-type coordinates, so that volume [i,j] is the control volume in the i-th row and j-th column from the upper left.
 
 # Compute Material Composition of control volume boundaries
-# A_W[i,j] = conductivity of "West" boundary of [i,j] control volume
+# A_W[i,j] = Composition of "West" boundary of [i,j] control volume
 
 A_W = 0.5 * (A_η[1:end-1, :] + A_η[2:end, :])
 
-# A_N[i,j] = conductivity of "North" boundary of [i,j] control volume
+# A_N[i,j] = Composition of "North" boundary of [i,j] control volume
 
 A_N = 0.5 * (A_η[:, 1:end-1] + A_η[:, 2:end])
 
@@ -67,15 +67,15 @@ function cord2num(i, j, m)
 end
 
 # Construct K matrix
-# K[x,y] tells the heat flux from temperature volume number x to volume number y
-for i = 1:m, j = 1:(n-1)
-    K[cord2num(i, j, m), cord2num(i, j + 1, m)] = -A_W[i, j+1] * (Δy / Δx)
-    K[cord2num(i, j + 1, m), cord2num(i, j, m)] = -A_W[i, j+1] * (Δy / Δx)
+# K[x,y] tells the flux from control volume number x to control volume number y
+for i = 1:m, j = 1:n
+    K[cord2num(i, j, m), cord2num(i, mod1(j + 1,n), m)] = -A_W[i, mod1(j+1,n)] * (Δy / Δx)
+    K[cord2num(i, mod1(j + 1,n), m), cord2num(i, j, m)] = -A_W[i, mod1(j+1,n)] * (Δy / Δx)
 end
 
-for i = 1:(m-1), j = 1:n
-    K[cord2num(i, j, m), cord2num(i + 1, j, m)] = -A_N[i+1, j] * (Δx / Δy)
-    K[cord2num(i + 1, j, m), cord2num(i, j, m)] = -A_N[i+1, j] * (Δx / Δy)
+for i = 1:m, j = 1:n
+    K[cord2num(i, j, m), cord2num(mod1(i + 1,m), j, m)] = -A_N[mod1(i+1,m), j] * (Δx / Δy)
+    K[cord2num(mod1(i + 1,m), j, m), cord2num(i, j, m)] = -A_N[mod1(i+1,m), j] * (Δx / Δy)
 end
 
 # Diagonal elements of K balance out column sums
@@ -90,12 +90,12 @@ end
 # Initialize M matrix
 M = spzeros((m * n), (m * n))
 
-for i = 1:(m-1), j = 1:(n-1)
+for i = 1:m, j = 1:n
     M[cord2num(i, j, n), cord2num(i, j, n)] =
-        (B_η[i, j] .+ B_η[i, j+1] .+ B_η[i+1, j] .+ B_η[i+1, j+1]) / (Δx * Δy)
+        (B_η[i, j] .+ B_η[i, mod1(j+1,n)] .+ B_η[mod1(i+1,m), j] .+ B_η[mod1(i+1,m), mod1(j+1,n)]) / (Δx * Δy)
 end
 
-#=
+#= 
 #########################
 ## Create ∂k/∂η Matrix ##
 #########################
@@ -150,7 +150,6 @@ for i = 1:m+1, j = 1:n+1
     #############################
 
     grad[i, j] *= dk[i, j]
-end
-=#
+end =#
 
-λ, u = eigs(K,M, nev=1)
+#λ, u = eigs(K, M, nev = 1)

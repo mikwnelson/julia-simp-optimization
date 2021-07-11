@@ -51,11 +51,11 @@ B_η = (1 .+ η .* (μ_B - 1)) .* B₁
 # Compute Material Composition of control volume boundaries
 # A_W[i,j] = Composition of "West" boundary of [i,j] control volume
 
-A_W = 0.5 * (A_η[1:end-1, :] + A_η[2:end, :])
+A_W = 0.5 * (A_η + circshift(A_η,(0,1)))
 
 # A_N[i,j] = Composition of "North" boundary of [i,j] control volume
 
-A_N = 0.5 * (A_η[:, 1:end-1] + A_η[:, 2:end])
+A_N = 0.5 * (A_η + circshift(A_η,(1,0)))
 
 # Initialize K matrix
 K = spzeros((m * n), (m * n))

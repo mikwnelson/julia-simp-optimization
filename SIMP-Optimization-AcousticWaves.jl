@@ -79,9 +79,9 @@ function av_temp(
 
     # Define Interpolation Functions for design parameters eta for each material
 
-    A_η = (1 + η(μ_A - 1)) .* A₁
+    A_η = (1 + η .* (μ_A - 1)) .* A₁
 
-    B_η = (1 + η(μ_B - 1)) .* B₁
+    B_η = (1 + η .* (μ_B - 1)) .* B₁
 
     # Control Volumes are designated based on matrix-type coordinates, so that volume [i,j] is the control volume in the i-th row and j-th column from the upper left.
 

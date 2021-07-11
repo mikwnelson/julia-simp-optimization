@@ -77,8 +77,7 @@ function av_temp(
 
     η = reshape(η, m + 1, n + 1)
 
-    # Define Penalization Function for design parameters eta for each material
-    k = k₀ .+ (k₊ - k₀) .* η .^ p
+    # Define Interpolation Functions for design parameters eta for each material
 
     A_η = (1 + η(μ_A - 1)) .* A₁
 
@@ -99,7 +98,7 @@ function av_temp(
     K = spzeros((m * n), (m * n))
 
     # Number control volumes based on node coordinates, going column-by-column, for m rows and n columns
-    function cord2num(i, j, n)
+    function cord2num(i, j, m)
         cv_num = i + (j - 1) * m
         return cv_num
     end

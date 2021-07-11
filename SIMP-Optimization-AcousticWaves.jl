@@ -49,10 +49,10 @@ function av_temp(
     p,
     m,
     n,
-    xlen=0.1,
-    ylen=0.1,
-    k₀=1.0,
-    k₊=100.0,
+    xlen = 0.1,
+    ylen = 0.1,
+    k₀ = 1.0,
+    k₊ = 100.0,
 )
 
     #######################
@@ -70,18 +70,18 @@ function av_temp(
     η = reshape(η, m + 1, n + 1)
 
     # Define Conductivity Penalization Function for design parameters eta
-    k = k₀ .+ (k₊ - k₀) .* η.^p
+    k = k₀ .+ (k₊ - k₀) .* η .^ p
 
     # Control Volumes are designated based on matrix-type coordinates, so that volume [i,j] is the control volume in the i-th row and j-th column from the upper left.
 
     # Compute conductivites of temperature control volume boundaries
     # k_W[i,j] = conductivity of "West" boundary of [i,j] control volume
 
-    k_W = 0.5 * (k[1:end - 1, :] + k[2:end, :])
+    k_W = 0.5 * (k[1:end-1, :] + k[2:end, :])
 
     # k_N[i,j] = conductivity of "North" boundary of [i,j] control volume
 
-    k_N = 0.5 * (k[:, 1:end - 1] + k[:, 2:end])
+    k_N = 0.5 * (k[:, 1:end-1] + k[:, 2:end])
 
     # Initialize K matrix
     K = spzeros((m * n), (m * n))
@@ -94,18 +94,18 @@ function av_temp(
 
     # Construct K matrix
     # K[x,y] tells the heat flux from temperature volume number x to volume number y
-    for i in 1:m, j in 1:(n - 1)
-        K[cord2num(i, j, n), cord2num(i, j + 1, n)] = -k_W[i, j + 1] * (Δy / Δx)
-        K[cord2num(i, j + 1, n), cord2num(i, j, n)] = -k_W[i, j + 1] * (Δy / Δx)
+    for i = 1:m, j = 1:(n-1)
+        K[cord2num(i, j, n), cord2num(i, j + 1, n)] = -k_W[i, j+1] * (Δy / Δx)
+        K[cord2num(i, j + 1, n), cord2num(i, j, n)] = -k_W[i, j+1] * (Δy / Δx)
     end
 
-    for i in 1:(m - 1), j in 1:n
-        K[cord2num(i, j, n), cord2num(i + 1, j, n)] = -k_N[i + 1, j] * (Δx / Δy)
-        K[cord2num(i + 1, j, n), cord2num(i, j, n)] = -k_N[i + 1, j] * (Δx / Δy)
+    for i = 1:(m-1), j = 1:n
+        K[cord2num(i, j, n), cord2num(i + 1, j, n)] = -k_N[i+1, j] * (Δx / Δy)
+        K[cord2num(i + 1, j, n), cord2num(i, j, n)] = -k_N[i+1, j] * (Δx / Δy)
     end
 
     # Diagonal elements of K balance out row sums
-    for i = 1:(m * n)
+    for i = 1:(m*n)
         K[i, i] = -sum(K[i, :])
     end
 
@@ -119,7 +119,7 @@ function av_temp(
         # Nearest half integer
         hm = m ÷ 2
         K[cord2num(hm, 1, n), cord2num(hm, 1, n)] += k_W[hm, 1] * (Δy / Δx)
-        K[cord2num(hm + 1, 1, n), cord2num(hm + 1, 1, n)] += k_W[hm + 1, 1] * (Δy / Δx)
+        K[cord2num(hm + 1, 1, n), cord2num(hm + 1, 1, n)] += k_W[hm+1, 1] * (Δy / Δx)
     else
         hm = m ÷ 2 + 1
         K[cord2num(hm, 1, n), cord2num(hm, 1, n)] += k_W[hm, 1] * (Δy / Δx)
@@ -158,13 +158,13 @@ function av_temp(
         ## Create ∂k/∂η Matrix ##
         #########################
 
-        dk = (p * (k₊ - k₀)) .* η.^(p - 1)
+        dk = (p * (k₊ - k₀)) .* η .^ (p - 1)
 
         ###########################
         ## Assemble ∂K/∂η Matrix ##
         ###########################
 
-        for i in 1:n + 1, j in 1:m + 1
+        for i = 1:n+1, j = 1:m+1
 
             ###########################
             ## Assemble ∂K/∂k Matrix ##
@@ -185,7 +185,7 @@ function av_temp(
                     dK[cord2num(i - 1, b, n), cord2num(i, b, n)] = -0.5 * (Δx / Δy)
                 end
             end
-            for a in max(1, i - 1):min(i, m), b in max(1, j - 1):min(j, m)
+            for a = max(1, i - 1):min(i, m), b = max(1, j - 1):min(j, m)
                 dK[cord2num(a, b, n), cord2num(a, b, n)] = -sum(dK[cord2num(a, b, n), :])
             end
 
@@ -324,9 +324,9 @@ end
     0:Δx:xlen,
     0:Δy:ylen,
     η,
-    yflip=true,
-    xmirror=true,
-    aspect_ratio=:equal,
-    colorbar_title="η",
-    title="η for each Design Volume",
+    yflip = true,
+    xmirror = true,
+    aspect_ratio = :equal,
+    colorbar_title = "η",
+    title = "η for each Design Volume",
 )

@@ -11,9 +11,17 @@ m = 10
 
 n = 10
 
-k₀ = 1.0
+A₁ = 1.0
 
-k₊ = 100.0
+A₂ = 100.0
+
+B₁ = 1.0
+
+B₂ = 50.0
+
+μ_A = A₂ / A₁
+
+μ_B = B₂ / B₁
 
 xlen = 0.1
 
@@ -69,8 +77,12 @@ function av_temp(
 
     η = reshape(η, m + 1, n + 1)
 
-    # Define Conductivity Penalization Function for design parameters eta
+    # Define Penalization Function for design parameters eta for each material
     k = k₀ .+ (k₊ - k₀) .* η .^ p
+
+    A_η = (1 + η(μ_A - 1)) .* A₁
+
+    B_η = (1 + η(μ_B - 1)) .* B₁
 
     # Control Volumes are designated based on matrix-type coordinates, so that volume [i,j] is the control volume in the i-th row and j-th column from the upper left.
 

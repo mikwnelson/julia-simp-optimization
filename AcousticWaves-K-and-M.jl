@@ -46,14 +46,14 @@ B_η = (1 + η .* (μ_B - 1)) .* B₁
 
 # Control Volumes are designated based on matrix-type coordinates, so that volume [i,j] is the control volume in the i-th row and j-th column from the upper left.
 
-# Compute conductivites of temperature control volume boundaries
-# k_W[i,j] = conductivity of "West" boundary of [i,j] control volume
+# Compute Material Composition of control volume boundaries
+# A_W[i,j] = conductivity of "West" boundary of [i,j] control volume
 
-k_W = 0.5 * (k[1:end-1, :] + k[2:end, :])
+A_W = 0.5 * (A_η[1:end-1, :] + A_η[2:end, :])
 
-# k_N[i,j] = conductivity of "North" boundary of [i,j] control volume
+# A_N[i,j] = conductivity of "North" boundary of [i,j] control volume
 
-k_N = 0.5 * (k[:, 1:end-1] + k[:, 2:end])
+A_N = 0.5 * (A_η[:, 1:end-1] + A_η[:, 2:end])
 
 # Initialize K matrix
 K = spzeros((m * n), (m * n))
@@ -67,20 +67,27 @@ end
 # Construct K matrix
 # K[x,y] tells the heat flux from temperature volume number x to volume number y
 for i = 1:m, j = 1:(n-1)
-    K[cord2num(i, j, m), cord2num(i, j + 1, m)] = -k_W[i, j+1] * (Δy / Δx)
-    K[cord2num(i, j + 1, m), cord2num(i, j, m)] = -k_W[i, j+1] * (Δy / Δx)
+    K[cord2num(i, j, m), cord2num(i, j + 1, m)] = -A_W[i, j+1] * (Δy / Δx)
+    K[cord2num(i, j + 1, m), cord2num(i, j, m)] = -A_W[i, j+1] * (Δy / Δx)
 end
 
 for i = 1:(m-1), j = 1:n
-    K[cord2num(i, j, m), cord2num(i + 1, j, m)] = -k_N[i+1, j] * (Δx / Δy)
-    K[cord2num(i + 1, j, m), cord2num(i, j, m)] = -k_N[i+1, j] * (Δx / Δy)
+    K[cord2num(i, j, m), cord2num(i + 1, j, m)] = -A_N[i+1, j] * (Δx / Δy)
+    K[cord2num(i + 1, j, m), cord2num(i, j, m)] = -A_N[i+1, j] * (Δx / Δy)
 end
 
-# Diagonal elements of K balance out row sums
-for i = 1:(m*n)
-    K[i, i] = -sum(K[i, :])
+# Diagonal elements of K balance out column sums
+for j = 1:(m*n)
+    K[j, j] = -sum(K[:, j])
 end
 
+#######################
+## Assemble M Matrix ##
+#######################
+
+
+
+#=
 #########################
 ## Create ∂k/∂η Matrix ##
 #########################
@@ -136,3 +143,4 @@ for i = 1:m+1, j = 1:n+1
 
     grad[i, j] *= dk[i, j]
 end
+=#

@@ -1,3 +1,5 @@
+using SparseArrays, LinearAlgebra
+
 ##########################
 ## Fixed Variable Input ##
 ##########################
@@ -40,9 +42,9 @@ ylen = 0.1
 
 # Define Interpolation Functions for design parameters eta for each material
 
-A_η = (1 + η .* (μ_A - 1)) .* A₁
+A_η = (1 .+ η .* (μ_A - 1)) .* A₁
 
-B_η = (1 + η .* (μ_B - 1)) .* B₁
+B_η = (1 .+ η .* (μ_B - 1)) .* B₁
 
 # Control Volumes are designated based on matrix-type coordinates, so that volume [i,j] is the control volume in the i-th row and j-th column from the upper left.
 
@@ -85,7 +87,13 @@ end
 ## Assemble M Matrix ##
 #######################
 
+# Initialize M matrix
+M = spzeros((m * n), (m * n))
 
+for i = 1:(m-1), j = 1:(n-1)
+    M[cord2num(i, j, n), cord2num(i, j, n)] =
+        (B_η[i, j] .+ B_η[i, j+1] .+ B_η[i+1, j] .+ B_η[i+1, j+1]) / (Δx * Δy)
+end
 
 #=
 #########################

@@ -7,9 +7,9 @@ pyplot()
 
 p = 1.0
 
-m = 60
+m = 10
 
-n = 60
+n = 20
 
 k₀ = 1.0
 
@@ -95,13 +95,13 @@ function av_temp(
     # Construct K matrix
     # K[x,y] tells the heat flux from temperature volume number x to volume number y
     for i = 1:m, j = 1:(n-1)
-        K[cord2num(i, j, n), cord2num(i, j + 1, n)] = -k_W[i, j+1] * (Δy / Δx)
-        K[cord2num(i, j + 1, n), cord2num(i, j, n)] = -k_W[i, j+1] * (Δy / Δx)
+        K[cord2num(i, j, m), cord2num(i, j + 1, m)] = -k_W[i, j+1] * (Δy / Δx)
+        K[cord2num(i, j + 1, m), cord2num(i, j, m)] = -k_W[i, j+1] * (Δy / Δx)
     end
 
     for i = 1:(m-1), j = 1:n
-        K[cord2num(i, j, n), cord2num(i + 1, j, n)] = -k_N[i+1, j] * (Δx / Δy)
-        K[cord2num(i + 1, j, n), cord2num(i, j, n)] = -k_N[i+1, j] * (Δx / Δy)
+        K[cord2num(i, j, m), cord2num(i + 1, j, m)] = -k_N[i+1, j] * (Δx / Δy)
+        K[cord2num(i + 1, j, m), cord2num(i, j, m)] = -k_N[i+1, j] * (Δx / Δy)
     end
 
     # Diagonal elements of K balance out row sums
@@ -118,11 +118,11 @@ function av_temp(
     if iseven(m)
         # Nearest half integer
         hm = m ÷ 2
-        K[cord2num(hm, 1, n), cord2num(hm, 1, n)] += k_W[hm, 1] * (Δy / Δx)
-        K[cord2num(hm + 1, 1, n), cord2num(hm + 1, 1, n)] += k_W[hm+1, 1] * (Δy / Δx)
+        K[cord2num(hm, 1, m), cord2num(hm, 1, m)] += k_W[hm, 1] * (Δy / Δx)
+        K[cord2num(hm + 1, 1, m), cord2num(hm + 1, 1, m)] += k_W[hm+1, 1] * (Δy / Δx)
     else
         hm = m ÷ 2 + 1
-        K[cord2num(hm, 1, n), cord2num(hm, 1, n)] += k_W[hm, 1] * (Δy / Δx)
+        K[cord2num(hm, 1, m), cord2num(hm, 1, m)] += k_W[hm, 1] * (Δy / Δx)
     end
 
     #######################
@@ -175,18 +175,18 @@ function av_temp(
 
             if 2 <= j <= n
                 for a = max(1, i - 1):min(i, m)
-                    dK[cord2num(a, j, n), cord2num(a, j - 1, n)] = -0.5 * (Δy / Δx)
-                    dK[cord2num(a, j - 1, n), cord2num(a, j, n)] = -0.5 * (Δy / Δx)
+                    dK[cord2num(a, j, m), cord2num(a, j - 1, m)] = -0.5 * (Δy / Δx)
+                    dK[cord2num(a, j - 1, m), cord2num(a, j, m)] = -0.5 * (Δy / Δx)
                 end
             end
             if 2 <= i <= m
                 for b = max(1, j - 1):min(j, n)
-                    dK[cord2num(i, b, n), cord2num(i - 1, b, n)] = -0.5 * (Δx / Δy)
-                    dK[cord2num(i - 1, b, n), cord2num(i, b, n)] = -0.5 * (Δx / Δy)
+                    dK[cord2num(i, b, m), cord2num(i - 1, b, m)] = -0.5 * (Δx / Δy)
+                    dK[cord2num(i - 1, b, m), cord2num(i, b, m)] = -0.5 * (Δx / Δy)
                 end
             end
             for a = max(1, i - 1):min(i, m), b = max(1, j - 1):min(j, m)
-                dK[cord2num(a, b, n), cord2num(a, b, n)] = -sum(dK[cord2num(a, b, n), :])
+                dK[cord2num(a, b, m), cord2num(a, b, m)] = -sum(dK[cord2num(a, b, m), :])
             end
 
             ######################
@@ -197,15 +197,15 @@ function av_temp(
             if iseven(m)
                 hm = m ÷ 2
                 if j == 1 && (hm ≤ i ≤ hm + 1)
-                    dK[cord2num(hm, 1, n), cord2num(hm, 1, n)] += 0.5 * (Δy / Δx)
+                    dK[cord2num(hm, 1, m), cord2num(hm, 1, m)] += 0.5 * (Δy / Δx)
                 end
                 if j == 1 && (hm + 1 ≤ i ≤ hm + 2)
-                    dK[cord2num(hm + 1, 1, n), cord2num(hm + 1, 1, n)] += 0.5 * (Δy / Δx)
+                    dK[cord2num(hm + 1, 1, m), cord2num(hm + 1, 1, m)] += 0.5 * (Δy / Δx)
                 end
             else
                 hm = m ÷ 2 + 1
                 if j == 1 && (hm ≤ i ≤ hm + 1)
-                    dK[cord2num(hm, 1, n), cord2num(hm, 1, n)] += 0.5 * (Δy / Δx)
+                    dK[cord2num(hm, 1, m), cord2num(hm, 1, m)] += 0.5 * (Δy / Δx)
                 end
             end
 

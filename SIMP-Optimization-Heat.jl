@@ -7,9 +7,9 @@ pyplot()
 
 p = 1.0
 
-m = 10
+m = 40
 
-n = 20
+n = 40
 
 k₀ = 1.0
 
@@ -164,7 +164,7 @@ function av_temp(
         ## Assemble ∂K/∂η Matrix ##
         ###########################
 
-        for i = 1:n+1, j = 1:m+1
+        for i = 1:m+1, j = 1:n+1
 
             ###########################
             ## Assemble ∂K/∂k Matrix ##
@@ -241,7 +241,7 @@ function av_temp(
     ## Debugging Messages ##
     ########################
 
-    # println("fav = $fav\n", "grad = $grad\n") #Output for Debugging Purposes
+    #println("fav = $f_avg\n", "grad = $grad\n") #Output for Debugging Purposes
 
     return f_avg
 end
@@ -255,7 +255,7 @@ function por(x::Vector, grad::Vector, m, n)
         grad .= 1.0
     end
     con = sum(x) - 0.1 * (m + 1) * (n + 1)
-    # println("con = $con\n", "grad = $grad\n") #Output for Debugging Purposes
+    #println("con = $con\n", "grad = $grad\n") #Output for Debugging Purposes
     return con
 end
 
@@ -308,7 +308,7 @@ while true
     (minf, minx, ret) = optimize!(opt, η)
     numevals = opt.numevals # the number of function evaluations
     println("$p: $minf for $numevals iterations (returned $ret)")
-    global p += 0.1
+    global p += 0.05
     err = norm(minf - f_0)
     global f_0 = minf
     err <= ε₀ && break

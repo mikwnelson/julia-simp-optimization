@@ -7,9 +7,9 @@ pyplot()
 
 p = 1.0
 
-m = 40
+m = 30
 
-n = 40
+n = 30
 
 k₀ = 1.0
 
@@ -104,9 +104,9 @@ function av_temp(
         K[cord2num(i + 1, j, m), cord2num(i, j, m)] = -k_N[i+1, j] * (Δx / Δy)
     end
 
-    # Diagonal elements of K balance out row sums
-    for i = 1:(m*n)
-        K[i, i] = -sum(K[i, :])
+    # Diagonal elements of K balance out column sums
+    for j = 1:(m*n)
+        K[j, j] = -sum(K[:, j])
     end
 
     ######################

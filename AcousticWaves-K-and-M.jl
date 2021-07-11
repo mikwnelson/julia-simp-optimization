@@ -1,4 +1,4 @@
-using SparseArrays, LinearAlgebra
+using SparseArrays, Arpack
 
 ##########################
 ## Fixed Variable Input ##
@@ -152,3 +152,5 @@ for i = 1:m+1, j = 1:n+1
     grad[i, j] *= dk[i, j]
 end
 =#
+
+λ, u = eigs(K,M, nev=1)

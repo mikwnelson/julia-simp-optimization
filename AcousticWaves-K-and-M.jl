@@ -1,13 +1,13 @@
-using SparseArrays, Arpack, Plots
+using SparseArrays, Arpack, Plots, LaTeXStrings
 pyplot()
 
 ##########################
 ## Fixed Variable Input ##
 ##########################
 
-m = 10
+m = 100
 
-n = 10
+n = 100
 
 A₁ = 1.0
 
@@ -153,6 +153,6 @@ for i = 1:m+1, j = 1:n+1
     grad[i, j] *= dk[i, j]
 end =#
 
-λ, u = eigs(K, M, nev = 50)
+λ, u = eigs(K, M, nev = 200)
 
-histogram(real(λ))
+histogram((real(λ)*10^6),xlabel=L"λ\ (10^{-6})",label=false)

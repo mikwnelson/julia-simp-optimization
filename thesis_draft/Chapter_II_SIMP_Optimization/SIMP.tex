@@ -75,6 +75,13 @@ If one were to optimize conductive material placement to increase heat transfer 
 	\label{fig:3x3-Checkerboard}
 \end{figure}
 
+\begin{figure}
+	\centering
+	\includegraphics[width=0.6\textwidth]{Chapter_II_SIMP_Optimization/Images/SIMP-Example-Checkerboarding.png}
+	\caption[Checkerboard Result in Practice]{Output of SIMP algorithm for $30\times 40$ temperature control volumes. Notice the local checkerboarding around $(0.05,0.015)$.}
+	\label{fig:SIMP-Checkerboard}
+\end{figure}
+
 In order to solve the heat equation \eqref{eqn:HeatEq}, we employ the Finite Volume Method (described earlier). This involves splitting up our space into a finite number of control volumes. The checkerboard pattern emerges when the solution of our optimization process converges to a 1---0 structure which has some meshes that successively belong to the $\Omega_0$ and $\Omega_+$ sets (i.e.: adjacent grid volumes have alternating thermal conductivites). As a result, the heat transfer within the structure between $k_+$ and $k_0$ regions is maximized, artificially increasing the impact of adding $k_+$ material on the temperature $T$, which in turn minimizes the objective function in \eqref{SIMP-Optimization-Problem} \cite[]{Versteeg2007}. Typically, this pattern occurs locally but then spreads throughout the entire structure through successive iterations of the optimization process. However, in the real world, these checkerboard placements of our conductive materials do not actually have the effect of lowering the average temperature in structures. In fact, the checkerboard example in Figure \ref{fig:3x3-Checkerboard} doesn't even direct heat towards the heat-sink on the left wall of the structure.
 
 In order to avoid obtaining checkerboard solutions from our optimization process, we employ two separate staggered grids for our temperature and design variables. We need to employ some extra equations in order to translate between design and temperature variables, but this strategy adequately solves the issue of convergence to checkerboard solutions.
@@ -82,15 +89,21 @@ In order to avoid obtaining checkerboard solutions from our optimization process
 \begin{figure}
 	\centering
 	\ctikzfig{Chapter_II_SIMP_Optimization/Images/Grid}
-	\caption[Design \& Temperature Grids]{Overlayed Design and Temperature Grids with Design $(\eta^{i,j})$ and Temperature Control Volume $(A_C^{i,j})$ Nodes}
+	\caption[Overlayed Design \& Temperature Grids]{Overlayed Temperature (\rule[0.55ex]{1.25em}{1.5pt}) and Design (\rule[0.6ex]{0.4em}{0.5pt}\,\rule[0.6ex]{0.4em}{0.5pt}\,\rule[0.6ex]{0.4em}{0.5pt}) grids with $4\times4$ Design Element $(\eta^{i,j})$ and $3\times3$ Temperature Control Volume $(K_C^{i,j})$ Nodes. $K_N^{i,j}$ and $K_W^{i,j}$ indicate nodes at the North and West boundaries, respectively, of each Temperature Control Volume. Each Temperature control volume is numbered beginning in the upper left and continuing column-by-column, left-to-right.}
+	\label{fig:grids}
 \end{figure}
 
 One of the grids contains the information related to the temperature scalars and the other stores information related to the design parameters, $\eta$.
 
 \subsection{Finite Volume Method Discretization}
 
-Any discretization method could be used to numerically solve the heat equation \eqref{eqn:HeatEq}. In our implementation of the SIMP algorithm, the Finite Volume Method (described earlier in \ref{sec:FVM}) was used. FVM is used to discretize the formation of the heat equation in \eqref{SIMP-Optimization-Problem}:
+Any discretization method could be used to numerically solve the heat equation \eqref{eqn:HeatEq}. In our implementation of the SIMP algorithm, the Finite Volume Method (described earlier in \S\ref{sec:FVM}) was used. FVM is used to discretize the formation of the heat equation in \eqref{SIMP-Optimization-Problem}:
 \begin{equation}
 	\nabla\cdot\left(k\nabla T\right)+q=0\label{eqn:SIMP-Heat-Eq}.
 \end{equation}
-We create a rectangular grid of $N_t=(m+1)\times(n+1)$ temperature control volumes of size $\Delta x\times\Delta y$. Each element is indexed by $0\leq i\leq m$ and $0\leq j\leq n$, with $(i,j)=(0,0)$ located in the upper-left and $(i,j)=(m,n)$ in the bottom-right corner of the object.
+We create a rectangular grid of $N_T=m\times n$ temperature control volumes of size $\Delta x\times\Delta y$ (solid squares in Figure \ref{fig:grids}). Each element is indexed by $1\leq i\leq m$ and $1\leq j\leq n$, where $i$ refers to the row and $j$ the column of the control volume. The volume indexed $(i,j)=(1,1)$ is located in the upper-left and $(i,j)=(m,n)$ in the bottom-right corner of the object. The temperature over the area of the temperature control volume $(i,j)$ is considered to be $T^{i,j}$.
+
+Around the upper left corner of each temperature control volume we create a corresponding design element (dashed squares in Figure \ref{fig:grids}). The area within each $(i,j)$ design element has conductivity $k^{i,j}=k(\eta^{i,j})$ as evaluated by \eqref{eqn:penalization}.
+
+In order to employ the finite volume method, it is necessary to be able to calculate the temperature fluxes along the boundaries of each control volume. To do this, we need to have a value for the conductivity along the faces of each control volume. Notice that the faces of the temperature control volumes lie within two adjacent design regions, which implies that there are two different conductivites along that face. To create a consistent conductivity along the control volume wall, we average (using either an arithmetic or harmonic mean) the conductivity of the two adjacent design nodes. Hence the conductivity along the West face of control volume $(i,j)$, denoted by $k^{i,j}_W$, is given by $$\text{Arithmetic Mean: }k^{i,j}_W=\frac{k^{i,j}+k^{i+1,j}}{2}\qquad\text{or}\qquad\text{Harmonic Mean: }k^{i,j}_W=2\left(\frac{1}{k^{i,j}}+\frac{1}{k^{i+1,j}}\right)^{-1}.$$
+Similarly, the conductivity along the North face of control volume $(i,j)$, denoted by $k^{i,j}_N$, is given by $$\text{Arithmetic Mean: }k^{i,j}_N=\frac{k^{i,j}+k^{i,j+1}}{2}\qquad\text{or}\qquad\text{Harmonic Mean: }k^{i,j}_N=2\left(\frac{1}{k^{i,j}}+\frac{1}{k^{i,j+1}}\right)^{-1}.$$

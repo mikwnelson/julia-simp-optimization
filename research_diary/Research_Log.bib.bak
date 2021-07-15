@@ -3,7 +3,7 @@
 @Book{Boyd2004,
   author    = {Boyd, Stephen P. and Vandenberghe, Lieven},
   publisher = {Cambridge Univ. Pr.},
-  title     = {Convex optimization},
+  title     = {Convex Optimization},
   year      = {2004},
   isbn      = {9780521833783},
   date      = {2004-03-01},
@@ -35,13 +35,14 @@
   author       = {{Wikipedia contributors}},
   howpublished = {\url{https://en.wikipedia.org/w/index.php?title=Divergence_theorem&oldid=1011407395}},
   note         = {[Online; accessed 15-March-2021]},
-  title        = {Divergence theorem --- {Wikipedia}{,} The Free Encyclopedia},
+  title        = {Divergence Theorem --- {Wikipedia}{,} The Free Encyclopedia},
   year         = {2021},
 }
 
 @Article{Shewchuk1994,
   author   = {Jonathan Richard Shewchuk},
-  title    = {An Introduction tothe Conjugate Gradient MethodWithout the Agonizing Pain},
+  journal  = {Quake Project},
+  title    = {An Introduction to the Conjugate Gradient Method Without the Agonizing Pain},
   year     = {1994},
   month    = aug,
   abstract = {The Conjugate Gradient Method is the most prominent iterative method for solving sparse systems of linear equations.
@@ -73,7 +74,7 @@ avoided. Concepts are explained in several different ways. Most equations are co
 @Article{Svanberg1987,
   author    = {Krister Svanberg},
   journal   = {International Journal for Numerical Methods in Engineering},
-  title     = {The method of moving asymptotes{\textemdash}a new method for structural optimization},
+  title     = {The Method of Moving Asymptotes{\textemdash}A New Method for Structural Optimization},
   year      = {1987},
   month     = {feb},
   number    = {2},
@@ -81,6 +82,15 @@ avoided. Concepts are explained in several different ways. Most equations are co
   volume    = {24},
   doi       = {10.1002/nme.1620240207},
   publisher = {Wiley},
+}
+
+@Book{Bendsoee2004,
+  author    = {Martin P. Bends{\o}e and Ole Sigmund},
+  publisher = {Springer-Verlag Berlin Heidelberg},
+  title     = {Topology Optimization},
+  year      = {2004},
+  edition   = {2, Corrected Printing},
+  doi       = {10.1007/978-3-662-05086-6},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}

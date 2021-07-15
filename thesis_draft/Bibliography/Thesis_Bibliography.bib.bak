@@ -3,7 +3,7 @@
 @Book{Boyd2004,
   author    = {Boyd, Stephen P. and Vandenberghe, Lieven},
   publisher = {Cambridge Univ. Pr.},
-  title     = {Convex optimization},
+  title     = {Convex Optimization},
   year      = {2004},
   isbn      = {9780521833783},
   date      = {2004-03-01},
@@ -35,12 +35,13 @@
   author       = {{Wikipedia contributors}},
   howpublished = {\url{https://en.wikipedia.org/w/index.php?title=Divergence_theorem&oldid=1011407395}},
   note         = {[Online; accessed 15-March-2021]},
-  title        = {Divergence theorem --- {Wikipedia}{,} The Free Encyclopedia},
+  title        = {Divergence Theorem --- {Wikipedia}{,} The Free Encyclopedia},
   year         = {2021},
 }
 
 @Article{Shewchuk1994,
   author   = {Jonathan Richard Shewchuk},
+  journal  = {Quake Project},
   title    = {An Introduction to the Conjugate Gradient Method Without the Agonizing Pain},
   year     = {1994},
   month    = aug,
@@ -73,7 +74,7 @@ avoided. Concepts are explained in several different ways. Most equations are co
 @Article{Svanberg1987,
   author    = {Krister Svanberg},
   journal   = {International Journal for Numerical Methods in Engineering},
-  title     = {The method of moving asymptotes{\textemdash}a new method for structural optimization},
+  title     = {The Method of Moving Asymptotes{\textemdash}A New Method for Structural Optimization},
   year      = {1987},
   month     = {feb},
   number    = {2},
@@ -83,16 +84,26 @@ avoided. Concepts are explained in several different ways. Most equations are co
   publisher = {Wiley},
 }
 
-@Book{,
+@Book{Bendsoee2004,
+  author    = {Martin P. Bends{\o}e and Ole Sigmund},
+  publisher = {Springer-Verlag Berlin Heidelberg},
+  title     = {Topology Optimization},
+  year      = {2004},
+  address   = {Berlin, Heidelberg},
+  edition   = {2, Corrected Printing},
+  isbn      = {978-3-662-05086-6},
+  abstract  = {The topology optimization method solves the basic engineering problem of distributing a limited amount of material in a design space. The first edition of this book has become the standard text on optimal design which is concerned with the optimization of structural topology, shape and material. This edition has been substantially revised and updated to reflect progress made in modelling and computational procedures. It also encompasses a comprehensive and unified description of the state-of-the-art of the so-called material distribution method, based on the use of mathematical programming and finite elements. Applications treated include not only structures but also MEMS and materials.},
+  doi       = {10.1007/978-3-662-05086-6},
 }
 
 @Book{Versteeg2007,
   author    = {Versteeg, H. K.},
   publisher = {Pearson Education Ltd},
-  title     = {An introduction to computational fluid dynamics : the finite volume method},
+  title     = {An Introduction to Computational Fluid Dynamics : The Finite Volume Method},
   year      = {2007},
   address   = {Harlow, England New York},
   isbn      = {9780131274983},
+  pages     = {180–183},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}

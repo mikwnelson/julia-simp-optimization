@@ -105,5 +105,32 @@ We create a rectangular grid of $N_T=m\times n$ temperature control volumes of s
 
 Around the upper left corner of each temperature control volume we create a corresponding design element (dashed squares in Figure \ref{fig:grids}). The area within each $(i,j)$ design element has conductivity $k^{i,j}=k(\eta^{i,j})$ as evaluated by \eqref{eqn:penalization}.
 
-In order to employ the finite volume method, it is necessary to be able to calculate the temperature fluxes along the boundaries of each control volume. To do this, we need to have a value for the conductivity along the faces of each control volume. Notice that the faces of the temperature control volumes lie within two adjacent design regions, which implies that there are two different conductivites along that face. To create a consistent conductivity along the control volume wall, we average (using either an arithmetic or harmonic mean) the conductivity of the two adjacent design nodes. Hence the conductivity along the West face of control volume $(i,j)$, denoted by $k^{i,j}_W$, is given by $$\text{Arithmetic Mean: }k^{i,j}_W=\frac{k^{i,j}+k^{i+1,j}}{2}\qquad\text{or}\qquad\text{Harmonic Mean: }k^{i,j}_W=2\left(\frac{1}{k^{i,j}}+\frac{1}{k^{i+1,j}}\right)^{-1}.$$
-Similarly, the conductivity along the North face of control volume $(i,j)$, denoted by $k^{i,j}_N$, is given by $$\text{Arithmetic Mean: }k^{i,j}_N=\frac{k^{i,j}+k^{i,j+1}}{2}\qquad\text{or}\qquad\text{Harmonic Mean: }k^{i,j}_N=2\left(\frac{1}{k^{i,j}}+\frac{1}{k^{i,j+1}}\right)^{-1}.$$
+In order to employ the finite volume method, it is necessary to be able to calculate the temperature fluxes along the boundaries of each control volume. To do this, we need to have a value for the conductivity along the faces of each control volume. Notice that the faces of the temperature control volumes lie within two adjacent design regions, which implies that there are two different conductivites along that face. To create a consistent conductivity along the control volume wall, we average (using either an arithmetic or harmonic mean) the conductivity of the two adjacent design nodes. Hence the conductivity along the West face of control volume $(i,j)$, denoted by $k^{i,j}_W$, is given by
+\begin{equation}
+	\text{Arithmetic Mean: }k^{i,j}_W=\frac{k^{i,j}+k^{i+1,j}}{2}\qquad\text{or}\qquad\text{Harmonic Mean: }k^{i,j}_W=2\left(\frac{1}{k^{i,j}}+\frac{1}{k^{i+1,j}}\right)^{-1}.\label{eqn:k_W-Average-Filter}
+\end{equation}
+Similarly, the conductivity along the North face of control volume $(i,j)$, denoted by $k^{i,j}_N$, is given by
+\begin{equation}
+	\text{Arithmetic Mean: }k^{i,j}_N=\frac{k^{i,j}+k^{i,j+1}}{2}\qquad\text{or}\qquad\text{Harmonic Mean: }k^{i,j}_N=2\left(\frac{1}{k^{i,j}}+\frac{1}{k^{i,j+1}}\right)^{-1}.\label{eqn:k_N-Average-Filter}
+\end{equation}
+
+For temperature control volume $(i,j)$, the finite volume method discretizes \eqref{eqn:SIMP-Heat-Eq} into the following linear equation
+\begin{equation}
+	K^{i,j}_C T^{i,j}=K_W^{i,j}T^{i,j-1}+K_W^{i,j+1}T^{i,j+1}+K_N^{i,j}T^{i-1,j}+K_N^{i+1,j}T^{i+1,j}+Q^{i,j},\label{eqn:FVM-Discret}
+\end{equation}
+where the $K^{i.j}$ terms represent the diffusive flux coefficients, $T^{i,j}$ the temperature of control volume $(i,j)$, and $Q^{i,j}$ the heat generation of volume $(i,j)$.
+
+The value of the flux at the center node of the control volume is equal to the total flux through the volume faces, so we have an additional equation to pair with \eqref{eqn:FVM-Discret}:
+\begin{equation}
+	K^{i,j}_C=K_W^{i,j}+K_W^{i,j+1}+K_N^{i,j}+K_N^{i+1,j}\label{eqn:CenterFluxCoeff}
+\end{equation}
+
+The $K_W$ and $K_N$ coefficients are dependent on the thermal conductivity and cross-sectional area of their corresponding faces:
+\begin{equation}
+	K_W^{i,j}=\frac{k_W^{i,j}\Delta y}{\Delta x}\qquad\text{and}\qquad K_N^{i,j}=\frac{k_N^{i,j}\Delta x}{\Delta y}\label{eqn:K-Coeffs}
+\end{equation}
+
+Putting together \eqref{eqn:k_W-Average-Filter}, \eqref{eqn:k_N-Average-Filter}, \eqref{eqn:FVM-Discret}, \eqref{eqn:CenterFluxCoeff}, and \eqref{eqn:K-Coeffs} for all $N_T$ control volumes gives us a system of equations that discretize \eqref{eqn:SIMP-Heat-Eq}. Collecting the coefficients $K$ into a matrix and representing the $T$ and $Q$ values as vectors, and doing a little reorganizing, we can represent the system of equations as a matrix equation:
+\begin{equation}
+	\mathbf{K}\mathbf{T}=\mathbf{Q}
+\end{equation}

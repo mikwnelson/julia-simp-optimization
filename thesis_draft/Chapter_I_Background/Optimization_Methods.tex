@@ -57,8 +57,6 @@ The gradient descent method chooses the search direction to be the negative grad
 
 Notice in Algorithm \ref{GradientDescentAlg} that essentially a line search is used to determine a step size and then we update our iterate in the direction of the steepest descent. This is repeated until we meet some sort of stopping criterion, typically something of the form $\|\nabla f(x)\|_2\leq\eta$, where $\eta$ is small and positive. Another common stopping criterion is to stop the algorithm when no significant progress is made between iterates by stopping the algorithm when $\|f_{k+1}-f_{k}\|<\eta$.
 
-One thing that is interesting to note about the gradient descent algorithm is that the function $f$ is never actually evaluated, only the gradient of $f$.
-
 An implementation of the gradient descent algorithm in the Julia language can be found in the appendix.
 
 \subsection{Nonlinear Conjugate Gradient}

@@ -132,5 +132,9 @@ The $K_W$ and $K_N$ coefficients are dependent on the thermal conductivity and c
 
 Putting together \eqref{eqn:k_W-Average-Filter}, \eqref{eqn:k_N-Average-Filter}, \eqref{eqn:FVM-Discret}, \eqref{eqn:CenterFluxCoeff}, and \eqref{eqn:K-Coeffs} for all $N_T$ control volumes gives us a system of equations that discretize \eqref{eqn:SIMP-Heat-Eq}. Collecting the coefficients $K$ into a matrix and representing the $T$ and $Q$ values as vectors, and doing a little reorganizing, we can represent the system of equations as a matrix equation:
 \begin{equation}
-	\mathbf{K}\mathbf{T}=\mathbf{Q}
+	\mathbf{K}\mathbf{T}=\mathbf{Q}.
 \end{equation}
+
+Let us take a moment to analyze the structure of the matrix $\mathbf{K}$, as it might not be immediately evident to the reader what the elements of this matrix represent. (It took the author some time to interpret the meaning of this matrix.) $\mathbf{K}$ is a sparse, symmetric, and pentadiagonal $mn\times mn$ matrix.
+
+The entries in the matrix $\mathbf{K}$ indicate the coefficient of diffusive flux between numbered temperature control volumes. Notice in Figure \ref{fig:grids} how the temperature control volumes are numbered down the columns. Entry $\mathbf{K}[\alpha,\beta]$ is the flux coefficient between volumes number $\alpha$ and $\beta$. Since the flux coefficient between volumes $\alpha$ and $\beta$ is the same as that between $\beta$ and $\alpha$, $\mathbf{K}[\alpha,\beta]=\mathbf{K}[\beta,\alpha]$, producing the symmetry of matrix $\mathbf{K}$.

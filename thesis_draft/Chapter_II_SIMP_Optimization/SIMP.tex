@@ -142,7 +142,7 @@ The entries in the matrix $\mathbf{K}$ indicate the coefficient of diffusive flu
 	\#(i,j)=i+m(j-1)\label{eqn:cord2num}
 \end{equation}
 
-Entry $\mathbf{K}[\alpha,\beta]$ is the flux coefficient between volumes number $\alpha$ and $\beta$. Since the flux coefficient between volumes $\alpha$ and $\beta$ is the same as that between $\beta$ and $\alpha$, $\mathbf{K}[\alpha,\beta]=\mathbf{K}[\beta,\alpha]$, producing the symmetry of matrix $\mathbf{K}$. Since a particular control volume only interfaces with adjacent cells (and itself), each row/column will have (up to) five non-zero entries (all other entries are zero since there is no flux between cells that are not in contact with one another), which produces the pentadiagonality and sparsity of $\mathbf{K}$. The $i$\textsuperscript{th} elements of the $mn\times 1$ vectors $\mathbf{T}$ and $\mathbf{Q}$ are the values of the temperature and heat generation of control volume number $i$.
+Entry $\mathbf{K}[\alpha,\beta]$ is the flux coefficient between volumes number $\alpha$ and $\beta$. Since the flux coefficient between volumes $\alpha$ and $\beta$ is the same as that between $\beta$ and $\alpha$, $\mathbf{K}[\alpha,\beta]=\mathbf{K}[\beta,\alpha]$, producing the symmetry of matrix $\mathbf{K}$. Since a particular control volume only interfaces with adjacent cells (and itself), each row/column will have (up to) five non-zero entries (all other entries are zero since there is no flux between cells that are not in contact with one another), which produces the pentadiagonality and sparsity of $\mathbf{K}$. The $i$\textsuperscript{th} elements of the size $mn$ vectors $\mathbf{T}$ and $\mathbf{Q}$ are the values of the temperature and heat generation of control volume number $i$.
 
 Equation \eqref{eqn:KTQ-Matrix-Eqn} is solved for $\mathbf{T}$ using any appropriate method, such as QR factorization. In our implementation we used the standard ``$\backslash$'' operator in Julia: $\mathbf{T}=\mathbf{K}\backslash\mathbf{Q}$.
 
@@ -154,7 +154,7 @@ Now that we have been able to discretize \eqref{eqn:SIMP-Heat-Eq}, we can update
 	\begin{tabular}{ll}
 		\text{minimize }   & $f(\mathbf{T})$                                                                                     \\
 		\text{subject to } & $\mathbf{K}\mathbf{T}=\mathbf{Q}$                                                                   \\
-		                   & $\displaystyle\frac{1}{N_{\boldsymbol{\eta}}}\sum_{i=1}^{mn}\boldsymbol{\eta}_i\leq\overline{\phi}$ \\
+		                   & $\displaystyle\frac{1}{N_{\boldsymbol{\eta}}}\sum_{i=1}^{N_{\boldsymbol{\eta}}}\boldsymbol{\eta}_i\leq\overline{\phi}$ \\
 		                   & $\mathbf{k}=k_0\vec{\mathbf{1}}+(k_+-k_0)\boldsymbol{\eta}^p$                                       \\
 		                   & $0\leq\boldsymbol{\eta}\leq 1\text{ and } p\geq 1$
 	\end{tabular}\label{Discretized-SIMP-Optimization-Problem}

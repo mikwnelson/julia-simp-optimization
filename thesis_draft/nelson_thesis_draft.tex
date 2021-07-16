@@ -6,11 +6,9 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{commath}
-%\usepackage{lmodern}
-\usepackage{libertine,libertinust1math}
-%\usepackage{concrete,concmath}
+\usepackage{lmodern}
+%\usepackage{libertine,libertinust1math}
 %\usepackage{concrete,eulervm}
-%\usepackage{newpxtext,eulervm}
 %\usepackage{newpxtext,newpxmath}
 %\usepackage{newtxtext,newtxmath}
 %\renewcommand{\sfdefault}{lmss}
@@ -31,13 +29,13 @@
 \usepackage[authoryear]{natbib}
 \doublespacing
 \usepackage[unicode=true,
- bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,
- breaklinks=true,pdfborder={0 0 0},pdfborderstyle={},backref=false,colorlinks=true]
- {hyperref}
+bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,
+breaklinks=true,pdfborder={0 0 0},pdfborderstyle={},backref=false,colorlinks=true]
+{hyperref}
 \hypersetup{pdftitle={Topological Optimization Using the SIMP Method},
- pdfauthor={Mikal Nelson},
- pdfsubject={Mathematical Optimization},
- urlcolor={black},citecolor={black},allcolors={black}}
+	pdfauthor={Mikal Nelson},
+	pdfsubject={Mathematical Optimization},
+	urlcolor={black},citecolor={black},allcolors={black}}
 \usepackage{jlcode}
 \usepackage{algorithm}
 \usepackage{algorithmicx}
@@ -52,8 +50,8 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
 \providecommand{\LyX}{\texorpdfstring%
-  {L\kern-.1667em\lower.25em\hbox{Y}\kern-.125emX\@}
-  {LyX}}
+	{L\kern-.1667em\lower.25em\hbox{Y}\kern-.125emX\@}
+	{LyX}}
 %% Because html converters don't know tabularnewline
 \providecommand{\tabularnewline}{\\}
 
@@ -97,14 +95,14 @@
 % to customize. listings has great documentation online
 %% When listings are used, break lines
 %\lstset{
- %    breaklines=true,  % sets automatic line breaking
- %    breakindent=2em,
- %    breakatwhitespace=true,  % sets if automatic breaks should
- %   breakautoindent=true
+%    breaklines=true,  % sets automatic line breaking
+%    breakindent=2em,
+%    breakatwhitespace=true,  % sets if automatic breaks should
+%   breakautoindent=true
 %}
 
 \@ifundefined{showcaptionsetup}{}{%
- \PassOptionsToPackage{caption=false}{subfig}}
+	\PassOptionsToPackage{caption=false}{subfig}}
 \usepackage{subfig}
 \makeatother
 
@@ -112,53 +110,53 @@
 \renewcommand{\lstlistingname}{\inputencoding{latin9}Listing}
 
 \begin{document}
-\begin{romanpages}
-
-\maketitle
-
-\begin{abstractlong}
-\addcontentsline{toc}{chapter}{Abstract}
-Insert Abstract Here
-
-\end{abstractlong}
-
-\begin{acknowledgements}
-%%if you want a "quote" environment for acknowledgements,
-%% use acknowledgements instead of acknowledgementslong
-\addcontentsline{toc}{chapter}{Acknowledgements}
-
-Dedicated to my mother, my first math teacher.
-
-Thank you to my wife, father, brothers, and all the teachers and professors who have helped me grow along the way.
-
-\end{acknowledgements}
-
-\tableofcontents{}
-
-\listoffigures
-
-%\listoftables
-
-\end{romanpages}
-
-\chapter*{Introduction}
-\addcontentsline{toc}{chapter}{Introduction}
-%\input{Introduction/Introduction}
-\chapter{Background}
-\input{Chapter_I_Background/PDE_Discretization}
-\input{Chapter_I_Background/The_Optimization_Problem}
-\input{Chapter_I_Background/Optimization_Methods}
-\input{Chapter_I_Background/MMA}
-
-\chapter{SIMP Optimization}
-\input{Chapter_II_SIMP_Optimization/SIMP}
-
-\global\long\def\bibname{References}
-
-\bibliographystyle{apalike2}
-\bibliography{Bibliography/Thesis_Bibliography}
-
-
-\appendix
-\include{Appendix/Appendix}
+	\begin{romanpages}
+		
+		\maketitle
+		
+		\begin{abstractlong}
+			\addcontentsline{toc}{chapter}{Abstract}
+			Insert Abstract Here
+			
+		\end{abstractlong}
+		
+		\begin{acknowledgements}
+			%%if you want a "quote" environment for acknowledgements,
+			%% use acknowledgements instead of acknowledgementslong
+			\addcontentsline{toc}{chapter}{Acknowledgements}
+			
+			Dedicated to my mother, my first math teacher.
+			
+			Thank you to my wife, father, brothers, and all the teachers and professors who have helped me grow along the way.
+			
+		\end{acknowledgements}
+		
+		\tableofcontents{}
+		
+		\listoffigures
+		
+		%\listoftables
+		
+	\end{romanpages}
+	
+	\chapter*{Introduction}
+	\addcontentsline{toc}{chapter}{Introduction}
+	%\input{Introduction/Introduction}
+	\chapter{Background}
+	\input{Chapter_I_Background/PDE_Discretization}
+	\input{Chapter_I_Background/The_Optimization_Problem}
+	\input{Chapter_I_Background/Optimization_Methods}
+	\input{Chapter_I_Background/MMA}
+	
+	\chapter{SIMP Optimization}
+	\input{Chapter_II_SIMP_Optimization/SIMP}
+	
+	\global\long\def\bibname{References}
+	
+	\bibliographystyle{apalike2}
+	\bibliography{Bibliography/Thesis_Bibliography}
+	
+	
+	\appendix
+	\include{Appendix/Appendix}
 \end{document}

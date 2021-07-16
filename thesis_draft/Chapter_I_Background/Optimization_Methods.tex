@@ -67,8 +67,8 @@ Suppose we have a function $f(x)$ of $N$ variables. Let $x_0$ be an initial gues
 
 We set an adjustable step length $\alpha$ and perform a line search in the direction $d_0=\Delta x_0$ until a minimum of $f$ is reached:
 \begin{align*}
-	&\alpha_0:=\arg\min_{\alpha} f(x_0+\alpha\Delta x_0),\\
-	&x_1=x_0+\alpha_0\Delta x_0.
+	& \alpha_0:=\arg\min_{\alpha} f(x_0+\alpha\Delta x_0), \\
+	& x_1=x_0+\alpha_0\Delta x_0.                          
 \end{align*}
 
 Suppose we were to simply iterate this process and for each step $i$ we do the following:

@@ -3,21 +3,21 @@
 In much of mathematics, our goal is to seek some sort of solution. In cases where there are multiple solutions, it is desirable to determine the ``best'' solution judged against some set of criteria. Mathematical optimization is the study of solving such problems. In its simplest case, mathematical optimization is the practice of minimizing or maximizing a given function over a certain set and possibly subject to some constraints.
 
 \begin{defn}
-An optimization problem (in standard form) has the form
-\begin{equation}
-	\begin{tabular}{lll}
-		\text{minimize }   & $f_0(x)$          & \\
-		\text{subject to } & $f_i(x)\leq 0$, & $i=1,\ldots, m$\\
-		& $h_i(x) = 0$,      & $i=1,\ldots, p$
-	\end{tabular}\label{Optimization}
-\end{equation}
-where
-\begin{itemize}
-	\item $x=\left(x_1,\ldots,x_n\right)$ are the optimization variables,
-	\item $f_0 : \mathbb{R}^n\rightarrow\mathbb{R}$ is the objective function,
-	\item $f_i : \mathbb{R}^n\rightarrow\mathbb{R}$ are the inequality constraint functions, and
-	\item $h_i : \mathbb{R}^n\rightarrow\mathbb{R}$ are the equality constraint functions.
-\end{itemize}
+	An optimization problem (in standard form) has the form
+	\begin{equation}
+		\begin{tabular}{lll}
+			\text{minimize }   & $f_0(x)$        &                 \\
+			\text{subject to } & $f_i(x)\leq 0$, & $i=1,\ldots, m$ \\
+			& $h_i(x) = 0$,   & $i=1,\ldots, p$ 
+		\end{tabular}\label{Optimization}
+	\end{equation}
+	where
+	\begin{itemize}
+		\item $x=\left(x_1,\ldots,x_n\right)$ are the optimization variables,
+		\item $f_0 : \mathbb{R}^n\rightarrow\mathbb{R}$ is the objective function,
+		\item $f_i : \mathbb{R}^n\rightarrow\mathbb{R}$ are the inequality constraint functions, and
+		\item $h_i : \mathbb{R}^n\rightarrow\mathbb{R}$ are the equality constraint functions.
+	\end{itemize}
 \end{defn}
 If there are no constraints ($m=p=0$), then the problem is called \textit{unconstrained}. \cite[p. 127]{Boyd2004}
 
@@ -35,25 +35,25 @@ A set $C$ is \textit{convex} if the line segment between any two points in $C$ l
 
 A function $f : \mathbb{R}^n\rightarrow\mathbb{R}$ is convex if the domain of $f$ is a convex set and if for all $x,y$ in the domain of $f$, and $\theta$ with $0\leq\theta\leq 1$, we have
 \begin{equation}
-		f\left(\theta x+\left(1-\theta\right)y\right)\leq\theta f(x)+(1-\theta)f(y).
-		\label{eqn:Convexity}
-	\end{equation}
+	f\left(\theta x+\left(1-\theta\right)y\right)\leq\theta f(x)+(1-\theta)f(y).
+	\label{eqn:Convexity}
+\end{equation}
 A \textit{convex optimization problem}, therefore, is an optimization problem of the form
 \begin{equation}
-		\begin{tabular}{lll}
-			\text{minimize }   & $f_0(x)$          & \\
-			\text{subject to } & $f_i(x)\leq 0$, & $i=1,\ldots, m$\\
-			& $a_i^T = b_i$,      & $i=1,\ldots, p$
-		\end{tabular}\label{ConvexOptimization}
-	\end{equation}
-	where $f_0,\ldots,f_m$ are convex functions.
+	\begin{tabular}{lll}
+		\text{minimize }   & $f_0(x)$        &                 \\
+		\text{subject to } & $f_i(x)\leq 0$, & $i=1,\ldots, m$ \\
+		& $a_i^T = b_i$,  & $i=1,\ldots, p$ 
+	\end{tabular}\label{ConvexOptimization}
+\end{equation}
+where $f_0,\ldots,f_m$ are convex functions.
 
 Notice that there are three requirements that differentiate a convex optimization problem from a general optimization problem:
 \begin{itemize}
-		\item the objective function must be convex
-		\item the inequality constraint functions must be convex
-		\item the equality constraint functions must be affine
-	\end{itemize}
+	\item the objective function must be convex
+	\item the inequality constraint functions must be convex
+	\item the equality constraint functions must be affine
+\end{itemize}
 
 In a convex optimization problem we minimize a convex objective function over a convex set and any locally optimal point is also globally optimal. This is a \textit{very} useful fact!
 

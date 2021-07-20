@@ -106,4 +106,13 @@ avoided. Concepts are explained in several different ways. Most equations are co
   pages     = {180–183},
 }
 
+@Misc{Johnson2021,
+  author       = {{Steven G. Johnson}},
+  howpublished = {WebPage},
+  month        = apr,
+  title        = {Notes on Adjoint Methods for 18.335},
+  year         = {2021},
+  url          = {\url{http://math.mit.edu/~stevenj/18.336/adjoint.pdf}},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}

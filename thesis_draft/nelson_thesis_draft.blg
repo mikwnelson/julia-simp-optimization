@@ -1,0 +1,50 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: nelson_thesis_draft.aux
+Reallocating 'name_of_file' (item size: 1) to 9 items.
+The style file: apalike2.bst
+Reallocating 'name_of_file' (item size: 1) to 33 items.
+Reallocating 'name_of_file' (item size: 1) to 22 items.
+A level-1 auxiliary file: Appendix/Appendix.aux
+Database file #1: Bibliography/Thesis_Bibliography.bib
+You've used 5 entries,
+            2229 wiz_defined-function locations,
+            549 strings with 4834 characters,
+and the built_in function-call counts, 1626 in all, are:
+= -- 154
+> -- 62
+< -- 4
++ -- 24
+- -- 20
+* -- 122
+:= -- 303
+add.period$ -- 15
+call.type$ -- 5
+change.case$ -- 33
+chr.to.int$ -- 5
+cite$ -- 5
+duplicate$ -- 65
+empty$ -- 112
+format.name$ -- 27
+if$ -- 306
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 6
+newline$ -- 28
+num.names$ -- 15
+pop$ -- 32
+preamble$ -- 1
+purify$ -- 35
+quote$ -- 0
+skip$ -- 51
+stack$ -- 0
+substring$ -- 89
+swap$ -- 4
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 26
+warning$ -- 0
+while$ -- 12
+width$ -- 0
+write$ -- 64

@@ -6,7 +6,7 @@ Consider a finite-size volume in which heat is being generated at \textit{every}
 
 Solid Isotropic Material with Penalization (SIMP) is a method based on topology optimization that can be used to solve the VP Heat Conduction Problem. SIMP is what is called a soft kill method, meaning that in each step of the method we increase or decrease high-conductivity material by a small quantity. This allows us to apply methods designed for continuous optimization problems to this discrete problem.
 
-\subsection{SIMP Method Description}
+\subsection{Preliminary Parameters}
 
 \subsubsection*{Assumptions}
 In order to develop the method, we need to make a couple of assumptions.
@@ -154,10 +154,31 @@ Now that we have been able to discretize \eqref{eqn:SIMP-Heat-Eq}, we can update
 	\begin{tabular}{ll}
 		\text{minimize }   & $f(\mathbf{T})$                                                                                     \\
 		\text{subject to } & $\mathbf{K}\mathbf{T}=\mathbf{Q}$                                                                   \\
-		                   & $\displaystyle\frac{1}{N_{\boldsymbol{\eta}}}\sum_{i=1}^{N_{\boldsymbol{\eta}}}\boldsymbol{\eta}_i\leq\overline{\phi}$ \\
-		                   & $\mathbf{k}=k_0\vec{\mathbf{1}}+(k_+-k_0)\boldsymbol{\eta}^p$                                       \\
+		                   & $\displaystyle\frac{1}{N_T}\sum_{i=1}^{N_T}\boldsymbol{\eta}_i\leq\overline{\phi}$ \\
+		                   & $\mathbf{k}=k_0\mathbf{1}+(k_+-k_0)\boldsymbol{\eta}^p$                                       \\
 		                   & $0\leq\boldsymbol{\eta}\leq 1\text{ and } p\geq 1$
 	\end{tabular}\label{Discretized-SIMP-Optimization-Problem}
 \end{equation}
 
-Here $\boldsymbol{\eta}$ represents the vector of design parameter values for each control volume. Additionally we introduce the variable $\overline{\phi}$ which represents the maximum porosity, the maximal fraction of high-conductivity material allowed within the domain.
+Here $\boldsymbol{\eta}$ represents the vector of design parameter values for each control volume. Additionally, we introduce the variable $\overline{\phi}$ which represents the maximum porosity, the maximal fraction of high-conductivity material allowed within the domain.
+
+For our implementation of the SIMP method for this problem, the average temperature was chosen as the objective function:
+\begin{equation}
+	f_{av}\left(\mathbf{T}\right)=\frac{1}{N_T}\sum_{i=1}^{N_T}\mathbf{T}_i.\label{eqn:f_av}
+\end{equation}
+
+Additionally, we opted to have no heat generation for each control volume:
+\begin{equation}
+	\mathbf{Q}=\mathbf{0}.\label{eqn:Q_vec}
+\end{equation}
+
+We use the Method of Moving Asymptotes (MMA) to update the design parameters $\boldsymbol{\eta}$ throughout the optimization process. To create a local and convex approximation of the problem (see $\S$\ref{sec:MMA}), MMA requires both function and constraint evaluations, as well as evaluations of the respective gradients. Hence, we need to calculate the gradients of the average temperature function and porosity constraint. The gradients of the functions with respect to the design parameters indicate the \textit{sensitivity} of those functions to changes in $\boldsymbol{\eta}$, and hence analysis of these derivatives is called \textit{sensistivity analysis}.
+
+\subsubsection*{Sensitivity Analysis}
+
+We seek to find the partial derivatives of $f_{av}$ and $\overline{\phi}$ with respect to an arbitrary design element $\eta_{\ell}$ so that we can form the gradients. That is, we are looking to find expressions for $$\displaystyle\frac{\partial f_{av}}{\partial\eta_\ell}\quad\text{and}\quad\displaystyle\frac{\partial\overline{\phi}}{\partial\eta_\ell}.$$
+
+The adjoint method is employed to make the calculation of the partial derivative of $f_{av}$ easier to find. Similar to the method of Lagrange multipliers \cite[]{Johnson2021}, by assuming \eqref{eqn:KTQ-Matrix-Eqn} is true, we add a clever form of $\mathbf{0}$ to the objective function $f_{av}$:
+\begin{equation}
+	f_{av}\left(\mathbf{T}\right)=\frac{1}{N_T}\sum_{i=1}^{N_T}\mathbf{T}_i+\lambda\cdot\underbrace{\left(\mathbf{K}\mathbf{T}-\mathbf{Q}\right)}_{=\mathbf{0}}.\label{eqn:f_av-AdjointTrick}
+\end{equation}

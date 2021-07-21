@@ -327,6 +327,8 @@ end
     yflip = true,
     xmirror = true,
     aspect_ratio = :equal,
+    fontfamily = "serif",
+    font = "Computer Modern Roman",
     colorbar_title = "η",
     title = "η for each Design Volume",
 )

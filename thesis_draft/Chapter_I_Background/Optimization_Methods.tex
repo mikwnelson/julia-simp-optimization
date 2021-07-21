@@ -17,7 +17,7 @@ Most often in practice we use \textit{inexact line searches}. In an inexact line
 
 One inexact line search strategy is the \textit{Backtracking Line Search}.
 \begin{algorithm}[H]
-	\caption{Backtracking Line Search \cite[]{Boyd2004}\label{BacktrackingLineSearchAlg}}
+	\caption{Backtracking Line Search \cite{Boyd2004}\label{BacktrackingLineSearchAlg}}
 	\begin{algorithmic} 
 		\State \textbf{given} a descent direction $\Delta x$ for $f$ at $x\in\textbf{dom}f,\alpha\in(0,0.5),\beta\in(0,1)$.
 		\State $t:=1$.
@@ -42,7 +42,7 @@ Notice that the backtracking search will find a step size $t$ such that $0\leq t
 The gradient descent method chooses the search direction to be the negative gradient. That is, in this method we set $\Delta x=-\nabla f(x)$, where $f$ is the function we seek to optimize. Since the gradient of a function gives the direction of greatest increase, naturally the negative gradient will give the direction of the most rapid decline.
 
 \begin{algorithm}
-	\caption{Gradient Descent Method \cite[]{Boyd2004}\label{GradientDescentAlg}}
+	\caption{Gradient Descent Method \cite{Boyd2004}\label{GradientDescentAlg}}
 	\begin{algorithmic} 
 		\State \textbf{given} a starting point $x\in\textbf{dom}f$.
 		\Repeat
@@ -97,7 +97,7 @@ After the first iteration, the following steps constitute one iteration along a 
 Algorithm \ref{CongGradAlg} uses the Newton-Raphson method to find the values of $\alpha_i$.
 
 \begin{algorithm}
-	\caption{Nonlinear Conjugate Gradient Using Newton-Raphson \cite[]{Shewchuk1994}\label{CongGradAlg}}
+	\caption{Nonlinear Conjugate Gradient Using Newton-Raphson \cite{Shewchuk1994}\label{CongGradAlg}}
 	Given a function $f$, a starting value $x$, a maximum number of CG iterations $i_{\text{max}}$, a CG error tolerance $\epsilon<1$, a maximum number of Newton-Raphson iterations $j_{\text{max}}$, and a Newton-Raphson error tolerance $\varepsilon<1$:
 	\begin{algorithmic}
 		\State $i\Leftarrow 0$

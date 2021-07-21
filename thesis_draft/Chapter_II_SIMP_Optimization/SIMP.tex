@@ -17,7 +17,7 @@ First of all, the energy differential equation driving the heat-flux inside the 
 	\item Low-conductivity materials ($k_0$) and high-conductivity materials ($k_+$) are treated as homogeneous and isotropic on their respective conductivities.
 \end{enumerate}
 
-Throughout the article \cite[]{Marck2012}, the authors also set the following conditions:
+Throughout the article \cite{Marck2012}, the authors also set the following conditions:
 \begin{itemize}
 	\item Thermal conductivities are constant:
 	$$k_0=1 \si[per-mode=fraction]{\watt\per\square\meter\per\kelvin}\qquad\text{and}\qquad k_+=100 \si[per-mode=fraction]{\watt\per\square\meter\per\kelvin}$$
@@ -77,12 +77,12 @@ If one were to optimize conductive material placement to increase heat transfer 
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.6\textwidth]{Chapter_II_SIMP_Optimization/Images/SIMP-Example-Checkerboarding.png}
+	\includegraphics[width=0.8\textwidth]{Chapter_II_SIMP_Optimization/Images/SIMP-Example-Checkerboarding.png}
 	\caption[Checkerboard Result in Practice]{Output of SIMP algorithm for $30\times 40$ temperature control volumes. Notice the local checkerboarding around $(0.05,0.015)$.}
 	\label{fig:SIMP-Checkerboard}
 \end{figure}
 
-In order to solve the heat equation \eqref{eqn:HeatEq}, we employ the Finite Volume Method (described earlier). This involves splitting up our space into a finite number of control volumes. The checkerboard pattern emerges when the solution of our optimization process converges to a 1---0 structure which has some meshes that successively belong to the $\Omega_0$ and $\Omega_+$ sets (i.e.: adjacent grid volumes have alternating thermal conductivites). As a result, the heat transfer within the structure between $k_+$ and $k_0$ regions is maximized, artificially increasing the impact of adding $k_+$ material on the temperature $T$, which in turn minimizes the objective function in \eqref{SIMP-Optimization-Problem} \cite[]{Versteeg2007}. Typically, this pattern occurs locally but then spreads throughout the entire structure through successive iterations of the optimization process. However, in the real world, these checkerboard placements of our conductive materials do not actually have the effect of lowering the average temperature in structures. In fact, the checkerboard example in Figure \ref{fig:3x3-Checkerboard} doesn't even direct heat towards the heat-sink on the left wall of the structure.
+In order to solve the heat equation \eqref{eqn:HeatEq}, we employ the Finite Volume Method (described earlier). This involves splitting up our space into a finite number of control volumes. The checkerboard pattern emerges when the solution of our optimization process converges to a 1---0 structure which has some meshes that successively belong to the $\Omega_0$ and $\Omega_+$ sets (i.e.: adjacent grid volumes have alternating thermal conductivites). As a result, the heat transfer within the structure between $k_+$ and $k_0$ regions is maximized, artificially increasing the impact of adding $k_+$ material on the temperature $T$, which in turn minimizes the objective function in \eqref{SIMP-Optimization-Problem} \cite{Versteeg2007}. Typically, this pattern occurs locally but then spreads throughout the entire structure through successive iterations of the optimization process. However, in the real world, these checkerboard placements of our conductive materials do not actually have the effect of lowering the average temperature in structures. In fact, the checkerboard example in Figure \ref{fig:3x3-Checkerboard} doesn't even direct heat towards the heat-sink on the left wall of the structure.
 
 In order to avoid obtaining checkerboard solutions from our optimization process, we employ two separate staggered grids for our temperature and design variables. We need to employ some extra equations in order to translate between design and temperature variables, but this strategy adequately solves the issue of convergence to checkerboard solutions.
 
@@ -154,7 +154,7 @@ Now that we have been able to discretize \eqref{eqn:SIMP-Heat-Eq}, we can update
 	\begin{tabular}{ll}
 		\text{minimize }   & $f(\mathbf{T})$                                                                                     \\
 		\text{subject to } & $\mathbf{K}\mathbf{T}=\mathbf{Q}$                                                                   \\
-		                   & $\displaystyle\frac{1}{N_T}\sum_{i=1}^{N_T}\boldsymbol{\eta}_i\leq\overline{\phi}$ \\
+		                   & $\displaystyle\frac{1}{N_T}\mathbf{1}^T\boldsymbol{\eta}\leq\overline{\phi}$ \\
 		                   & $\mathbf{k}=k_0\mathbf{1}+(k_+-k_0)\boldsymbol{\eta}^p$                                       \\
 		                   & $0\leq\boldsymbol{\eta}\leq 1\text{ and } p\geq 1$
 	\end{tabular}\label{Discretized-SIMP-Optimization-Problem}
@@ -164,7 +164,7 @@ Here $\boldsymbol{\eta}$ represents the vector of design parameter values for ea
 
 For our implementation of the SIMP method for this problem, the average temperature was chosen as the objective function:
 \begin{equation}
-	f_{av}\left(\mathbf{T}\right)=\frac{1}{N_T}\sum_{i=1}^{N_T}\mathbf{T}_i.\label{eqn:f_av}
+	f_{av}\left(\mathbf{T}\right)=\frac{1}{N_T}\mathbf{1}^T\mathbf{T}.\label{eqn:f_av}
 \end{equation}
 
 Additionally, we opted to have no heat generation for each control volume:
@@ -178,7 +178,60 @@ We use the Method of Moving Asymptotes (MMA) to update the design parameters $\b
 
 We seek to find the partial derivatives of $f_{av}$ and $\overline{\phi}$ with respect to an arbitrary design element $\eta_{\ell}$ so that we can form the gradients. That is, we are looking to find expressions for $$\displaystyle\frac{\partial f_{av}}{\partial\eta_\ell}\quad\text{and}\quad\displaystyle\frac{\partial\overline{\phi}}{\partial\eta_\ell}.$$
 
-The adjoint method is employed to make the calculation of the partial derivative of $f_{av}$ easier to find. Similar to the method of Lagrange multipliers \cite[]{Johnson2021}, by assuming \eqref{eqn:KTQ-Matrix-Eqn} is true, we add a clever form of $\mathbf{0}$ to the objective function $f_{av}$:
+The adjoint method is employed to make the calculation of the partial derivative of $f_{av}$ easier to find. By assuming \eqref{eqn:KTQ-Matrix-Eqn} is true, we add a clever form of $\mathbf{0}$ to the objective function $f_{av}$:
 \begin{equation}
-	f_{av}\left(\mathbf{T}\right)=\frac{1}{N_T}\sum_{i=1}^{N_T}\mathbf{T}_i+\lambda\cdot\underbrace{\left(\mathbf{K}\mathbf{T}-\mathbf{Q}\right)}_{=\mathbf{0}}.\label{eqn:f_av-AdjointTrick}
+	f_{av}\left(\mathbf{T}\right)=\frac{1}{N_T}\mathbf{1}^T\mathbf{T}+\boldsymbol{\lambda}^T\underbrace{\left(\mathbf{K}\mathbf{T}-\mathbf{Q}\right)}_{=0}.\label{eqn:f_av-AdjointTrick}
+\end{equation}
+
+The new variable, $\boldsymbol{\lambda}=\left(\lambda_1,\lambda_2,\ldots,\lambda_{N_T}\right)$, is called the adjoint vector and behaves like a Lagrange multiplier \cite{Johnson2021}. Differentiating \eqref{eqn:f_av-AdjointTrick} with respect to an arbitrary design variable $\eta_\ell$ gives
+\begin{equation}
+	\frac{\partial f_{av}}{\partial\eta_{\ell}}=\frac{\mathbf{1}^T}{N_T}\frac{\partial\mathbf{T}_i}{\partial\eta_{\ell}}+\boldsymbol{\lambda}^T\left(\frac{\partial\mathbf{K}}{\partial\eta_{\ell}}\mathbf{T}+\mathbf{K}\frac{\partial\mathbf{T}}{\partial\eta_{\ell}}-\frac{\partial\mathbf{Q}}{\partial\eta_{\ell}}\right).\label{df_av/deta}
+\end{equation}
+
+The heat-generation rate is assumed to be homogeneous over design volumes and independent of the conductive material, so it does not depend on the design parameters: 
+\begin{equation}
+	\frac{\partial\mathbf{Q}}{\partial\eta_{\ell}}=0.\label{eqn:dQ=0}
+\end{equation}
+Factoring terms including the partial derivative of $\mathbf{T}$ and taking into account \eqref{eqn:dQ=0}, \eqref{df_av/deta} becomes
+\begin{equation}
+	\frac{\partial f_{av}}{\partial\eta_{\ell}}=\underbrace{\left(\boldsymbol{\lambda}^T\mathbf{K}+\frac{\mathbf{1}^T}{N_T}\right)}_{(\star)}\frac{\partial\mathbf{T}}{\partial\eta_{\ell}}+\boldsymbol{\lambda}^T\frac{\partial\mathbf{K}}{\partial\eta_{\ell}}\mathbf{T}.\label{df_av/delta-simplified}
+\end{equation}
+Hence $\frac{\partial\mathbf{T}}{\partial\eta_{\ell}}$ is eliminated from the expression if $\boldsymbol{\lambda}$ is taken such that $(\star)$ in \eqref{df_av/delta-simplified} equals $0$:
+\begin{equation}
+	\boldsymbol{\lambda}^T\mathbf{K}+\frac{\mathbf{1}^T}{N_T}=0\iff\mathbf{K}\boldsymbol{\lambda}=-\frac{\mathbf{1}}{N_T}\mathbf{1}^T.\label{eqn:lambda-vector-equation}
+\end{equation}
+\eqref{eqn:lambda-vector-equation} is solved the same way as \eqref{eqn:KTQ-Matrix-Eqn}. Thus, using the values for $\boldsymbol{\lambda}$ from solving \eqref{eqn:lambda-vector-equation},
+\begin{equation}
+	\frac{\partial f_{av}}{\partial\eta_{\ell}}=\boldsymbol{\lambda}^T\frac{\partial\mathbf{K}}{\partial\eta_{\ell}}\mathbf{T}.\label{eqn:d-f_av}
+\end{equation}
+$\boldsymbol{\lambda}$ and $\mathbf{T}$ are found by solving \eqref{eqn:lambda-vector-equation} and \eqref{eqn:KTQ-Matrix-Eqn}, respectively. Thus, it remains to find $\frac{\partial\mathbf{K}}{\partial\eta_{\ell}}$. Recall that matrix $\mathbf{K}$ contains the coefficients of control volume boundary conductivities, which depend on the penalization equation $\mathbf{k}(\eta)$ \eqref{eqn:penalization}. Hence, using the chain rule,
+\begin{equation}
+	\frac{\partial\mathbf{K}}{\partial\eta_{\ell}}=\frac{\partial\mathbf{K}}{\partial\mathbf{k}}\frac{\partial\mathbf{k}}{\partial\eta_{\ell}}.\label{eqn:chain-rule}
+\end{equation}
+By \eqref{eqn:penalization}
+\begin{equation}
+	\frac{\partial\mathbf{k}}{\partial\eta_{\ell}}=
+	\begin{cases}
+		p\left(k_{+}-k_0\right)\eta_{\ell}^{p-1} & \text{for the }\ell\text{th element},\\
+		0 & \text{otherwise}.
+	\end{cases}
+\end{equation}
+Using \eqref{eqn:k_W-Average-Filter}, \eqref{eqn:k_N-Average-Filter}, \eqref{eqn:CenterFluxCoeff}, and \eqref{eqn:K-Coeffs} one is able to find $\frac{\partial\mathbf{K}}{\partial\mathbf{k}}$, the form of which will vary slightly based on whether an arithmetic or harmonic mean is chosen. For the arithmetic mean
+\begin{equation}
+	\frac{\partial\mathbf{K}}{\partial\mathbf{k}}=
+	\begin{cases}
+		-\frac{1}{2}\frac{\Delta y}{\Delta x} & \text{if }k\text{ corresponds to a }k_W\text{ face},\\
+		-\frac{1}{2}\frac{\Delta x}{\Delta y} & \text{if }k\text{ corresponds to a }k_N\text{ face},\\
+		-\left(\frac{\Delta y}{\Delta x}+\frac{\Delta x}{\Delta y}\right) & \text{if }k\text{ corresponds to a }k_C\text{ node}.
+	\end{cases}
+\end{equation}
+Though complex, it is possible to compute $\displaystyle\frac{\partial f_{av}}{\partial\eta_{\ell}}$ using the above. Now we need to show how to find $\displaystyle\frac{\partial\overline{\phi}}{\eta_{\ell}}$.
+
+The porosity function is
+\begin{equation}
+	\phi(\boldsymbol{\eta})=\frac{1}{N_\eta}\mathbf{1}^T\boldsymbol{\eta}\label{eqn:porosity}
+\end{equation}
+where $N_\eta$ indicates the number of design volumes. It is easy to compute the gradient of \eqref{eqn:porosity}:
+\begin{equation}
+	\frac{\partial\phi}{\partial\eta_{\ell}}=\frac{1}{N_\eta}.\label{eqn:porosity-deriv}
 \end{equation}

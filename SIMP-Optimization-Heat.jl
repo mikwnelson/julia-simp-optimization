@@ -7,9 +7,9 @@ pyplot()
 
 p = 1.0
 
-m = 30
+m = 60
 
-n = 40
+n = 60
 
 k₀ = 1.0
 
@@ -304,14 +304,16 @@ end =#
 
 f_0 = 10 * av_temp(η, [], p, m, n)
 
-while true
-    (minf, minx, ret) = optimize!(opt, η)
-    numevals = opt.numevals # the number of function evaluations
-    println("$p: $minf for $numevals iterations (returned $ret)")
-    global p += 0.05
-    err = norm(minf - f_0)
-    global f_0 = minf
-    err <= ε₀ && break
+while p ≤ 20
+    while true
+        (minf, minx, ret) = optimize!(opt, η)
+        numevals = opt.numevals # the number of function evaluations
+        println("$p: $minf for $numevals iterations (returned $ret)")
+        global p += 0.05
+        err = norm(minf - f_0)
+        global f_0 = minf
+        err <= ε₀ && break
+    end
 end
 
 # numevals = opt.numevals # the number of function evaluations

@@ -176,7 +176,7 @@ We use the Method of Moving Asymptotes (MMA) to update the design parameters $\b
 
 \subsubsection*{Sensitivity Analysis}
 
-We seek to find the partial derivatives of $f_{av}$ and $\overline{\phi}$ with respect to an arbitrary design element $\eta_{\ell}$ so that we can form the gradients. That is, we are looking to find expressions for $$\displaystyle\frac{\partial f_{av}}{\partial\eta_\ell}\quad\text{and}\quad\displaystyle\frac{\partial\overline{\phi}}{\partial\eta_\ell}.$$
+We seek to find the partial derivatives of $f_{av}$ (the objective function) and $\phi$ (the constraint) with respect to an arbitrary design element $\eta_{\ell}$ so that we can form the gradients. That is, we are looking to find expressions for $$\displaystyle\frac{\partial f_{av}}{\partial\eta_\ell}\quad\text{and}\quad\displaystyle\frac{\partial\phi}{\partial\eta_\ell}.$$
 
 The adjoint method is employed to make the calculation of the partial derivative of $f_{av}$ easier to find. By assuming \eqref{eqn:KTQ-Matrix-Eqn} is true, we add a clever form of $\mathbf{0}$ to the objective function $f_{av}$:
 \begin{equation}
@@ -225,13 +225,32 @@ Using \eqref{eqn:k_W-Average-Filter}, \eqref{eqn:k_N-Average-Filter}, \eqref{eqn
 		-\left(\frac{\Delta y}{\Delta x}+\frac{\Delta x}{\Delta y}\right) & \text{if }k\text{ corresponds to a }k_C\text{ node}.
 	\end{cases}
 \end{equation}
-Though complex, it is possible to compute $\displaystyle\frac{\partial f_{av}}{\partial\eta_{\ell}}$ using the above. Now we need to show how to find $\displaystyle\frac{\partial\overline{\phi}}{\eta_{\ell}}$.
+It is now possible to compute $\displaystyle\frac{\partial f_{av}}{\partial\eta_{\ell}}$ using the above. We still require $\displaystyle\frac{\partial\phi}{\eta_{\ell}}$.
 
 The porosity function is
 \begin{equation}
 	\phi(\boldsymbol{\eta})=\frac{1}{N_\eta}\mathbf{1}^T\boldsymbol{\eta}\label{eqn:porosity}
 \end{equation}
-where $N_\eta$ indicates the number of design volumes. It is easy to compute the gradient of \eqref{eqn:porosity}:
+where $N_\eta$ indicates the number of design elements. The optimizer used in the implementation (NLopt) requires constraints to be in the form of a function less than or equal to zero, so we reorganize the form of \eqref{eqn:porosity} in \eqref{Discretized-SIMP-Optimization-Problem}:
 \begin{equation}
-	\frac{\partial\phi}{\partial\eta_{\ell}}=\frac{1}{N_\eta}.\label{eqn:porosity-deriv}
+	\mathbf{1}^T\boldsymbol{\eta}-N_{T}\overline{\phi}\leq 0\label{ineq:porosity}
+\end{equation}
+Therefore, we set the left-hand side of this inequality to be our porosity function:
+\begin{equation}
+	\tilde{\phi}\left(\boldsymbol{\eta}\right)=\mathbf{1}^T\boldsymbol{\eta}-N_T\overline{\phi}\label{eqn:modified-porosity}
+\end{equation}
+Therefore,
+\begin{equation}
+	\frac{\partial\tilde{\phi}}{\partial\eta_{\ell}}=1\label{eqn:partial-por}
+\end{equation}
+Now, we update the optimization problem one last time with the results from \eqref{eqn:f_av}, \eqref{eqn:Q_vec}, and \eqref{ineq:porosity}.
+
+\begin{equation}
+	\begin{tabular}{ll}
+		$\text{minimize}$  & $f_{av}\left({\mathbf{T}}\right)=\frac{1}{N_T}\mathbf{1}^T\mathbf{T}$                                                                                     \\
+		\text{subject to } & $\mathbf{K}\mathbf{T}=\mathbf{0}$                                                                   \\
+		& $\mathbf{1}^T\boldsymbol{\eta}-N_T\overline{\phi}\leq0$ \\
+		& $\mathbf{k}=k_0\mathbf{1}+(k_+-k_0)\boldsymbol{\eta}^p$                                       \\
+		& $0\leq\boldsymbol{\eta}\leq 1\text{ and } p\geq 1$
+	\end{tabular}\label{Implementation-SIMP-Optimization-Problem}
 \end{equation}

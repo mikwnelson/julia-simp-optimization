@@ -7,9 +7,9 @@ pyplot()
 
 p = 1.0
 
-m = 60
+m = 20
 
-n = 60
+n = 20
 
 k₀ = 1.0
 
@@ -303,7 +303,7 @@ while counter <= 3
 end =#
 
 f_0 = 10.0 * av_temp(η, [], p, m, n)
-@time
+
 while true
     (minf, minx, ret) = optimize!(opt, η)
     numevals = opt.numevals # the number of function evaluations

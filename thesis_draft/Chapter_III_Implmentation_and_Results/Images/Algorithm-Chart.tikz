@@ -1,0 +1,9 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=Rectangle] (0) at (0, 10) {\textbf{Initialization}\\$\eta_{\ell}=0.05$\\$f_0=\gamma$};
+		\node [style=Circle-Label] (1) at (0, 0) {\textbf{Function}\\\textbf{Evaluations}\\$\phi(\boldsymbol{\eta})$\\$f_{av}(\mathbf{T})$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=Arrow] (0) to (1);
+	\end{pgfonlayer}
+\end{tikzpicture}

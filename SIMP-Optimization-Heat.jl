@@ -1,3 +1,5 @@
+using Plots: push!
+using NLopt: numevals
 using NLopt, SparseArrays, LinearAlgebra, LaTeXStrings, Plots
 pyplot()
 
@@ -11,9 +13,9 @@ p_max = 20
 
 p₊ = 0.05
 
-m = 20
+m = 10
 
-n = 20
+n = 10
 
 k₀ = 1.0
 
@@ -308,15 +310,25 @@ end =#
 
 f_0 = 10.0 * av_temp(η, [], p, m, n)
 
+p_vec = []
+iter_vec = []
+f_av_vec = []
+total_iterations = 0
+total_iter_vec = []
+
 while true
     (minf, minx, ret) = optimize!(opt, η)
     numevals = opt.numevals # the number of function evaluations
     println("$p: $minf for $numevals iterations (returned $ret)")
+    global total_iterations += numevals
+    global total_iter_vec = push!(total_iter_vec,total_iterations)
+    global p_vec = push!(p_vec,p)
+    global f_av_vec = push!(f_av_vec,minf)
+    global iter_vec = push!(iter_vec, numevals)
     global p += p₊
     err = norm(minf - f_0)
     global f_0 = minf
     ((err <= ε₀) || (p>p_max)) && break
-    
 end
 
 # numevals = opt.numevals # the number of function evaluations
@@ -337,3 +349,9 @@ end
     colorbar_title = "η",
     title = "η for each Design Volume",
 )
+
+p_vs_f_av = plot(p_vec,f_av_vec)
+
+tot_iter_vs_p = plot(total_iter_vec,p_vec)
+
+tot_iter_vs_f_av = plot(total_iter_vec,f_av_vec)

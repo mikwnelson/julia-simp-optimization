@@ -8,6 +8,7 @@
 \tikzstyle{Design Node}=[fill=white, draw=black, shape=rectangle, tikzit category=Nodes, rounded corners, inner sep=0, minimum size=0.75cm]
 \tikzstyle{Wall Temp Node}=[fill={rgb,255: red,223; green,223; blue,223}, draw=black, shape=circle]
 \tikzstyle{Blank}=[tikzit shape=circle, tikzit fill=white, tikzit draw=black, fill=none, draw=none, shape=circle]
+\tikzstyle{Diamond}=[fill=white, draw=black, shape=diamond, tikzit category=Nodes]
 
 % Edge styles
 \tikzstyle{Edge}=[-, ultra thick]

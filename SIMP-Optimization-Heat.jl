@@ -302,17 +302,18 @@ while counter <= 3
     global counter += 1
 end =#
 
-f_0 = 10 * av_temp(η, [], p, m, n)
-
-while p ≤ 20
-    while true
-        (minf, minx, ret) = optimize!(opt, η)
-        numevals = opt.numevals # the number of function evaluations
-        println("$p: $minf for $numevals iterations (returned $ret)")
-        global p += 0.05
-        err = norm(minf - f_0)
-        global f_0 = minf
-        err <= ε₀ && break
+f_0 = 10.0 * av_temp(η, [], p, m, n)
+@time
+while true
+    (minf, minx, ret) = optimize!(opt, η)
+    numevals = opt.numevals # the number of function evaluations
+    println("$p: $minf for $numevals iterations (returned $ret)")
+    global p += 0.05
+    err = norm(minf - f_0)
+    global f_0 = minf
+    err <= ε₀ && break
+    if p ≥ 20
+        break
     end
 end
 

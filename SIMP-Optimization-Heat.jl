@@ -7,6 +7,10 @@ pyplot()
 
 p = 1.0
 
+p_max = 20
+
+p₊ = 0.05
+
 m = 20
 
 n = 20
@@ -308,13 +312,11 @@ while true
     (minf, minx, ret) = optimize!(opt, η)
     numevals = opt.numevals # the number of function evaluations
     println("$p: $minf for $numevals iterations (returned $ret)")
-    global p += 0.05
+    global p += p₊
     err = norm(minf - f_0)
     global f_0 = minf
-    err <= ε₀ && break
-    if p ≥ 20
-        break
-    end
+    ((err <= ε₀) || (p>p_max)) && break
+    
 end
 
 # numevals = opt.numevals # the number of function evaluations

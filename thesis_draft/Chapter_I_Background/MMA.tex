@@ -25,7 +25,7 @@ The general approach for solving such optimization problems is to split it up an
 \begin{description}
 	\item[\textbf{\underline{Step 0}:}] Choose a starting point $\vec{x}^{(0)}$, and let the iteration index $k=0$.
 	\item[\textbf{\underline{Step 1}:}] Given an iteration point $\vec{x}^{(k)}$, calculate $f_i(\vec{x}^{(k)})$ and the gradients $\nabla f_i(\vec{x}^{(k)})$ for $i=0,1,\ldots,m$.
-	\item[\textbf{\underline{Step 2}:}] Generate a subproblem $P^{(k)}$ by replacing, in $(6)$, the (usually implicit) functions $f_i$ by approximating explicit functions $f_i^{(k)}$, based on calculations from Step 1.
+	\item[\textbf{\underline{Step 2}:}] Generate a subproblem $P^{(k)}$ by replacing, in $(6)$, the functions $f_i$ by approximating functions $f_i^{(k)}$, based on calculations from Step 1.
 	\item[\textbf{\underline{Step 3}:}] Solve $P^{(k)}$ and let the optimal solution of this subproblem be the next iteration point $\vec{x}^{(k+1)}$. Let $k=k+1$ and go to Step 1.
 \end{description}
 
@@ -39,13 +39,13 @@ Given the iteration point $\vec{x}^{(k)}$ at an iteration $k$, values of the par
 For each $i=0,1,\ldots,m$, $f_i^{(k)}$ is defined by $$f_i^{(k)}(\vec{x})=r_i^{(k)}+\sum\limits_{j=1}^{n}\left(\frac{p_{ij}^{(k)}}{U_j^{(k)}-x_j}+\frac{q_{ij}^{(k)}}{x_j-L_j^{(k)}}\right)$$
 where
 $$p_{ij}^{(k)}=\begin{cases}
-\left(U_j^{(k)}-x_j^{(k)}\right)^2, & \text{if }\frac{\partial f_i}{\partial x_j}>0\\
-0, & \text{if }\frac{\partial f_i}{\partial x_j}\leq 0
+\left(U_j^{(k)}-x_j^{(k)}\right)^2 & \text{if }\frac{\partial f_i}{\partial x_j}>0\\
+0 & \text{if }\frac{\partial f_i}{\partial x_j}\leq 0
 \end{cases}$$
 	
 $$q_{ij}^{(k)}=\begin{cases}
-0, & \text{if }\frac{\partial f_i}{x_j}\geq 0\\
--\left(x_j^{(k)}-L_j^{(k)}\right)^2\frac{\partial f_i}{\partial x_j}, & \text{if }\frac{\partial f_i}{\partial x_j}<0
+0 & \text{if }\frac{\partial f_i}{\partial x_j}\geq 0\\
+-\left(x_j^{(k)}-L_j^{(k)}\right)^2\frac{\partial f_i}{\partial x_j} & \text{if }\frac{\partial f_i}{\partial x_j}<0
 \end{cases}$$
 	
 $$r_i^{(k)}=f_i(\vec{x}^{(k)})-\sum\limits_{j=1}^{n}\left(\frac{p_{ij}^{(k)}}{U_j^{(k)}-x_j^{(k)}}+\frac{q_{ij}^{(k)}}{x_j^{(k)}-L_j^{(k)}}\right)$$
@@ -102,7 +102,7 @@ The dual problem corresponding to $P^{(k)}$ is given as follows:
 	\end{tabular}
 \end{equation}
                                      
-$D$ is a ``nice'' problem which may be solved by an arbitrary gradient method.
+$D$ is a ``nice'' problem which may be solved by an traditional gradient method.
 
-Once the dual problem has been solved the optimal solution of the primal subproblem $P^{(k)}$ is directly obtained by just pluggin in the optimal dual solution $\vec{y}$ in to the following expression:
+Once the dual problem has been solved the optimal solution of the primal subproblem $P^{(k)}$ is directly obtained by just substituting in the optimal dual solution $\vec{y}$ in to the following expression:
 $$x_j(\vec{y})=\frac{\left(p_{0j}+\vec{y}^T\vec{p}_j\right)^{1/2}L_j+\left(q_{0j}+\vec{y}^T\vec{q}_j\right)^{1/2}U_j}{\left(p_{0j}+\vec{y}^T\vec{p}_j\right)^{1/2}+\left(q_{0j}+\vec{y}^T\vec{q}_j\right)^{1/2}}.$$

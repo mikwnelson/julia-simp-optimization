@@ -3,7 +3,7 @@ Multidimensional topological optimization problems often involve the use of part
 
 In the implementation of the SIMP method that is used throughout this paper, the Finite Volume Method is used to discretize and approximate solutions to the heat equation for our heat generating medium. We will introduce the Heat Equation and then proceed to give an overview of the Finite Volume Method.
 \subsection{The Heat Equation}
-Consider a stationary object of that has heat flowing between its interior regions. The temperature at any point in the interior of the object will depend on the spatial position chosen as well as the time we measure the temperature at that point. Therefore, the temperature ($T$) at any point in such an object is a function of both space ($\vec{x}$) and time ($t$) coordinates: $T(\vec{x},t)$.
+Consider heat flow through a stationary, inhomogeneous. The temperature at any point in the interior of the object will depend on the spatial position chosen as well as the time we measure the temperature at that point. Therefore, the temperature ($T$) at any point in such an object is a function of both space ($\mathbf{x}$) and time ($t$) coordinates: $T(\mathbf{x},t)$.
 Physical principles demand that such a temperature function must satisfy the equation
 \begin{equation}
 	\frac{\partial T}{\partial t}=\nabla\cdot\left(k(\vec{x})\nabla T\right)\label{eqn:HeatEq},
@@ -28,19 +28,32 @@ As with any other numerical method to solve PDEs, we must first discretize our d
 Given a mesh of polygons on a domain $\Omega$ with sample points at $\lbrace x_i\rbrace\subset\Omega$, we create a set of \textit{control volumes} around each $x_i$. The resulting set of control volumes discretize the partial differential equation. The finite volume method has us integrate our PDE over each control volume and then use the Divergence Theorem (\sref{Theorem}{thm:div-thm}) to convert volume integrals into surface integrals involving the fluxes across the boundaries of the control volumes. We then approximate those fluxes across the boundaries to calculate approximate solutions to the PDE of interest, such as \eqref{eqn:HeatEq}.
 
 \begin{thm}[The Divergence Theorem]
-	Suppose that $\mathcal{V}$ is a compact subset of $\mathbb{R}^n$ that has a piecewise smooth boundary $\mathcal{S}$ (i.e. $\partial\mathcal{V}=\mathcal{S}$). If $\mathbf{F}$ is a continously differentiable vector field defined on a neighborhood of $\mathcal{V}$, then
+	Suppose that $\mathcal{V}$ is a compact subset of $\mathbb{R}^n$ that has a piecewise smooth boundary $\mathcal{S}$ (i.e. $\partial\mathcal{V}=\mathcal{S}$) with outward pointing normal vectors. If $\mathbf{F}$ is a continously differentiable vector field defined on a neighborhood of $\mathcal{V}$, then
 	\begin{equation}
-		\iiint_{\mathcal{V}}\left(\nabla\cdot\mathbf{F}\right)\dif\mathcal{V}=\oiint_{\mathcal{S}}\left(\mathbf{F}\cdot\mathbf{\hat{n}}\right)\dif\mathcal{S}.\label{eqn:div-thm}
+		\iiint_{\mathcal{V}}\left(\nabla\cdot\mathbf{F}\right)\dif\mathcal{V}=\oiint_{\mathcal{S}}\left(\mathbf{F}\cdot\mathbf{\hat{n}}\right)\dif\mathcal{S}\label{eqn:div-thm}
 	\end{equation}
+	where $\hat{n}$ is the outwards pointing normal vector to the boundary.
 	\label{thm:div-thm}
 \end{thm}
 
 The divergence theorem is the key component in the finite volume method because it allows us to look at fluxes across the boundaries of each control volume, rather than the control volume itself.
 
-Let us look at the finite volume method applied to the heat equation in two dimensions. Suppose we have discretized our space by dividing it up into a mesh of control volumes $\lbrace V_i\rbrace$. We integrate the heat equation PDE over each control volume, using the divergence theorem to convert the volume integral into a surface integral:
+Let us look at the finite volume method applied to the heat equation in two dimensions. Suppose we have discretized our space by dividing it up into a mesh of control volumes $\lbrace V_i\rbrace$. We integrate the \eqref{eqn:HeatEq} over each control volume, using the divergence theorem to convert the volume integral into a surface integral:
 
-$$\int_{V_i}\frac{\partial T}{\partial t}\dif\vec{x}=\int_{V_i}\nabla\cdot \left(k(\vec{x})\nabla T\right)\dif\vec{x}\underset{\eqref{eqn:div-thm}}{=}\int_{\partial V_i}k(\vec{x})\nabla T\cdot\dif s,$$
+\begin{equation}
+	\int_{V_i}\frac{\partial T}{\partial t}\dif\mathbf{x}=\int_{V_i}\nabla\cdot \left(k(\mathbf{x})\nabla T\right)\dif\mathbf{x}\underset{\eqref{eqn:div-thm}}{=}\int_{\partial V_i}k(\mathbf{x})\nabla T\cdot\hat{\mathbf{n}}\dif s,\label{eqn:Vol-to-Surface-FVM}
+\end{equation}
 
-where $s$ represents the lines that form the boundary of the control volume. Then, applying an approximation scheme to this result, we obtain a sparse and structured linear system.
+where $s$ represents the curves that form the boundary of the control volume. Then, applying an approximation scheme to this result, we obtain a sparse and structured linear system. For example, one could apply what is called a ``two-point flux approximation'' scheme which uses finite differences of function values neighboring cells to the control volume to approximate the flux through the control volume faces \cite{Versteeg2007}.
+
+In a square grid there are only four neighboring cells which we can label as North, South, East, West. For a control volume $V_i$ we'll label the North boundary as $\partial V_N$, the South boundary as $\partial V_S$, the East boundary as $\partial V_E$, and the West boundary as $\partial V_W$. Additionally, let $\Delta x$ be the length of the North and South boundaries, and $\Delta y$ the length of the East and West boundaries. We can discretize \eqref{eqn:Vol-to-Surface-FVM} as
+\begin{equation}
+	\begin{tabular}{ccc}
+		$\displaystyle\int_{\partial V_i}k(\mathbf{x})\nabla T\cdot\hat{\mathbf{n}}\dif s$ & $=$ & $\displaystyle\int_{\partial V_N}k(\mathbf{x})\nabla T\cdot\hat{\mathbf{n}}_N\dif s+\int_{\partial V_S}k(\mathbf{x})\nabla T\cdot\hat{\mathbf{n}}_S\dif s$\\
+		 &  & $\displaystyle+\int_{\partial V_E}k(\mathbf{x})\nabla T\cdot\hat{\mathbf{n}}_E\dif s+\int_{\partial V_W}k(\mathbf{x})\nabla T\cdot\hat{\mathbf{n}}_W\dif s$\\
+		 & $=$ & $\displaystyle k_N\frac{T_N-T_i}{\|\mathbf{x}_N-\mathbf{x}_i\|}\Delta y+k_S\frac{T_S-T_i}{\|\mathbf{x}_S-\mathbf{x}_i\|}\Delta y$\\
+		 & & $\displaystyle+k_E\frac{T_E-T_i}{\|\mathbf{x}_E-\mathbf{x}_i\|}\Delta x+k_W\frac{T_W-T_i}{\|\mathbf{x}_W-\mathbf{x}_i\|}\Delta x$
+	\end{tabular}
+\end{equation}
 
 One other major advantage of the finite volume method is that boundary conditions can easily be taken into account on general domains. For example, adding a heat sink by applying a Dirichlet boundary condition ($T_s=\SI{0}{\degreeCelsius}$) can be thought of as zeroing out our algebraic equations by introducing a ghost cell that, when interpolated with the boundary cell, causes the temperature across the boundary to be zero.

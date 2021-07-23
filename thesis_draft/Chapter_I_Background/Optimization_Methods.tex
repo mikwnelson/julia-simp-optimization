@@ -10,7 +10,7 @@ The \textit{line search} is a strategy that selects the step size (commonly repr
 
 An \textit{exact line search} chooses the value $t$ along the ray $\left\lbrace x+t\Delta x\mid t\in\mathbb{R}_+\right\rbrace$ that exactly minimizes the function of interest $f$:
 $$t=\arg\min_{s\geq 0}f(x+s\Delta x)$$
-An exact line search is almost never practical. In very special cases, such as some quadratic optimization problems, where computing the cost of the minimization problem is low compared to actually calculating the search direction, one might employ an exact line search.
+An exact line search is almost never practical. In very special cases, such as some quadratic optimization problems where an explicit formula is available, one might employ an exact line search.
 
 \subsubsection*{Backtracking Line Search}
 Most often in practice we use \textit{inexact line searches}. In an inexact line search, we choose $t$ such that $f$ is \textit{approximately} minimized or reduced ``enough'' along $\left\lbrace x+t\Delta x\mid t\in\mathbb{R}_+\right\rbrace$.
@@ -31,10 +31,10 @@ One inexact line search strategy is the \textit{Backtracking Line Search}.
 
 %%% Need to reproduce image on own or something for final draft...
 
-Figure 9.1 \cite[p. 465]{Boyd2004} demonstrates the Backtracking Line Search visually for a parabola.
-\begin{center}
-	\includegraphics[width=0.75\textwidth]{Chapter_I_Background/Images/backtracking_line_search_diagram.png}
-\end{center}
+%Figure 9.1 \cite[p. 465]{Boyd2004} demonstrates the Backtracking Line Search visually for a parabola.
+%\begin{center}
+%	\includegraphics[width=0.75\textwidth]{Chapter_I_Background/Images/backtracking_line_search_diagram.png}
+%\end{center}
 
 Notice that the backtracking search will find a step size $t$ such that $0\leq t\leq t_0$ and that for such $t$, $f(x+t\Delta x)$ is smaller relative to $f(x)$. However, the step size we choose may not exactly be the minimum of the function, but we have funneled it down to be closer to the minimum of $f$.
 \subsection{Gradient Descent}

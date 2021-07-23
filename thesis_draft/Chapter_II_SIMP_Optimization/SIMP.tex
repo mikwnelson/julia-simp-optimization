@@ -31,14 +31,14 @@ Throughout the article \cite{Marck2012}, the authors also set the following cond
 
 We have the following sets to describe the VP-problem:
 \begin{itemize}
-	\item $\vec{x}\in\Omega$ = two-dimensional spatial field
+	\item $\mathbf{x}\in\Omega$ = two-dimensional spatial field
 	\item[] We set $\Omega = \Omega_0\cup\Omega_+$ where
 	\begin{itemize}
 		\item $\Omega_0$ = portion of $\Omega$ that has conductivity $k_0$. This is the portion of the space where we have not placed any high-conductivity material.
 		\item $\Omega_+$ = portion of $\Omega$ with conductivity $k_+$. This is the portion of the space with the high-conductivity material applied.
 	\end{itemize}
-	\item $\vec{k}\in\mathbb{K}$ = distribution of high-conductivity material
-	\item $T\in\overline{\mathbb{T}}$ = temperature field that satisfies the energy equation $\nabla\cdot\left(\vec{k}\nabla T_{\vec{k}}\right)+q=0$ where $q$ is the local heat-generating rate.
+	\item $\mathbf{k}\in\mathbb{K}$ = distribution of high-conductivity material
+	\item $T\in\overline{\mathbb{T}}$ = temperature field that satisfies the energy equation $\nabla\cdot\left(k\nabla T_{\mathbf{k}}\right)+q=0$ where $q$ is the local heat-generating rate.
 \end{itemize}
 
 \subsection{The Optimization Problem}
@@ -47,9 +47,9 @@ Using the above established notation, we develop the following optimization prob
 
 \begin{equation}
 	\begin{tabular}{lll}
-		\text{minimize }   & $f(T)$                                                   & \text{for } $T\in\mathbb{T},\vec{k}$ \\
-		\text{subject to } & $\nabla\cdot\left(\vec{k}\nabla T_{\vec{k}}\right)+q=0$  &                                      \\
-		& $\vec{x}\in\Omega,\quad\vec{k}\in\mathbb{K}_{\text{ad}}$ &                                      
+		\text{minimize }   & $f(T)$                                                   & \text{for } $T\in\mathbb{T},\mathbf{k}$ \\
+		\text{subject to } & $\nabla\cdot\left(k\nabla T_{\mathbf{k}}\right)+q=0$  &                                      \\
+		& $\mathbf{x}\in\Omega,\quad\mathbf{k}\in\mathbb{K}_{\text{ad}}$ &                                      
 	\end{tabular}\label{SIMP-Optimization-Problem}
 \end{equation}
 
@@ -203,7 +203,7 @@ Using \eqref{eqn:k_W-Average-Filter}, \eqref{eqn:k_N-Average-Filter}, \eqref{eqn
 		-\left(\frac{\Delta y}{\Delta x}+\frac{\Delta x}{\Delta y}\right) & \text{if }k\text{ corresponds to a }k_C\text{ node}.
 	\end{cases}
 \end{equation}
-It is now possible to compute $\displaystyle\frac{\partial f_{av}}{\partial\eta_{\ell}}$ using the above. We still require $\displaystyle\frac{\partial\phi}{\eta_{\ell}}$.
+It is now possible to compute $\displaystyle\frac{\partial f_{av}}{\partial\eta_{\ell}}$ using the above. We still require $\displaystyle\frac{\partial\phi}{\partial\eta_{\ell}}$.
 
 The porosity function is
 \begin{equation}

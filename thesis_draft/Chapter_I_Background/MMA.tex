@@ -7,36 +7,36 @@ Consider an optimization problem of the following general form
 
 \begin{equation}
 	\begin{tabular}{llll}
-		$P$: & minimize   & $f_0(\vec{x})$                                & $\left(\vec{x}\in\mathbb{R}^n\right)$ \\
-		     & subject to & $f_i(\vec{x})\leq\hat{f}_i$,                  & for $i=1,\ldots,m$                    \\
+		$P$: & minimize   & $f_0(\mathbf{x})$                                & $\left(\mathbf{x}\in\mathbb{R}^n\right)$ \\
+		     & subject to & $f_i(\mathbf{x})\leq\hat{f}_i$,                  & for $i=1,\ldots,m$                    \\
 		     &            & $\underline{x}_j\leq x_j\leq \overline{x}_j$, & for $j=1,\ldots,n$                    
 	\end{tabular}
 \end{equation}
 where
 \begin{itemize}
-	\item $\vec{x}=\left(x_1,\ldots,x_n\right)^T$ is the vector of variables
-	\item $f_0(\vec{x})$ is the objective function
-	\item $f_i(\vec{x})\leq\hat{f}_i$ are behavior constraints
+	\item $\mathbf{x}=\left(x_1,\ldots,x_n\right)^T$ is the vector of variables
+	\item $f_0(\mathbf{x})$ is the objective function
+	\item $f_i(\mathbf{x})\leq\hat{f}_i$ are behavior constraints
 	\item $\underline{x}_j$ and $\overline{x}_j$ are given lower and upper bounds on the variables
 \end{itemize}
 
 The general approach for solving such optimization problems is to split it up and solve a sequence of subproblems using the following iteration:
 
 \begin{description}
-	\item[\textbf{\underline{Step 0}:}] Choose a starting point $\vec{x}^{(0)}$, and let the iteration index $k=0$.
-	\item[\textbf{\underline{Step 1}:}] Given an iteration point $\vec{x}^{(k)}$, calculate $f_i(\vec{x}^{(k)})$ and the gradients $\nabla f_i(\vec{x}^{(k)})$ for $i=0,1,\ldots,m$.
+	\item[\textbf{\underline{Step 0}:}] Choose a starting point $\mathbf{x}^{(0)}$, and let the iteration index $k=0$.
+	\item[\textbf{\underline{Step 1}:}] Given an iteration point $\mathbf{x}^{(k)}$, calculate $f_i(\mathbf{x}^{(k)})$ and the gradients $\nabla f_i(\mathbf{x}^{(k)})$ for $i=0,1,\ldots,m$.
 	\item[\textbf{\underline{Step 2}:}] Generate a subproblem $P^{(k)}$ by replacing, in $(6)$, the functions $f_i$ by approximating functions $f_i^{(k)}$, based on calculations from Step 1.
-	\item[\textbf{\underline{Step 3}:}] Solve $P^{(k)}$ and let the optimal solution of this subproblem be the next iteration point $\vec{x}^{(k+1)}$. Let $k=k+1$ and go to Step 1.
+	\item[\textbf{\underline{Step 3}:}] Solve $P^{(k)}$ and let the optimal solution of this subproblem be the next iteration point $\mathbf{x}^{(k+1)}$. Let $k=k+1$ and go to Step 1.
 \end{description}
 
-In MMA, each $f_i^{(k)}$ is obtained by a linearization of $f_i$ in variables of the type $$\frac{1}{x_j-L_j}\quad\text{or}\quad\frac{1}{U_j-x_j}$$ dependent on the signs of the derivatives of $f_i$ at $\vec{x}^{(k)}$. The values of $L_j$ and $U_j$ are normally changed between iterations and are referred to as moving asymptotes.
+In MMA, each $f_i^{(k)}$ is obtained by a linearization of $f_i$ in variables of the type $$\frac{1}{x_j-L_j}\quad\text{or}\quad\frac{1}{U_j-x_j}$$ dependent on the signs of the derivatives of $f_i$ at $\mathbf{x}^{(k)}$. The values of $L_j$ and $U_j$ are normally changed between iterations and are referred to as moving asymptotes.
 
 \subsubsection*{Defining The Functions $f_i^{(k)}$}
 
-Given the iteration point $\vec{x}^{(k)}$ at an iteration $k$, values of the parameters $L_j^{(k)}$ and $U_j^{(k)}$ are chosen, for $j=1,\ldots,n$, such that $L_j^{(k)}<x_j^{(k)}<U_j^{(k)}$.
+Given the iteration point $\mathbf{x}^{(k)}$ at an iteration $k$, values of the parameters $L_j^{(k)}$ and $U_j^{(k)}$ are chosen, for $j=1,\ldots,n$, such that $L_j^{(k)}<x_j^{(k)}<U_j^{(k)}$.
 
 
-For each $i=0,1,\ldots,m$, $f_i^{(k)}$ is defined by $$f_i^{(k)}(\vec{x})=r_i^{(k)}+\sum\limits_{j=1}^{n}\left(\frac{p_{ij}^{(k)}}{U_j^{(k)}-x_j}+\frac{q_{ij}^{(k)}}{x_j-L_j^{(k)}}\right)$$
+For each $i=0,1,\ldots,m$, $f_i^{(k)}$ is defined by $$f_i^{(k)}(\mathbf{x})=r_i^{(k)}+\sum\limits_{j=1}^{n}\left(\frac{p_{ij}^{(k)}}{U_j^{(k)}-x_j}+\frac{q_{ij}^{(k)}}{x_j-L_j^{(k)}}\right)$$
 where
 $$p_{ij}^{(k)}=\begin{cases}
 \left(U_j^{(k)}-x_j^{(k)}\right)^2 & \text{if }\frac{\partial f_i}{\partial x_j}>0\\
@@ -48,15 +48,15 @@ $$q_{ij}^{(k)}=\begin{cases}
 -\left(x_j^{(k)}-L_j^{(k)}\right)^2\frac{\partial f_i}{\partial x_j} & \text{if }\frac{\partial f_i}{\partial x_j}<0
 \end{cases}$$
 	
-$$r_i^{(k)}=f_i(\vec{x}^{(k)})-\sum\limits_{j=1}^{n}\left(\frac{p_{ij}^{(k)}}{U_j^{(k)}-x_j^{(k)}}+\frac{q_{ij}^{(k)}}{x_j^{(k)}-L_j^{(k)}}\right)$$
+$$r_i^{(k)}=f_i(\mathbf{x}^{(k)})-\sum\limits_{j=1}^{n}\left(\frac{p_{ij}^{(k)}}{U_j^{(k)}-x_j^{(k)}}+\frac{q_{ij}^{(k)}}{x_j^{(k)}-L_j^{(k)}}\right)$$
 	
-and where all $\frac{\partial f_i}{\partial x_j}$ are evaluated at $\vec{x}=\vec{x}^{(k)}$.
+and where all $\frac{\partial f_i}{\partial x_j}$ are evaluated at $\mathbf{x}=\mathbf{x}^{(k)}$.
 
-Notice that $f_i^{(k)}$ is a first-order approximation of $f_i$ at $\vec{x}^{(k)}$. Additionally, by construction, $f_i^{(k)}$ is a convex function.
+Notice that $f_i^{(k)}$ is a first-order approximation of $f_i$ at $\mathbf{x}^{(k)}$. Additionally, by construction, $f_i^{(k)}$ is a convex function.
 
-Looking at the second derivatives, the closer $L_j^{(k)}$ and $U_j^{(k)}$ are chosen to $x_j^{(k)}$, the larger the second derivatives become and hence the more curvature is given to the approximating function $f_i^{(k)}$. This means that the closer $L_j^{(k)}$ and $U_j^{(k)}$ are chosen to $x_j^{(k)}$, the more conservative becomes the approximation of the original problem. If $L^{(k)}$ and $U^{(k)}$ are chosen `far away' from $\vec{x}^{(k)}$, then the approximation $f_i^{(k)}$ becomes close to linear.
+Looking at the second derivatives, the closer $L_j^{(k)}$ and $U_j^{(k)}$ are chosen to $x_j^{(k)}$, the larger the second derivatives become and hence the more curvature is given to the approximating function $f_i^{(k)}$. This means that the closer $L_j^{(k)}$ and $U_j^{(k)}$ are chosen to $x_j^{(k)}$, the more conservative becomes the approximation of the original problem. If $L^{(k)}$ and $U^{(k)}$ are chosen `far away' from $\mathbf{x}^{(k)}$, then the approximation $f_i^{(k)}$ becomes close to linear.
 
-We always choose the values of $L_j^{(k)}$ and $U_j^{(k)}$ to be finite. As a result each $f_i^{(k)}$ becomes strictly convex except when $\frac{\partial f_i}{\partial x_j}=0$ at $\vec{x}=x^{(k)}$.
+We always choose the values of $L_j^{(k)}$ and $U_j^{(k)}$ to be finite. As a result each $f_i^{(k)}$ becomes strictly convex except when $\frac{\partial f_i}{\partial x_j}=0$ at $\mathbf{x}=x^{(k)}$.
 
 Now, with the approximating functions $f_i^{(k)}$ as defined earlier, we have the following subproblem $P^{(k)}$:
 
@@ -82,27 +82,27 @@ $\alpha_j^{(k)}$ and $\beta_j^{(k)}$ should at least be chosen such that $L_j^{(
 
 $P^{(k)}$ is a convex, separable problem, so we can create a dual problem using a Lagrangian function. The Lagrangian function corresponding to $P^{(k)}$ is given by 
 
-$$\ell(x,y)=f_0^{(k)}(\vec{x})+\sum\limits_{i=1}^{m}y_if_i^{(k)}(\vec{x})$$
+$$\ell(x,y)=f_0^{(k)}(\mathbf{x})+\sum\limits_{i=1}^{m}y_if_i^{(k)}(\mathbf{x})$$
 
-Letting $\vec{y}$ be the vector of Lagrange multipliers or ``dual variables'' and doing some derivations, we get the dual objective function $W$ defined (for $\vec{y}\geq 0$), as below:
+Letting $\mathbf{y}$ be the vector of Lagrange multipliers or ``dual variables'' and doing some derivations, we get the dual objective function $W$ defined (for $\mathbf{y}\geq 0$), as below:
 \begin{align*}
-	W(\vec{y}) & =\min\limits_x\lbrace\ell(\vec{x},\vec{y}); \alpha_j\leq x_j\leq \beta_j\text{ for all }j\rbrace \\
-	           & =r_0-\vec{y}^T\vec{b}+\sum\limits_{j=1}^{n}W_j(\vec{y})                                          
+	W(\mathbf{y}) & =\min\limits_x\lbrace\ell(\mathbf{x},\mathbf{y}); \alpha_j\leq x_j\leq \beta_j\text{ for all }j\rbrace \\
+	           & =r_0-\mathbf{y}^T\mathbf{b}+\sum\limits_{j=1}^{n}W_j(\mathbf{y})                                          
 \end{align*}
-where $W_j(\vec{y})=\min\limits_{x_j}\lbrace l_j(x_j,\vec{y}); \alpha_j\leq x_j\leq \beta_j\rbrace$
+where $W_j(\mathbf{y})=\min\limits_{x_j}\lbrace l_j(x_j,\mathbf{y}); \alpha_j\leq x_j\leq \beta_j\rbrace$
 
-This formulation is beneficial since it ``eliminates'' $\vec{x}$.
+This formulation is beneficial since it ``eliminates'' $\mathbf{x}$.
 
 The dual problem corresponding to $P^{(k)}$ is given as follows:
 
 \begin{equation}
 	\begin{tabular}{lll}
-		$D$: & maximize   & $W(\vec{y})$    \\
-		     & subject to & $\vec{y}\geq 0$
+		$D$: & maximize   & $W(\mathbf{y})$    \\
+		     & subject to & $\mathbf{y}\geq 0$
 	\end{tabular}
 \end{equation}
                                      
 $D$ is a ``nice'' problem which may be solved by an traditional gradient method.
 
-Once the dual problem has been solved the optimal solution of the primal subproblem $P^{(k)}$ is directly obtained by just substituting in the optimal dual solution $\vec{y}$ in to the following expression:
-$$x_j(\vec{y})=\frac{\left(p_{0j}+\vec{y}^T\vec{p}_j\right)^{1/2}L_j+\left(q_{0j}+\vec{y}^T\vec{q}_j\right)^{1/2}U_j}{\left(p_{0j}+\vec{y}^T\vec{p}_j\right)^{1/2}+\left(q_{0j}+\vec{y}^T\vec{q}_j\right)^{1/2}}.$$
+Once the dual problem has been solved the optimal solution of the primal subproblem $P^{(k)}$ is directly obtained by just substituting in the optimal dual solution $\mathbf{y}$ in to the following expression:
+$$x_j(\mathbf{y})=\frac{\left(p_{0j}+\mathbf{y}^T\mathbf{p}_j\right)^{1/2}L_j+\left(q_{0j}+\mathbf{y}^T\mathbf{q}_j\right)^{1/2}U_j}{\left(p_{0j}+\mathbf{y}^T\mathbf{p}_j\right)^{1/2}+\left(q_{0j}+\mathbf{y}^T\mathbf{q}_j\right)^{1/2}}.$$

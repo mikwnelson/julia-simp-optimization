@@ -6,7 +6,7 @@ In the implementation of the SIMP method that is used throughout this paper, the
 Consider heat flow through a stationary, inhomogeneous. The temperature at any point in the interior of the object will depend on the spatial position chosen as well as the time we measure the temperature at that point. Therefore, the temperature ($T$) at any point in such an object is a function of both space ($\mathbf{x}$) and time ($t$) coordinates: $T(\mathbf{x},t)$.
 Physical principles demand that such a temperature function must satisfy the equation
 \begin{equation}
-	\frac{\partial T}{\partial t}=\nabla\cdot\left(k(\vec{x})\nabla T\right)\label{eqn:HeatEq},
+	\frac{\partial T}{\partial t}=\nabla\cdot\left(k(\mathbf{x})\nabla T\right)\label{eqn:HeatEq},
 \end{equation}
 where $\nabla$ is the gradient operator and the function $k$ represents the thermal diffusivity at a point in our object.
 
@@ -23,7 +23,7 @@ Equation \eqref{eqn:HeatEq} is commonly referred to as the Heat or Diffusion Equ
 
 For the numerical approximations of PDEs in this paper the Finite Volume Method (FVM) was implemented, which will be described in this section.
 
-As with any other numerical method to solve PDEs, we must first discretize our domain by creating a mesh. One major advantage of the finite volume method is that it allows for a great amount of freedom in mesh choice. When using FVM the domain can be discretized into a mesh of arbitrary polygons, but we chose uniform squares or rectangles in our work to simplify the resulting calculations.
+As with many other numerical method to solve PDEs, we must first discretize our domain by creating a mesh. One major advantage of the finite volume method is that it allows for a great amount of freedom in mesh choice. When using FVM the domain can be discretized into a mesh of arbitrary polygons, but we chose uniform squares or rectangles in our work to simplify the resulting calculations.
 
 Given a mesh of polygons on a domain $\Omega$ with sample points at $\lbrace x_i\rbrace\subset\Omega$, we create a set of \textit{control volumes} around each $x_i$. The resulting set of control volumes discretize the partial differential equation. The finite volume method has us integrate our PDE over each control volume and then use the Divergence Theorem (\sref{Theorem}{thm:div-thm}) to convert volume integrals into surface integrals involving the fluxes across the boundaries of the control volumes. We then approximate those fluxes across the boundaries to calculate approximate solutions to the PDE of interest, such as \eqref{eqn:HeatEq}.
 
@@ -52,8 +52,13 @@ In a square grid there are only four neighboring cells which we can label as Nor
 		$\displaystyle\int_{\partial V_i}k(\mathbf{x})\nabla T\cdot\hat{\mathbf{n}}\dif s$ & $=$ & $\displaystyle\int_{\partial V_N}k(\mathbf{x})\nabla T\cdot\hat{\mathbf{n}}_N\dif s+\int_{\partial V_S}k(\mathbf{x})\nabla T\cdot\hat{\mathbf{n}}_S\dif s$\\
 		 &  & $\displaystyle+\int_{\partial V_E}k(\mathbf{x})\nabla T\cdot\hat{\mathbf{n}}_E\dif s+\int_{\partial V_W}k(\mathbf{x})\nabla T\cdot\hat{\mathbf{n}}_W\dif s$\\
 		 & $=$ & $\displaystyle k_N\frac{T_N-T_i}{\|\mathbf{x}_N-\mathbf{x}_i\|}\Delta y+k_S\frac{T_S-T_i}{\|\mathbf{x}_S-\mathbf{x}_i\|}\Delta y$\\
-		 & & $\displaystyle+k_E\frac{T_E-T_i}{\|\mathbf{x}_E-\mathbf{x}_i\|}\Delta x+k_W\frac{T_W-T_i}{\|\mathbf{x}_W-\mathbf{x}_i\|}\Delta x$
-	\end{tabular}
+		 & & $\displaystyle+k_E\frac{T_E-T_i}{\|\mathbf{x}_E-\mathbf{x}_i\|}\Delta x+k_W\frac{T_W-T_i}{\|\mathbf{x}_W-\mathbf{x}_i\|}\Delta x$\\
+		 & & \\
+		 $\displaystyle\implies \Delta x\Delta y\frac{\dif T_i}{\dif t}$ & $=$ & $\displaystyle\left( k_N\frac{T_N-T_i}{\|\mathbf{x}_N-\mathbf{x}_i\|}+k_S\frac{T_S-T_i}{\|\mathbf{x}_S-\mathbf{x}_i\|}\right)\Delta y$\\
+		 & & $\displaystyle+\left(k_E\frac{T_E-T_i}{\|\mathbf{x}_E-\mathbf{x}_i\|}+k_W\frac{T_W-T_i}{\|\mathbf{x}_W-\mathbf{x}_i\|}\right)\Delta x$
+	\end{tabular}\label{deriv:descrete-FVM}
 \end{equation}
+
+The process in \eqref{deriv:descrete-FVM} is repeated for all control volumes $i$ to produce a system of equations which is used to solve for the values of $T_i$.
 
 One other major advantage of the finite volume method is that boundary conditions can easily be taken into account on general domains. For example, adding a heat sink by applying a Dirichlet boundary condition ($T_s=\SI{0}{\degreeCelsius}$) can be thought of as zeroing out our algebraic equations by introducing a ghost cell that, when interpolated with the boundary cell, causes the temperature across the boundary to be zero.

@@ -1,0 +1,269 @@
+\documentclass[final]{beamer}
+%\usepackage{etex}
+
+\usetheme{boxes}
+\usecolortheme{rose}
+\usefonttheme{professionalfonts}
+%\setbeamertemplate{mini frames}{}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsfonts,amssymb,amsmath}
+%\usepackage{epstopdf}
+\usepackage{algorithmic}
+% \usepackage{algorithm}
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes}
+%\usepackage{xifthen}
+\usepackage{pgfplots}
+\usepackage{float}
+%\usepackage{latexsym}
+%\usepackage[dvips]{pstricks} % PSTricks
+%\usepackage{pst-node}
+%\usepackage{psfrag}
+%\usepackage{wrapfig}
+%\usepackage{alltt}
+%\usepackage{url}
+%\usepackage{pict2e}
+%\usepackage{multimedia}
+%\usepackage{fancyvrb}
+\usepackage{graphicx}
+%\usepackage{verbatim}
+%\usepackage{mathrsfs}
+%\usepackage{multirow}
+\usepackage{bm}
+%\usepackage{algorithm2e}
+\usepackage{hyperref}
+%\usepackage[angle=0,scale=5,opacity=1,color=black]{background}
+%\usepackage[active]{srcltx}
+\usepackage{commath}
+\usepackage{multicol}
+%\usepackage[export]{adjustbox}
+
+
+%\usetikzlibrary{spy}
+%\tikzset{level 1 concept/.append style={font=\sf, sibling angle=60,level distance = 27mm}}
+%\tikzset{level 2 concept/.append style={font=\sf, sibling angle=55,level distance = 17mm}}
+%\tikzset{every node/.append style={scale=0.6}} 
+
+
+%% Beamer Style Setup
+%\definecolor{mywine}{rgb}{.5412,.0235,.0}
+%\usecolortheme[named=mywine]{structure}
+%\setbeamercolor{title}{fg=mywine}
+%\setbeamercolor{frametitle}{fg=mywine}
+%\setbeamercovered{transparent}
+\setbeamertemplate{navigation symbols}{}
+
+%% ALGORITHM Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+\newfloat{program}{thp}{Program}
+\floatname{program}{}
+\renewcommand*\theprogram{}
+\newcommand{\theHalgorithm}{\arabic{algorithm}}
+\newcommand{\eq}[1]{(\ref{#1})}
+
+
+
+
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{proposition}[theorem]{Proposition}
+
+
+\renewcommand{\Im}{{\ensuremath{\mathrm{Im\,}}}}
+\renewcommand{\Re}{{\ensuremath{\mathrm{Re\,}}}}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+
+
+
+\selectlanguage{english}
+\title[SIMP Optimization]{\bf Topological Optimization Using the SIMP Method}
+\author[Mikal Nelson]{Mikal Nelson
+%(joint work with XXXXX) 
+}
+\institute[KU]{
+{University of Kansas}\\
+Department of Mathematics\\
+mikal.nelson@ku.edu\\
+}
+\date[M.A. Thesis Defense]{
+\small M.A. Thesis Defense\\
+July 26\textsuperscript{th}, 2021\\
+Zoom
+}
+\titlegraphic{\hspace{0in}\includegraphics[scale=0.35]{logos/ku_math_logo.png}\;
+\hspace{1.2in}\includegraphics[scale=0.12]{logos/ku_logo}\;
+
+}
+
+\graphicspath{ {pictures/} }
+
+\begin{document}
+
+\frame{
+\titlepage
+}
+
+\frame{
+	
+	\structure{\bf Outline}
+	
+	\medskip
+	\begin{itemize}
+		\item Orthogonal Polynomials
+		\item Chebyshev Polynomials
+		\item Chebyshev Expansion
+		\item Using Kernel Polynomials
+		\item Application: Calculating the Density of States
+	\end{itemize}
+	%
+	
+}
+
+\frame{
+
+\structure{\bf Orthogonal Polynomials}
+
+\medskip
+Scalar product on $[a,b]$: $$\left\langle f|g \right\rangle = \int_a^b w(x)f(x)g(x)\dif x$$
+Given a scalar product, we get a set of polynomials, $p_n$, which satisfy the orthogonality relation $$\left\langle p_n|p_m \right\rangle = \delta_{n,m}\left\langle p_n|p_n \right\rangle.$$
+This allows for an expansion of any given function $f(x)$ in terms of the $p_n(x)$:
+$$f(x)=\sum_{n=0}^{\infty}\alpha_n p_n(x)\quad\text{with}\quad \alpha_n=\frac{\left\langle p_n|f\right\rangle}{\left\langle p_n|p_n \right\rangle}$$
+%
+
+}
+
+\frame[plain]{
+	
+	\structure{\bf Chebyshev Polynomials}
+	
+	\medskip
+	I will focus on Chebyshev polynomials of the first kind, $T_n$:\\\vspace{0.25cm}
+	Defined on interval $[-1,1]$ with weight function $w(x)=\left(\pi\sqrt{1-x^2}\right)^{-1}$.
+	$$T_n=\cos\left(n\arccos(x)\right)$$
+	Recursively defined:
+	$$T_0(x)=1,\quad T_{-1}(x)=T_1(x)=x,$$
+	$$T_{m+1}(x)=2xT_m(x)-T_{m-1}(x).$$
+	The polynomials also follow the relation
+	$$2T_m(x)T_n(x)=T_{m+n}(x)+T_{m-n}(x).$$
+	Chebyshev Polynomials have some particular advantages which make them ideal for use in orthogonal polynomial expansions.
+	%
+	
+}
+
+\frame[plain]{
+	
+	\structure{\bf Chebyshev Expansion}
+	
+	\medskip
+	The expansion of $f(x)$ in terms of Chebyshev polynomials
+	$$f(x)=\sum_{n=0}^{\infty}\frac{\left\langle f|T_n\right\rangle_1}{\left\langle T_n|T_n\right\rangle_1}T_n(x)$$
+	To make this a easier to compute, we rearrange:
+	$$f(x)=\frac{1}{\pi\sqrt{1-x^2}}\left[\mu_0+2\sum_{n=1}^{\infty}\mu_n T_n(x)\right],\quad \mu_n=\int_{-1}^{1}f(x)T_n(x)\dif x.$$
+	However, calculating the moments $\mu_n$ can be quite computationally expensive.
+	%
+	
+}
+
+\frame[plain]{
+	
+	\structure{\bf Motivation for KPM: Gibbs Oscillations}
+	
+	\medskip
+	In practice, we cannot compute an infinite series, so we need to truncate:
+	$$f(x)\approx\frac{1}{\pi\sqrt{1-x^2}}\left[\mu_0+2\sum_{n=1}^{N-1}\mu_n T_n(x)\right]$$
+	Gibbs Oscillations:
+	%
+	
+}
+
+\frame[plain]{
+	
+	\structure{\bf Kernel Polynomials}
+	
+	\medskip
+	To lessen the impact of the Gibbs Oscillations, we introduce a ``damping function'' in the form of a kernel polynomial, $g_n$:
+	$$f_{\text{KPM}}(x)=\frac{1}{\pi\sqrt{1-x^2}}\left[g_0\mu_0+2\sum_{n=1}^{N-1}g_n\mu_n T_n(x)\right]$$
+	%
+	
+}
+
+\frame[plain]{
+	
+	\structure{\bf Application: Density of States Calculations}
+	
+	\medskip
+	Density of States: How many energy states exist at a given energy $E$.
+	\begin{multicols}{2}
+	\begin{minipage}{0.6\textwidth}
+		$$\rho(E)=\frac{1}{N}\sum_{k=0}^{N-1}\delta(E-E_k)$$
+		Scale $E$ down to $[-1,1]$: $$E=aX+b$$
+		We can approximate $\rho(E)$ using KPM:
+		$$\rho(E)\approx\frac{1}{\pi\sqrt{1-x^2}}\left[g_0\mu_0+2\sum_{n=1}^{N-1}g_n\mu_n T_n(X)\right]$$
+		$$\mu_n\approx\frac{1}{N_r}\sum_{r}\left\langle r|T_n(X)|r\right\rangle$$
+	\end{minipage}
+	\end{multicols}
+	%
+	
+}
+
+\frame[plain]{
+	
+	\structure{\bf Disilicon Si\textsubscript{2} Density of States}
+	
+	\medskip
+	%
+	
+}
+
+\frame[plain]{
+	
+	\structure{\bf Twisted Graphene Density of States}
+	
+	\medskip
+	%
+	
+}
+
+\frame[plain]{
+	
+	\structure{\bf Topics of Further Exploration}
+	
+	\medskip
+	\begin{itemize}
+		\item Effects of the number of random vectors ($R$) used in calculating the moments.
+		\item Optimal resolution values ($N$) for various Hamiltonians.
+		\item More in-depth comparisons of various kernels.
+	\end{itemize}
+	%
+	
+}
+
+\frame[plain]{
+	
+	\structure{\bf Acknowledgments}
+	
+	\medskip
+	Big thanks to Professor Cazeaux for helping me to get my program to work.\\ \vspace{0.5cm}
+	Also thanks to Aaron for talking through some aspects of the programming with me.
+	%
+	
+}
+
+\frame[plain,allowframebreaks]{
+\structure{\bf Bibliography}
+
+\medskip
+\begin{tiny}
+\bibliographystyle{plain}
+\bibliography{Thesis_Bibliography.bib}
+\nocite{Boyd2004}
+\end{tiny}
+}
+
+\end{document}
+ 

@@ -38,7 +38,6 @@ We have the following sets to describe the VP-problem:
 		\item $\Omega_+$ = portion of $\Omega$ with conductivity $k_+$. This is the portion of the space with the high-conductivity material applied.
 	\end{itemize}
 	\item $\mathbf{k}\in\mathbb{K}$ = distribution of high-conductivity material
-	\item $T\in\overline{\mathbb{T}}$ = temperature field that satisfies the energy equation $\nabla\cdot\left(k\nabla T_{\mathbf{k}}\right)+q=0$ where $q$ is the local heat-generating rate.
 \end{itemize}
 
 \subsection{The Optimization Problem}
@@ -47,11 +46,19 @@ Using the above established notation, we develop the following optimization prob
 
 \begin{equation}
 	\begin{tabular}{lll}
-		\text{minimize }   & $f(T)$                                                   & \text{for } $T\in\mathbb{T},\mathbf{k}$ \\
+		\text{minimize }   & $f(T)$                                                   & \text{for } $\Omega_+$ \\
 		\text{subject to } & $\nabla\cdot\left(k\nabla T_{\mathbf{k}}\right)+q=0$  &                                      \\
-		& $\mathbf{x}\in\Omega,\quad\mathbf{k}\in\mathbb{K}_{\text{ad}}$ &                                      
+		& $\mathbf{x}\in\Omega,\quad\mathbf{k}\in\mathbb{K}$ &                                      
 	\end{tabular}\label{SIMP-Optimization-Problem}
 \end{equation}
+
+Additionally, we impose a constraint upon this problem to limit the quantity of $k_+$ material available.
+
+\begin{equation}
+	\int_{\Omega}\delta_+\dif\Omega\leq V\quad\text{where }\begin{cases}\delta_+ = 0 & \text{if }\mathbf{x}\in\Omega_0 \\ \delta_+ = 1 & \text{if }\mathbf{x}\in\Omega_+\end{cases}\label{eqn:vol-constraint}
+\end{equation}
+
+\eqref{eqn:vol-constraint} sets a cap on the maximum volume ($V$) of $\Omega_+$ and hence limits the available amount of high-conductivity material that can be applied to the domain. If we did not have this constraint, the optimal solution would be to make $\Omega_+=\Omega$, making the entire domain have high conductivity material. However, this is not an interesting or realistic problem and applying the new constraint turns the problem into an optimizating the distribution of $\Omega_0$ and $\Omega_+$ regions to minimize the chosen objective function. The objective function varies depending on desired design outcomes. Some possible objective functions include average temperature (used in the implementation in this paper), temperature variance, and maximum temperature.
 
 \subsubsection*{Penalization Process}
 The problem of whether to place high conductivity material in a particular location or not is discrete in nature. This is unfortunate as continuous optimization problems are generally easier to solve. In particular, we cannot apply some of the optimization methods described earlier, such as gradient descent, to a discrete optimization problem as they require the optimization variables to be continuous.
@@ -145,9 +152,9 @@ For our implementation of the SIMP method for this problem, the average temperat
 	f_{av}\left(\mathbf{T}\right)=\frac{1}{N_T}\mathbf{1}^T\mathbf{T}.\label{eqn:f_av}
 \end{equation}
 
-Additionally, we opted to have no heat generation for each control volume:
+Additionally, we opted to have constant and uniform heat generation for each control volume. Specifically, in our implementation we set the heat generation for each volume to be 1:
 \begin{equation}
-	\mathbf{Q}=\mathbf{0}.\label{eqn:Q_vec}
+	\mathbf{Q}=\mathbf{1}.\label{eqn:Q_vec}
 \end{equation}
 
 We use the Method of Moving Asymptotes (MMA) to update the design parameters $\boldsymbol{\eta}$ throughout the optimization process. To create a local and convex approximation of the problem (see $\S$\ref{sec:MMA}), MMA requires both function and constraint evaluations, as well as evaluations of the respective gradients. Hence, we need to calculate the gradients of the average temperature function and porosity constraint. The gradients of the functions with respect to the design parameters indicate the \textit{sensitivity} of those functions to changes in $\boldsymbol{\eta}$, and hence analysis of these derivatives is called \textit{sensistivity analysis}.
@@ -226,7 +233,7 @@ Now, we update the optimization problem one last time with the results from \eqr
 \begin{equation}
 	\begin{tabular}{ll}
 		$\text{minimize}$  & $f_{av}\left({\mathbf{T}}\right)=\frac{1}{N_T}\mathbf{1}^T\mathbf{T}$                                                                                     \\
-		\text{subject to } & $\mathbf{K}\mathbf{T}=\mathbf{0}$                                                                   \\
+		\text{subject to } & $\mathbf{K}\mathbf{T}=\mathbf{1}$                                                                   \\
 		& $\mathbf{1}^T\boldsymbol{\eta}-N_T\overline{\phi}\leq0$ \\
 		& $\mathbf{k}=k_0\mathbf{1}+(k_+-k_0)\boldsymbol{\eta}^p$                                       \\
 		& $0\leq\boldsymbol{\eta}\leq 1\text{ and } p\geq 1$

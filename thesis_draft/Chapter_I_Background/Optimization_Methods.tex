@@ -1,6 +1,16 @@
 \section{Optimization Methods}
 
-In this section I will present a few optimization algorithms.
+In this section I will present a few optimization algorithms for unconstrained optimization.
+
+These algorithms follow a general blueprint:
+\begin{enumerate}
+	\item Choose an initial ``guess'' for the optimal value $x$
+	\item Find a Descent Direction $\Delta x$
+	\item Use a line search method to determine an appropriate step-size ($t$) in the descent direction
+	\item Compute new guess value: $x+t\Delta x$
+\end{enumerate}
+
+Each method uses a line search, but gow the descent direction is chosen is the main differentiating factor in each method.
 
 \subsection{Line Search Methods}
 
@@ -130,7 +140,7 @@ Algorithm \ref{CongGradAlg} uses the Newton-Raphson method to find the values of
 	\end{algorithmic}
 \end{algorithm}
 
-To get some intuition of how this algorithm operates, let's look at it applied to a quartic function.
+%To get some intuition of how this algorithm operates, let's look at it applied to a quartic function.
 
-\subsection{Example: Rosenbrock Function}
+%\subsection{Example: Rosenbrock Function}
 

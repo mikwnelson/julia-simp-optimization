@@ -4,7 +4,7 @@
 
 Consider a finite-size volume in which heat is being generated at \textit{every} point, and which is cooled through a small patch (the heat sink) located on its boundary. Suppose that we have a finite amount of high-conductivity ($k_+$) material available. Our goal is to determine the optimal distribution of the $k_+$ material through the given volume such that \textit{the average temperature is minimized}.
 
-Solid Isotropic Material with Penalization (SIMP) is a method based on topology optimization that can be used to solve the VP Heat Conduction Problem. In each step of the SIMP method we increase or decrease the proportion of high-conductivity material by a small quantity. This allows us to apply methods designed for continuous optimization problems to the discrete VP problem as it transforms the binary 1---0 problem into a sequence of continuous problems.
+Solid Isotropic Material with Penalization (SIMP) is a method based on topology optimization that can be used to solve the VP Heat Conduction Problem. In each step of the SIMP method we increase or decrease the proportion of high-conductivity material by a small quantity. This allows us to apply methods designed for continuous optimization problems to the discrete VP problem as it transforms the binary 1---0 problem into a sequence of continuous problems \cite{Marck2012}.
 
 \subsection{Preliminary Parameters}
 
@@ -13,13 +13,14 @@ In order to develop the method, we need to make a couple of assumptions.
 
 First of all, the energy differential equation driving the heat-flux inside the finite-volume requires:
 \begin{enumerate}
-	\item All calculations are run under steady-state conditions. That is, all heat produced in the volume is evacuated through the heat sink.
+	\item All calculations are run under steady-state conditions. That is, we seek a stable solution where quantities are independent of time.
+	\item All heat produced in the volume is evacuated through the heat sink.
 	\item Low-conductivity materials ($k_0$) and high-conductivity materials ($k_+$) are treated as homogeneous and isotropic on their respective conductivities.
 \end{enumerate}
 
-Throughout the article \cite{Marck2012}, the authors also set the following conditions:
+We also set the following conditions:
 \begin{itemize}
-	\item Thermal conductivities are constant:
+	\item Thermal conductivities depend only on the material, and therefore are constant:
 	$$k_0=1 \si[per-mode=fraction]{\watt\per\square\meter\per\kelvin}\qquad\text{and}\qquad k_+=100 \si[per-mode=fraction]{\watt\per\square\meter\per\kelvin}$$
 	\item All structures have a square aspect ratio with $L=H=0.1\si{\meter}$
 	\item The heat-sink is located on the middle of the west side of the structure
@@ -34,10 +35,12 @@ We have the following sets to describe the VP-problem:
 	\item $\mathbf{x}\in\Omega$ = two-dimensional spatial field
 	\item[] We set $\Omega = \Omega_0\cup\Omega_+$ where
 	\begin{itemize}
-		\item $\Omega_0$ = portion of $\Omega$ that has conductivity $k_0$. This is the portion of the space where we have not placed any high-conductivity material.
-		\item $\Omega_+$ = portion of $\Omega$ with conductivity $k_+$. This is the portion of the space with the high-conductivity material applied.
+		\item $\Omega_0$ = portion of $\Omega$ that has conductivity $k_0$.
+		\item $\Omega_+$ = portion of $\Omega$ with conductivity $k_+$. This is the portion of the space with high-conductivity material.
 	\end{itemize}
-	\item $\mathbf{k}\in\mathbb{K}$ = distribution of high-conductivity material
+	\item $\tilde{\mathbf{k}}\in\mathbb{K}$ = distribution of conductivity material: $$\tilde{\mathbf{k}}:\mathbf{\Omega}\rightarrow\mathbb{K}\text{ such that } \tilde{\mathbf{k}}(\mathbf{x})=\begin{cases}
+		k_0 &\text{if }\mathbf{x}\in\Omega_0\\ k_+ &\text{if }\mathbf{x}\in\Omega_+
+	\end{cases}$$
 \end{itemize}
 
 \subsection{The Optimization Problem}
@@ -47,8 +50,8 @@ Using the above established notation, we develop the following optimization prob
 \begin{equation}
 	\begin{tabular}{lll}
 		\text{minimize }   & $f(T)$                                                   & \text{for } $\Omega_+$ \\
-		\text{subject to } & $\nabla\cdot\left(k\nabla T_{\mathbf{k}}\right)+q=0$  &                                      \\
-		& $\mathbf{x}\in\Omega,\quad\mathbf{k}\in\mathbb{K}$ &                                      
+		\text{subject to } & $\nabla\cdot\left(k\nabla T_{\tilde{\mathbf{k}}}\right)+q=0$  &                                      \\
+		& $\mathbf{x}\in\Omega,\quad\tilde{\mathbf{k}}\in\mathbb{K}$ &                                      
 	\end{tabular}\label{SIMP-Optimization-Problem}
 \end{equation}
 
@@ -69,7 +72,9 @@ The SIMP method has a clever way of getting around this particular issue of disc
 \end{equation}
 An added bonus of this formulation of $k(\eta)$ is that it is of the form \eqref{eqn:Convexity}, and hence a convex function! Notice that when $\eta=0$, $k\left(0\right)=k_0$ and when $\eta=1$, $k\left(1\right)=k_+$. The value $p$ in \eqref{eqn:penalization} is the \textit{penalization parameter}. $p$ aids in the convergence process; without $p$ the SIMP method converges to a structure that is not 1---0: a composite structure where finite-volumes are made up of different proportions of $k_0$ and $k_+$ materials.
 
-To converge to a 1---0 structure, we gradually increase $p$ beginning from $p=1$. Increasing $p$ from $1$ puts the objective function in \eqref{SIMP-Optimization-Problem} at a disadvantage if $\eta\neq1$. Once $p$ gets much larger than $1$ the second term in $k(\eta)$ of \eqref{eqn:penalization} becomes much smaller than $k_0$ and hence $k(\eta)\approx k_0$ for values of $\eta\neq1$. As a result, when trying to optimize $f(T)$, value of $\eta$ in $(0,1)$ are penalized which leads to design parameters taking on values of $0$ or $1$, creating a 1---0 structure.
+To converge to a binary 1---0 structure, we gradually increase $p$ beginning from $p=1$. Increasing $p$ from $1$ puts the objective function in \eqref{SIMP-Optimization-Problem} at a disadvantage if $\eta\neq1$. Once $p$ gets much larger than $1$, the second term in $k(\eta)$ of \eqref{eqn:penalization} becomes much smaller than $k_0$ and hence $k(\eta)\approx k_0$ for values of $\eta\neq1$. As a result, when trying to optimize $f(T)$, values of $\eta$ in $(0,1)$ are penalized which leads to design parameters taking on values of $0$ or $1$, creating a 1---0 structure.
+
+We can think of increasing $p$ as increasing the cost of adding $k_+$ material to the design. The volume constraint \eqref{eqn:vol-constraint} caps the amount of $k_+$ material we may add, and as $p$ increases, the optimizer needs to choose between placing ever more expensive $k_+$ material or opting for $k_0$ material, which caries with it no cost. Therefore, as the process continues, conductivity of the control volumes is either firmly $k_+$ (1 in the 1---0 terminology) or decreased to $k_0$ (the 0 in 1---0) and intermediate values are phased out, producing a binary design.
 
 \subsection{Finite Volume Method Discretization}
 
@@ -90,7 +95,7 @@ Around the upper left corner of each temperature control volume we create a corr
 
 In this staggered grid scheme, one of the grids contains the information related to the temperature scalars and the other stores information related to the design parameters, $\eta$.
 
-In order to employ the finite volume method, it is necessary to be able to calculate the temperature fluxes along the boundaries of each control volume. To do this, we need to have a value for the conductivity along the faces of each control volume. Notice that the faces of the temperature control volumes lie within two adjacent design regions, which implies that there are two different conductivites along that face. To create a consistent conductivity along the control volume wall, we average (using either an arithmetic or harmonic mean) the conductivity of the two adjacent design nodes. Hence the conductivity along the West face of control volume $(i,j)$, denoted by $k^{i,j}_W$, is given by
+In order to employ the finite volume method, it is necessary to be able to calculate the temperature fluxes along the boundaries of each control volume. To do this, we need to have a value for the conductivity along the faces of each control volume. Notice that the faces of the temperature control volumes lie within two adjacent design regions, which implies that there are two different conductivites along that face. To create a consistent conductivity along the control volume wall, we average (using either an arithmetic or harmonic mean) the conductivity of the two adjacent design nodes. Hence, the conductivity along the West face of control volume $(i,j)$, denoted by $k^{i,j}_W$, is given by
 \begin{equation}
 	\text{Arithmetic Mean: }k^{i,j}_W=\frac{k^{i,j}+k^{i+1,j}}{2}\qquad\text{or}\qquad\text{Harmonic Mean: }k^{i,j}_W=2\left(\frac{1}{k^{i,j}}+\frac{1}{k^{i+1,j}}\right)^{-1}.\label{eqn:k_W-Average-Filter}
 \end{equation}
@@ -115,7 +120,9 @@ The $K_W$ and $K_N$ coefficients are dependent on the thermal conductivity and c
 	K_W^{i,j}=\frac{k_W^{i,j}\Delta y}{\Delta x}\qquad\text{and}\qquad K_N^{i,j}=\frac{k_N^{i,j}\Delta x}{\Delta y}\label{eqn:K-Coeffs}
 \end{equation}
 
-Putting together \eqref{eqn:k_W-Average-Filter}, \eqref{eqn:k_N-Average-Filter}, \eqref{eqn:FVM-Discret}, \eqref{eqn:CenterFluxCoeff}, and \eqref{eqn:K-Coeffs} for all $N_T$ control volumes gives us a system of equations that discretize \eqref{eqn:SIMP-Heat-Eq}. Collecting the coefficients $K$ into a matrix, representing the $T$ and $Q$ values as vectors, and doing a little reorganizing, we can represent the system of equations as a matrix equation:
+The domain has Neumann boundary conditions everywhere except for the heat sink. This is very easy to implement with the finite volume method: there is no flux through these boundaries, so the flux coefficients are 0. To account for the heat-sink in the middle of the left boundary of the domain, which has Dirichlet boundary conditions, we add a ``ghost cell'' to the other side of the boundary that has temperature opposite the cell along the heat-sink in the domain. Adding this ghost cell in this way averages out the temperature on the boundary to zero.
+
+Putting together \eqref{eqn:k_W-Average-Filter}, \eqref{eqn:k_N-Average-Filter}, \eqref{eqn:FVM-Discret}, \eqref{eqn:CenterFluxCoeff}, \eqref{eqn:K-Coeffs}, and considering boundary conditions for all $N_T$ control volumes gives us a system of equations that discretize \eqref{eqn:SIMP-Heat-Eq}. Collecting the coefficients $K$ into a matrix, representing the $T$ and $Q$ values as vectors, and doing a little reorganizing, we can represent the system of equations as a matrix equation:
 \begin{equation}
 	\mathbf{K}\mathbf{T}=\mathbf{Q}.\label{eqn:KTQ-Matrix-Eqn}
 \end{equation}
@@ -239,3 +246,5 @@ Now, we update the optimization problem one last time with the results from \eqr
 		& $0\leq\boldsymbol{\eta}\leq 1\text{ and } p\geq 1$
 	\end{tabular}\label{Implementation-SIMP-Optimization-Problem}
 \end{equation}
+
+\eqref{Implementation-SIMP-Optimization-Problem} is finally in a form that we can input the problem into the NLopt optimizer using the MMA algorithm and produce possible design solutions to the VP heat conduction problem.

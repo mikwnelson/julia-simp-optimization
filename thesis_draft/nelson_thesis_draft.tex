@@ -43,6 +43,7 @@ breaklinks=true,pdfborder={0 0 0},pdfborderstyle={},backref=false,colorlinks=tru
 \usepackage{tikz}
 \usepackage{tikzit}
 \input{thesis.tikzstyles}
+\usepackage{subcaption}
 
 \newcommand{\sref}[2]{\hyperref[#2]{#1 \ref{#2}}}
 
@@ -101,9 +102,9 @@ breaklinks=true,pdfborder={0 0 0},pdfborderstyle={},backref=false,colorlinks=tru
 %   breakautoindent=true
 %}
 
-\@ifundefined{showcaptionsetup}{}{%
-	\PassOptionsToPackage{caption=false}{subfig}}
-\usepackage{subfig}
+%\@ifundefined{showcaptionsetup}{}{%
+%	\PassOptionsToPackage{caption=false}{subfig}}
+%\usepackage{subfig}
 \makeatother
 
 \usepackage{listings}
@@ -114,11 +115,11 @@ breaklinks=true,pdfborder={0 0 0},pdfborderstyle={},backref=false,colorlinks=tru
 		
 		\maketitle
 		
-		\begin{abstractlong}
+		\begin{abstract}
 			\addcontentsline{toc}{chapter}{Abstract}
-			Insert Abstract Here
+			The Volume-to-Point (VP) Heat Conduction Problem is concerned with the optimal distribution of conductive material over a heat generating domain. This thesis begins with an overview of the heat equation and its discretization using the Finite Volume Method. This overview is followed by a summary of the topic of optimization and optimization techniques. After completing this brief presentation of background information we proceed to present the VP problem and the application of Solid Isotropic Material with Penalization (SIMP) method to create designs with optimal conductive material placement to minimize average temperature.
 			
-		\end{abstractlong}
+		\end{abstract}
 		
 		\begin{acknowledgements}
 			%%if you want a "quote" environment for acknowledgements,
@@ -140,7 +141,7 @@ breaklinks=true,pdfborder={0 0 0},pdfborderstyle={},backref=false,colorlinks=tru
 	\end{romanpages}
 	
 %	\chapter*{Introduction}
-	\addcontentsline{toc}{chapter}{Introduction}
+	%\addcontentsline{toc}{chapter}{Introduction}
 	%\input{Introduction/Introduction}
 	\chapter{Background}
 	\input{Chapter_I_Background/PDE_Discretization}
@@ -152,13 +153,16 @@ breaklinks=true,pdfborder={0 0 0},pdfborderstyle={},backref=false,colorlinks=tru
 	\input{Chapter_II_SIMP_Optimization/SIMP}
 	
 	\chapter{Implementation and Results}
-	\input{Chapter_III_Implmentation_and_Results/ImplementationAndResults}
+	\input{Chapter_III_Implementation_and_Results/ImplementationAndResults}
+	
+	\chapter*{Conclusion}
+	\addcontentsline{toc}{chapter}{Conclusion}
+	\input{Conclusion/Conclusion}
 	
 	\global\long\def\bibname{References}
 	
 	\bibliographystyle{siam}
 	\bibliography{Bibliography/Thesis_Bibliography}
-	
 	
 	\appendix
 	\include{Appendix/Appendix}

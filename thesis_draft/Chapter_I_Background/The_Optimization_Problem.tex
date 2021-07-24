@@ -5,14 +5,14 @@ We now move on to an overview of mathematical optimization and a survey of optim
 	An optimization problem (in standard form) has the form
 	\begin{equation}
 		\begin{tabular}{lll}
-			\text{minimize }   & $f_0(x)$        &                 \\
-			\text{subject to } & $f_i(x)\leq 0$, & $i=1,\ldots, m$ \\
-			& $h_i(x) = 0$,   & $i=1,\ldots, p$ 
+			\text{minimize }   & $f_0(\mathbf{x})$        &                 \\
+			\text{subject to } & $f_i(\mathbf{x})\leq 0$, & $i=1,\ldots, m$ \\
+			& $h_i(\mathbf{x}) = 0$,   & $i=1,\ldots, p$ 
 		\end{tabular}\label{Optimization}
 	\end{equation}
 	where
 	\begin{itemize}
-		\item $x=\left(x_1,\ldots,x_n\right)$ are the optimization variables,
+		\item $\mathbf{x}=\left(x_1,\ldots,x_n\right)$ are the optimization variables,
 		\item $f_0 : \mathbb{R}^n\rightarrow\mathbb{R}$ is the objective function,
 		\item $f_i : \mathbb{R}^n\rightarrow\mathbb{R}$ are the inequality constraint functions, and
 		\item $h_i : \mathbb{R}^n\rightarrow\mathbb{R}$ are the equality constraint functions.
@@ -20,7 +20,9 @@ We now move on to an overview of mathematical optimization and a survey of optim
 \end{defn}
 If there are no constraints ($m=p=0$), then the problem is called \textit{unconstrained}. \cite[p. 127]{Boyd2004}
 
-We call a vector $x^\star$ \textit{globally optimal} if it has the smallest objective value among all vectors that satisfy the constraints. That is, for any $z$ with $f_1(z)\leq 0,\ldots, f_m(z)\leq 0$, then $f_0(z)\geq f_0(x^\star)$. A point $x$ that is in the domains of each function $f_i$ and $h_i$ is called \textit{feasible} if it satisfies all the constraints. Finally, the \textit{optimal value} $p^\star$ of the problem is defined as $$p^\star=\left\lbrace f_0(x) \mid f_i(x)\leq 0, i=1,\ldots,m, h_i(x)=0, i=1,\ldots,p\right\rbrace.$$ Therefore, $p^{\star}=f_0(x^\star)$, the objective function value at a feasible and globally optimal vector $x^{\star}$.
+We call a vector $\mathbf{x}^\star$ \textit{globally optimal} if it has the smallest objective value among all vectors that satisfy the constraints. That is, for any $z$ with $f_1(\mathbf{z})\leq 0,\ldots, f_m(\mathbf{z})\leq 0$, then $f_0(\mathbf{z})\geq f_0(\mathbf{x}^\star)$. A vector $\mathbf{x}$ that is in the domains of each function $f_i$ and $h_i$ is called \textit{feasible} if it satisfies all the constraints. Finally, the \textit{optimal value} $p^\star$ of the problem is defined as $$p^\star=\left\lbrace f_0(\mathbf{x}) \mid f_i(\mathbf{x})\leq 0, i=1,\ldots,m, h_i(\mathbf{x})=0, i=1,\ldots,p\right\rbrace.$$ Therefore, $p^{\star}=f_0(\mathbf{x}^\star)$, the objective function value at a feasible and globally optimal vector $\mathbf{x}^{\star}$.
+
+A vector is \textit{locally optimal} if it has the smallest objective value among all feasible candidates within a neighboring set. The global optimum is also a local optimum, but a local optimum need not be the global optimum.
 
 Notice that the optimization problem in standard form is a minimization problem.  We can easily change it into a maximization problem by minimizing the objective function $-f_0$ subject to the same constraints.
 

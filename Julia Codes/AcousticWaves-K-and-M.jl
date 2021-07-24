@@ -25,7 +25,7 @@ xlen = 0.1
 
 ylen = 0.1
 
-η = 0.5 .* ones(m*n)
+η = 0.5 .* ones(m * n)
 
 #######################
 ## Assemble K Matrix ##
@@ -52,11 +52,11 @@ B_η = (1 .+ η .* (μ_B - 1)) .* B₁
 # Compute Material Composition of control volume boundaries
 # A_W[i,j] = Composition of "West" boundary of [i,j] control volume
 
-A_W = 0.5 * (A_η + circshift(A_η,(0,1)))
+A_W = 0.5 * (A_η + circshift(A_η, (0, 1)))
 
 # A_N[i,j] = Composition of "North" boundary of [i,j] control volume
 
-A_N = 0.5 * (A_η + circshift(A_η,(1,0)))
+A_N = 0.5 * (A_η + circshift(A_η, (1, 0)))
 
 # Initialize K matrix
 K = spzeros((m * n), (m * n))
@@ -70,13 +70,17 @@ end
 # Construct K matrix
 # K[x,y] tells the flux from control volume number x to control volume number y
 for i = 1:m, j = 1:n
-    K[cord2num(i, j, m), cord2num(i, mod1(j + 1,n), m)] = -A_W[i, mod1(j+1,n)] * (Δy / Δx)
-    K[cord2num(i, mod1(j + 1,n), m), cord2num(i, j, m)] = -A_W[i, mod1(j+1,n)] * (Δy / Δx)
+    K[cord2num(i, j, m), cord2num(i, mod1(j + 1, n), m)] =
+        -A_W[i, mod1(j + 1, n)] * (Δy / Δx)
+    K[cord2num(i, mod1(j + 1, n), m), cord2num(i, j, m)] =
+        -A_W[i, mod1(j + 1, n)] * (Δy / Δx)
 end
 
 for i = 1:m, j = 1:n
-    K[cord2num(i, j, m), cord2num(mod1(i + 1,m), j, m)] = -A_N[mod1(i+1,m), j] * (Δx / Δy)
-    K[cord2num(mod1(i + 1,m), j, m), cord2num(i, j, m)] = -A_N[mod1(i+1,m), j] * (Δx / Δy)
+    K[cord2num(i, j, m), cord2num(mod1(i + 1, m), j, m)] =
+        -A_N[mod1(i + 1, m), j] * (Δx / Δy)
+    K[cord2num(mod1(i + 1, m), j, m), cord2num(i, j, m)] =
+        -A_N[mod1(i + 1, m), j] * (Δx / Δy)
 end
 
 # Diagonal elements of K balance out column sums
@@ -93,7 +97,10 @@ M = spzeros((m * n), (m * n))
 
 for i = 1:m, j = 1:n
     M[cord2num(i, j, n), cord2num(i, j, n)] =
-        (B_η[i, j] .+ B_η[i, mod1(j+1,n)] .+ B_η[mod1(i+1,m), j] .+ B_η[mod1(i+1,m), mod1(j+1,n)]) / (Δx * Δy)
+        (
+            B_η[i, j] .+ B_η[i, mod1(j + 1, n)] .+ B_η[mod1(i + 1, m), j] .+
+            B_η[mod1(i + 1, m), mod1(j + 1, n)]
+        ) / (Δx * Δy)
 end
 
 #= 
@@ -155,4 +162,4 @@ end =#
 
 λ, u = eigs(K, M, nev = 200)
 
-histogram((real(λ)*10^6),xlabel=L"λ\ (10^{-6})",label=false)
+histogram((real(λ) * 10^6), xlabel = L"λ\ (10^{-6})", label = false)

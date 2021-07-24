@@ -1,5 +1,3 @@
-using Plots: push!
-using NLopt: numevals
 using NLopt, SparseArrays, LinearAlgebra, LaTeXStrings, Plots
 pyplot()
 
@@ -7,15 +5,15 @@ pyplot()
 ## Fixed Variable Input ##
 ##########################
 
-p = 1.0
+p = 1
 
 p_max = 20
 
 p₊ = 0.05
 
-m = 10
+m = 60
 
-n = 10
+n = 60
 
 k₀ = 1.0
 
@@ -321,14 +319,14 @@ while true
     numevals = opt.numevals # the number of function evaluations
     println("$p: $minf for $numevals iterations (returned $ret)")
     global total_iterations += numevals
-    global total_iter_vec = push!(total_iter_vec,total_iterations)
-    global p_vec = push!(p_vec,p)
-    global f_av_vec = push!(f_av_vec,minf)
+    global total_iter_vec = push!(total_iter_vec, total_iterations)
+    global p_vec = push!(p_vec, p)
+    global f_av_vec = push!(f_av_vec, minf)
     global iter_vec = push!(iter_vec, numevals)
     global p += p₊
     err = norm(minf - f_0)
     global f_0 = minf
-    ((err <= ε₀) || (p>p_max)) && break
+    ((err <= ε₀) || (p > p_max)) && break
 end
 
 # numevals = opt.numevals # the number of function evaluations
@@ -350,8 +348,46 @@ end
     title = "η for each Design Volume",
 )
 
-p_vs_f_av = plot(p_vec,f_av_vec)
+p_vs_f_av = plot(
+    p_vec,
+    f_av_vec,
+    fontfamily = "serif",
+    font = "Computer Modern Roman",
+    title = "p-value vs Average Temperature",
+    label = false,
+    xlabel = "p-value",
+    ylabel = "Average Temperature (℃)",
+)
 
-tot_iter_vs_p = plot(total_iter_vec,p_vec)
+tot_iter_vs_p = plot(
+    total_iter_vec,
+    p_vec,
+    fontfamily = "serif",
+    font = "Computer Modern Roman",
+    title = "Total Iterations vs p-value",
+    label = false,
+    xlabel = "Total Number of Inner Loop Iterations",
+    ylabel = "p-value",
+)
 
-tot_iter_vs_f_av = plot(total_iter_vec,f_av_vec)
+tot_iter_vs_f_av = plot(
+    total_iter_vec,
+    f_av_vec,
+    fontfamily = "serif",
+    font = "Computer Modern Roman",
+    title = "Total Iterations vs Average Temperature",
+    label = false,
+    xlabel = "Total Number of Inner Loop Iterations",
+    ylabel = "Average Temperature (℃)",
+)
+
+p_value_vs_iter = plot(
+    p_vec,
+    iter_vec,
+    fontfamily = "serif",
+    font = "Computer Modern Roman",
+    title = "p-value vs Inner Loop Iterations",
+    label = false,
+    xlabel = "p-value",
+    ylabel = "Number of Inner Loop Iterations",
+)

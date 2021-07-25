@@ -9,6 +9,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{amsfonts,amssymb,amsmath}
+\usepackage{esint}
 %\usepackage{epstopdf}
 \usepackage{algorithmic}
 % \usepackage{algorithm}
@@ -17,6 +18,7 @@
 %\usepackage{xifthen}
 \usepackage{pgfplots}
 \usepackage{float}
+\usepackage{ragged2e}
 %\usepackage{latexsym}
 %\usepackage[dvips]{pstricks} % PSTricks
 %\usepackage{pst-node}
@@ -78,7 +80,7 @@
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\N}{\mathbb{N}}
 
-
+\setbeamertemplate{caption}[numbered]
 
 \selectlanguage{english}
 \title[SIMP Optimization]{\bf Topological Optimization Using the SIMP Method}
@@ -114,11 +116,10 @@ Zoom
 	
 	\medskip
 	\begin{itemize}
-		\item Orthogonal Polynomials
-		\item Chebyshev Polynomials
-		\item Chebyshev Expansion
-		\item Using Kernel Polynomials
-		\item Application: Calculating the Density of States
+		\item Heat Equation and Finite Volume Method
+		\item Optimization and Method of Moving Asymptotes
+		\item Solid Isotropic Material with Penalization (SIMP)
+		\item Algorithm Results
 	\end{itemize}
 	%
 	
@@ -126,133 +127,101 @@ Zoom
 
 \frame{
 
-\structure{\bf Orthogonal Polynomials}
+\structure{\bf Heat Equation}
 
 \medskip
-Scalar product on $[a,b]$: $$\left\langle f|g \right\rangle = \int_a^b w(x)f(x)g(x)\dif x$$
-Given a scalar product, we get a set of polynomials, $p_n$, which satisfy the orthogonality relation $$\left\langle p_n|p_m \right\rangle = \delta_{n,m}\left\langle p_n|p_n \right\rangle.$$
-This allows for an expansion of any given function $f(x)$ in terms of the $p_n(x)$:
-$$f(x)=\sum_{n=0}^{\infty}\alpha_n p_n(x)\quad\text{with}\quad \alpha_n=\frac{\left\langle p_n|f\right\rangle}{\left\langle p_n|p_n \right\rangle}$$
+The temperature ($T$) at any point in such an object is a function of both space ($\mathbf{x}$) and time ($t$) coordinates: $T(\mathbf{x},t)$.\\\vspace{1em}
+Physical principles demand that such a temperature function must satisfy the equation
+\begin{equation}
+	\frac{\partial T}{\partial t}=\nabla\cdot\left(k(\mathbf{x})\nabla T\right)\label{eqn:HeatEq},
+\end{equation}
+where $\nabla$ is the gradient operator and the function $k$ represents the thermal diffusivity at a point in our object.
 %
 
 }
+\begin{frame}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.65\textwidth]{Heatmap_Example.png}
+		\caption[Heatmap Example]{Heatmap for a 0.1m $\times$ 0.1m object with uniform heat generation and a heat sink at the center of its west boundary. This map was produced via the Finite Volume Method using $100\times 100$ uniform control volumes.}
+		\label{fig:heatmap-example}
+	\end{figure}
+\end{frame}
 
-\frame[plain]{
-	
-	\structure{\bf Chebyshev Polynomials}
-	
-	\medskip
-	I will focus on Chebyshev polynomials of the first kind, $T_n$:\\\vspace{0.25cm}
-	Defined on interval $[-1,1]$ with weight function $w(x)=\left(\pi\sqrt{1-x^2}\right)^{-1}$.
-	$$T_n=\cos\left(n\arccos(x)\right)$$
-	Recursively defined:
-	$$T_0(x)=1,\quad T_{-1}(x)=T_1(x)=x,$$
-	$$T_{m+1}(x)=2xT_m(x)-T_{m-1}(x).$$
-	The polynomials also follow the relation
-	$$2T_m(x)T_n(x)=T_{m+n}(x)+T_{m-n}(x).$$
-	Chebyshev Polynomials have some particular advantages which make them ideal for use in orthogonal polynomial expansions.
-	%
-	
-}
+\begin{frame}
+	\structure{\bf Finite Volume Method (FVM)}
+\end{frame}
 
-\frame[plain]{
-	
-	\structure{\bf Chebyshev Expansion}
-	
-	\medskip
-	The expansion of $f(x)$ in terms of Chebyshev polynomials
-	$$f(x)=\sum_{n=0}^{\infty}\frac{\left\langle f|T_n\right\rangle_1}{\left\langle T_n|T_n\right\rangle_1}T_n(x)$$
-	To make this a easier to compute, we rearrange:
-	$$f(x)=\frac{1}{\pi\sqrt{1-x^2}}\left[\mu_0+2\sum_{n=1}^{\infty}\mu_n T_n(x)\right],\quad \mu_n=\int_{-1}^{1}f(x)T_n(x)\dif x.$$
-	However, calculating the moments $\mu_n$ can be quite computationally expensive.
-	%
-	
-}
+\begin{frame}
+	\begin{theorem}[The Divergence Theorem]
+		Suppose that $\mathcal{V}$ is a compact subset of $\mathbb{R}^n$ that has a piecewise smooth boundary $\mathcal{S}$ (i.e. $\partial\mathcal{V}=\mathcal{S}$) with outward pointing normal vectors. If $\mathbf{F}$ is a continously differentiable vector field defined on a neighborhood of $\mathcal{V}$, then
+		\begin{equation}
+			\iiint_{\mathcal{V}}\left(\nabla\cdot\mathbf{F}\right)\dif\mathcal{V}=\oiint_{\mathcal{S}}\left(\mathbf{F}\cdot\mathbf{\hat{n}}\right)\dif\mathcal{S}\label{eqn:div-thm}
+		\end{equation}
+		where $\hat{n}$ is the outwards pointing normal vector to the boundary.
+		\label{thm:div-thm}
+	\end{theorem}
+\end{frame}
 
-\frame[plain]{
-	
-	\structure{\bf Motivation for KPM: Gibbs Oscillations}
-	
-	\medskip
-	In practice, we cannot compute an infinite series, so we need to truncate:
-	$$f(x)\approx\frac{1}{\pi\sqrt{1-x^2}}\left[\mu_0+2\sum_{n=1}^{N-1}\mu_n T_n(x)\right]$$
-	Gibbs Oscillations:
-	%
-	
-}
+\begin{frame}
+	\structure{\bf Discretization of Heat Equation}
+	\begin{equation}
+		\int_{V_i}\frac{\partial T}{\partial t}\dif\mathbf{x}=\int_{V_i}\nabla\cdot \left(k(\mathbf{x})\nabla T\right)\dif\mathbf{x}\underset{\eqref{eqn:div-thm}}{=}\int_{\partial V_i}k(\mathbf{x})\nabla T\cdot\hat{\mathbf{n}}\dif s\label{eqn:Vol-to-Surface-FVM}
+	\end{equation}\\
+	\vspace{1em}
+	In a square grid there are only four neighboring cells which we can label as North, South, East, West.\\\vspace{1em}
+	For a control volume $V_i$ we'll label the North boundary as $\partial V_N$, the South boundary as $\partial V_S$, the East boundary as $\partial V_E$, and the West boundary as $\partial V_W$.\\\vspace{1em}
+	Additionally, let $\Delta x$ be the length of the North and South boundaries, and $\Delta y$ the length of the East and West boundaries.
+\end{frame}
 
-\frame[plain]{
-	
-	\structure{\bf Kernel Polynomials}
-	
-	\medskip
-	To lessen the impact of the Gibbs Oscillations, we introduce a ``damping function'' in the form of a kernel polynomial, $g_n$:
-	$$f_{\text{KPM}}(x)=\frac{1}{\pi\sqrt{1-x^2}}\left[g_0\mu_0+2\sum_{n=1}^{N-1}g_n\mu_n T_n(x)\right]$$
-	%
-	
-}
+\begin{frame}
+	\structure{\bf Discretization of Heat Equation}
+	\begin{equation*}
+		\int_{V_i}\frac{\partial T}{\partial t}\dif\mathbf{x}=\int_{V_i}\nabla\cdot \left(k(\mathbf{x})\nabla T\right)\dif\mathbf{x}\underset{\eqref{eqn:div-thm}}{=}\int_{\partial V_i}k(\mathbf{x})\nabla T\cdot\hat{\mathbf{n}}\dif s
+	\end{equation*}
+	\hspace*{-2pt}\makebox[\linewidth][c]{%
+	\begin{tabular}{ccc}
+		$\displaystyle\int_{\partial V_i}k(\mathbf{x})\nabla T\cdot\hat{\mathbf{n}}\dif s$ & $=$ & $\displaystyle\int_{\partial V_N}k(\mathbf{x})\nabla T\cdot\hat{\mathbf{n}}_N\dif s+\int_{\partial V_S}k(\mathbf{x})\nabla T\cdot\hat{\mathbf{n}}_S\dif s$\\
+		&  & $\displaystyle+\int_{\partial V_E}k(\mathbf{x})\nabla T\cdot\hat{\mathbf{n}}_E\dif s+\int_{\partial V_W}k(\mathbf{x})\nabla T\cdot\hat{\mathbf{n}}_W\dif s$
+	\end{tabular}
+	}
+\end{frame}
 
-\frame[plain]{
-	
-	\structure{\bf Application: Density of States Calculations}
-	
-	\medskip
-	Density of States: How many energy states exist at a given energy $E$.
-	\begin{multicols}{2}
-	\begin{minipage}{0.6\textwidth}
-		$$\rho(E)=\frac{1}{N}\sum_{k=0}^{N-1}\delta(E-E_k)$$
-		Scale $E$ down to $[-1,1]$: $$E=aX+b$$
-		We can approximate $\rho(E)$ using KPM:
-		$$\rho(E)\approx\frac{1}{\pi\sqrt{1-x^2}}\left[g_0\mu_0+2\sum_{n=1}^{N-1}g_n\mu_n T_n(X)\right]$$
-		$$\mu_n\approx\frac{1}{N_r}\sum_{r}\left\langle r|T_n(X)|r\right\rangle$$
-	\end{minipage}
-	\end{multicols}
-	%
-	
-}
+\begin{frame}
+	\hspace*{-2pt}\makebox[\linewidth][c]{%
+			\begin{tabular}{ccc}
+				$\displaystyle\int_{\partial V_i}k(\mathbf{x})\nabla T\cdot\hat{\mathbf{n}}\dif s$ & $=$ & $\displaystyle\int_{\partial V_N}k(\mathbf{x})\nabla T\cdot\hat{\mathbf{n}}_N\dif s+\int_{\partial V_S}k(\mathbf{x})\nabla T\cdot\hat{\mathbf{n}}_S\dif s$\\
+				&  & $\displaystyle+\int_{\partial V_E}k(\mathbf{x})\nabla T\cdot\hat{\mathbf{n}}_E\dif s+\int_{\partial V_W}k(\mathbf{x})\nabla T\cdot\hat{\mathbf{n}}_W\dif s$
+			\end{tabular}
+	}
+\end{frame}
 
-\frame[plain]{
-	
-	\structure{\bf Disilicon Si\textsubscript{2} Density of States}
-	
-	\medskip
-	%
-	
-}
+\begin{frame}
+	\hspace*{-2pt}\makebox[\linewidth][c]{%
+		\begin{tabular}{ccc}
+			$\displaystyle\int_{\partial V_i}k(\mathbf{x})\nabla T\cdot\hat{\mathbf{n}}\dif s$ & $=$ & $\displaystyle\int_{\partial V_N}k(\mathbf{x})\nabla T\cdot\hat{\mathbf{n}}_N\dif s+\int_{\partial V_S}k(\mathbf{x})\nabla T\cdot\hat{\mathbf{n}}_S\dif s$\\
+			&  & $\displaystyle+\int_{\partial V_E}k(\mathbf{x})\nabla T\cdot\hat{\mathbf{n}}_E\dif s+\int_{\partial V_W}k(\mathbf{x})\nabla T\cdot\hat{\mathbf{n}}_W\dif s$\\
+			& & \\
+			$\displaystyle\int_{V_i}\frac{\partial T}{\partial t}\dif\mathbf{x}$ & $\approx$ & $\displaystyle k_N\frac{T_N-T_i}{\|\mathbf{x}_N-\mathbf{x}_i\|}\Delta y+k_S\frac{T_S-T_i}{\|\mathbf{x}_S-\mathbf{x}_i\|}\Delta y$\\
+			& & $\displaystyle+k_E\frac{T_E-T_i}{\|\mathbf{x}_E-\mathbf{x}_i\|}\Delta x+k_W\frac{T_W-T_i}{\|\mathbf{x}_W-\mathbf{x}_i\|}\Delta x$
+		\end{tabular}
+	}
+\end{frame}
 
-\frame[plain]{
-	
-	\structure{\bf Twisted Graphene Density of States}
-	
-	\medskip
-	%
-	
-}
-
-\frame[plain]{
-	
-	\structure{\bf Topics of Further Exploration}
-	
-	\medskip
-	\begin{itemize}
-		\item Effects of the number of random vectors ($R$) used in calculating the moments.
-		\item Optimal resolution values ($N$) for various Hamiltonians.
-		\item More in-depth comparisons of various kernels.
-	\end{itemize}
-	%
-	
-}
-
-\frame[plain]{
-	
-	\structure{\bf Acknowledgments}
-	
-	\medskip
-	Big thanks to Professor Cazeaux for helping me to get my program to work.\\ \vspace{0.5cm}
-	Also thanks to Aaron for talking through some aspects of the programming with me.
-	%
-	
-}
+\begin{frame}
+	\hspace*{-2pt}\makebox[\linewidth][c]{%
+		\begin{tabular}{ccc}
+			$\displaystyle\int_{\partial V_i}k(\mathbf{x})\nabla T\cdot\hat{\mathbf{n}}\dif s$ & $=$ & $\displaystyle\int_{\partial V_N}k(\mathbf{x})\nabla T\cdot\hat{\mathbf{n}}_N\dif s+\int_{\partial V_S}k(\mathbf{x})\nabla T\cdot\hat{\mathbf{n}}_S\dif s$\\
+			&  & $\displaystyle+\int_{\partial V_E}k(\mathbf{x})\nabla T\cdot\hat{\mathbf{n}}_E\dif s+\int_{\partial V_W}k(\mathbf{x})\nabla T\cdot\hat{\mathbf{n}}_W\dif s$\\
+			& & \\
+			$\displaystyle\int_{V_i}\frac{\partial T}{\partial t}\dif\mathbf{x}$ & $\approx$ & $\displaystyle k_N\frac{T_N-T_i}{\|\mathbf{x}_N-\mathbf{x}_i\|}\Delta y+k_S\frac{T_S-T_i}{\|\mathbf{x}_S-\mathbf{x}_i\|}\Delta y$\\
+			& & $\displaystyle+k_E\frac{T_E-T_i}{\|\mathbf{x}_E-\mathbf{x}_i\|}\Delta x+k_W\frac{T_W-T_i}{\|\mathbf{x}_W-\mathbf{x}_i\|}\Delta x$\\
+			& & \\
+			$\displaystyle\implies \Delta x\Delta y\frac{\dif T_i}{\dif t}$ & $=$ & $\displaystyle\left( k_N\frac{T_N-T_i}{\|\mathbf{x}_N-\mathbf{x}_i\|}+k_S\frac{T_S-T_i}{\|\mathbf{x}_S-\mathbf{x}_i\|}\right)\Delta y$\\
+			& & $\displaystyle+\left(k_E\frac{T_E-T_i}{\|\mathbf{x}_E-\mathbf{x}_i\|}+k_W\frac{T_W-T_i}{\|\mathbf{x}_W-\mathbf{x}_i\|}\right)\Delta x$
+		\end{tabular}\label{deriv:descrete-FVM}
+	}
+\end{frame}
 
 \frame[plain,allowframebreaks]{
 \structure{\bf Bibliography}
@@ -262,6 +231,10 @@ $$f(x)=\sum_{n=0}^{\infty}\alpha_n p_n(x)\quad\text{with}\quad \alpha_n=\frac{\l
 \bibliographystyle{plain}
 \bibliography{Thesis_Bibliography.bib}
 \nocite{Boyd2004}
+\nocite{Gander2018}
+\nocite{Marck2012}
+\nocite{Svanberg1987}
+\nocite{Versteeg2007}
 \end{tiny}
 }
 

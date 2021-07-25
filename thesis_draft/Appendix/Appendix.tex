@@ -163,6 +163,8 @@ ylen = 0.1
 
 εᵢ = 1e-4 # Inner Loop error tolerance
 
+q = 1e4
+
 ##########################
 ## Compute size of each ##
 ##   control volume     ##
@@ -270,7 +272,7 @@ function av_temp(
 	#######################
 	
 	# Input vector of Heat-Generation rates
-	Q = ones(m, n)
+	Q = Δx*Δy*q*ones(m, n)
 
 	######################
 	## Compute T Vector ##

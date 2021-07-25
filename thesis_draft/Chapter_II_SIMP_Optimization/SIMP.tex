@@ -38,9 +38,6 @@ We have the following sets to describe the VP-problem:
 		\item $\Omega_0$ = portion of $\Omega$ that has conductivity $k_0$.
 		\item $\Omega_+$ = portion of $\Omega$ with conductivity $k_+$. This is the portion of the space with high-conductivity material.
 	\end{itemize}
-	\item $\tilde{\mathbf{k}}\in\mathbb{K}$ = distribution of conductivity material: $$\tilde{\mathbf{k}}:\mathbf{\Omega}\rightarrow\mathbb{K}\text{ such that } \tilde{\mathbf{k}}(\mathbf{x})=\begin{cases}
-		k_0 &\text{if }\mathbf{x}\in\Omega_0\\ k_+ &\text{if }\mathbf{x}\in\Omega_+
-	\end{cases}$$
 \end{itemize}
 
 \subsection{The Optimization Problem}
@@ -50,18 +47,20 @@ Using the above established notation, we develop the following optimization prob
 \begin{equation}
 	\begin{tabular}{lll}
 		\text{minimize }   & $f(T)$                                                   & \text{for } $\Omega_+$ \\
-		\text{subject to } & $\nabla\cdot\left(k\nabla T_{\tilde{\mathbf{k}}}\right)+q=0$  &                                      \\
-		& $\mathbf{x}\in\Omega,\quad\tilde{\mathbf{k}}\in\mathbb{K}$ &                                      
+		\text{subject to } & $\nabla\cdot\left(k\nabla T\right)+q=0$  &                                      \\
+		& $\mathbf{x}\in\Omega$ &                                      
 	\end{tabular}\label{SIMP-Optimization-Problem}
 \end{equation}
+
+The objective function $f(T)$ varies depending on desired design outcomes. Some possible objective functions include average temperature (used in the implementation in this paper), temperature variance, and maximum temperature.
 
 Additionally, we impose a constraint upon this problem to limit the quantity of $k_+$ material available.
 
 \begin{equation}
-	\int_{\Omega}\delta_+\dif\Omega\leq V\quad\text{where }\begin{cases}\delta_+ = 0 & \text{if }\mathbf{x}\in\Omega_0 \\ \delta_+ = 1 & \text{if }\mathbf{x}\in\Omega_+\end{cases}\label{eqn:vol-constraint}
+	\int_{\Omega_+}\dif\mathbf{x}=\int_{\Omega}\delta_+\dif\mathbf{x}\leq V\quad\text{where }\begin{cases}\delta_+ = 0 & \text{if }\mathbf{x}\in\Omega_0 \\ \delta_+ = 1 & \text{if }\mathbf{x}\in\Omega_+\end{cases}\label{eqn:vol-constraint}
 \end{equation}
 
-\eqref{eqn:vol-constraint} sets a cap on the maximum volume ($V$) of $\Omega_+$ and hence limits the available amount of high-conductivity material that can be applied to the domain. If we did not have this constraint, the optimal solution would be to make $\Omega_+=\Omega$, making the entire domain have high conductivity material. However, this is not an interesting or realistic problem and applying the new constraint turns the problem into an optimizating the distribution of $\Omega_0$ and $\Omega_+$ regions to minimize the chosen objective function. The objective function varies depending on desired design outcomes. Some possible objective functions include average temperature (used in the implementation in this paper), temperature variance, and maximum temperature.
+Equation \eqref{eqn:vol-constraint} sets a cap on the maximum volume ($V$) of $\Omega_+$ and hence limits the available amount of high-conductivity material that can be applied to the domain. If we did not have this constraint, the optimal solution would be to make $\Omega_+=\Omega$, making the entire domain have high conductivity material. However, this is not an interesting or realistic problem and applying the new constraint turns the problem into optimizing the distribution of $\Omega_0$ and $\Omega_+$ regions to minimize the chosen objective function.
 
 \subsubsection*{Penalization Process}
 The problem of whether to place high conductivity material in a particular location or not is discrete in nature. This is unfortunate as continuous optimization problems are generally easier to solve. In particular, we cannot apply some of the optimization methods described earlier, such as gradient descent, to a discrete optimization problem as they require the optimization variables to be continuous.
@@ -106,7 +105,7 @@ Similarly, the conductivity along the North face of control volume $(i,j)$, deno
 
 For temperature control volume $(i,j)$, the finite volume method discretizes \eqref{eqn:SIMP-Heat-Eq} into the following linear equation
 \begin{equation}
-	K^{i,j}_C T^{i,j}=K_W^{i,j}T^{i,j-1}+K_W^{i,j+1}T^{i,j+1}+K_N^{i,j}T^{i-1,j}+K_N^{i+1,j}T^{i+1,j}+Q^{i,j},\label{eqn:FVM-Discret}
+	K^{i,j}_C T^{i,j}=K_W^{i,j}T^{i,j-1}+K_W^{i,j+1}T^{i,j+1}+K_N^{i,j}T^{i-1,j}+K_N^{i+1,j}T^{i+1,j}+\Delta x\Delta y Q^{i,j},\label{eqn:FVM-Discret}
 \end{equation}
 where the $K^{i.j}$ terms represent the diffusive flux coefficients, $T^{i,j}$ the temperature of control volume $(i,j)$, and $Q^{i,j}$ the heat generation of volume $(i,j)$.
 
@@ -124,7 +123,7 @@ The domain has Neumann boundary conditions everywhere except for the heat sink. 
 
 Putting together \eqref{eqn:k_W-Average-Filter}, \eqref{eqn:k_N-Average-Filter}, \eqref{eqn:FVM-Discret}, \eqref{eqn:CenterFluxCoeff}, \eqref{eqn:K-Coeffs}, and considering boundary conditions for all $N_T$ control volumes gives us a system of equations that discretize \eqref{eqn:SIMP-Heat-Eq}. Collecting the coefficients $K$ into a matrix, representing the $T$ and $Q$ values as vectors, and doing a little reorganizing, we can represent the system of equations as a matrix equation:
 \begin{equation}
-	\mathbf{K}\mathbf{T}=\mathbf{Q}.\label{eqn:KTQ-Matrix-Eqn}
+	\mathbf{K}\mathbf{T}=\Delta x\Delta y\mathbf{Q}.\label{eqn:KTQ-Matrix-Eqn}
 \end{equation}
 
 Let us take a moment to analyze the structure of the matrix $\mathbf{K}$, as it might not be immediately evident to the reader what the elements of this matrix represent. (It took the author some time to interpret the meaning of this matrix.) $\mathbf{K}$ is a sparse, symmetric, and pentadiagonal $mn\times mn$ matrix.
@@ -136,7 +135,7 @@ The entries in the matrix $\mathbf{K}$ indicate the coefficient of diffusive flu
 
 Entry $\mathbf{K}[\alpha,\beta]$ is the flux coefficient between volumes number $\alpha$ and $\beta$. Since the flux coefficient between volumes $\alpha$ and $\beta$ is the same as that between $\beta$ and $\alpha$, $\mathbf{K}[\alpha,\beta]=\mathbf{K}[\beta,\alpha]$, producing the symmetry of matrix $\mathbf{K}$. Since a particular control volume only interfaces with adjacent cells (and itself), each row/column will have (up to) five non-zero entries (all other entries are zero since there is no flux between cells that are not in contact with one another), which produces the pentadiagonality and sparsity of $\mathbf{K}$. The $i$\textsuperscript{th} elements of the size $mn$ vectors $\mathbf{T}$ and $\mathbf{Q}$ are the values of the temperature and heat generation of control volume number $i$.
 
-Equation \eqref{eqn:KTQ-Matrix-Eqn} is solved for $\mathbf{T}$ using any appropriate method, such as QR factorization. In our implementation we used the standard ``$\backslash$'' operator in Julia: $\mathbf{T}=\mathbf{K}\backslash\mathbf{Q}$.
+Equation \eqref{eqn:KTQ-Matrix-Eqn} is solved for $\mathbf{T}$ using any appropriate method, such as LU factorization. In our implementation we used the standard ``$\backslash$'' operator in Julia: $\mathbf{T}=\mathbf{K}\backslash\mathbf{Q}$.
 
 \subsection{Discretized Optimization Problem}
 

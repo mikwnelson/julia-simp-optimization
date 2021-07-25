@@ -2,7 +2,7 @@
 
 The SIMP algorithm consists of two main loops. The inner loop consists of the optimization process facilitated by the Method of Moving Asymptotes while the outer loop increases the penalization parameter $p$ after each inner loop has completed. The whole process is repeated until a desired threshold is met, such as a small enough norm between successive minimal objective function evaluations. The algorithm implementation in the Julia language can be found in \ref{sec:SIMP-Alg} and is available for download on \href{https://github.com/mikwnelson/julia-simp-optimization}{GitHub}.
 
-Figure \ref{fig:SIMP-Outputs-20-40-60} shows design results for domains of varying numbers of control volumes. Notice in Figures \ref{fig:SIMP-Output-40} and \ref{fig:SIMP-Output-60} that the ends of the ``tentacles'' contain some control volumes with $\eta\neq 1$. This is due to the cap put on $p$ in the algorithm. It became necessary to impose a maximum value for $p$ as the number of control volumes increased in order to complete the algorithm within a reasonable amount of time. With higher resolutions (i.e. more control volumes), it appears that the algorithm continuously is trading high conductivity material between the ends of the symmetric branches above and below the midline $i=0.05$.
+Figure \ref{fig:SIMP-Outputs-20-40-60} shows design results for domains of varying numbers of control volumes. Notice in Figures \ref{fig:SIMP-Output-40} and \ref{fig:SIMP-Output-60} that the ends of the ``tentacles'' contain some control volumes with $\eta\neq 1$. This is due to the cap put on $p$ in the algorithm. It became necessary to impose a maximum value for $p$ as the number of control volumes increased in order to complete the algorithm within a reasonable amount of time. With higher resolutions (i.e. more control volumes), it appears that the algorithm continuously is trading high conductivity material between the ends of the symmetric branches above and below the horizontal midline.
 
 It is interesting to note the symmetry in the designs. In \cite{Marck2012} the authors chose to take advantage of this symmetry and compute only the upper half of the domain and then reflect that design across the central horizontal axis. While \ref{fig:SIMP-Output-20} is certainly symmetric across the central horizontal axis, we notice some variations in \ref{fig:SIMP-Output-40} and \ref{fig:SIMP-Output-60} in the central branches.
 
@@ -110,6 +110,22 @@ In general, the number of inner loop iterations seems to quickly decrease as $p$
 \end{figure}
 
 It is interesting to note that the fluctuations in the number of inner-loop iterations seem to be of greater magnitude for the rectangular control volume examples tested. (See Figure \ref{fig:p-vs-Inner-Itter-60x60} versus Figure \ref{fig:p-vs-Inner-Itter-50x40}.)
+
+The algorithm was also run with high initial $p$-values. Rather than starting with $p=1$, Figure \ref{fig:start_p=5} shows the resulting design for initializing the algorithm with $p=5$. In this case, the algorithm converged very quickly: one outer-loop iteration. In this case, the algorithm determines that it is best to densely place the expensive $k_+$ material around the heatsink. If the initial penalization parameter is too high, the algorithm appears to stall at the initial guess. In Figure \ref{fig:start_p=19} the algorithm was initialized with $p=19$. Here, the algorithm ran 3 outer-loop iterations, but the final design is the same as the initial input design. It appears that with such a high penalization parameter it costs too much to change the conductivity at any control volume and the solution the optimizer outputs is the initial guess.
+
+\begin{figure}
+	\begin{subfigure}{0.5\textwidth}
+		\includegraphics[width=1.1\linewidth]{Chapter_III_Implementation_and_Results/Images/60x60-start-p=5-1iters.png}
+		\caption{$60\times 60$ Control Volumes with Initial $p=5$.}
+		\label{fig:start_p=5}
+	\end{subfigure}
+	\begin{subfigure}{0.5\textwidth}
+	\includegraphics[width=1.1\linewidth]{Chapter_III_Implementation_and_Results/Images/60x60-start-p=19-3iters.png}
+	\caption{$60\times 60$ Control Volumes with Initial $p=19$.}
+	\label{fig:start_p=19}
+\end{subfigure}
+\caption[Designs with Higher Initial $p$]{SIMP Algorithm design outputs for inital $p$-values greater than $1$.}
+\end{figure}
 
 For the designs tested, it appears that the total algorithm runtime increases quadratically with the total number of control volumes in the design (Figure \ref{fig:runtime}).
 

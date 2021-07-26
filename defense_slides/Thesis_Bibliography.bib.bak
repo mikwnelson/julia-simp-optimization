@@ -117,14 +117,13 @@ avoided. Concepts are explained in several different ways. Most equations are co
 }
 
 @Misc{kathuria_2020,
-  author       = {Kathuria, Ayoosh},
-  howpublished = {WebPage},
-  month        = {Dec},
-  title        = {Intro to optimization in deep learning: Gradient Descent},
-  year         = {2020},
-  journal      = {Paperspace Blog},
-  publisher    = {Paperspace Blog},
-  url          = {https://blog.paperspace.com/intro-to-optimization-in-deep-learning-gradient-descent/},
+  author    = {Kathuria, Ayoosh},
+  month     = {Dec},
+  title     = {Intro to optimization in deep learning: Gradient Descent},
+  year      = {2020},
+  journal   = {Paperspace Blog},
+  publisher = {Paperspace Blog},
+  url       = {https://blog.paperspace.com/intro-to-optimization-in-deep-learning-gradient-descent/},
 }
 
 @Misc{Keulen,

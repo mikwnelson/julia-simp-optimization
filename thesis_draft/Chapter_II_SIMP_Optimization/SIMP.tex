@@ -60,7 +60,7 @@ Additionally, we impose a constraint upon this problem to limit the quantity of 
 	\int_{\Omega_+}\dif\mathbf{x}=\int_{\Omega}\delta_+\dif\mathbf{x}\leq V\quad\text{where }\begin{cases}\delta_+ = 0 & \text{if }\mathbf{x}\in\Omega_0 \\ \delta_+ = 1 & \text{if }\mathbf{x}\in\Omega_+\end{cases}\label{eqn:vol-constraint}
 \end{equation}
 
-Equation \eqref{eqn:vol-constraint} sets a cap on the maximum volume ($V$) of $\Omega_+$ and hence limits the available amount of high-conductivity material that can be applied to the domain. If we did not have this constraint, the optimal solution would be to make $\Omega_+=\Omega$, making the entire domain have high conductivity material. However, this is not an interesting or realistic problem and applying the new constraint turns the problem into optimizing the distribution of $\Omega_0$ and $\Omega_+$ regions to minimize the chosen objective function.
+Inequality \eqref{eqn:vol-constraint} sets a cap on the maximum volume ($V$) of $\Omega_+$ and hence limits the available amount of high-conductivity material that can be applied to the domain. If we did not have this constraint, the optimal solution would be to set $\Omega_+=\Omega$, making the entire domain have high conductivity material. However, this is not an interesting or realistic problem and applying the new constraint turns the problem into optimizing the distribution of $\Omega_0$ and $\Omega_+$ regions to minimize the chosen objective function.
 
 \subsubsection*{Penalization Process}
 The problem of whether to place high conductivity material in a particular location or not is discrete in nature. This is unfortunate as continuous optimization problems are generally easier to solve. In particular, we cannot apply some of the optimization methods described earlier, such as gradient descent, to a discrete optimization problem as they require the optimization variables to be continuous.
@@ -144,7 +144,7 @@ Now that we have been able to discretize \eqref{eqn:SIMP-Heat-Eq}, we can update
 \begin{equation}
 	\begin{tabular}{ll}
 		\text{minimize }   & $f(\mathbf{T})$                                                                                     \\
-		\text{subject to } & $\mathbf{K}\mathbf{T}=\mathbf{Q}$                                                                   \\
+		\text{subject to } & $\mathbf{K}\mathbf{T}=\Delta x\Delta y\mathbf{Q}$                                                                   \\
 		                   & $\displaystyle\frac{1}{N_T}\mathbf{1}^T\boldsymbol{\eta}\leq\overline{\phi}$ \\
 		                   & $\mathbf{k}=k_0\mathbf{1}+(k_+-k_0)\boldsymbol{\eta}^p$                                       \\
 		                   & $0\leq\boldsymbol{\eta}\leq 1\text{ and } p\geq 1$
@@ -239,7 +239,7 @@ Now, we update the optimization problem one last time with the results from \eqr
 \begin{equation}
 	\begin{tabular}{ll}
 		$\text{minimize}$  & $f_{av}\left({\mathbf{T}}\right)=\frac{1}{N_T}\mathbf{1}^T\mathbf{T}$                                                                                     \\
-		\text{subject to } & $\mathbf{K}\mathbf{T}=\mathbf{1}$                                                                   \\
+		\text{subject to } & $\mathbf{K}\mathbf{T}=\Delta x\Delta y\mathbf{1}$                                                                   \\
 		& $\mathbf{1}^T\boldsymbol{\eta}-N_T\overline{\phi}\leq0$ \\
 		& $\mathbf{k}=k_0\mathbf{1}+(k_+-k_0)\boldsymbol{\eta}^p$                                       \\
 		& $0\leq\boldsymbol{\eta}\leq 1\text{ and } p\geq 1$

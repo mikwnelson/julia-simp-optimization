@@ -11,6 +11,7 @@ Consider an optimization problem of the following general form
 		     & subject to & $f_i(\mathbf{x})\leq\hat{f}_i$,                  & for $i=1,\ldots,m$                    \\
 		     &            & $\underline{x}_j\leq x_j\leq \overline{x}_j$, & for $j=1,\ldots,n$                    
 	\end{tabular}
+	\label{eqn:MMA-Opt}
 \end{equation}
 where
 \begin{itemize}
@@ -25,7 +26,7 @@ The general approach for solving such optimization problems is to split it up an
 \begin{description}
 	\item[\textbf{\underline{Step 0}:}] Choose a starting point $\mathbf{x}^{(0)}$, and let the iteration index $k=0$.
 	\item[\textbf{\underline{Step 1}:}] Given an iteration point $\mathbf{x}^{(k)}$, calculate $f_i(\mathbf{x}^{(k)})$ and the gradients $\nabla f_i(\mathbf{x}^{(k)})$ for $i=0,1,\ldots,m$.
-	\item[\textbf{\underline{Step 2}:}] Generate a subproblem $P^{(k)}$ by replacing, in $(6)$, the functions $f_i$ by approximating functions $f_i^{(k)}$, based on calculations from Step 1.
+	\item[\textbf{\underline{Step 2}:}] Generate a subproblem $P^{(k)}$ by replacing, in \eqref{eqn:MMA-Opt}, the functions $f_i$ by approximating functions $f_i^{(k)}$, based on calculations from Step 1.
 	\item[\textbf{\underline{Step 3}:}] Solve $P^{(k)}$ and let the optimal solution of this subproblem be the next iteration point $\mathbf{x}^{(k+1)}$. Let $k=k+1$ and go to Step 1.
 \end{description}
 

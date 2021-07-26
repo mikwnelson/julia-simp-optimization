@@ -65,7 +65,7 @@ In order to solve the heat equation \eqref{eqn:HeatEq}, we employ the Finite Vol
 
 In order to avoid obtaining checkerboard solutions from our optimization process, we employ two separate staggered grids for our temperature and design variables (see Figure \ref{fig:grids}). We need to employ some extra equations in order to translate between design and temperature variables, but this strategy helps solve the issue of convergence to checkerboard solutions.
 
-Available literature on topology optimization propose other solutions as well, such as using a weighted average over neighboring nodes when finding design sensitivies and introducing constraints on the norm of the design gradients \cite{Sigmund1998}. These are methods that would be of interest to implement in future work.
+Available literature on topology optimization propose other solutions as well, such as using a weighted average over neighboring nodes when finding design sensitivities and introducing constraints on the norm of the design gradients \cite{Sigmund1998}. These are methods that would be of interest to implement in future work.
 
 \subsection{Algorithm Results}
 
@@ -111,7 +111,7 @@ In general, the number of inner loop iterations seems to quickly decrease as $p$
 
 It is interesting to note that the fluctuations in the number of inner-loop iterations seem to be of greater magnitude for the rectangular control volume examples tested. (See Figure \ref{fig:p-vs-Inner-Itter-60x60} versus Figure \ref{fig:p-vs-Inner-Itter-50x40}.)
 
-The algorithm was also run with high initial $p$-values. Rather than starting with $p=1$, Figure \ref{fig:start_p=5} shows the resulting design for initializing the algorithm with $p=5$. In this case, the algorithm converged very quickly: one outer-loop iteration. In this case, the algorithm determines that it is best to densely place the expensive $k_+$ material around the heatsink. If the initial penalization parameter is too high, the algorithm appears to stall at the initial guess. In Figure \ref{fig:start_p=19} the algorithm was initialized with $p=19$. Here, the algorithm ran 3 outer-loop iterations, but the final design is the same as the initial input design. It appears that with such a high penalization parameter it costs too much to change the conductivity at any control volume and the solution the optimizer outputs is the initial guess.
+The algorithm was also run with high initial $p$-values. Rather than starting with $p=1$, Figure \ref{fig:start_p=5} shows the resulting design for initializing the algorithm with $p=5$. In this case, the algorithm converged very quickly: one outer-loop iteration. In this case, the algorithm determines that it is best to densely place the expensive $k_+$ material around the heat-sink. If the initial penalization parameter is too high, the algorithm appears to stall at the initial guess. In Figure \ref{fig:start_p=19} the algorithm was initialized with $p=19$. Here, the algorithm ran 3 outer-loop iterations, but the final design is the same as the initial input design. It appears that with such a high penalization parameter it costs too much to change the conductivity at any control volume and the solution the optimizer outputs is the initial guess.
 
 \begin{figure}
 	\begin{subfigure}{0.5\textwidth}
@@ -124,7 +124,7 @@ The algorithm was also run with high initial $p$-values. Rather than starting wi
 	\caption{$60\times 60$ Control Volumes with Initial $p=19$.}
 	\label{fig:start_p=19}
 \end{subfigure}
-\caption[Designs with Higher Initial $p$]{SIMP Algorithm design outputs for inital $p$-values greater than $1$.}
+\caption[Designs with Higher Initial $p$]{SIMP Algorithm design outputs for initial $p$-values greater than $1$.}
 \end{figure}
 
 For the designs tested, it appears that the total algorithm runtime increases quadratically with the total number of control volumes in the design (Figure \ref{fig:runtime}).

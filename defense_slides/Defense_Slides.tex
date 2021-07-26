@@ -163,7 +163,7 @@ where $\nabla$ is the gradient operator and the function $k$ represents the ther
 	To numerically solve the heat equation, we employ the Finite Volume Method (FVM).\pause
 	\vfill
 	Given a mesh of polygons (rectangles) on a domain $\Omega$ with sample points at $\lbrace x_i\rbrace\subset\Omega$, we create a set of \textit{control volumes} around each $x_i$. This set of control volumes discretize the partial differential equation.\\\vfill\pause
-	The main idea of FVM integrate the heat equation over each control volume and then use the Divergence Theorem to convert volume integrals into surface integrals involving the fluxes across the boundaries of the control volumes.
+	The main idea of FVM is to integrate the heat equation over each control volume and then use the Divergence Theorem to convert volume integrals into surface integrals involving the fluxes across the boundaries of the control volumes.
 	\vfill
 \end{frame}
 
@@ -503,7 +503,7 @@ Recognizing that $\partial V_i=\partial V_N\cup\partial V_S\cup\partial V_E\cup\
 			\caption{$60\times 60$ Control Volumes with Initial $p=19$.}
 			\label{fig:start_p=19}
 		\end{subfigure}
-		\caption[Designs with Higher Initial $p$]{Design outputs for inital $p$-values greater than $1$.}
+		\caption[Designs with Higher Initial $p$]{Design outputs for initial $p$-values greater than $1$.}
 	\end{figure}
 \end{frame}
 

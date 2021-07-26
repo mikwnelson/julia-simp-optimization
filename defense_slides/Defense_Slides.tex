@@ -68,8 +68,9 @@
 \newcommand{\theHalgorithm}{\arabic{algorithm}}
 \newcommand{\eq}[1]{(\ref{#1})}
 
-
-
+\usepackage{xcolor}
+\definecolor{baystate}{HTML}{3C27CD}
+\definecolor{tiananmen}{HTML}{8C122B}
 
 \newtheorem{remark}[theorem]{Remark}
 \newtheorem{proposition}[theorem]{Proposition}
@@ -131,13 +132,13 @@ July 26\textsuperscript{th}, 2021
 
 \begin{frame}[t]{The Volume-to-Point (VP) Heat Conduction Problem}
 	\pause
-	Consider a finite-size volume in which heat is being generated at \textit{every} point, and which is cooled through a small patch (the heat-sink) located on its boundary.
+	Consider a finite-size volume in which {\color{tiananmen}heat is being generated at \textit{every} point}, and which is cooled through a small patch (the heat-sink) located on its boundary.
 	\pause
 	\vfill
-	Suppose that we have a finite amount of high-conductivity ($k_+$) material available.
+	Suppose that we have a {\color{tiananmen}finite amount of high-conductivity ($k_+$)} material available.
 	\vfill
 	\pause
-	Our goal is to determine the optimal distribution of the $k_+$ material through the given volume such that \textit{the average temperature is minimized}.\vfill
+	Our goal is to {\color{baystate}determine the optimal distribution of the $k_+$ material} through the given volume such that {\color{baystate}\textit{the average temperature is minimized}}.\vfill
 \end{frame}
 
 \begin{frame}
@@ -164,14 +165,14 @@ Physical principles demand that such a temperature function must satisfy the equ
 \begin{equation}
 	\frac{\partial T}{\partial t}=\nabla\cdot\left(k(\mathbf{x})\nabla T\right)\label{eqn:HeatEq},
 \end{equation}
-where $\nabla$ is the gradient operator and the function $k$ represents the thermal diffusivity at a point in our object.
+where $\nabla$ is the {\color{baystate}gradient operator} and the function $k$ represents the {\color{baystate}thermal diffusivity} at a point in our object.
 \end{frame}
 
 \begin{frame}[t]{\bf The Finite Volume Method (FVM)}
 	To numerically solve the heat equation, we employ the Finite Volume Method (FVM).\pause
 	\vfill
-	Given a mesh of polygons (rectangles) on a domain $\Omega$ with sample points at $\lbrace x_i\rbrace\subset\Omega$, we create a set of \textit{control volumes} around each $x_i$. This set of control volumes will be used to discretize the partial differential equation.\\\vfill\pause
-	The main idea of FVM is to integrate the heat equation over each control volume and then use the Divergence Theorem to convert volume integrals into surface integrals involving the fluxes across the boundaries of the control volumes.
+	Given a mesh of polygons (rectangles) on a domain $\Omega$ with sample points at $\lbrace x_i\rbrace\subset\Omega$, we create a set of {\color{baystate}\textit{control volumes}} around each $x_i$. {\color{tiananmen}This set of control volumes will be used to discretize the partial differential equation.}\\\vfill\pause
+	{\color{tiananmen}The main idea of FVM is to integrate} the heat equation over each control volume and then use the {\color{baystate}Divergence Theorem} to convert volume integrals into surface integrals involving the fluxes across the boundaries of the control volumes.
 	\vfill
 \end{frame}
 
@@ -264,20 +265,20 @@ Recognizing that $\partial V_i=\partial V_N\cup\partial V_S\cup\partial V_E\cup\
 		\end{itemize}
 	\end{definition}
 	\pause
-	In our VP problem we are concerned with minimizing the function $f_{av}(T)$, the average temperature, subject to an inequality constraint on the maximum volume of conductive material.
+	In our VP problem we are concerned with minimizing the function {\color{baystate}$f_{av}(T)$, the average temperature,} subject to an inequality constraint on the maximum volume of conductive material.
 \end{frame}
 
 \begin{frame}{\textbf{Optimization Methods}}
 	Unconstrained optimizations algorithms follow a general blueprint:\pause
 	\begin{enumerate}
 		\item Choose an initial ``guess'' for the optimal value $x$\pause
-		\item Find a descent direction $\Delta x$\pause
-		\item Use a line search method to determine an appropriate step-size ($t$) in the descent direction\pause
+		\item Find a {\color{baystate}descent direction} $\Delta x$\pause
+		\item Use a {\color{baystate}line search} method to determine an appropriate step-size ($t$) in the descent direction\pause
 		\item Compute new approximation value: $x+t\Delta x$\pause
 	\end{enumerate}
 	\pause
 	\vfill
-	The main differentiating factor between methods is how the descent direction is determined.\pause
+	The main differentiating factor between methods is {\color{tiananmen}how the descent direction is determined}.\pause
 	\vfill
 	For example, the Gradient Descent algorithm chooses $\Delta x=-\nabla f(x)$ as the descent direction, while the Conjugate Gradient method requires that descent directions be conjugate to one another.
 \end{frame}
@@ -291,16 +292,16 @@ Recognizing that $\partial V_i=\partial V_N\cup\partial V_S\cup\partial V_E\cup\
 \end{frame}
 
 \begin{frame}{}
-	The VP problem is a \textit{constrained} optimization problem.\vfill\pause
-	Additionally, it is not a convex problem.\vfill\pause
-	(Convex problems have a lot of properties we can take advantage of that make the optimization problem easier to solve. Most notably, for a convex optimization problem, all local optima are global optima.)\vfill\pause
+	The VP problem is a {\color{tiananmen}\textit{constrained}} optimization problem.\vfill\pause
+	Additionally, it is {\color{tiananmen}not} a convex problem.\vfill\pause
+	(Convex problems have a lot of properties we can take advantage of that make the optimization problem easier to solve. Most notably, {\color{baystate}for a convex optimization problem, all local optima are global optima}.)\vfill\pause
 	Hence, we will employ a more complicated optimization algorithm.\vfill
 \end{frame}
 
 \begin{frame}[t]{\textbf{The Method of Moving Asymptotes (MMA)}}
-	 The Method of Moving Asymptotes is a method of nonlinear programming, originally developed for structural optimization \cite{Svanberg1987}. MMA is designed for constrained optimization problems.
+	 The Method of Moving Asymptotes is a method of nonlinear programming, originally developed for structural optimization \cite{Svanberg1987}. {\color{tiananmen}MMA is designed for constrained optimization problems.}
 	 \vfill\pause
-	 The method uses an iterative process which creates a convex subproblem that is solved in each iteration. Each of these subproblems is an approximation of the original problem with parameters that change the curvature of the approximation.
+	 The method uses an iterative process which creates a {\color{baystate}convex subproblem} that is solved in each iteration. Each of these subproblems is an approximation of the original problem with parameters that change the curvature of the approximation.
 	 \vfill\pause
 	 These parameters act as asymptotes for the subproblem and moving the asymptotes between iterations stablizes the convergence of the entire process.
 \end{frame}
@@ -328,7 +329,7 @@ Recognizing that $\partial V_i=\partial V_N\cup\partial V_S\cup\partial V_E\cup\
 
 \begin{frame}{\textbf{Solid Isotropic Material with Penalization (SIMP)}}
 	Solid Isotropic Material with Penalization (SIMP) is a method based on topology optimization that can be used to solve the VP Heat Conduction Problem.\vfill\pause
-	In each step of the SIMP method we increase or decrease the proportion of high-conductivity material used in our object by a small quantity.\\\vfill This allows us to apply methods designed for continuous optimization problems to the discrete VP problem as it transforms the binary 1---0 problem into a sequence of continuous problems.
+	In each step of the SIMP method we {\color{tiananmen}increase or decrease the proportion of high-conductivity material} used in our object by a small quantity.\\\vfill This allows us to apply methods designed for continuous optimization problems to the discrete VP problem as it {\color{tiananmen}transforms the binary 1---0 problem into a sequence of continuous problems}.
 \end{frame}
 
 \begin{frame}{\textbf{Solid Isotropic Material with Penalization (SIMP})}
@@ -352,7 +353,7 @@ Recognizing that $\partial V_i=\partial V_N\cup\partial V_S\cup\partial V_E\cup\
 \begin{frame}[t]{\textbf{Preliminary Parameters}}
 	First of all, the energy differential equation driving the heat-flux inside the finite-volume requires:
 	\begin{enumerate}
-		\item All calculations are run under steady-state conditions. That is, we seek a stable solution where quantities are independent of time.
+		\item All calculations are run under {\color{tiananmen}steady-state conditions}. That is, we seek a stable solution where quantities are independent of time.
 		\item All heat produced in the volume is evacuated through the heat sink.
 		\item Low-conductivity materials ($k_0$) and high-conductivity materials ($k_+$) are treated as homogeneous and isotropic on their respective conductivities.
 	\end{enumerate}\pause
@@ -362,8 +363,8 @@ Recognizing that $\partial V_i=\partial V_N\cup\partial V_S\cup\partial V_E\cup\
 		$$k_0=1 \si[per-mode=fraction]{\watt\per\square\meter\per\kelvin}\qquad\text{and}\qquad k_+=100 \si[per-mode=fraction]{\watt\per\square\meter\per\kelvin}$$
 		\item All structures have a square aspect ratio with $L=H=0.1\si{\meter}$
 		\item The heat-sink is located on the middle of the west side of the structure
-		\item The heat-sink has Dirichlet boundary conditions: $T_S=0\si{\celsius}$
-		\item All other boundaries are adiabatic (Neumann boundary conditions): $\nabla T\cdot\mathbf{n}=0$
+		\item The heat-sink has {\color{tiananmen}Dirichlet boundary conditions}: $T_S=0\si{\celsius}$
+		\item All other boundaries are adiabatic ({\color{tiananmen}Neumann boundary conditions}): $\nabla T\cdot\mathbf{n}=0$
 	\end{itemize}
 \end{frame}
 }
@@ -374,8 +375,8 @@ Recognizing that $\partial V_i=\partial V_N\cup\partial V_S\cup\partial V_E\cup\
 		\item $\mathbf{x}\in\Omega$ = two-dimensional spatial field
 		\item[] We set $\Omega = \Omega_0\cup\Omega_+$ where
 		\begin{itemize}
-			\item $\Omega_0$ = portion of $\Omega$ that has conductivity $k_0$.
-			\item $\Omega_+$ = portion of $\Omega$ with conductivity $k_+$. This is the portion of the space with high-conductivity material.
+			\item $\Omega_0$ = portion of $\Omega$ that has {\color{baystate}conductivity $k_0$}.
+			\item $\Omega_+$ = portion of $\Omega$ with {\color{baystate}conductivity $k_+$}. This is the portion of the space with high-conductivity material.
 		\end{itemize}
 	\end{itemize}\vfill\pause
 	Using the above established notation, we develop the following optimization problem:
@@ -395,20 +396,20 @@ Recognizing that $\partial V_i=\partial V_N\cup\partial V_S\cup\partial V_E\cup\
 	\begin{equation}
 		\int_{\Omega_+}\dif\mathbf{x}=\int_{\Omega}\delta_+\dif\mathbf{x}\leq V\quad\text{where }\begin{cases}\delta_+ = 0 & \text{if }\mathbf{x}\in\Omega_0 \\ \delta_+ = 1 & \text{if }\mathbf{x}\in\Omega_+\end{cases}\label{eqn:vol-constraint}
 	\end{equation}\vfill\pause
-	Inequality \eqref{eqn:vol-constraint} imposes a cap on the maximum volume ($V$) of $\Omega_+$ and hence limits the available amount of high-conductivity material that can be applied to the domain.\vfill
+	Inequality \eqref{eqn:vol-constraint} imposes a {\color{tiananmen}cap on the maximum volume ($V$) of $\Omega_+$} and hence limits the available amount of high-conductivity material that can be applied to the domain.\vfill
 	
 	If we did not have this constraint, the optimal solution would be to set $\Omega_+=\Omega$, making the entire domain have high conductivity material.\vfill
 \end{frame}
 
 \begin{frame}{\textbf{Penalization Process}}
-	The problem of whether to place high conductivity material in a particular location or not is discrete in nature. This is unfortunate as continuous optimization problems are generally easier to solve.\vfill\pause
+	The problem of whether to place high conductivity material in a particular location or not is {\color{tiananmen}discrete} in nature. This is unfortunate as continuous optimization problems are generally easier to solve.\vfill\pause
 	
 	The SIMP method has a clever way of getting around this particular issue of discrete variables: create a continuous function that allows for a ``mix'' of the two conductive materials.\pause
 	
 	\begin{equation}
 		k\left(\eta\right)=k_0+\left(k_+-k_0\right)\eta^p\qquad\text{with}\qquad 0\leq\eta\leq 1\qquad\text{and}\qquad p\geq1.\label{eqn:penalization}
 	\end{equation}
-	$\eta$ is called the \textit{design parameter} and $p$ the \textit{penalization parameter}.
+	$\eta$ is called the {\color{baystate}\textit{design parameter}} and $p$ the {\color{baystate}\textit{penalization parameter}}.
 \end{frame}
 
 \begin{frame}[fragile]
@@ -455,7 +456,7 @@ Recognizing that $\partial V_i=\partial V_N\cup\partial V_S\cup\partial V_E\cup\
 			& $0\leq\boldsymbol{\eta}\leq 1\text{ and } p\geq 1$
 		\end{tabular}\label{Implementation-SIMP-Optimization-Problem}
 	\end{equation}
-	where $N_T$ represents the number of temperature control volumes and $\overline{\phi}$ represents the maximum porosity (the cap on the amount of high-conductivity material).
+	where $N_T$ represents the {\color{baystate}number of temperature control volumes} and $\overline{\phi}$ represents the {\color{baystate}maximum porosity} (the cap on the amount of high-conductivity material).
 \end{frame}
 
 \begin{frame}{\textbf{Numerical Experiments}}

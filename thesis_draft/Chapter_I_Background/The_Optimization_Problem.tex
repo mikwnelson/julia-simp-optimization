@@ -20,7 +20,7 @@ We now move on to an overview of mathematical optimization and a survey of optim
 \end{defn}
 If there are no constraints ($m=p=0$), then the problem is called \textit{unconstrained}. \cite[p. 127]{Boyd2004}
 
-We call a vector $\mathbf{x}^\star$ \textit{globally optimal} if it has the smallest objective value among all vectors that satisfy the constraints. That is, for any $z$ with $f_1(\mathbf{z})\leq 0,\ldots, f_m(\mathbf{z})\leq 0$, then $f_0(\mathbf{z})\geq f_0(\mathbf{x}^\star)$. A vector $\mathbf{x}$ that is in the domains of each function $f_i$ and $h_i$ is called \textit{feasible} if it satisfies all the constraints. Finally, the \textit{optimal value} $p^\star$ of the problem is defined as $$p^\star=\left\lbrace f_0(\mathbf{x}) \mid f_i(\mathbf{x})\leq 0, i=1,\ldots,m, h_i(\mathbf{x})=0, i=1,\ldots,p\right\rbrace.$$ Therefore, $p^{\star}=f_0(\mathbf{x}^\star)$, the objective function value at a feasible and globally optimal vector $\mathbf{x}^{\star}$.
+We call a vector $\mathbf{x}^\star$ \textit{globally optimal} if it has the smallest objective value among all vectors that satisfy the constraints. That is, for any $\mathbf{z}$ with $f_1(\mathbf{z})\leq 0,\ldots, f_m(\mathbf{z})\leq 0$, then $f_0(\mathbf{z})\geq f_0(\mathbf{x}^\star)$. A vector $\mathbf{x}$ that is in the domains of each function $f_i$ and $h_i$ is called \textit{feasible} if it satisfies all the constraints. Finally, the \textit{optimal value} $p^\star$ of the problem is defined as $$p^\star=\left\lbrace f_0(\mathbf{x}) \mid f_i(\mathbf{x})\leq 0, i=1,\ldots,m, h_i(\mathbf{x})=0, i=1,\ldots,p\right\rbrace.$$ Therefore, $p^{\star}=f_0(\mathbf{x}^\star)$, the objective function value at a feasible and globally optimal vector $\mathbf{x}^{\star}$.
 
 A vector is \textit{locally optimal} if it has the smallest objective value among all feasible candidates within a neighboring set. The global optimum is also a local optimum, but a local optimum need not be the global optimum.
 
@@ -32,7 +32,7 @@ There are exists efficient methods for solving linear programming and many quadr
 
 \subsection{Convex Optimization}
 
-A set $C$ is \textit{convex} if the line segment between any two points in $C$ lies in $C$. That is if for any $x_1,x_2\in C$ and any $\theta$ with $0\leq\theta\leq 1$, we have $\theta x_1+(1-\theta)x_2\in C$.
+A set $C$ is \textit{convex} if the line segment between any two points in $C$ lies within $C$. That is, $C$ is convex if for any $x_1,x_2\in C$ and any $\theta$ with $0\leq\theta\leq 1$, we have $\theta x_1+(1-\theta)x_2\in C$.
 
 A function $f : \mathbb{R}^n\rightarrow\mathbb{R}$ is convex if the domain of $f$ is a convex set and if for all $x,y$ in the domain of $f$, and $\theta$ with $0\leq\theta\leq 1$, we have
 \begin{equation}
@@ -51,14 +51,14 @@ where $f_0,\ldots,f_m$ are convex functions.
 
 Notice that there are three requirements that differentiate a convex optimization problem from a general optimization problem:
 \begin{itemize}
-	\item the objective function must be convex
-	\item the inequality constraint functions must be convex
-	\item the equality constraint functions must be affine
+	\item The objective function must be convex.
+	\item The inequality constraint functions must be convex.
+	\item The equality constraint functions must be affine.
 \end{itemize}
 
 In a convex optimization problem we minimize a convex objective function over a convex set and any locally optimal point is also globally optimal. This is a \textit{very} useful fact!
 
-Why might local optimality implying global optimality be useful? Consider a situation where we have a convex objective function. If we are able to find any minimum value for the objective function, then we know this value is not just a local minimum, but indeed a global minimum. If we do not have a convex function, we cannot be as assured that we have found the global optimal value. For example, consider a function such as the one shown in \figref{fig:non-convex-function-example}. An optimization strategy may find the local minimum near $x=1$, but since the function is not convex everywhere on its domain, we cannot conclude that this value is the truly optimal value. In fact, we see that the global minimum, and hence the actual optimal value, is between $x=-1$ and $x=-0.5$. On the other hand, if we have a function that is everywhere convex, as soon as we find a local minima, we can be assured that it is also the global minima!
+Why might local optimality implying global optimality be useful? Consider a situation where we have a convex objective function. If we are able to find any minimum value for the objective function, then we know this value is not just a local minimum, but indeed a global minimum. If we do not have a convex function, we cannot be as assured that we have found the global optimal value. For example, consider a function such as the one shown in \figref{fig:non-convex-function-example}. An optimization strategy may find the local minimum near $x=1$, but since the function is not convex everywhere on its domain, we cannot conclude that this value is the globally optimal value. In fact, we see that the global minimum, and hence the actual optimal value, is between $x=-1$ and $x=-0.5$. On the other hand, if we have a function that is everywhere convex, as soon as we find a local minima, we can be assured that it is also the global minima!
 
 \begin{figure}
 	\centering

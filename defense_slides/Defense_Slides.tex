@@ -83,12 +83,12 @@
 \newcommand{\N}{\mathbb{N}}
 
 \setbeamertemplate{caption}[numbered]
-%\setbeamertemplate{bibliography item}{\insertbiblabel}
+\setbeamertemplate{bibliography item}{\insertbiblabel}
 
 \selectlanguage{english}
 \title[SIMP Optimization]{\bf Topological Optimization\\Using the SIMP Method}
-\author[Mikal Nelson]{Mikal Nelson
-%(joint work with XXXXX) 
+\author[Mikal Nelson]{Mikal Nelson\\
+Advisor: Paul Cazeaux
 }
 \institute[KU]{
 {University of Kansas}\\
@@ -125,7 +125,7 @@ July 26\textsuperscript{th}, 2021
 			\item The Method of Moving Asymptotes (MMA)
 		\end{itemize}
 		\item Solid Isotropic Material with Penalization (SIMP)
-		\item Algorithm Results
+		\item Numerical Experiments
 	\end{itemize}
 \end{frame}
 
@@ -138,6 +138,14 @@ July 26\textsuperscript{th}, 2021
 	\vfill
 	\pause
 	Our goal is to determine the optimal distribution of the $k_+$ material through the given volume such that \textit{the average temperature is minimized}.\vfill
+\end{frame}
+
+\begin{frame}
+	\begin{figure}
+		\centering
+		\includegraphics[height=0.65\textwidth]{VP-Problem.png}
+		\caption[VP Problem Diagram]{Finite-size volume generating heat $(q, k_0)$ cooled thanks to a high-conductivity structure ($k_p$) with an arbitrary shape. \cite{Marck2012}}
+	\end{figure}
 \end{frame}
 
 \begin{frame}
@@ -162,7 +170,7 @@ where $\nabla$ is the gradient operator and the function $k$ represents the ther
 \begin{frame}[t]{\bf The Finite Volume Method (FVM)}
 	To numerically solve the heat equation, we employ the Finite Volume Method (FVM).\pause
 	\vfill
-	Given a mesh of polygons (rectangles) on a domain $\Omega$ with sample points at $\lbrace x_i\rbrace\subset\Omega$, we create a set of \textit{control volumes} around each $x_i$. This set of control volumes discretize the partial differential equation.\\\vfill\pause
+	Given a mesh of polygons (rectangles) on a domain $\Omega$ with sample points at $\lbrace x_i\rbrace\subset\Omega$, we create a set of \textit{control volumes} around each $x_i$. This set of control volumes will be used to discretize the partial differential equation.\\\vfill\pause
 	The main idea of FVM is to integrate the heat equation over each control volume and then use the Divergence Theorem to convert volume integrals into surface integrals involving the fluxes across the boundaries of the control volumes.
 	\vfill
 \end{frame}
@@ -263,9 +271,9 @@ Recognizing that $\partial V_i=\partial V_N\cup\partial V_S\cup\partial V_E\cup\
 	Unconstrained optimizations algorithms follow a general blueprint:\pause
 	\begin{enumerate}
 		\item Choose an initial ``guess'' for the optimal value $x$\pause
-		\item Find a Descent Direction $\Delta x$\pause
+		\item Find a descent direction $\Delta x$\pause
 		\item Use a line search method to determine an appropriate step-size ($t$) in the descent direction\pause
-		\item Compute new guess value: $x+t\Delta x$\pause
+		\item Compute new approximation value: $x+t\Delta x$\pause
 	\end{enumerate}
 	\pause
 	\vfill
@@ -290,7 +298,7 @@ Recognizing that $\partial V_i=\partial V_N\cup\partial V_S\cup\partial V_E\cup\
 \end{frame}
 
 \begin{frame}[t]{\textbf{The Method of Moving Asymptotes (MMA)}}
-	 The Method of Moving Asymptotes is a method of non-linear programming, originally developed for structural optimization. MMA is designed for constrained optimization problems.
+	 The Method of Moving Asymptotes is a method of nonlinear programming, originally developed for structural optimization \cite{Svanberg1987}. MMA is designed for constrained optimization problems.
 	 \vfill\pause
 	 The method uses an iterative process which creates a convex subproblem that is solved in each iteration. Each of these subproblems is an approximation of the original problem with parameters that change the curvature of the approximation.
 	 \vfill\pause
@@ -301,7 +309,7 @@ Recognizing that $\partial V_i=\partial V_N\cup\partial V_S\cup\partial V_E\cup\
 \begin{frame}[t]{\textbf{The Method of Moving Asymptotes (MMA)}}
 	\begin{description}
 		\item[\textbf{\underline{Step 0}:}] Choose a starting point $\mathbf{x}^{(0)}$, and let the iteration index $k=0$.
-		\item[\textbf{\underline{Step 1}:}] Given an iteration point $\mathbf{x}^{(k)}$, calculate $f_i(\mathbf{x}^{(k)})$ and the gradients $\nabla f_i(\mathbf{x}^{(k)})$ for $i=0,1,\ldots,m$.
+		\item[\textbf{\underline{Step 1}:}] Given an iterate $\mathbf{x}^{(k)}$, calculate $f_i(\mathbf{x}^{(k)})$ and the gradients $\nabla f_i(\mathbf{x}^{(k)})$ for $i=0,1,\ldots,m$.
 		\item[\textbf{\underline{Step 2}:}] Generate a subproblem $P^{(k)}$ by replacing the functions $f_i$ by approximating functions $f_i^{(k)}$, based on calculations from Step 1.
 		\item[\textbf{\underline{Step 3}:}] Solve $P^{(k)}$ and let the optimal solution of this subproblem be the next iteration point $\mathbf{x}^{(k+1)}$. Let $k=k+1$ and go to Step 1.
 	\end{description}\pause
@@ -315,7 +323,7 @@ Recognizing that $\partial V_i=\partial V_N\cup\partial V_S\cup\partial V_E\cup\
 		\includegraphics[width=0.4\linewidth]{MMA-pic.png}\cite{Keulen}
 	\end{center}\pause
 	These convex approximations can then be efficiently solved using methods such as gradient descent.\vfill\pause
-	For our implementation of the SIMP method, the MMA algorithm was run from within the NLopt optimization package in Julia.\vfill
+	For our implementation of the SIMP method, the MMA algorithm was employed within the NLopt optimization package in Julia.\vfill
 \end{frame}
 
 \begin{frame}{\textbf{Solid Isotropic Material with Penalization (SIMP)}}
@@ -361,7 +369,7 @@ Recognizing that $\partial V_i=\partial V_N\cup\partial V_S\cup\partial V_E\cup\
 }
 
 \begin{frame}[t]{\textbf{Notation}}
-	We have the following sets to describe the VP-problem:
+	We use the following notation to describe the sets involved in the VP-problem:
 	\begin{itemize}
 		\item $\mathbf{x}\in\Omega$ = two-dimensional spatial field
 		\item[] We set $\Omega = \Omega_0\cup\Omega_+$ where
@@ -387,7 +395,7 @@ Recognizing that $\partial V_i=\partial V_N\cup\partial V_S\cup\partial V_E\cup\
 	\begin{equation}
 		\int_{\Omega_+}\dif\mathbf{x}=\int_{\Omega}\delta_+\dif\mathbf{x}\leq V\quad\text{where }\begin{cases}\delta_+ = 0 & \text{if }\mathbf{x}\in\Omega_0 \\ \delta_+ = 1 & \text{if }\mathbf{x}\in\Omega_+\end{cases}\label{eqn:vol-constraint}
 	\end{equation}\vfill\pause
-	Inequality \eqref{eqn:vol-constraint} sets a cap on the maximum volume ($V$) of $\Omega_+$ and hence limits the available amount of high-conductivity material that can be applied to the domain.\vfill
+	Inequality \eqref{eqn:vol-constraint} imposes a cap on the maximum volume ($V$) of $\Omega_+$ and hence limits the available amount of high-conductivity material that can be applied to the domain.\vfill
 	
 	If we did not have this constraint, the optimal solution would be to set $\Omega_+=\Omega$, making the entire domain have high conductivity material.\vfill
 \end{frame}
@@ -450,7 +458,7 @@ Recognizing that $\partial V_i=\partial V_N\cup\partial V_S\cup\partial V_E\cup\
 	where $N_T$ represents the number of temperature control volumes and $\overline{\phi}$ represents the maximum porosity (the cap on the amount of high-conductivity material).
 \end{frame}
 
-\begin{frame}{\textbf{Results}}
+\begin{frame}{\textbf{Numerical Experiments}}
 	\begin{figure}
 		\begin{subfigure}{0.4\textwidth}
 			\centering
@@ -475,7 +483,7 @@ Recognizing that $\partial V_i=\partial V_N\cup\partial V_S\cup\partial V_E\cup\
 	\end{figure}
 \end{frame}
 
-\begin{frame}{Non-Square Grids}
+\begin{frame}{\textbf{Non-Square Grids}}
 	\begin{figure}
 		\begin{subfigure}{0.45\textwidth}
 			\centering
@@ -491,7 +499,7 @@ Recognizing that $\partial V_i=\partial V_N\cup\partial V_S\cup\partial V_E\cup\
 	\end{figure}
 \end{frame}
 
-\begin{frame}{Higher Initial Penalization}
+\begin{frame}{\textbf{Higher Initial Penalization}}
 	\begin{figure}
 		\begin{subfigure}{0.45\textwidth}
 			\includegraphics[width=1.1\linewidth]{60x60-start-p=5-1iters.png}
@@ -507,7 +515,7 @@ Recognizing that $\partial V_i=\partial V_N\cup\partial V_S\cup\partial V_E\cup\
 	\end{figure}
 \end{frame}
 
-\begin{frame}{Minimum Average Temperature Convergence}
+\begin{frame}{\textbf{Minimum Average Temperature Convergence}}
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.9\linewidth]{60x60-p_vs_T.png}
@@ -533,7 +541,7 @@ Recognizing that $\partial V_i=\partial V_N\cup\partial V_S\cup\partial V_E\cup\
 	\end{figure}
 \end{frame}
 
-\begin{frame}{Algorithm Runtime}
+\begin{frame}{\textbf{Algorithm Runtime}}
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.8\linewidth]{SIMP-Runtime.png}
@@ -559,7 +567,7 @@ Recognizing that $\partial V_i=\partial V_N\cup\partial V_S\cup\partial V_E\cup\
 \end{tiny}
 }
 
-\begin{frame}{Questions?}
+\begin{frame}{\textbf{Questions?}}
 	\begin{figure}
 		\centering
 		\includegraphics[height=0.8\textheight]{elske.jpg}

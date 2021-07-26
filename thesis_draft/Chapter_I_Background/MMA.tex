@@ -1,6 +1,6 @@
 \section{The Method of Moving Asymptotes (MMA)}\label{sec:MMA}
 
-The Method of Moving Asymptotes (MMA) is a method of non-linear programming, originally developed for structural optimization \cite{Svanberg1987}. In contrast to the methods presented above, MMA is designed for constrained optimization problems. The method uses an iterative process which creates a convex subproblem that is solved in each iteration. Each of these subproblems is an approximation of the original problem with parameters that change the curvature of the approximation. These parameters act as asymptotes for the subproblem and moving the asymptotes between iterations stablizes the convergence of the entire process.
+The Method of Moving Asymptotes (MMA) is a method of nonlinear programming, originally developed for structural optimization \cite{Svanberg1987}. In contrast to the methods presented above, MMA is designed for constrained optimization problems. The method uses an iterative process which creates a convex subproblem that is solved in each iteration. Each of these subproblems is an approximation of the original problem with parameters that change the curvature of the approximation. These parameters act as asymptotes for the subproblem and moving the asymptotes between iterations stabilizes the convergence of the entire process.
 
 \subsection{General Method Description}
 Consider an optimization problem of the following general form
@@ -25,7 +25,7 @@ The general approach for solving such optimization problems is to split it up an
 
 \begin{description}
 	\item[\textbf{\underline{Step 0}:}] Choose a starting point $\mathbf{x}^{(0)}$, and let the iteration index $k=0$.
-	\item[\textbf{\underline{Step 1}:}] Given an iteration point $\mathbf{x}^{(k)}$, calculate $f_i(\mathbf{x}^{(k)})$ and the gradients $\nabla f_i(\mathbf{x}^{(k)})$ for $i=0,1,\ldots,m$.
+	\item[\textbf{\underline{Step 1}:}] Given an iterate $\mathbf{x}^{(k)}$, calculate $f_i(\mathbf{x}^{(k)})$ and the gradients $\nabla f_i(\mathbf{x}^{(k)})$ for $i=0,1,\ldots,m$.
 	\item[\textbf{\underline{Step 2}:}] Generate a subproblem $P^{(k)}$ by replacing, in \eqref{eqn:MMA-Opt}, the functions $f_i$ by approximating functions $f_i^{(k)}$, based on calculations from Step 1.
 	\item[\textbf{\underline{Step 3}:}] Solve $P^{(k)}$ and let the optimal solution of this subproblem be the next iteration point $\mathbf{x}^{(k+1)}$. Let $k=k+1$ and go to Step 1.
 \end{description}
@@ -55,7 +55,7 @@ $$r_i^{(k)}=f_i(\mathbf{x}^{(k)})-\sum\limits_{j=1}^{n}\left(\frac{p_{ij}^{(k)}}
 
 Notice that $f_i^{(k)}$ is a first-order approximation of $f_i$ at $\mathbf{x}^{(k)}$. Additionally, by construction, $f_i^{(k)}$ is a convex function.
 
-Looking at the second derivatives, the closer $L_j^{(k)}$ and $U_j^{(k)}$ are chosen to $x_j^{(k)}$, the larger the second derivatives become and hence the more curvature is given to the approximating function $f_i^{(k)}$. This means that the closer $L_j^{(k)}$ and $U_j^{(k)}$ are chosen to $x_j^{(k)}$, the more conservative becomes the approximation of the original problem. If $L^{(k)}$ and $U^{(k)}$ are chosen `far away' from $\mathbf{x}^{(k)}$, then the approximation $f_i^{(k)}$ becomes close to linear.
+Looking at the second derivatives, the closer $L_j^{(k)}$ and $U_j^{(k)}$ are chosen to $x_j^{(k)}$, the larger the second derivatives become and hence the more curvature is given to the approximating function $f_i^{(k)}$. This means that the closer $L_j^{(k)}$ and $U_j^{(k)}$ are chosen to $x_j^{(k)}$, the more conservative the approximation of the original problem becomes. If $L^{(k)}$ and $U^{(k)}$ are chosen ```far away''' from $\mathbf{x}^{(k)}$, then the approximation $f_i^{(k)}$ becomes close to linear.
 
 We always choose the values of $L_j^{(k)}$ and $U_j^{(k)}$ to be finite. As a result each $f_i^{(k)}$ becomes strictly convex except when $\frac{\partial f_i}{\partial x_j}=0$ at $\mathbf{x}=x^{(k)}$.
 
@@ -85,7 +85,7 @@ $P^{(k)}$ is a convex, separable problem, so we can create a dual problem using 
 
 $$\ell(x,y)=f_0^{(k)}(\mathbf{x})+\sum\limits_{i=1}^{m}y_if_i^{(k)}(\mathbf{x})$$
 
-Letting $\mathbf{y}$ be the vector of Lagrange multipliers or ``dual variables'' and doing some derivations, we get the dual objective function $W$ defined (for $\mathbf{y}\geq 0$), as below:
+Letting $\mathbf{y}$ be the vector of Lagrange multipliers (or ``dual variables'') and doing some derivations, we get the dual objective function $W$ defined (for $\mathbf{y}\geq 0$), as below:
 \begin{align*}
 	W(\mathbf{y}) & =\min\limits_x\lbrace\ell(\mathbf{x},\mathbf{y}); \alpha_j\leq x_j\leq \beta_j\text{ for all }j\rbrace \\
 	           & =r_0-\mathbf{y}^T\mathbf{b}+\sum\limits_{j=1}^{n}W_j(\mathbf{y})                                          
@@ -105,7 +105,7 @@ The dual problem corresponding to $P^{(k)}$ is given as follows:
                                      
 $D$ is a ``nice'' problem which may be solved by an traditional gradient method.
 
-Once the dual problem has been solved the optimal solution of the primal subproblem $P^{(k)}$ is directly obtained by just substituting in the optimal dual solution $\mathbf{y}$ in to the following expression:
+Once the dual problem has been solved the optimal solution of the primal subproblem $P^{(k)}$ is directly obtained by substituting the optimal dual solution $\mathbf{y}$ into the following expression:
 $$x_j(\mathbf{y})=\frac{\left(p_{0j}+\mathbf{y}^T\mathbf{p}_j\right)^{1/2}L_j+\left(q_{0j}+\mathbf{y}^T\mathbf{q}_j\right)^{1/2}U_j}{\left(p_{0j}+\mathbf{y}^T\mathbf{p}_j\right)^{1/2}+\left(q_{0j}+\mathbf{y}^T\mathbf{q}_j\right)^{1/2}}.$$
 
-For our implementation of the SIMP method, the MMA algorithm was run from within the NLopt optimization package in Julia.
+For our implementation of the SIMP method, the MMA algorithm was employed within the NLopt optimization package in Julia.

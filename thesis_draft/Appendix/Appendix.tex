@@ -2,7 +2,7 @@
 \chapter{Julia Codes}
 
 \section{Backtracking Line Search}
-Here is an implementation of the Backtracking Line Search in Julia with default values for the parameters being $\alpha=0.25$ and $\beta=0.5$.
+Implementation of the Backtracking Line Search in Julia with default values for the parameters being $\alpha=0.25$ and $\beta=0.5$.
 \begin{jllisting}
 	function ln_srch(d_dir,x,f,fx,dfx;alpha=0.25,beta=0.5)
 		t = 1
@@ -19,7 +19,7 @@ Here is an implementation of the Backtracking Line Search in Julia with default 
 	end
 \end{jllisting}
 
-\section{Gradient Descent}
+\section{Gradient Descent}\label{alg:grad-desc}
 \begin{jllisting}
 	using LinearAlgebra
 	

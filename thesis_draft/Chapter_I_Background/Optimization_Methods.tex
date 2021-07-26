@@ -4,17 +4,17 @@ In this section I will present a few optimization algorithms for unconstrained o
 
 These algorithms follow a general blueprint:
 \begin{enumerate}
-	\item Choose an initial ``guess'' for the optimal value $x$
-	\item Find a Descent Direction $\Delta x$
-	\item Use a line search method to determine an appropriate step-size ($t$) in the descent direction
-	\item Compute new guess value: $x+t\Delta x$
+	\item Choose an initial ``guess'' for the optimal value $x$.
+	\item Find a descent direction $\Delta x$.
+	\item Use a line search method to determine an appropriate step-size ($t$) in the descent direction.
+	\item Compute new approximation value $x+t\Delta x$.
 \end{enumerate}
 
 Each method uses a line search, but how the descent direction is chosen is the main differentiating factor in each method.
 
 \subsection{Line Search Methods}
 
-The \textit{line search} is a strategy that selects the step size (commonly represented by $t$) that determines where along the line $\left\lbrace x+t\Delta x\mid t\in\mathbb{R}_+\right\rbrace$ the next iterate in the descent method will be. ($\Delta x$ represents the \textit{descent direction}, .) Line search strategies can either be \textit{exact} or \textit{inexact}.
+The \textit{line search} is a strategy that selects the step size (commonly represented by $t$) that determines where along the line $\left\lbrace x+t\Delta x\mid t\in\mathbb{R}_+\right\rbrace$ the next iterate in the descent method will be. Line search strategies can either be \textit{exact} or \textit{inexact}.
 
 \subsubsection*{Exact Line Search}
 
@@ -23,7 +23,7 @@ $$t=\arg\min_{s\geq 0}f(x+s\Delta x)$$
 An exact line search is almost never practical. In very special cases, such as some quadratic optimization problems where an explicit formula is available, one might employ an exact line search.
 
 \subsubsection*{Backtracking Line Search}
-Most often in practice we use \textit{inexact line searches}. In an inexact line search, we choose $t$ such that $f$ is \textit{approximately} minimized or reduced ``enough'' along $\left\lbrace x+t\Delta x\mid t\in\mathbb{R}_+\right\rbrace$.
+Most often in practice \textit{inexact} line searches are used. In an inexact line search, we choose $t$ such that $f$ is \textit{approximately} minimized or reduced ``enough'' along $\left\lbrace x+t\Delta x\mid t\in\mathbb{R}_+\right\rbrace$.
 
 One inexact line search strategy is the \textit{Backtracking Line Search}.
 \begin{algorithm}[H]
@@ -46,7 +46,7 @@ One inexact line search strategy is the \textit{Backtracking Line Search}.
 %	\includegraphics[width=0.75\textwidth]{Chapter_I_Background/Images/backtracking_line_search_diagram.png}
 %\end{center}
 
-Notice that the backtracking search will find a step size $t$ such that $0\leq t\leq t_0$ and that for such $t$, $f(x+t\Delta x)$ is smaller relative to $f(x)$. However, the step size we choose may not exactly be the minimum of the function, but we have funneled it down to be closer to the minimum of $f$.
+Notice that the backtracking search will find a step size $t$ such that $f(x+t\Delta x)$ is smaller relative to $f(x)$. The step size chosen may not exactly be the minimum of the function, but we have funneled it down closer to the minimum of $f$.
 \subsection{Gradient Descent}
 
 The gradient descent method chooses the search direction to be the negative gradient. That is, in this method we set $\Delta x=-\nabla f(x)$, where $f$ is the function we seek to optimize. Since the gradient of a function gives the direction of greatest increase, naturally the negative gradient will give the direction of the most rapid decline.
@@ -65,31 +65,31 @@ The gradient descent method chooses the search direction to be the negative grad
 	\end{algorithmic}
 \end{algorithm}
 
-Notice in Algorithm \ref{GradientDescentAlg} that essentially a line search is used to determine a step size and then we update our iterate in the direction of the steepest descent. This is repeated until we meet some sort of stopping criterion, typically something of the form $\|\nabla f(x)\|_2\leq\eta$, where $\eta$ is small and positive. Another common stopping criterion is to stop the algorithm when no significant progress is made between iterates by stopping the algorithm when $\|f_{k+1}-f_{k}\|<\eta$.
+Notice that Algorithm \ref{GradientDescentAlg} essentially employs a line search to determine a step size and then updates the iterate in the direction of the steepest descent. This is repeated until some sort of stopping criterion is met, typically something of the form $\|\nabla f(x)\|_2\leq\eta$, where $\eta$ is small and positive. Another common stopping criterion is to stop the algorithm when no significant progress is made between iterates by stopping the algorithm once $\|f_{k+1}-f_{k}\|<\eta$.
 
-An implementation of the gradient descent algorithm in the Julia language can be found in the appendix.
+An implementation of the gradient descent algorithm in the Julia language can be found in \ref{alg:alg:grad-desc}.
 
 \subsection{Nonlinear Conjugate Gradient}
 
-The Nonlinear Conjugate Gradient method works similarly to the gradient descent algorithm, but adds the additional requirement that in each iteration gradient is orthogonal to each previous search direction.
+The Nonlinear Conjugate Gradient method works similarly to the gradient descent algorithm, but adds the additional requirement that in each iteration the descent direction is conjugate to those of each previous iteration.
 
-Suppose we have a function $f(x)$ of $N$ variables. Let $x_0$ be an initial guess value for the minimum. The opposite of the gradient will give the direction of steepest descent. Therefore, we start off by setting $\Delta x_0=-\nabla f(x_0)$.
+Suppose we have a function $f(x)$ of $N$ variables. Let $x_0$ be an initial guess value for the minimum. The opposite of the gradient will give the direction of steepest descent. Therefore, start off by setting $\Delta x_0=-\nabla f(x_0)$.
 
-We set an adjustable step length $\alpha$ and perform a line search in the direction $d_0=\Delta x_0$ until a minimum of $f$ is reached:
+Set an adjustable step length $\alpha$ and perform a line search in the direction $d_0=\Delta x_0$ until a minimum of $f$ is reached:
 \begin{align*}
 	& \alpha_0:=\arg\min_{\alpha} f(x_0+\alpha\Delta x_0), \\
 	& x_1=x_0+\alpha_0\Delta x_0.                          
 \end{align*}
 
-Suppose we were to simply iterate this process and for each step $i$ we do the following:
+Suppose we were to simply iterate this process and for each step $i$ the following was repeated:
 
 \begin{enumerate}
-	\item Set $\Delta x_i=-\nabla f(x_i)$
-	\item Calculate $\alpha_i=\arg\underset{\alpha}{\min}\ f(x_i+\alpha\Delta x_i)$
-	\item Compute $x_{i+1}=x_i+\alpha_i\Delta x_i$
+	\item Set $\Delta x_i=-\nabla f(x_i)$.
+	\item Calculate $\alpha_i=\arg\underset{\alpha}{\min}\ f(x_i+\alpha\Delta x_i)$.
+	\item Compute $x_{i+1}=x_i+\alpha_i\Delta x_i$.
 \end{enumerate}
 
-However, there is an issue with this proposed iterative scheme: We have moved $\alpha_i$ in direction $\Delta x_i$ to find the minimum value in that direction, but by moving $\alpha_{i+1}$ in direction $\Delta x_{i+1}$ we may have accidentally \textit{undone} the progress made in the previous iteration so that we no longer have a minimum value in direction $\Delta x_i$. We can fix this problem by making sure that successive direction vectors have no influence in the directions of previous iterations. That is, we require our directions in each iteration to be conjugate (with respect to the matrix of coefficient for our system) to one another. Therefore, rather than taking $\Delta x_{i+1}$ to be $-\nabla f(x_i)$, we compute a direction conjugate to all previous directions by some pre-chosen methodology. This suggests the following iterative scheme:
+However, there is an issue with this proposed iterative scheme: We have moved $\alpha_i$ in direction $\Delta x_i$ to find the minimum value in that direction, but by moving $\alpha_{i+1}$ in direction $\Delta x_{i+1}$ we may have accidentally \textit{undone} the progress made in the previous iteration so that we no longer have a minimum value in direction $\Delta x_i$. This problem can be fixed by making sure that successive direction vectors have no influence in the directions of previous iterations. That is, we require our directions in each iteration to be conjugate (with respect to the matrix of coefficient for our system) to one another. Therefore, rather than taking $\Delta x_{i+1}$ to be $-\nabla f(x_i)$, we compute a direction conjugate to all previous directions by some pre-chosen methodology. This suggests the following iterative scheme:
 
 After the first iteration, the following steps constitute one iteration along a conjugate direction:
 \begin{enumerate}
